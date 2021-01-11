@@ -17,6 +17,7 @@ package peppol.bis.invoice3.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static java.lang.String.format;
 
@@ -181,5 +182,29 @@ public class Invoice {
 
     public String getProfileID() {
         return profileID;
+    }
+
+    public String getCustomizationID() {
+        return customizationID;
+    }
+
+    public String getIssueDate() {
+        return issueDate;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getInvoiceTypeCode() {
+        return invoiceTypeCode;
+    }
+
+    public Optional<String> getDueDate() {
+        return Optional.ofNullable(dueDate);
+    }
+
+    public String getDocumentCurrencyCode() {
+        return documentCurrencyCode;
     }
 }

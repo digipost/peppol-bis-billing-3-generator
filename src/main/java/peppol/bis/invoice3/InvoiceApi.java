@@ -21,7 +21,7 @@ import peppol.bis.invoice3.domain.Invoice;
 
 public class InvoiceApi {
 
-    public From from(Invoice invoice) {
+    public static From from(Invoice invoice) {
         return new From(invoice, new InvoiceToXml());
     }
 }

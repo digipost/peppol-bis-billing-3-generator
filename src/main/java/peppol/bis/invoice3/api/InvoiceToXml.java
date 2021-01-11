@@ -46,6 +46,11 @@ public class InvoiceToXml {
         invoice.getDueDate().map(val -> root.add(Xml.el(new QualifiedName(CBC_NS, "DueDate"), Xml.text(val))));
         root.add(Xml.el(new QualifiedName(CBC_NS, "InvoiceTypeCode"), Xml.text(invoice.getInvoiceTypeCode())));
         root.add(Xml.el(new QualifiedName(CBC_NS, "DocumentCurrencyCode"), Xml.text(invoice.getDocumentCurrencyCode())));
+        invoice.getNote().map(val -> root.add(Xml.el(new QualifiedName(CBC_NS, "Note"), Xml.text(val))));
+        invoice.getTaxPointDate().map(val -> root.add(Xml.el(new QualifiedName(CBC_NS, "TaxPointDate"), Xml.text(val))));
+        invoice.getTaxCurrencyCode().map(val -> root.add(Xml.el(new QualifiedName(CBC_NS, "TaxCurrencyCode"), Xml.text(val))));
+        invoice.getAccountingCost().map(val -> root.add(Xml.el(new QualifiedName(CBC_NS, "AccountingCost"), Xml.text(val))));
+        invoice.getBuyerReference().map(val -> root.add(Xml.el(new QualifiedName(CBC_NS, "BuyerReference"), Xml.text(val))));
 
         return root;
     }

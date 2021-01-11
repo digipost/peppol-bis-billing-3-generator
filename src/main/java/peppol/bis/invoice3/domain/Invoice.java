@@ -33,6 +33,7 @@ public class Invoice {
     private String invoiceTypeCode;
     private String note;
     private String taxPointDate;
+    private String taxCurrencyCode;
     private String documentCurrencyCode;
     private String accountingCost;
     private String buyerReference;
@@ -96,6 +97,11 @@ public class Invoice {
 
     public Invoice withTaxPointDate(String taxPointDate) {
         this.taxPointDate = taxPointDate;
+        return this;
+    }
+
+    public Invoice withTaxCurrencyCode(String taxCurrencyCode) {
+        this.taxCurrencyCode = taxCurrencyCode;
         return this;
     }
 
@@ -206,5 +212,25 @@ public class Invoice {
 
     public String getDocumentCurrencyCode() {
         return documentCurrencyCode;
+    }
+
+    public Optional<String> getNote() {
+        return Optional.ofNullable(note);
+    }
+
+    public Optional<String> getTaxPointDate() {
+        return Optional.ofNullable(taxPointDate);
+    }
+
+    public Optional<String> getTaxCurrencyCode() {
+        return Optional.ofNullable(taxCurrencyCode);
+    }
+
+    public Optional<String> getAccountingCost() {
+        return Optional.ofNullable(accountingCost);
+    }
+
+    public Optional<String> getBuyerReference() {
+        return Optional.ofNullable(buyerReference);
     }
 }

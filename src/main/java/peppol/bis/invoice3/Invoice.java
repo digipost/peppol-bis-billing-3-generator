@@ -55,7 +55,7 @@ public class Invoice {
     private LegalMonetaryTotal legalMonetaryTotal;
     private List<InvoiceLine> invoiceLines = new ArrayList<>();
 
-    public Invoice(String id, String issueDate, String documentCurrencyCode, String buyerReference, AccountingSupplierParty accountingSupplierParty, AccountingCustomerParty accountingCustomerParty, TaxTotal taxTotal, LegalMonetaryTotal legalMonetaryTotal, InvoiceLine invoiceLine) {
+    public Invoice(String id, String issueDate, String documentCurrencyCode, AccountingSupplierParty accountingSupplierParty, AccountingCustomerParty accountingCustomerParty, TaxTotal taxTotal, LegalMonetaryTotal legalMonetaryTotal, InvoiceLine invoiceLine) {
         this.accountingSupplierParty = accountingSupplierParty;
         this.accountingCustomerParty = accountingCustomerParty;
         this.legalMonetaryTotal = legalMonetaryTotal;
@@ -64,7 +64,6 @@ public class Invoice {
         this.issueDate = issueDate;
         this.withInvoiceTypeCode(UNCL1001_Commercial_invoice);
         this.documentCurrencyCode = documentCurrencyCode;
-        this.buyerReference = buyerReference;
         this.taxTotals.add(taxTotal);
         this.invoiceLines.add(invoiceLine);
     }
@@ -76,6 +75,11 @@ public class Invoice {
 
     public Invoice withInvoiceTypeCode(int invoiceTypeCode) {
         this.invoiceTypeCode = String.valueOf(invoiceTypeCode);
+        return this;
+    }
+
+    public Invoice withBuyerReference(String buyerReference) {
+        this.buyerReference = buyerReference;
         return this;
     }
 

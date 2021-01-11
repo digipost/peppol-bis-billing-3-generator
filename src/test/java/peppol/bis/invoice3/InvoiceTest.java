@@ -30,8 +30,7 @@ class InvoiceTest {
             "33445566"
             , "2017-11-01"
             , "EUR"
-            , "abcd1234",
-            null,
+            , null,
             null, null, null, null);
 
         assertThat(invoice.getProfileID(), is(equalTo("urn:fdc:peppol.eu:2017:poacc:billing:01:1.0")));

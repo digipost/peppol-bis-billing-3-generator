@@ -99,13 +99,13 @@ public class ExampleUsage1 {
             "12345678910"
             , "2020-11-19"
             , "NOK"
-            , "n/a"
             , accountingSupplierParty
             , accountingCustomerParty
             , taxTotal
             , legalMonetaryTotal
             , invoiceLine
-        ).withDueDate("2020-11-30")
+        ).withBuyerReference("n/a")
+            .withDueDate("2020-11-30")
             .withPaymentTerms(new PaymentTerms("10 dager"))
             .withDelivery(delivery)
             .withPaymentMeans(paymentMeans1)

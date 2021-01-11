@@ -16,6 +16,7 @@
 package peppol.bis.invoice3;
 
 import org.junit.jupiter.api.Test;
+import peppol.bis.invoice3.domain.Invoice;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;

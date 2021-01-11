@@ -16,6 +16,40 @@
 package peppol.bis.invoice3;
 
 import org.junit.jupiter.api.Test;
+import peppol.bis.invoice3.domain.AccountingCustomerParty;
+import peppol.bis.invoice3.domain.AccountingSupplierParty;
+import peppol.bis.invoice3.domain.Address;
+import peppol.bis.invoice3.domain.Amount;
+import peppol.bis.invoice3.domain.ClassifiedTaxCategory;
+import peppol.bis.invoice3.domain.CompanyID;
+import peppol.bis.invoice3.domain.Contact;
+import peppol.bis.invoice3.domain.Country;
+import peppol.bis.invoice3.domain.Delivery;
+import peppol.bis.invoice3.domain.DeliveryLocation;
+import peppol.bis.invoice3.domain.DeliveryParty;
+import peppol.bis.invoice3.domain.EndpointID;
+import peppol.bis.invoice3.domain.FinancialInstitutionBranch;
+import peppol.bis.invoice3.domain.Invoice;
+import peppol.bis.invoice3.domain.InvoiceLine;
+import peppol.bis.invoice3.domain.Item;
+import peppol.bis.invoice3.domain.LegalMonetaryTotal;
+import peppol.bis.invoice3.domain.Party;
+import peppol.bis.invoice3.domain.PartyIdentification;
+import peppol.bis.invoice3.domain.PartyLegalEntity;
+import peppol.bis.invoice3.domain.PartyName;
+import peppol.bis.invoice3.domain.PartyTaxScheme;
+import peppol.bis.invoice3.domain.PayeeFinancialAccount;
+import peppol.bis.invoice3.domain.PaymentMeans;
+import peppol.bis.invoice3.domain.PaymentMeansCode;
+import peppol.bis.invoice3.domain.PaymentTerms;
+import peppol.bis.invoice3.domain.PostalAddress;
+import peppol.bis.invoice3.domain.Price;
+import peppol.bis.invoice3.domain.Quantity;
+import peppol.bis.invoice3.domain.SellersItemIdentification;
+import peppol.bis.invoice3.domain.TaxCategory;
+import peppol.bis.invoice3.domain.TaxScheme;
+import peppol.bis.invoice3.domain.TaxSubtotal;
+import peppol.bis.invoice3.domain.TaxTotal;
 
 public class ExampleUsage1 {
 

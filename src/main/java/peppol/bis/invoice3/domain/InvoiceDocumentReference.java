@@ -15,16 +15,35 @@
  */
 package peppol.bis.invoice3.domain;
 
-public class InvoiceDocumentReference {
-    private String id;
+import org.eaxy.Element;
+import org.eaxy.Node;
+import org.eaxy.QualifiedName;
+import org.eaxy.Xml;
+
+import static peppol.bis.invoice3.domain.Namespaces.CAC_NS;
+import static peppol.bis.invoice3.domain.Namespaces.CBC_NS;
+
+public class InvoiceDocumentReference implements XmlElement {
+    private final String id;
     private String issueDate;
 
     public InvoiceDocumentReference(String id) {
         this.id = id;
     }
 
-    public InvoiceDocumentReference(String id, String issueDate) {
-        this.id = id;
+    public InvoiceDocumentReference withIssueDate(String issueDate) {
         this.issueDate = issueDate;
+        return this;
+    }
+
+    @Override
+    public Node node() {
+        final Element elm = Xml.el(new QualifiedName(CAC_NS, name()));
+
+        required(this.id, "ID", elm, CBC_NS);
+
+        optional(this.issueDate, "IssueDate", elm, CBC_NS);
+
+        return elm;
     }
 }

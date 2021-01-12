@@ -23,7 +23,6 @@ import org.eaxy.Xml;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
 import static java.lang.String.format;
 import static peppol.bis.invoice3.domain.Namespaces.CAC_NS;
@@ -185,7 +184,7 @@ public class Invoice implements XmlRootElement, XmlElement {
         return this;
     }
 
-    public Invoice withAllowanceCharges(InvoiceAllowanceCharge allowanceCharge) {
+    public Invoice withAllowanceCharge(InvoiceAllowanceCharge allowanceCharge) {
         this.allowanceCharges.add(allowanceCharge);
         return this;
     }
@@ -203,10 +202,6 @@ public class Invoice implements XmlRootElement, XmlElement {
 
     public String getProfileID() {
         return profileID;
-    }
-
-    public Optional<String> getDueDate() {
-        return Optional.ofNullable(dueDate);
     }
 
     @Override
@@ -235,11 +230,21 @@ public class Invoice implements XmlRootElement, XmlElement {
         optional(this.taxCurrencyCode, "TaxCurrencyCode", elm, CBC_NS);
         optional(this.accountingCost, "AccountingCost", elm, CBC_NS);
         optional(this.buyerReference, "BuyerReference", elm, CBC_NS);
+        optional(this.paymentTerms, elm);
+        optional(this.projectReference, elm);
+        optional(this.contractDocumentReference, elm);
+        optional(this.originatorDocumentReference, elm);
+        optional(this.receiptDocumentReference, elm);
+        optional(this.despatchDocumentReference, elm);
+        optional(this.invoicePeriod, elm);
+        optional(this.orderReference, elm);
+        optional(this.billingReference, elm);
 
         required(this.legalMonetaryTotal, elm);
 
         list(this.taxTotals, elm);
         list(this.invoiceLines, elm);
+        list(this.allowanceCharges, elm);
 
         return elm;
     }

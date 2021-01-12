@@ -15,10 +15,26 @@
  */
 package peppol.bis.invoice3.domain;
 
-public class BillingReference {
-    private InvoiceDocumentReference invoiceDocumentReference;
+import org.eaxy.Element;
+import org.eaxy.Node;
+import org.eaxy.QualifiedName;
+import org.eaxy.Xml;
+
+import static peppol.bis.invoice3.domain.Namespaces.CAC_NS;
+
+public class BillingReference implements XmlElement {
+    private final InvoiceDocumentReference invoiceDocumentReference;
 
     public BillingReference(InvoiceDocumentReference invoiceDocumentReference) {
         this.invoiceDocumentReference = invoiceDocumentReference;
+    }
+
+    @Override
+    public Node node() {
+        final Element elm = Xml.el(new QualifiedName(CAC_NS, name()));
+
+        required(this.invoiceDocumentReference, elm);
+
+        return elm;
     }
 }

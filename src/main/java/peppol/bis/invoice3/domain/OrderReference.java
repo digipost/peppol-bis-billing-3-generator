@@ -15,16 +15,35 @@
  */
 package peppol.bis.invoice3.domain;
 
-public class OrderReference {
-    private String id;
+import org.eaxy.Element;
+import org.eaxy.Node;
+import org.eaxy.QualifiedName;
+import org.eaxy.Xml;
+
+import static peppol.bis.invoice3.domain.Namespaces.CAC_NS;
+import static peppol.bis.invoice3.domain.Namespaces.CBC_NS;
+
+public class OrderReference implements XmlElement {
+    private final String id;
     private String salesOrderID;
 
     public OrderReference(String id) {
         this.id = id;
     }
 
-    public OrderReference(String id, String salesOrderID) {
-        this.id = id;
+    public OrderReference withsalesOrderID(String salesOrderID) {
         this.salesOrderID = salesOrderID;
+        return this;
+    }
+
+    @Override
+    public Node node() {
+        final Element elm = Xml.el(new QualifiedName(CAC_NS, name()));
+
+        required(this.id, "ID", elm, CBC_NS);
+
+        optional(this.salesOrderID, "SalesOrderID", elm, CBC_NS);
+
+        return elm;
     }
 }

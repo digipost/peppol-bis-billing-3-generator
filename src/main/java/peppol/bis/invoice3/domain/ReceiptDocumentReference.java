@@ -15,10 +15,27 @@
  */
 package peppol.bis.invoice3.domain;
 
-public class ReceiptDocumentReference {
-    private String id;
+import org.eaxy.Element;
+import org.eaxy.Node;
+import org.eaxy.QualifiedName;
+import org.eaxy.Xml;
+
+import static peppol.bis.invoice3.domain.Namespaces.CAC_NS;
+import static peppol.bis.invoice3.domain.Namespaces.CBC_NS;
+
+public class ReceiptDocumentReference implements XmlElement {
+    private final String id;
 
     public ReceiptDocumentReference(String id) {
         this.id = id;
+    }
+
+    @Override
+    public Node node() {
+        final Element elm = Xml.el(new QualifiedName(CAC_NS, name()));
+
+        required(this.id, "ID", elm, CBC_NS);
+
+        return elm;
     }
 }

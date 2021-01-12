@@ -15,10 +15,27 @@
  */
 package peppol.bis.invoice3.domain;
 
-public class PaymentTerms {
-    private String note;
+import org.eaxy.Element;
+import org.eaxy.Node;
+import org.eaxy.QualifiedName;
+import org.eaxy.Xml;
+
+import static peppol.bis.invoice3.domain.Namespaces.CAC_NS;
+import static peppol.bis.invoice3.domain.Namespaces.CBC_NS;
+
+public class PaymentTerms implements XmlElement {
+    private final String note;
 
     public PaymentTerms(String note) {
         this.note = note;
+    }
+
+    @Override
+    public Node node() {
+        final Element elm = Xml.el(new QualifiedName(CAC_NS, name()));
+
+        required(this.note, "Note", elm, CBC_NS);
+
+        return elm;
     }
 }

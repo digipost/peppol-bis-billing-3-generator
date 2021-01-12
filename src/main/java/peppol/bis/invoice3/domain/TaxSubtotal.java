@@ -23,8 +23,8 @@ import org.eaxy.Xml;
 import static peppol.bis.invoice3.domain.Namespaces.CAC_NS;
 
 public class TaxSubtotal implements XmlElement {
-    private final Amount taxableAmount;
-    private final Amount taxAmount;
+    private final TaxableAmount taxableAmount;
+    private final TaxAmount taxAmount;
     private final TaxCategory taxCategory;
 
     public TaxSubtotal(TaxableAmount taxableAmount, TaxAmount taxAmount, TaxCategory taxCategory) {

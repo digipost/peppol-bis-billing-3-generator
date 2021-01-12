@@ -18,17 +18,30 @@ package peppol.bis.invoice3;
 import org.eaxy.Element;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import peppol.bis.invoice3.domain.Amount;
+import peppol.bis.invoice3.domain.BillingReference;
 import peppol.bis.invoice3.domain.ClassifiedTaxCategory;
+import peppol.bis.invoice3.domain.ContractDocumentReference;
+import peppol.bis.invoice3.domain.DespatchDocumentReference;
 import peppol.bis.invoice3.domain.Invoice;
+import peppol.bis.invoice3.domain.InvoiceAllowanceCharge;
+import peppol.bis.invoice3.domain.InvoiceDocumentReference;
 import peppol.bis.invoice3.domain.InvoiceLine;
+import peppol.bis.invoice3.domain.InvoicePeriod;
 import peppol.bis.invoice3.domain.InvoicedQuantity;
 import peppol.bis.invoice3.domain.Item;
 import peppol.bis.invoice3.domain.LegalMonetaryTotal;
 import peppol.bis.invoice3.domain.LineExtensionAmount;
+import peppol.bis.invoice3.domain.OrderReference;
+import peppol.bis.invoice3.domain.OriginatorDocumentReference;
 import peppol.bis.invoice3.domain.PayableAmount;
+import peppol.bis.invoice3.domain.PaymentTerms;
 import peppol.bis.invoice3.domain.Price;
 import peppol.bis.invoice3.domain.PriceAmount;
+import peppol.bis.invoice3.domain.ProjectReference;
+import peppol.bis.invoice3.domain.ReceiptDocumentReference;
 import peppol.bis.invoice3.domain.TaxAmount;
+import peppol.bis.invoice3.domain.TaxCategory;
 import peppol.bis.invoice3.domain.TaxExclusiveAmount;
 import peppol.bis.invoice3.domain.TaxInclusiveAmount;
 import peppol.bis.invoice3.domain.TaxScheme;
@@ -160,13 +173,40 @@ public class InvoiceTest  {
         final Invoice invoice = this.invoice
             .withTaxTotal(new TaxTotal(new TaxAmount("322", "EUR")));
 
-        final Element xml = InvoiceApi.from(invoice).process().xml();
+        final Element element = InvoiceApi.from(invoice).process().xml();
 
-        assertThat(xml.find("TaxTotal").check().size(), equalTo(2));
+        assertThat(element.find("TaxTotal").check().size(), equalTo(2));
 
         //Max 2 elements
         assertThrows(IllegalArgumentException.class, () -> this.invoice
             .withTaxTotal(new TaxTotal(new TaxAmount("322", "EUR"))));
+    }
+
+    @Test
+    void invoice_to_xml_for_added_simple_elements() {
+        final Invoice invoice = this.invoice
+            .withPaymentTerms(new PaymentTerms("10 days"))
+            .withProjectReference(new ProjectReference("PID33"))
+            .withOriginatorDocumentReference(new OriginatorDocumentReference("PPID-123"))
+            .withReceiptDocumentReference(new ReceiptDocumentReference("rec98"))
+            .withContractDocumentReference(new ContractDocumentReference("123Contractref"))
+            .withDespatchDocumentReference(new DespatchDocumentReference("desp98"))
+            .withInvoicePeriod(new InvoicePeriod("2020-11-11", "2020-12-12"))
+            .withOrderReference(new OrderReference("98776"))
+            .withBillingReference(new BillingReference(new InvoiceDocumentReference("inv123")))
+            ;
+
+        final Element element = InvoiceApi.from(invoice).process().xml();
+
+        assertRequiredElement(element, "PaymentTerms");
+        assertRequiredElement(element, "ProjectReference");
+        assertRequiredElement(element, "OriginatorDocumentReference");
+        assertRequiredElement(element, "ReceiptDocumentReference");
+        assertRequiredElement(element, "ContractDocumentReference");
+        assertRequiredElement(element, "DespatchDocumentReference");
+        assertRequiredElement(element, "InvoicePeriod");
+        assertRequiredElement(element, "OrderReference");
+        assertRequiredElement(element, "BillingReference");
     }
 
     @Test
@@ -186,6 +226,20 @@ public class InvoiceTest  {
         final Element xml = InvoiceApi.from(invoice).process().xml();
 
         assertThat(xml.find("InvoiceLine").check().size(), equalTo(2));
+    }
+
+
+    @Test
+    void InvoiceLine_to_xml_allowance_charge() {
+        invoice
+            .withAllowanceCharge(new InvoiceAllowanceCharge(true, new Amount("211", "EUR"), new TaxCategory("G", new TaxScheme("VAT"))))
+            .withAllowanceCharge(new InvoiceAllowanceCharge(true, new Amount("212", "EUR"), new TaxCategory("G", new TaxScheme("VAT"))))
+            .withAllowanceCharge(new InvoiceAllowanceCharge(true, new Amount("213", "EUR"), new TaxCategory("G", new TaxScheme("VAT"))))
+        ;
+
+        final Element element = (Element) invoice.node();
+
+        assertThat(element.find("AllowanceCharge").size(), equalTo(3));
     }
 
 

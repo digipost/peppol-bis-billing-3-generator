@@ -19,7 +19,9 @@ import org.eaxy.Element;
 import org.eaxy.NonMatchingPathException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import peppol.bis.invoice3.domain.Amount;
 import peppol.bis.invoice3.domain.Invoice;
+import peppol.bis.invoice3.domain.LegalMonetaryTotal;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
@@ -38,7 +40,7 @@ public class InvoiceToXmlGenerateTest {
             , null
             , null
             , null
-            , null
+            , new LegalMonetaryTotal(new Amount("1273", "EUR"), null, null, null)
             , null
         );
     }

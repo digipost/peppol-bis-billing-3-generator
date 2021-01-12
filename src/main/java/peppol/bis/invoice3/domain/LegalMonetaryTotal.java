@@ -51,4 +51,8 @@ public class LegalMonetaryTotal {
         this.payableRoundingAmount = payableRoundingAmount;
         return this;
     }
+
+    public Amount getLineExtensionAmount() {
+        return lineExtensionAmount;
+    }
 }

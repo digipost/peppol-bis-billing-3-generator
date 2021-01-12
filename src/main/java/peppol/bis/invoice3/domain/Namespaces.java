@@ -15,20 +15,12 @@
  */
 package peppol.bis.invoice3.domain;
 
-public class Amount {
-    private String amount;
-    private String currencyID;
+import org.eaxy.Namespace;
 
-    public Amount(String amount, String currencyID) {
-        this.amount = amount;
-        this.currencyID = currencyID;
-    }
+public class Namespaces {
 
-    public String getAmount() {
-        return amount;
-    }
+    public static final Namespace CAC_NS = new Namespace("urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2", "cac");
+    public static final Namespace CBC_NS = new Namespace("urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", "cbc");
 
-    public String getCurrencyID() {
-        return currencyID;
-    }
+
 }

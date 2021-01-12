@@ -15,13 +15,23 @@
  */
 package peppol.bis.invoice3.domain;
 
+import org.eaxy.Element;
+import org.eaxy.Namespace;
+import org.eaxy.QualifiedName;
+import org.eaxy.Xml;
+
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
 import static java.lang.String.format;
+import static peppol.bis.invoice3.domain.Namespaces.CAC_NS;
+import static peppol.bis.invoice3.domain.Namespaces.CBC_NS;
 
-public class Invoice {
+public class Invoice implements XmlRootElement {
+
+    private final Namespace ROOT_NS = new Namespace("urn:oasis:names:specification:ubl:schema:xsd:Invoice-2");
 
     private static final int UNCL1001_Commercial_invoice = 380;
 
@@ -232,5 +242,37 @@ public class Invoice {
 
     public Optional<String> getBuyerReference() {
         return Optional.ofNullable(buyerReference);
+    }
+
+    public LegalMonetaryTotal getLegalMonetaryTotal() {
+        return legalMonetaryTotal;
+    }
+
+    @Override
+    public Element xmlRoot() {
+        final Element root = Xml.el("Invoice");
+        root.extendNamespaces(Arrays.asList(ROOT_NS, CAC_NS, CBC_NS));
+
+        root.add(Xml.el(new QualifiedName(CBC_NS, "CustomizationID"), Xml.text(this.getCustomizationID())));
+        root.add(Xml.el(new QualifiedName(CBC_NS, "ProfileID"), Xml.text(this.getProfileID())));
+        root.add(Xml.el(new QualifiedName(CBC_NS, "ID"), Xml.text(this.getId())));
+        root.add(Xml.el(new QualifiedName(CBC_NS, "IssueDate"), Xml.text(this.getIssueDate())));
+        this.getDueDate().map(val -> root.add(Xml.el(new QualifiedName(CBC_NS, "DueDate"), Xml.text(val))));
+        root.add(Xml.el(new QualifiedName(CBC_NS, "InvoiceTypeCode"), Xml.text(this.getInvoiceTypeCode())));
+        root.add(Xml.el(new QualifiedName(CBC_NS, "DocumentCurrencyCode"), Xml.text(this.getDocumentCurrencyCode())));
+        this.getNote().map(val -> root.add(Xml.el(new QualifiedName(CBC_NS, "Note"), Xml.text(val))));
+        this.getTaxPointDate().map(val -> root.add(Xml.el(new QualifiedName(CBC_NS, "TaxPointDate"), Xml.text(val))));
+        this.getTaxCurrencyCode().map(val -> root.add(Xml.el(new QualifiedName(CBC_NS, "TaxCurrencyCode"), Xml.text(val))));
+        this.getAccountingCost().map(val -> root.add(Xml.el(new QualifiedName(CBC_NS, "AccountingCost"), Xml.text(val))));
+        this.getBuyerReference().map(val -> root.add(Xml.el(new QualifiedName(CBC_NS, "BuyerReference"), Xml.text(val))));
+
+        final LegalMonetaryTotal legalMonetaryTotal = this.getLegalMonetaryTotal();
+
+        final Element elm = Xml.el(new QualifiedName(CAC_NS, "LegalMonetaryTotal"));
+        root.add(elm);
+        elm.add(Xml.el(new QualifiedName(CBC_NS, "LineExtensionAmount"), Xml.text(legalMonetaryTotal.getLineExtensionAmount().getAmount()), Xml.attr("currencyID", legalMonetaryTotal.getLineExtensionAmount().getCurrencyID())));
+
+
+        return root;
     }
 }

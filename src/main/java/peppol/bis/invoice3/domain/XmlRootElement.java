@@ -15,20 +15,10 @@
  */
 package peppol.bis.invoice3.domain;
 
-public class Amount {
-    private String amount;
-    private String currencyID;
+import org.eaxy.Element;
 
-    public Amount(String amount, String currencyID) {
-        this.amount = amount;
-        this.currencyID = currencyID;
-    }
+public interface XmlRootElement {
 
-    public String getAmount() {
-        return amount;
-    }
+    Element xmlRoot();
 
-    public String getCurrencyID() {
-        return currencyID;
-    }
 }

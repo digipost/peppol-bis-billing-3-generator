@@ -15,17 +15,41 @@
  */
 package peppol.bis.invoice3.domain;
 
-public class Price {
+import org.eaxy.Element;
+import org.eaxy.Node;
+import org.eaxy.QualifiedName;
+import org.eaxy.Xml;
+
+import static peppol.bis.invoice3.domain.Namespaces.CAC_NS;
+
+public class Price implements XmlElement{
     private Amount priceAmount;
-    private Quantity baseQuantity;
+    private BaseQuantity baseQuantity;
     private AllowanceCharge allowanceCharge;
 
-    public Price(Amount priceAmount) {
+    public Price(PriceAmount priceAmount) {
         this.priceAmount = priceAmount;
     }
 
     public Price withAllowanceCharge(AllowanceCharge allowanceCharge) {
         this.allowanceCharge = allowanceCharge;
         return this;
+    }
+
+    public Price withBaseQuantity(BaseQuantity baseQuantity) {
+        this.baseQuantity = baseQuantity;
+        return this;
+    }
+
+    @Override
+    public Node node() {
+        final Element elm = Xml.el(new QualifiedName(CAC_NS, name()));
+
+        required(this.priceAmount, elm);
+
+        optional(this.baseQuantity, elm);
+        optional(this.allowanceCharge, elm);
+
+        return elm;
     }
 }

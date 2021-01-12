@@ -15,7 +15,15 @@
  */
 package peppol.bis.invoice3.domain;
 
-public class InvoicePeriod {
+import org.eaxy.Element;
+import org.eaxy.Node;
+import org.eaxy.QualifiedName;
+import org.eaxy.Xml;
+
+import static peppol.bis.invoice3.domain.Namespaces.CAC_NS;
+import static peppol.bis.invoice3.domain.Namespaces.CBC_NS;
+
+public class InvoicePeriod implements XmlElement {
 
     private String startDate;
     private String endDate;
@@ -29,5 +37,17 @@ public class InvoicePeriod {
     public InvoicePeriod withDescriptionCode(String descriptionCode) {
         this.descriptionCode = descriptionCode;
         return this;
+    }
+
+    @Override
+    public Node node() {
+        final Element elm = Xml.el(new QualifiedName(CAC_NS, name()));
+
+        required(this.startDate, "StartDate", elm, CBC_NS);
+        required(this.endDate, "EndDate", elm, CBC_NS);
+
+        optional(this.descriptionCode, "DescriptionCode", elm, CBC_NS);
+
+        return elm;
     }
 }

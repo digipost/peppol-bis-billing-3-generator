@@ -35,7 +35,7 @@ public class TaxScheme implements XmlElement {
     public Node node() {
         final Element elm = Xml.el(new QualifiedName(CAC_NS, name()));
 
-        elm.add(Xml.el(new QualifiedName(CBC_NS, "ID"), Xml.text(this.id)));
+        required(this.id, "ID", elm, CBC_NS);
 
         return elm;
     }

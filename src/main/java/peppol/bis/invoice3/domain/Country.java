@@ -15,10 +15,28 @@
  */
 package peppol.bis.invoice3.domain;
 
-public class Country {
-    private String identificationCode;
+import org.eaxy.Element;
+import org.eaxy.Node;
+import org.eaxy.QualifiedName;
+import org.eaxy.Xml;
+
+import static peppol.bis.invoice3.domain.Namespaces.CAC_NS;
+import static peppol.bis.invoice3.domain.Namespaces.CBC_NS;
+
+public class Country implements XmlElement {
+    private final String identificationCode;
 
     public Country(String identificationCode) {
         this.identificationCode = identificationCode;
+    }
+
+
+    @Override
+    public Node node() {
+        final Element elm = Xml.el(new QualifiedName(CAC_NS, name()));
+
+        required(this.identificationCode, "IdentificationCode", elm, CBC_NS);
+
+        return elm;
     }
 }

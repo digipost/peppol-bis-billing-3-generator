@@ -15,19 +15,27 @@
  */
 package peppol.bis.invoice3.domain;
 
+import org.eaxy.Element;
+import org.eaxy.Node;
+import org.eaxy.QualifiedName;
+import org.eaxy.Xml;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class Item {
-    private String name;
+import static peppol.bis.invoice3.domain.Namespaces.CAC_NS;
+import static peppol.bis.invoice3.domain.Namespaces.CBC_NS;
+
+public class Item implements XmlElement {
+    private final String name;
     private String description;
     private BuyersItemIdentification buyersItemIdentification;
     private SellersItemIdentification sellersItemIdentification;
     private StandardItemIdentification standardItemIdentification;
-    private Country originCountry;
-    private List<CommodityClassification> commodityClassifications = new ArrayList<>();
-    private ClassifiedTaxCategory classifiedTaxCategory;
-    private List<AdditionalItemProperty> additionalItemProperties = new ArrayList<>();
+    private OriginCountry originCountry;
+    private final List<XmlElement> commodityClassifications = new ArrayList<>();
+    private final ClassifiedTaxCategory classifiedTaxCategory;
+    private final List<XmlElement> additionalItemProperties = new ArrayList<>();
 
     public Item(String name, ClassifiedTaxCategory classifiedTaxCategory) {
         this.name = name;
@@ -54,7 +62,7 @@ public class Item {
         return this;
     }
 
-    public Item withOriginCountry(Country originCountry) {
+    public Item withOriginCountry(OriginCountry originCountry) {
         this.originCountry = originCountry;
         return this;
     }
@@ -67,5 +75,25 @@ public class Item {
     public Item withAdditionalItemProperty(AdditionalItemProperty additionalItemProperty) {
         this.additionalItemProperties.add(additionalItemProperty);
         return this;
+    }
+
+    @Override
+    public Node node() {
+        final Element elm = Xml.el(new QualifiedName(CAC_NS, name()));
+
+        required(this.name, "Name", elm, CBC_NS);
+        required(this.classifiedTaxCategory, elm);
+
+        optional(this.description, "Description", elm, CBC_NS);
+
+        optional(this.buyersItemIdentification, elm);
+        optional(this.sellersItemIdentification, elm);
+        optional(this.standardItemIdentification, elm);
+        optional(this.originCountry, elm);
+
+        list(this.commodityClassifications, elm);
+        list(this.additionalItemProperties, elm);
+
+        return elm;
     }
 }

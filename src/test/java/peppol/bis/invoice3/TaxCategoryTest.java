@@ -21,35 +21,40 @@ import org.junit.jupiter.api.Test;
 import peppol.bis.invoice3.domain.TaxCategory;
 import peppol.bis.invoice3.domain.TaxScheme;
 
-import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
+import static peppol.bis.invoice3.XmlAsserts.assertElementNameIs;
+import static peppol.bis.invoice3.XmlAsserts.assertRequiredElement;
+import static peppol.bis.invoice3.XmlAsserts.assertUnsetOptionalElement;
+import static peppol.bis.invoice3.domain.Namespaces.CAC_NS;
 
-public class TaxCategoryToXmlTest {
+public class TaxCategoryTest  {
 
     private TaxCategory taxCategory;
 
     @BeforeEach
     void setUp() {
-
         taxCategory = new TaxCategory(
             "S", new TaxScheme("VAT")
         );
-
     }
 
     @Test
-    void TaxCategory_to_xml_basic_elements() {
-
+    void to_xml_basic_elements() {
         final Element element = (Element) taxCategory.node();
 
-        assertThat(element.getName().getName(), equalTo("TaxCategory"));
+        assertElementNameIs(element, "TaxCategory", CAC_NS);
+        assertRequiredElement(element, "ID");
+        assertRequiredElement(element, "TaxScheme");
 
-        assertThat(element.find("ID").first().text(), equalTo("S"));
-        assertThat(element.find("TaxScheme").first().text(), equalTo("VAT"));
+        assertUnsetOptionalElement(element, "Percent");
+        assertUnsetOptionalElement(element, "TaxExemptionReason");
+        assertUnsetOptionalElement(element, "TaxExemptionReasonCode");
+
+        assertRequiredElement(element, "ID", equalTo("S"));
     }
 
     @Test
-    void TaxCategory_to_xml_optional_elements() {
+    void to_xml_optional_elements() {
         taxCategory
             .withPercent("25")
             .withTaxExemptionReason("Exempt New Means of Transport")
@@ -57,9 +62,9 @@ public class TaxCategoryToXmlTest {
 
         final Element element = (Element) taxCategory.node();
 
-        assertThat(element.find("Percent").first().text(), equalTo("25"));
-        assertThat(element.find("TaxExemptionReason").first().text(), equalTo("Exempt New Means of Transport"));
-        assertThat(element.find("TaxExemptionReasonCode").first().text(), equalTo("VATEX-EU-G"));
+        assertRequiredElement(element, "Percent", equalTo("25"));
+        assertRequiredElement(element, "TaxExemptionReason", equalTo("Exempt New Means of Transport"));
+        assertRequiredElement(element, "TaxExemptionReasonCode", equalTo("VATEX-EU-G"));
     }
 
 }

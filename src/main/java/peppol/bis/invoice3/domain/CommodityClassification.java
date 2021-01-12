@@ -15,10 +15,26 @@
  */
 package peppol.bis.invoice3.domain;
 
-public class CommodityClassification {
-    private ItemClassificationCode itemClassificationCode;
+import org.eaxy.Element;
+import org.eaxy.Node;
+import org.eaxy.QualifiedName;
+import org.eaxy.Xml;
+
+import static peppol.bis.invoice3.domain.Namespaces.CAC_NS;
+
+public class CommodityClassification implements XmlElement {
+    private final ItemClassificationCode itemClassificationCode;
 
     public CommodityClassification(ItemClassificationCode itemClassificationCode) {
         this.itemClassificationCode = itemClassificationCode;
+    }
+
+    @Override
+    public Node node() {
+        final Element elm = Xml.el(new QualifiedName(CAC_NS, name()));
+
+        required(this.itemClassificationCode, elm);
+
+        return elm;
     }
 }

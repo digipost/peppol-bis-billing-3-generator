@@ -15,27 +15,9 @@
  */
 package peppol.bis.invoice3.domain;
 
-import org.eaxy.Element;
-import org.eaxy.Node;
-import org.eaxy.QualifiedName;
-import org.eaxy.Xml;
+public class InvoicedQuantity extends BaseQuantity {
 
-import static peppol.bis.invoice3.domain.Namespaces.CAC_NS;
-import static peppol.bis.invoice3.domain.Namespaces.CBC_NS;
-
-public class OrderLineReference implements XmlElement {
-    private final String lineID;
-
-    public OrderLineReference(String lineID) {
-        this.lineID = lineID;
-    }
-
-    @Override
-    public Node node() {
-        final Element elm = Xml.el(new QualifiedName(CAC_NS, name()));
-
-        required(this.lineID, "LineID", elm, CBC_NS);
-
-        return elm;
+    public InvoicedQuantity(String unitCode, String value) {
+        super(unitCode, value);
     }
 }

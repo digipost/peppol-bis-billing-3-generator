@@ -16,7 +16,6 @@
 package peppol.bis.invoice3;
 
 import org.eaxy.Element;
-import org.eaxy.NonMatchingPathException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import peppol.bis.invoice3.domain.AllowanceTotalAmount;
@@ -29,46 +28,44 @@ import peppol.bis.invoice3.domain.PrepaidAmount;
 import peppol.bis.invoice3.domain.TaxExclusiveAmount;
 import peppol.bis.invoice3.domain.TaxInclusiveAmount;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.equalTo;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static peppol.bis.invoice3.XmlAsserts.assertElementNameIs;
+import static peppol.bis.invoice3.XmlAsserts.assertRequiredElement;
+import static peppol.bis.invoice3.XmlAsserts.assertUnsetOptionalElement;
+import static peppol.bis.invoice3.domain.Namespaces.CAC_NS;
 
-public class LegalMonetaryTotalToXmlTest {
+public class LegalMonetaryTotalTest {
 
     private LegalMonetaryTotal legalMonetaryTotal;
 
     @BeforeEach
     void setUp() {
-
         legalMonetaryTotal = new LegalMonetaryTotal(
             new LineExtensionAmount("1273", "EUR")
             , new TaxExclusiveAmount("1273", "EUR")
             , new TaxInclusiveAmount("1273", "EUR")
             , new PayableAmount("1273", "EUR")
         );
-
     }
 
     @Test
-    void LegalMonetaryTotal_to_xml_for_basic_elements() {
+    void to_xml_for_basic_elements() {
 
         final Element element = (Element) legalMonetaryTotal.node();
+        assertElementNameIs(element, "LegalMonetaryTotal", CAC_NS);
 
-        assertThat(element.getName().getName(), equalTo("LegalMonetaryTotal"));
-        element.find("LineExtensionAmount").check();
-        element.find("TaxExclusiveAmount").check();
-        element.find("TaxInclusiveAmount").check();
-        element.find("PayableAmount").check();
+        assertRequiredElement(element, "LineExtensionAmount");
+        assertRequiredElement(element, "TaxExclusiveAmount");
+        assertRequiredElement(element, "TaxInclusiveAmount");
+        assertRequiredElement(element, "PayableAmount");
 
-        assertThrows(NonMatchingPathException.class, () -> element.find("AllowanceTotalAmount").check());
-        assertThrows(NonMatchingPathException.class, () -> element.find("ChargeTotalAmount").check());
-        assertThrows(NonMatchingPathException.class, () -> element.find("PrepaidAmount").check());
-        assertThrows(NonMatchingPathException.class, () -> element.find("PayableRoundingAmount").check());
-
+        assertUnsetOptionalElement(element, "AllowanceTotalAmount");
+        assertUnsetOptionalElement(element, "ChargeTotalAmount");
+        assertUnsetOptionalElement(element, "PrepaidAmount");
+        assertUnsetOptionalElement(element, "PayableRoundingAmount");
     }
 
     @Test
-    void LegalMonetaryTotal_to_xml_for_optional_elements() {
+    void to_xml_for_optional_elements() {
         legalMonetaryTotal
             .withAllowanceTotalAmount(new AllowanceTotalAmount("1273", "EUR"))
             .withChargeTotalAmount(new ChargeTotalAmount("1273", "EUR"))
@@ -77,9 +74,9 @@ public class LegalMonetaryTotalToXmlTest {
 
         final Element element = (Element) legalMonetaryTotal.node();
 
-        element.find("AllowanceTotalAmount").check();
-        element.find("ChargeTotalAmount").check();
-        element.find("PrepaidAmount").check();
-        element.find("PayableRoundingAmount").check();
+        assertRequiredElement(element, "AllowanceTotalAmount");
+        assertRequiredElement(element, "ChargeTotalAmount");
+        assertRequiredElement(element, "PrepaidAmount");
+        assertRequiredElement(element, "PayableRoundingAmount");
     }
 }

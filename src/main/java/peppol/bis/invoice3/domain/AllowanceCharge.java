@@ -15,7 +15,14 @@
  */
 package peppol.bis.invoice3.domain;
 
-public class AllowanceCharge {
+import org.eaxy.Element;
+import org.eaxy.Node;
+import org.eaxy.QualifiedName;
+import org.eaxy.Xml;
+
+import static peppol.bis.invoice3.domain.Namespaces.CAC_NS;
+
+public class AllowanceCharge implements XmlElement {
     private boolean chargeIndicator;
     private String allowanceChargeReasonCode;
     private String allowanceChargeReason;
@@ -24,7 +31,7 @@ public class AllowanceCharge {
     private Amount baseAmount;
     private TaxCategory taxCategory;
 
-    public AllowanceCharge(boolean chargeIndicator, Amount amount) {
+    public AllowanceCharge(boolean chargeIndicator, BaseAmount amount) {
         this.chargeIndicator = chargeIndicator;
         this.amount = amount;
     }
@@ -52,6 +59,13 @@ public class AllowanceCharge {
     public AllowanceCharge withTaxCategory(TaxCategory taxCategory) {
         this.taxCategory = taxCategory;
         return this;
+    }
+
+    @Override
+    public Node node() {
+        final Element elm = Xml.el(new QualifiedName(CAC_NS, name()));
+
+        return elm;
     }
 
 }

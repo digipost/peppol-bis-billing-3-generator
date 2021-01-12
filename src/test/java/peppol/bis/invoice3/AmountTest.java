@@ -19,19 +19,22 @@ import org.eaxy.Element;
 import org.junit.jupiter.api.Test;
 import peppol.bis.invoice3.domain.AllowanceTotalAmount;
 import peppol.bis.invoice3.domain.Amount;
+import peppol.bis.invoice3.domain.BaseAmount;
 import peppol.bis.invoice3.domain.ChargeTotalAmount;
 import peppol.bis.invoice3.domain.LineExtensionAmount;
 import peppol.bis.invoice3.domain.PayableAmount;
 import peppol.bis.invoice3.domain.PayableRoundingAmount;
 import peppol.bis.invoice3.domain.PrepaidAmount;
+import peppol.bis.invoice3.domain.PriceAmount;
 import peppol.bis.invoice3.domain.TaxExclusiveAmount;
 import peppol.bis.invoice3.domain.TaxInclusiveAmount;
+import peppol.bis.invoice3.domain.TaxableAmount;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
 
-class AmountToXmlTest {
+class AmountTest {
 
     @Test
     void Amount_to_xml() {
@@ -101,6 +104,30 @@ class AmountToXmlTest {
     void PayableRoundingAmount_to_xml() {
         final Element element = (Element) new PayableRoundingAmount("1273", "EUR").node();
         assertThat(element.getName().getName(), equalTo("PayableRoundingAmount"));
+        assertThat(element.text(), equalTo("1273"));
+        assertThat(element.attrs().get("currencyID"), equalTo("EUR"));
+    }
+
+    @Test
+    void PriceAmount_to_xml() {
+        final Element element = (Element) new PriceAmount("1273", "EUR").node();
+        assertThat(element.getName().getName(), equalTo("PriceAmount"));
+        assertThat(element.text(), equalTo("1273"));
+        assertThat(element.attrs().get("currencyID"), equalTo("EUR"));
+    }
+
+    @Test
+    void TaxableAmount_to_xml() {
+        final Element element = (Element) new TaxableAmount("1273", "EUR").node();
+        assertThat(element.getName().getName(), equalTo("TaxableAmount"));
+        assertThat(element.text(), equalTo("1273"));
+        assertThat(element.attrs().get("currencyID"), equalTo("EUR"));
+    }
+
+    @Test
+    void BaseAmount_to_xml() {
+        final Element element = (Element) new BaseAmount("1273", "EUR").node();
+        assertThat(element.getName().getName(), equalTo("BaseAmount"));
         assertThat(element.text(), equalTo("1273"));
         assertThat(element.attrs().get("currencyID"), equalTo("EUR"));
     }

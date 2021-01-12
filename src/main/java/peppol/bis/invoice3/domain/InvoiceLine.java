@@ -15,24 +15,32 @@
  */
 package peppol.bis.invoice3.domain;
 
+import org.eaxy.Element;
+import org.eaxy.Node;
+import org.eaxy.QualifiedName;
+import org.eaxy.Xml;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class InvoiceLine {
+import static peppol.bis.invoice3.domain.Namespaces.CAC_NS;
+import static peppol.bis.invoice3.domain.Namespaces.CBC_NS;
+
+public class InvoiceLine implements XmlElement {
 
     private String id;
     private String note;
-    private Quantity invoicedQuantity;
+    private InvoicedQuantity invoicedQuantity;
     private Amount lineExtensionAmount;
     private String accountingCost;
     private InvoicePeriod invoicePeriod;
     private OrderLineReference orderLineReference;
     private DocumentReference documentReference;
-    private List<AllowanceCharge> allowanceCharges = new ArrayList<>();
+    private final List<XmlElement> allowanceCharges = new ArrayList<>();
     private Item item;
     private Price price;
 
-    public InvoiceLine(String id, Quantity invoicedQuantity, Amount lineExtensionAmount, Item item, Price price) {
+    public InvoiceLine(String id, InvoicedQuantity invoicedQuantity, LineExtensionAmount lineExtensionAmount, Item item, Price price) {
         this.id = id;
         this.invoicedQuantity = invoicedQuantity;
         this.lineExtensionAmount = lineExtensionAmount;
@@ -70,4 +78,26 @@ public class InvoiceLine {
         return this;
     }
 
+    @Override
+    public Node node() {
+        final Element elm = Xml.el(new QualifiedName(CAC_NS, name()));
+
+        required(this.id, "ID", elm, CBC_NS);
+
+        required(this.invoicedQuantity, elm);
+        required(this.lineExtensionAmount, elm);
+        required(this.item, elm);
+        required(this.price, elm);
+
+        optional(this.note, "Note", elm, CBC_NS);
+        optional(this.accountingCost, "AccountingCost", elm, CBC_NS);
+
+        optional(this.invoicePeriod, elm);
+        optional(this.orderLineReference, elm);
+        optional(this.documentReference, elm);
+
+        list(allowanceCharges, elm);
+
+        return elm;
+    }
 }

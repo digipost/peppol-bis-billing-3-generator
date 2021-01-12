@@ -15,12 +15,30 @@
  */
 package peppol.bis.invoice3.domain;
 
-public class DocumentReference {
-    private String id;
-    private String documentTypeCode;
+import org.eaxy.Element;
+import org.eaxy.Node;
+import org.eaxy.QualifiedName;
+import org.eaxy.Xml;
+
+import static peppol.bis.invoice3.domain.Namespaces.CAC_NS;
+import static peppol.bis.invoice3.domain.Namespaces.CBC_NS;
+
+public class DocumentReference implements XmlElement {
+    private final String id;
+    private final String documentTypeCode;
 
     public DocumentReference(String id, String documentTypeCode) {
         this.id = id;
         this.documentTypeCode = documentTypeCode;
+    }
+
+    @Override
+    public Node node() {
+        final Element elm = Xml.el(new QualifiedName(CAC_NS, name()));
+
+        required(this.id, "ID", elm, CBC_NS);
+        required(this.documentTypeCode, "DocumentTypeCode", elm, CBC_NS);
+
+        return elm;
     }
 }

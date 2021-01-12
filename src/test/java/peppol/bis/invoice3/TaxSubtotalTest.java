@@ -24,10 +24,11 @@ import peppol.bis.invoice3.domain.TaxScheme;
 import peppol.bis.invoice3.domain.TaxSubtotal;
 import peppol.bis.invoice3.domain.TaxableAmount;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.equalTo;
+import static peppol.bis.invoice3.XmlAsserts.assertElementNameIs;
+import static peppol.bis.invoice3.XmlAsserts.assertRequiredElement;
+import static peppol.bis.invoice3.domain.Namespaces.CAC_NS;
 
-public class TaxSubtotalToXmlTest {
+public class TaxSubtotalTest  {
 
     private TaxSubtotal taxSubtotal;
 
@@ -44,13 +45,12 @@ public class TaxSubtotalToXmlTest {
 
     @Test
     void TaxSubtotal_to_xml_basic_elements() {
-
         final Element element = (Element) taxSubtotal.node();
 
-        assertThat(element.getName().getName(), equalTo("TaxSubtotal"));
-        element.find("TaxableAmount").check();
-        element.find("TaxAmount").check();
-        element.find("TaxCategory").check();
+        assertElementNameIs(element, "TaxSubtotal", CAC_NS);
+        assertRequiredElement(element, "TaxableAmount");
+        assertRequiredElement(element, "TaxAmount");
+        assertRequiredElement(element, "TaxCategory");
     }
 
 }

@@ -20,8 +20,6 @@ import org.eaxy.Node;
 import org.eaxy.QualifiedName;
 import org.eaxy.Xml;
 
-import java.util.Optional;
-
 import static peppol.bis.invoice3.domain.Namespaces.CAC_NS;
 
 public class LegalMonetaryTotal implements XmlElement {
@@ -66,14 +64,16 @@ public class LegalMonetaryTotal implements XmlElement {
     public Node node() {
         final Element elm = Xml.el(new QualifiedName(CAC_NS, name()));
 
-        elm.add(lineExtensionAmount.node());
-        elm.add(taxExclusiveAmount.node());
-        elm.add(taxInclusiveAmount.node());
-        Optional.ofNullable(allowanceTotalAmount).ifPresent(amount -> elm.add(amount.node()));
-        Optional.ofNullable(chargeTotalAmount).ifPresent(amount -> elm.add(amount.node()));
-        Optional.ofNullable(prepaidAmount).ifPresent(amount -> elm.add(amount.node()));
-        Optional.ofNullable(payableRoundingAmount).ifPresent(amount -> elm.add(amount.node()));
-        elm.add(payableAmount.node());
+        required(this.lineExtensionAmount, elm);
+        required(this.taxExclusiveAmount, elm);
+        required(this.taxInclusiveAmount, elm);
+
+        optional(this.allowanceTotalAmount, elm);
+        optional(this.chargeTotalAmount, elm);
+        optional(this.prepaidAmount, elm);
+        optional(this.payableRoundingAmount, elm);
+
+        required(this.payableAmount, elm);
 
         return elm;
     }

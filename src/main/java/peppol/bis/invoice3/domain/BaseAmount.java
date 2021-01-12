@@ -15,12 +15,8 @@
  */
 package peppol.bis.invoice3.domain;
 
-public class Quantity {
-    private String unitCode;
-    private String value;
-
-    public Quantity(String unitCode, String value) {
-        this.unitCode = unitCode;
-        this.value = value;
+public class BaseAmount extends Amount {
+    public BaseAmount(String amount, String currencyID) {
+        super(amount, currencyID);
     }
 }

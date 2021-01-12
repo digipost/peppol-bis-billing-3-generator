@@ -22,28 +22,20 @@ import org.eaxy.Xml;
 import static peppol.bis.invoice3.domain.Namespaces.CBC_NS;
 
 public class Amount implements XmlElement {
-    private String amount;
-    private String currencyID;
+    private final String amount;
+    private final String currencyID;
 
     public Amount(String amount, String currencyID) {
         this.amount = amount;
         this.currencyID = currencyID;
     }
 
-    public String getAmount() {
-        return amount;
-    }
-
-    public String getCurrencyID() {
-        return currencyID;
-    }
-
     @Override
     public Node node() {
         return Xml.el(
             new QualifiedName(CBC_NS, this.name())
-            , Xml.text(getAmount())
-            , Xml.attr("currencyID", getCurrencyID())
+            , Xml.text(this.amount)
+            , Xml.attr("currencyID", this.currencyID)
         );
     }
 }

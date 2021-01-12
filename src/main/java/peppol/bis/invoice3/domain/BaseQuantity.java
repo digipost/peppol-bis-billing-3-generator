@@ -15,32 +15,27 @@
  */
 package peppol.bis.invoice3.domain;
 
-import org.eaxy.Element;
 import org.eaxy.Node;
 import org.eaxy.QualifiedName;
 import org.eaxy.Xml;
 
-import static peppol.bis.invoice3.domain.Namespaces.CAC_NS;
+import static peppol.bis.invoice3.domain.Namespaces.CBC_NS;
 
-public class TaxSubtotal implements XmlElement {
-    private final Amount taxableAmount;
-    private final Amount taxAmount;
-    private final TaxCategory taxCategory;
+public class BaseQuantity implements XmlElement {
+    private final String unitCode;
+    private final String value;
 
-    public TaxSubtotal(TaxableAmount taxableAmount, TaxAmount taxAmount, TaxCategory taxCategory) {
-        this.taxableAmount = taxableAmount;
-        this.taxAmount = taxAmount;
-        this.taxCategory = taxCategory;
+    public BaseQuantity(String unitCode, String value) {
+        this.unitCode = unitCode;
+        this.value = value;
     }
 
     @Override
     public Node node() {
-        final Element elm = Xml.el(new QualifiedName(CAC_NS, name()));
-
-        required(this.taxableAmount, elm);
-        required(this.taxAmount, elm);
-        required(this.taxCategory, elm);
-
-        return elm;
+        return Xml.el(
+            new QualifiedName(CBC_NS, this.name())
+            , Xml.text(this.value)
+            , Xml.attr("unitCode", this.unitCode)
+        );
     }
 }

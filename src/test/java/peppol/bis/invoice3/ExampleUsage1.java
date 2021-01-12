@@ -46,7 +46,8 @@ import peppol.bis.invoice3.domain.PaymentMeansCode;
 import peppol.bis.invoice3.domain.PaymentTerms;
 import peppol.bis.invoice3.domain.PostalAddress;
 import peppol.bis.invoice3.domain.Price;
-import peppol.bis.invoice3.domain.Quantity;
+import peppol.bis.invoice3.domain.InvoicedQuantity;
+import peppol.bis.invoice3.domain.PriceAmount;
 import peppol.bis.invoice3.domain.SellersItemIdentification;
 import peppol.bis.invoice3.domain.TaxAmount;
 import peppol.bis.invoice3.domain.TaxCategory;
@@ -102,12 +103,12 @@ public class ExampleUsage1 {
         );
 
         final InvoiceLine invoiceLine = new InvoiceLine(
-            "1", new Quantity("STK", "1")
-            , new Amount("2860.00", "NOK")
+            "1", new InvoicedQuantity("STK", "1")
+            , new LineExtensionAmount("2860.00", "NOK")
             , new Item(
             "Frakt", new ClassifiedTaxCategory("G", new TaxScheme("VAT")).withPercent("0.000")
         ).withSellersItemIdentification(new SellersItemIdentification("101366"))
-            , new Price(new Amount("2860.00", "NOK"))
+            , new Price(new PriceAmount("2860.00", "NOK"))
         );
 
         final Delivery delivery = new Delivery().withDeliveryLocation(
@@ -135,7 +136,7 @@ public class ExampleUsage1 {
                     .withFinancialInstitutionBranch(new FinancialInstitutionBranch("NDEANOKK"))
             );
 
-        new Invoice(
+        final Invoice invoice = new Invoice(
             "12345678910"
             , "2020-11-19"
             , "NOK"
@@ -151,5 +152,6 @@ public class ExampleUsage1 {
             .withPaymentMeans(paymentMeans1)
             .withPaymentMeans(paymentMeans2);
 
+        //InvoiceApi.from(invoice).process().log();
     }
 }

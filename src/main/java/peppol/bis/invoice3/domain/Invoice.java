@@ -17,7 +17,7 @@ package peppol.bis.invoice3.domain;
 
 import org.eaxy.Element;
 import org.eaxy.Namespace;
-import org.eaxy.QualifiedName;
+import org.eaxy.Node;
 import org.eaxy.Xml;
 
 import java.util.ArrayList;
@@ -29,7 +29,7 @@ import static java.lang.String.format;
 import static peppol.bis.invoice3.domain.Namespaces.CAC_NS;
 import static peppol.bis.invoice3.domain.Namespaces.CBC_NS;
 
-public class Invoice implements XmlRootElement {
+public class Invoice implements XmlRootElement, XmlElement {
 
     private final Namespace ROOT_NS = new Namespace("urn:oasis:names:specification:ubl:schema:xsd:Invoice-2");
 
@@ -63,9 +63,9 @@ public class Invoice implements XmlRootElement {
     private List<PaymentMeans> paymentMeans = new ArrayList<>();
     private PaymentTerms paymentTerms;
     private List<AllowanceCharge> allowanceCharges = new ArrayList<>();
-    private List<TaxTotal> taxTotals = new ArrayList<>();
+    private List<XmlElement> taxTotals = new ArrayList<>();
     private LegalMonetaryTotal legalMonetaryTotal;
-    private List<InvoiceLine> invoiceLines = new ArrayList<>();
+    private List<XmlElement> invoiceLines = new ArrayList<>();
 
     public Invoice(String id, String issueDate, String documentCurrencyCode, AccountingSupplierParty accountingSupplierParty, AccountingCustomerParty accountingCustomerParty, TaxTotal taxTotal, LegalMonetaryTotal legalMonetaryTotal, InvoiceLine invoiceLine) {
         this.accountingSupplierParty = accountingSupplierParty;
@@ -196,79 +196,51 @@ public class Invoice implements XmlRootElement {
         return this;
     }
 
+    public Invoice withInvoiceLine(InvoiceLine invoiceLine) {
+        this.invoiceLines.add(invoiceLine);
+        return this;
+    }
+
     public String getProfileID() {
         return profileID;
-    }
-
-    public String getCustomizationID() {
-        return customizationID;
-    }
-
-    public String getIssueDate() {
-        return issueDate;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public String getInvoiceTypeCode() {
-        return invoiceTypeCode;
     }
 
     public Optional<String> getDueDate() {
         return Optional.ofNullable(dueDate);
     }
 
-    public String getDocumentCurrencyCode() {
-        return documentCurrencyCode;
-    }
-
-    public Optional<String> getNote() {
-        return Optional.ofNullable(note);
-    }
-
-    public Optional<String> getTaxPointDate() {
-        return Optional.ofNullable(taxPointDate);
-    }
-
-    public Optional<String> getTaxCurrencyCode() {
-        return Optional.ofNullable(taxCurrencyCode);
-    }
-
-    public Optional<String> getAccountingCost() {
-        return Optional.ofNullable(accountingCost);
-    }
-
-    public Optional<String> getBuyerReference() {
-        return Optional.ofNullable(buyerReference);
-    }
-
-    public LegalMonetaryTotal getLegalMonetaryTotal() {
-        return legalMonetaryTotal;
-    }
-
     @Override
     public Element xmlRoot() {
-        final Element root = Xml.el("Invoice");
-        root.extendNamespaces(Arrays.asList(ROOT_NS, CAC_NS, CBC_NS));
+        return (Element) node();
+    }
 
-        root.add(Xml.el(new QualifiedName(CBC_NS, "CustomizationID"), Xml.text(this.getCustomizationID())));
-        root.add(Xml.el(new QualifiedName(CBC_NS, "ProfileID"), Xml.text(this.getProfileID())));
-        root.add(Xml.el(new QualifiedName(CBC_NS, "ID"), Xml.text(this.getId())));
-        root.add(Xml.el(new QualifiedName(CBC_NS, "IssueDate"), Xml.text(this.getIssueDate())));
-        this.getDueDate().map(val -> root.add(Xml.el(new QualifiedName(CBC_NS, "DueDate"), Xml.text(val))));
-        root.add(Xml.el(new QualifiedName(CBC_NS, "InvoiceTypeCode"), Xml.text(this.getInvoiceTypeCode())));
-        root.add(Xml.el(new QualifiedName(CBC_NS, "DocumentCurrencyCode"), Xml.text(this.getDocumentCurrencyCode())));
-        this.getNote().map(val -> root.add(Xml.el(new QualifiedName(CBC_NS, "Note"), Xml.text(val))));
-        this.getTaxPointDate().map(val -> root.add(Xml.el(new QualifiedName(CBC_NS, "TaxPointDate"), Xml.text(val))));
-        this.getTaxCurrencyCode().map(val -> root.add(Xml.el(new QualifiedName(CBC_NS, "TaxCurrencyCode"), Xml.text(val))));
-        this.getAccountingCost().map(val -> root.add(Xml.el(new QualifiedName(CBC_NS, "AccountingCost"), Xml.text(val))));
-        this.getBuyerReference().map(val -> root.add(Xml.el(new QualifiedName(CBC_NS, "BuyerReference"), Xml.text(val))));
 
-        root.add(this.getLegalMonetaryTotal().node());
-        taxTotals.stream().map(TaxTotal::node).forEach(root::add);
+    @Override
+    public Node node() {
+        final Element elm = Xml.el(name());
+        elm.extendNamespaces(Arrays.asList(ROOT_NS, CAC_NS, CBC_NS));
 
-        return root;
+        required(this.customizationID, "CustomizationID", elm, CBC_NS);
+        required(this.profileID, "ProfileID", elm, CBC_NS);
+        required(this.id, "ID", elm, CBC_NS);
+        required(this.issueDate, "IssueDate", elm, CBC_NS);
+
+        optional(this.dueDate, "DueDate", elm, CBC_NS);
+
+        required(this.invoiceTypeCode, "InvoiceTypeCode", elm, CBC_NS);
+        required(this.documentCurrencyCode, "DocumentCurrencyCode", elm, CBC_NS);
+
+        optional(this.note, "Note", elm, CBC_NS);
+        optional(this.taxPointDate, "TaxPointDate", elm, CBC_NS);
+        optional(this.taxCurrencyCode, "TaxCurrencyCode", elm, CBC_NS);
+        optional(this.accountingCost, "AccountingCost", elm, CBC_NS);
+        optional(this.buyerReference, "BuyerReference", elm, CBC_NS);
+
+        required(this.legalMonetaryTotal, elm);
+
+        list(this.taxTotals, elm);
+        list(this.invoiceLines, elm);
+
+        return elm;
     }
 }

@@ -15,7 +15,14 @@
  */
 package peppol.bis.invoice3.domain;
 
-public class ClassifiedTaxCategory {
+import org.eaxy.Element;
+import org.eaxy.Node;
+import org.eaxy.QualifiedName;
+import org.eaxy.Xml;
+
+import static peppol.bis.invoice3.domain.Namespaces.CAC_NS;
+
+public class ClassifiedTaxCategory implements XmlElement {
 
     private String id;
     private String percent;
@@ -29,5 +36,13 @@ public class ClassifiedTaxCategory {
     public ClassifiedTaxCategory withPercent(String percent) {
         this.percent = percent;
         return this;
+    }
+
+    @Override
+    public Node node() {
+        final Element elm = Xml.el(new QualifiedName(CAC_NS, name()));
+
+
+        return elm;
     }
 }

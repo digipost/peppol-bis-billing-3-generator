@@ -20,13 +20,11 @@ import org.eaxy.Node;
 import org.eaxy.QualifiedName;
 import org.eaxy.Xml;
 
-import java.util.Optional;
-
 import static peppol.bis.invoice3.domain.Namespaces.CAC_NS;
 
 public class TaxTotal implements XmlElement {
 
-    private TaxAmount taxAmount;
+    private final TaxAmount taxAmount;
     private TaxSubtotal taxSubtotal;
 
     public TaxTotal(TaxAmount taxAmount) {
@@ -42,9 +40,9 @@ public class TaxTotal implements XmlElement {
     public Node node() {
         final Element elm = Xml.el(new QualifiedName(CAC_NS, name()));
 
-        elm.add(taxAmount.node());
+        required(this.taxAmount, elm);
 
-        Optional.ofNullable(taxSubtotal).ifPresent(amount -> elm.add(amount.node()));
+        optional(this.taxSubtotal, elm);
 
         return elm;
     }

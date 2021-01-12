@@ -15,12 +15,30 @@
  */
 package peppol.bis.invoice3.domain;
 
-public class AdditionalItemProperty {
-    private String name;
-    private String value;
+import org.eaxy.Element;
+import org.eaxy.Node;
+import org.eaxy.QualifiedName;
+import org.eaxy.Xml;
+
+import static peppol.bis.invoice3.domain.Namespaces.CAC_NS;
+import static peppol.bis.invoice3.domain.Namespaces.CBC_NS;
+
+public class AdditionalItemProperty implements XmlElement {
+    private final String name;
+    private final String value;
 
     public AdditionalItemProperty(String name, String value) {
         this.name = name;
         this.value = value;
+    }
+
+    @Override
+    public Node node() {
+        final Element elm = Xml.el(new QualifiedName(CAC_NS, name()));
+
+        required(this.name, "Name", elm, CBC_NS);
+        required(this.value, "Value", elm, CBC_NS);
+
+        return elm;
     }
 }

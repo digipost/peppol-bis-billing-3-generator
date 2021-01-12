@@ -33,11 +33,13 @@ import peppol.bis.invoice3.domain.Invoice;
 import peppol.bis.invoice3.domain.InvoiceLine;
 import peppol.bis.invoice3.domain.Item;
 import peppol.bis.invoice3.domain.LegalMonetaryTotal;
+import peppol.bis.invoice3.domain.LineExtensionAmount;
 import peppol.bis.invoice3.domain.Party;
 import peppol.bis.invoice3.domain.PartyIdentification;
 import peppol.bis.invoice3.domain.PartyLegalEntity;
 import peppol.bis.invoice3.domain.PartyName;
 import peppol.bis.invoice3.domain.PartyTaxScheme;
+import peppol.bis.invoice3.domain.PayableAmount;
 import peppol.bis.invoice3.domain.PayeeFinancialAccount;
 import peppol.bis.invoice3.domain.PaymentMeans;
 import peppol.bis.invoice3.domain.PaymentMeansCode;
@@ -47,6 +49,8 @@ import peppol.bis.invoice3.domain.Price;
 import peppol.bis.invoice3.domain.Quantity;
 import peppol.bis.invoice3.domain.SellersItemIdentification;
 import peppol.bis.invoice3.domain.TaxCategory;
+import peppol.bis.invoice3.domain.TaxExclusiveAmount;
+import peppol.bis.invoice3.domain.TaxInclusiveAmount;
 import peppol.bis.invoice3.domain.TaxScheme;
 import peppol.bis.invoice3.domain.TaxSubtotal;
 import peppol.bis.invoice3.domain.TaxTotal;
@@ -89,10 +93,10 @@ public class ExampleUsage1 {
         ));
 
         final LegalMonetaryTotal legalMonetaryTotal = new LegalMonetaryTotal(
-            new Amount("2860.00", "NOK")
-            , new Amount("2860.00", "NOK")
-            , new Amount("2860.00", "NOK")
-            , new Amount("2860.00", "NOK")
+            new LineExtensionAmount("2860.00", "NOK")
+            , new TaxExclusiveAmount("2860.00", "NOK")
+            , new TaxInclusiveAmount("2860.00", "NOK")
+            , new PayableAmount("2860.00", "NOK")
         );
 
         final InvoiceLine invoiceLine = new InvoiceLine(

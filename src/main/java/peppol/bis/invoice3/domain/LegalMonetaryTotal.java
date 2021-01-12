@@ -15,44 +15,66 @@
  */
 package peppol.bis.invoice3.domain;
 
-public class LegalMonetaryTotal {
-    private Amount lineExtensionAmount;
-    private Amount taxExclusiveAmount;
-    private Amount taxInclusiveAmount;
+import org.eaxy.Element;
+import org.eaxy.Node;
+import org.eaxy.QualifiedName;
+import org.eaxy.Xml;
+
+import java.util.Optional;
+
+import static peppol.bis.invoice3.domain.Namespaces.CAC_NS;
+
+public class LegalMonetaryTotal implements XmlElement {
+    private final Amount lineExtensionAmount;
+    private final Amount taxExclusiveAmount;
+    private final Amount taxInclusiveAmount;
+    private final Amount payableAmount;
+
     private Amount allowanceTotalAmount;
     private Amount chargeTotalAmount;
     private Amount prepaidAmount;
     private Amount payableRoundingAmount;
-    private Amount payableAmount;
 
-    public LegalMonetaryTotal(Amount lineExtensionAmount, Amount taxExclusiveAmount, Amount taxInclusiveAmount, Amount payableAmount) {
+    public LegalMonetaryTotal(LineExtensionAmount lineExtensionAmount, TaxExclusiveAmount taxExclusiveAmount, TaxInclusiveAmount taxInclusiveAmount, PayableAmount payableAmount) {
         this.lineExtensionAmount = lineExtensionAmount;
         this.taxExclusiveAmount = taxExclusiveAmount;
         this.taxInclusiveAmount = taxInclusiveAmount;
         this.payableAmount = payableAmount;
     }
 
-    public LegalMonetaryTotal withAllowanceTotalAmount(Amount allowanceTotalAmount) {
+    public LegalMonetaryTotal withAllowanceTotalAmount(AllowanceTotalAmount allowanceTotalAmount) {
         this.allowanceTotalAmount = allowanceTotalAmount;
         return this;
     }
 
-    public LegalMonetaryTotal withChargeTotalAmount(Amount chargeTotalAmount) {
+    public LegalMonetaryTotal withChargeTotalAmount(ChargeTotalAmount chargeTotalAmount) {
         this.chargeTotalAmount = chargeTotalAmount;
         return this;
     }
 
-    public LegalMonetaryTotal withPrepaidAmount(Amount prepaidAmount) {
+    public LegalMonetaryTotal withPrepaidAmount(PrepaidAmount prepaidAmount) {
         this.prepaidAmount = prepaidAmount;
         return this;
     }
 
-    public LegalMonetaryTotal withPayableRoundingAmount(Amount payableRoundingAmount) {
+    public LegalMonetaryTotal withPayableRoundingAmount(PayableRoundingAmount payableRoundingAmount) {
         this.payableRoundingAmount = payableRoundingAmount;
         return this;
     }
 
-    public Amount getLineExtensionAmount() {
-        return lineExtensionAmount;
+    @Override
+    public Node node() {
+        final Element elm = Xml.el(new QualifiedName(CAC_NS, name()));
+
+        elm.add(lineExtensionAmount.node());
+        elm.add(taxExclusiveAmount.node());
+        elm.add(taxInclusiveAmount.node());
+        Optional.ofNullable(allowanceTotalAmount).ifPresent(amount -> elm.add(amount.node()));
+        Optional.ofNullable(chargeTotalAmount).ifPresent(amount -> elm.add(amount.node()));
+        Optional.ofNullable(prepaidAmount).ifPresent(amount -> elm.add(amount.node()));
+        Optional.ofNullable(payableRoundingAmount).ifPresent(amount -> elm.add(amount.node()));
+        elm.add(payableAmount.node());
+
+        return elm;
     }
 }

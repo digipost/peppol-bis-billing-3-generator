@@ -15,7 +15,13 @@
  */
 package peppol.bis.invoice3.domain;
 
-public class Amount {
+import org.eaxy.Node;
+import org.eaxy.QualifiedName;
+import org.eaxy.Xml;
+
+import static peppol.bis.invoice3.domain.Namespaces.CBC_NS;
+
+public class Amount implements XmlElement {
     private String amount;
     private String currencyID;
 
@@ -30,5 +36,14 @@ public class Amount {
 
     public String getCurrencyID() {
         return currencyID;
+    }
+
+    @Override
+    public Node node() {
+        return Xml.el(
+            new QualifiedName(CBC_NS, this.name())
+            , Xml.text(getAmount())
+            , Xml.attr("currencyID", getCurrencyID())
+        );
     }
 }

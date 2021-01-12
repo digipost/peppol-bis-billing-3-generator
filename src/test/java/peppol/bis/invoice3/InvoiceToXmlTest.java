@@ -19,20 +19,31 @@ import org.eaxy.Element;
 import org.eaxy.NonMatchingPathException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import peppol.bis.invoice3.domain.Amount;
 import peppol.bis.invoice3.domain.Invoice;
 import peppol.bis.invoice3.domain.LegalMonetaryTotal;
+import peppol.bis.invoice3.domain.LineExtensionAmount;
+import peppol.bis.invoice3.domain.PayableAmount;
+import peppol.bis.invoice3.domain.TaxExclusiveAmount;
+import peppol.bis.invoice3.domain.TaxInclusiveAmount;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class InvoiceToXmlGenerateTest {
+public class InvoiceToXmlTest {
 
     private Invoice invoice;
 
     @BeforeEach
     void setUp() {
+
+        final LegalMonetaryTotal legalMonetaryTotal = new LegalMonetaryTotal(
+            new LineExtensionAmount("1273", "EUR")
+            , new TaxExclusiveAmount("1273", "EUR")
+            , new TaxInclusiveAmount("1273", "EUR")
+            , new PayableAmount("1273", "EUR")
+        );
+
         invoice = new Invoice(
             "33445566"
             , "2017-11-01"
@@ -40,14 +51,14 @@ public class InvoiceToXmlGenerateTest {
             , null
             , null
             , null
-            , new LegalMonetaryTotal(new Amount("1273", "EUR"), null, null, null)
+            , legalMonetaryTotal
             , null
         );
     }
 
     @Test
     void invoice_to_xml_for_basic_elements() {
-        final Element xml = InvoiceApi.from(invoice).process().log().xml();
+        final Element xml = InvoiceApi.from(invoice).process().xml();
 
         assertThat(xml.find("CustomizationID").first().text(), equalTo("urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0"));
         assertThat(xml.find("ProfileID").first().text(), equalTo("urn:fdc:peppol.eu:2017:poacc:billing:01:1.0"));
@@ -55,6 +66,8 @@ public class InvoiceToXmlGenerateTest {
         assertThat(xml.find("IssueDate").first().text(), equalTo("2017-11-01"));
         assertThat(xml.find("InvoiceTypeCode").first().text(), equalTo("380"));
         assertThat(xml.find("DocumentCurrencyCode").first().text(), equalTo("EUR"));
+
+        xml.find("LegalMonetaryTotal").check();
 
         /*
           All these are 0..1 or 0..n cardinality, and we assert here for their non-precence
@@ -93,7 +106,7 @@ public class InvoiceToXmlGenerateTest {
             .withAccountingCost("Project cost code 123")
             .withBuyerReference("abs1234");
 
-        final Element xml = InvoiceApi.from(invoice).process().log().xml();
+        final Element xml = InvoiceApi.from(invoice).process().xml();
 
         assertThat(xml.find("DueDate").first().text(), equalTo("2020-02-01"));
         assertThat(xml.find("Note").first().text(), equalTo("Paganini no. 5"));
@@ -109,7 +122,7 @@ public class InvoiceToXmlGenerateTest {
             .withProcessNumber(13)
             .withInvoiceTypeCode(780);
 
-        final Element xml = InvoiceApi.from(invoice).process().log().xml();
+        final Element xml = InvoiceApi.from(invoice).process().xml();
 
         assertThat(xml.find("ProfileID").first().text(), equalTo("urn:fdc:peppol.eu:2017:poacc:billing:13:1.0"));
         assertThat(xml.find("InvoiceTypeCode").first().text(), equalTo("780"));

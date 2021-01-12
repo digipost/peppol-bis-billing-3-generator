@@ -23,15 +23,15 @@ import org.eaxy.Xml;
 import static peppol.bis.invoice3.domain.Namespaces.CAC_NS;
 
 public class Price implements XmlElement{
-    private Amount priceAmount;
+    private final Amount priceAmount;
     private BaseQuantity baseQuantity;
-    private AllowanceCharge allowanceCharge;
+    private PriceAllowanceCharge allowanceCharge;
 
     public Price(PriceAmount priceAmount) {
         this.priceAmount = priceAmount;
     }
 
-    public Price withAllowanceCharge(AllowanceCharge allowanceCharge) {
+    public Price withAllowanceCharge(PriceAllowanceCharge allowanceCharge) {
         this.allowanceCharge = allowanceCharge;
         return this;
     }

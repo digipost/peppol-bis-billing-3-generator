@@ -28,17 +28,17 @@ import static peppol.bis.invoice3.domain.Namespaces.CBC_NS;
 
 public class InvoiceLine implements XmlElement {
 
-    private String id;
+    private final String id;
     private String note;
-    private InvoicedQuantity invoicedQuantity;
-    private Amount lineExtensionAmount;
+    private final InvoicedQuantity invoicedQuantity;
+    private final LineExtensionAmount lineExtensionAmount;
     private String accountingCost;
     private InvoicePeriod invoicePeriod;
     private OrderLineReference orderLineReference;
     private DocumentReference documentReference;
     private final List<XmlElement> allowanceCharges = new ArrayList<>();
-    private Item item;
-    private Price price;
+    private final Item item;
+    private final Price price;
 
     public InvoiceLine(String id, InvoicedQuantity invoicedQuantity, LineExtensionAmount lineExtensionAmount, Item item, Price price) {
         this.id = id;
@@ -73,7 +73,7 @@ public class InvoiceLine implements XmlElement {
         return this;
     }
 
-    public InvoiceLine withAllowanceCharge(AllowanceCharge allowanceCharge) {
+    public InvoiceLine withAllowanceCharge(InvoiceLineAllowanceCharge allowanceCharge) {
         this.allowanceCharges.add(allowanceCharge);
         return this;
     }

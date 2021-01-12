@@ -23,19 +23,18 @@ import org.eaxy.Xml;
 import static peppol.bis.invoice3.domain.Namespaces.CAC_NS;
 import static peppol.bis.invoice3.domain.Namespaces.CBC_NS;
 
-public class ClassifiedTaxCategory implements XmlElement {
+public class PriceAllowanceCharge implements XmlElement {
+    private final boolean chargeIndicator;
+    private final Amount amount;
+    private BaseAmount baseAmount;
 
-    private final String id;
-    private String percent;
-    private final TaxScheme taxScheme;
-
-    public ClassifiedTaxCategory(String id, TaxScheme taxScheme) {
-        this.id = id;
-        this.taxScheme = taxScheme;
+    public PriceAllowanceCharge(boolean chargeIndicator, Amount amount) {
+        this.chargeIndicator = chargeIndicator;
+        this.amount = amount;
     }
 
-    public ClassifiedTaxCategory withPercent(String percent) {
-        this.percent = percent;
+    public PriceAllowanceCharge withBaseAmount(BaseAmount baseAmount) {
+        this.baseAmount = baseAmount;
         return this;
     }
 
@@ -43,11 +42,17 @@ public class ClassifiedTaxCategory implements XmlElement {
     public Node node() {
         final Element elm = Xml.el(new QualifiedName(CAC_NS, name()));
 
-        required(this.id, "ID", elm, CBC_NS);
-        required(this.taxScheme, elm);
+        required(String.valueOf(this.chargeIndicator), "ChargeIndicator", elm, CBC_NS);
+        required(this.amount, elm);
 
-        optional(this.percent, "Percent", elm, CBC_NS);
+        optional(this.baseAmount, elm);
 
         return elm;
     }
+
+    @Override
+    public String name() {
+        return "AllowanceCharge";
+    }
 }
+

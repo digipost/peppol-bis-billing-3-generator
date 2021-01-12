@@ -21,43 +21,38 @@ import org.eaxy.QualifiedName;
 import org.eaxy.Xml;
 
 import static peppol.bis.invoice3.domain.Namespaces.CAC_NS;
+import static peppol.bis.invoice3.domain.Namespaces.CBC_NS;
 
-public class AllowanceCharge implements XmlElement {
-    private boolean chargeIndicator;
+public class InvoiceLineAllowanceCharge implements XmlElement {
+    private final boolean chargeIndicator;
     private String allowanceChargeReasonCode;
     private String allowanceChargeReason;
     private String multiplierFactorNumeric;
-    private Amount amount;
-    private Amount baseAmount;
-    private TaxCategory taxCategory;
+    private final Amount amount;
+    private BaseAmount baseAmount;
 
-    public AllowanceCharge(boolean chargeIndicator, BaseAmount amount) {
+    public InvoiceLineAllowanceCharge(boolean chargeIndicator, Amount amount) {
         this.chargeIndicator = chargeIndicator;
         this.amount = amount;
     }
 
-    public AllowanceCharge withAllowanceChargeReasonCode(String allowanceChargeReasonCode) {
+    public InvoiceLineAllowanceCharge withAllowanceChargeReasonCode(String allowanceChargeReasonCode) {
         this.allowanceChargeReasonCode = allowanceChargeReasonCode;
         return this;
     }
 
-    public AllowanceCharge withAllowanceChargeReason(String allowanceChargeReason) {
+    public InvoiceLineAllowanceCharge withAllowanceChargeReason(String allowanceChargeReason) {
         this.allowanceChargeReason = allowanceChargeReason;
         return this;
     }
 
-    public AllowanceCharge withMultiplierFactorNumeric(String multiplierFactorNumeric) {
+    public InvoiceLineAllowanceCharge withMultiplierFactorNumeric(String multiplierFactorNumeric) {
         this.multiplierFactorNumeric = multiplierFactorNumeric;
         return this;
     }
 
-    public AllowanceCharge withBaseAmount(Amount baseAmount) {
+    public InvoiceLineAllowanceCharge withBaseAmount(BaseAmount baseAmount) {
         this.baseAmount = baseAmount;
-        return this;
-    }
-
-    public AllowanceCharge withTaxCategory(TaxCategory taxCategory) {
-        this.taxCategory = taxCategory;
         return this;
     }
 
@@ -65,8 +60,20 @@ public class AllowanceCharge implements XmlElement {
     public Node node() {
         final Element elm = Xml.el(new QualifiedName(CAC_NS, name()));
 
+        required(String.valueOf(this.chargeIndicator), "ChargeIndicator", elm, CBC_NS);
+        required(this.amount, elm);
+
+        optional(this.baseAmount, elm);
+        optional(this.allowanceChargeReasonCode, "AllowanceChargeReasonCode", elm, CBC_NS);
+        optional(this.allowanceChargeReason, "AllowanceChargeReason", elm, CBC_NS);
+        optional(this.multiplierFactorNumeric, "MultiplierFactorNumeric", elm, CBC_NS);
+
         return elm;
     }
 
+    @Override
+    public String name() {
+        return "AllowanceCharge";
+    }
 }
 

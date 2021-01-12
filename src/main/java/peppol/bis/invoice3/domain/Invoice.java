@@ -37,14 +37,14 @@ public class Invoice implements XmlRootElement, XmlElement {
 
     private final String customizationID = "urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0";
     private String profileID;
-    private String id;
-    private String issueDate;
+    private final String id;
+    private final String issueDate;
     private String dueDate;
     private String invoiceTypeCode;
     private String note;
     private String taxPointDate;
     private String taxCurrencyCode;
-    private String documentCurrencyCode;
+    private final String documentCurrencyCode;
     private String accountingCost;
     private String buyerReference;
     private InvoicePeriod invoicePeriod;
@@ -60,12 +60,12 @@ public class Invoice implements XmlRootElement, XmlElement {
     private AccountingCustomerParty accountingCustomerParty;
     private TaxRepresentativeParty taxRepresentativeParty;
     private Delivery delivery;
-    private List<PaymentMeans> paymentMeans = new ArrayList<>();
+    private final List<PaymentMeans> paymentMeans = new ArrayList<>();
     private PaymentTerms paymentTerms;
-    private List<AllowanceCharge> allowanceCharges = new ArrayList<>();
-    private List<XmlElement> taxTotals = new ArrayList<>();
-    private LegalMonetaryTotal legalMonetaryTotal;
-    private List<XmlElement> invoiceLines = new ArrayList<>();
+    private final List<XmlElement> allowanceCharges = new ArrayList<>();
+    private final List<XmlElement> taxTotals = new ArrayList<>();
+    private final LegalMonetaryTotal legalMonetaryTotal;
+    private final List<XmlElement> invoiceLines = new ArrayList<>();
 
     public Invoice(String id, String issueDate, String documentCurrencyCode, AccountingSupplierParty accountingSupplierParty, AccountingCustomerParty accountingCustomerParty, TaxTotal taxTotal, LegalMonetaryTotal legalMonetaryTotal, InvoiceLine invoiceLine) {
         this.accountingSupplierParty = accountingSupplierParty;
@@ -185,7 +185,7 @@ public class Invoice implements XmlRootElement, XmlElement {
         return this;
     }
 
-    public Invoice withAllowanceCharges(AllowanceCharge allowanceCharge) {
+    public Invoice withAllowanceCharges(InvoiceAllowanceCharge allowanceCharge) {
         this.allowanceCharges.add(allowanceCharge);
         return this;
     }

@@ -18,49 +18,40 @@ package peppol.bis.invoice3;
 import org.eaxy.Element;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import peppol.bis.invoice3.domain.PriceAllowanceCharge;
-import peppol.bis.invoice3.domain.BaseAmount;
-import peppol.bis.invoice3.domain.BaseQuantity;
-import peppol.bis.invoice3.domain.Price;
-import peppol.bis.invoice3.domain.PriceAmount;
+import peppol.bis.invoice3.domain.InvoicePeriod;
 
+import static org.hamcrest.Matchers.equalTo;
 import static peppol.bis.invoice3.XmlAsserts.assertElementNameIs;
 import static peppol.bis.invoice3.XmlAsserts.assertRequiredElement;
 import static peppol.bis.invoice3.XmlAsserts.assertUnsetOptionalElement;
 import static peppol.bis.invoice3.domain.Namespaces.CAC_NS;
 
-public class PriceTest  {
+class InvoicePeriodTest {
 
-    private Price price;
+    private InvoicePeriod invoicePeriod;
 
     @BeforeEach
     void setUp() {
-        price = new Price(
-            new PriceAmount("123", "EUR")
-        );
+        invoicePeriod = new InvoicePeriod("2020-11-11", "2020-12-12");
     }
 
     @Test
     void to_xml_basic_elements() {
-        final Element element = (Element) price.node();
-        assertElementNameIs(element, "Price", CAC_NS);
+        final Element element = (Element) invoicePeriod.node();
+        assertElementNameIs(element, "InvoicePeriod", CAC_NS);
 
-        assertRequiredElement(element, "PriceAmount");
+        assertRequiredElement(element, "StartDate", equalTo("2020-11-11"));
+        assertRequiredElement(element, "EndDate", equalTo("2020-12-12"));
 
-        assertUnsetOptionalElement(element, "BaseQuantity");
-        assertUnsetOptionalElement(element, "AllowanceCharge");
+        assertUnsetOptionalElement(element, "DescriptionCode");
     }
 
     @Test
     void to_xml_optional_elements() {
-        price
-            .withBaseQuantity(new BaseQuantity("STK", "1"))
-            .withAllowanceCharge(new PriceAllowanceCharge(true, new BaseAmount("123", "EUR")));
+        invoicePeriod.withDescriptionCode("35");
+        final Element element = (Element) invoicePeriod.node();
 
-        final Element element = (Element) price.node();
-
-        assertRequiredElement(element, "BaseQuantity");
-        assertRequiredElement(element, "AllowanceCharge");
+        assertRequiredElement(element, "DescriptionCode", equalTo("35"));
     }
 
 }

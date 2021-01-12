@@ -18,8 +18,9 @@ package peppol.bis.invoice3;
 import org.eaxy.Element;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import peppol.bis.invoice3.domain.AllowanceCharge;
-import peppol.bis.invoice3.domain.BaseAmount;
+import peppol.bis.invoice3.domain.InvoiceLineAllowanceCharge;
+import peppol.bis.invoice3.domain.PriceAllowanceCharge;
+import peppol.bis.invoice3.domain.Amount;
 import peppol.bis.invoice3.domain.ClassifiedTaxCategory;
 import peppol.bis.invoice3.domain.DocumentReference;
 import peppol.bis.invoice3.domain.InvoiceLine;
@@ -94,9 +95,9 @@ public class InvoiceLineTest {
     @Test
     void InvoiceLine_to_xml_allowance_charge() {
         invoiceLine
-            .withAllowanceCharge(new AllowanceCharge(true, new BaseAmount("211", "EUR")))
-            .withAllowanceCharge(new AllowanceCharge(true, new BaseAmount("212", "EUR")))
-            .withAllowanceCharge(new AllowanceCharge(true, new BaseAmount("213", "EUR")))
+            .withAllowanceCharge(new InvoiceLineAllowanceCharge(true, new Amount("211", "EUR")))
+            .withAllowanceCharge(new InvoiceLineAllowanceCharge(true, new Amount("212", "EUR")))
+            .withAllowanceCharge(new InvoiceLineAllowanceCharge(true, new Amount("213", "EUR")))
         ;
 
         final Element element = (Element) invoiceLine.node();

@@ -15,30 +15,40 @@
  */
 package peppol.bis.invoice3.domain;
 
+import org.eaxy.Element;
 import org.eaxy.Node;
 import org.eaxy.QualifiedName;
 import org.eaxy.Xml;
+
+import java.util.Optional;
 
 import static peppol.bis.invoice3.domain.Namespaces.CBC_NS;
 
 public class ItemClassificationCode implements XmlElement {
     private final String code;
     private final String listID;
-    private final String listVersionID;
+    private String listVersionID;
 
-    public ItemClassificationCode(String code, String listID, String listVersionID) {
+    public ItemClassificationCode(String code, String listID) {
         this.code = code;
         this.listID = listID;
+    }
+
+    public ItemClassificationCode withlistVersionID(String listVersionID) {
         this.listVersionID = listVersionID;
+        return this;
     }
 
     @Override
     public Node node() {
-        return Xml.el(
+        final Element el = Xml.el(
             new QualifiedName(CBC_NS, this.name())
             , Xml.text(this.code)
             , Xml.attr("listID", this.listID)
-            , Xml.attr("listVersionID", this.listVersionID)
         );
+
+        Optional.ofNullable(this.listVersionID).ifPresent(v -> el.attr("listVersionID", v));
+
+        return el;
     }
 }

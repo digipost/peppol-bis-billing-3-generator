@@ -265,8 +265,9 @@ public class Invoice implements XmlRootElement {
         this.getTaxCurrencyCode().map(val -> root.add(Xml.el(new QualifiedName(CBC_NS, "TaxCurrencyCode"), Xml.text(val))));
         this.getAccountingCost().map(val -> root.add(Xml.el(new QualifiedName(CBC_NS, "AccountingCost"), Xml.text(val))));
         this.getBuyerReference().map(val -> root.add(Xml.el(new QualifiedName(CBC_NS, "BuyerReference"), Xml.text(val))));
-        
+
         root.add(this.getLegalMonetaryTotal().node());
+        taxTotals.stream().map(TaxTotal::node).forEach(root::add);
 
         return root;
     }

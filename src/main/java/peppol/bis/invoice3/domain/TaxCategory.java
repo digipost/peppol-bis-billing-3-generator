@@ -15,7 +15,17 @@
  */
 package peppol.bis.invoice3.domain;
 
-public class TaxCategory {
+import org.eaxy.Element;
+import org.eaxy.Node;
+import org.eaxy.QualifiedName;
+import org.eaxy.Xml;
+
+import java.util.Optional;
+
+import static peppol.bis.invoice3.domain.Namespaces.CAC_NS;
+import static peppol.bis.invoice3.domain.Namespaces.CBC_NS;
+
+public class TaxCategory implements XmlElement {
     private String id;
     private TaxScheme taxScheme;
     private String percent;
@@ -40,5 +50,19 @@ public class TaxCategory {
     public TaxCategory withTaxExemptionReason(String taxExemptionReason) {
         this.taxExemptionReason = taxExemptionReason;
         return this;
+    }
+
+    @Override
+    public Node node() {
+        final Element elm = Xml.el(new QualifiedName(CAC_NS, name()));
+
+        elm.add(Xml.el(new QualifiedName(CBC_NS, "ID"), Xml.text(this.id)));
+        elm.add(this.taxScheme.node());
+
+        Optional.ofNullable(this.percent).map((val) -> elm.add(Xml.el(new QualifiedName(CBC_NS, "Percent"), Xml.text(val))));
+        Optional.ofNullable(this.taxExemptionReasonCode).map((val) -> elm.add(Xml.el(new QualifiedName(CBC_NS, "TaxExemptionReasonCode"), Xml.text(val))));
+        Optional.ofNullable(this.taxExemptionReason).map((val) -> elm.add(Xml.el(new QualifiedName(CBC_NS, "TaxExemptionReason"), Xml.text(val))));
+
+        return elm;
     }
 }

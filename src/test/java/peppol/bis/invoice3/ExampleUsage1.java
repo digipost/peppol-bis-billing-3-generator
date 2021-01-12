@@ -48,12 +48,14 @@ import peppol.bis.invoice3.domain.PostalAddress;
 import peppol.bis.invoice3.domain.Price;
 import peppol.bis.invoice3.domain.Quantity;
 import peppol.bis.invoice3.domain.SellersItemIdentification;
+import peppol.bis.invoice3.domain.TaxAmount;
 import peppol.bis.invoice3.domain.TaxCategory;
 import peppol.bis.invoice3.domain.TaxExclusiveAmount;
 import peppol.bis.invoice3.domain.TaxInclusiveAmount;
 import peppol.bis.invoice3.domain.TaxScheme;
 import peppol.bis.invoice3.domain.TaxSubtotal;
 import peppol.bis.invoice3.domain.TaxTotal;
+import peppol.bis.invoice3.domain.TaxableAmount;
 
 public class ExampleUsage1 {
 
@@ -83,10 +85,10 @@ public class ExampleUsage1 {
         );
 
         final TaxTotal taxTotal = new TaxTotal(
-            new Amount("0.00", "NOK")
+            new TaxAmount("0.00", "NOK")
         ).withTaxSubtotal(new TaxSubtotal(
-            new Amount("2860.00", "NOK")
-            , new Amount("0.00", "NOK")
+            new TaxableAmount("2860.00", "NOK")
+            , new TaxAmount("0.00", "NOK")
             , new TaxCategory("G", new TaxScheme("VAT"))
             .withPercent("0.000")
             .withTaxExemptionReason("Utførsel av varer og tjenester, 0 %")

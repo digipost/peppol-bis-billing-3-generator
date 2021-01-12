@@ -15,28 +15,8 @@
  */
 package peppol.bis.invoice3.domain;
 
-import org.eaxy.Element;
-import org.eaxy.Node;
-import org.eaxy.QualifiedName;
-import org.eaxy.Xml;
-
-import static peppol.bis.invoice3.domain.Namespaces.CAC_NS;
-import static peppol.bis.invoice3.domain.Namespaces.CBC_NS;
-
-public class TaxScheme implements XmlElement {
-
-    private String id;
-
-    public TaxScheme(String id) {
-        this.id = id;
-    }
-
-    @Override
-    public Node node() {
-        final Element elm = Xml.el(new QualifiedName(CAC_NS, name()));
-
-        elm.add(Xml.el(new QualifiedName(CBC_NS, "ID"), Xml.text(this.id)));
-
-        return elm;
+public class TaxAmount extends Amount {
+    public TaxAmount(String amount, String currencyID) {
+        super(amount, currencyID);
     }
 }

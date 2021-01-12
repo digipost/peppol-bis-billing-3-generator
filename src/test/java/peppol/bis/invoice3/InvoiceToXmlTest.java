@@ -23,8 +23,10 @@ import peppol.bis.invoice3.domain.Invoice;
 import peppol.bis.invoice3.domain.LegalMonetaryTotal;
 import peppol.bis.invoice3.domain.LineExtensionAmount;
 import peppol.bis.invoice3.domain.PayableAmount;
+import peppol.bis.invoice3.domain.TaxAmount;
 import peppol.bis.invoice3.domain.TaxExclusiveAmount;
 import peppol.bis.invoice3.domain.TaxInclusiveAmount;
+import peppol.bis.invoice3.domain.TaxTotal;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
@@ -44,13 +46,17 @@ public class InvoiceToXmlTest {
             , new PayableAmount("1273", "EUR")
         );
 
+        final TaxTotal taxTotal = new TaxTotal(
+            new TaxAmount("1233", "EUR")
+        );
+
         invoice = new Invoice(
             "33445566"
             , "2017-11-01"
             , "EUR"
             , null
             , null
-            , null
+            , taxTotal
             , legalMonetaryTotal
             , null
         );
@@ -68,6 +74,7 @@ public class InvoiceToXmlTest {
         assertThat(xml.find("DocumentCurrencyCode").first().text(), equalTo("EUR"));
 
         xml.find("LegalMonetaryTotal").check();
+        assertThat(xml.find("TaxTotal").check().size(), equalTo(1));
 
         /*
           All these are 0..1 or 0..n cardinality, and we assert here for their non-precence
@@ -126,5 +133,19 @@ public class InvoiceToXmlTest {
 
         assertThat(xml.find("ProfileID").first().text(), equalTo("urn:fdc:peppol.eu:2017:poacc:billing:13:1.0"));
         assertThat(xml.find("InvoiceTypeCode").first().text(), equalTo("780"));
+    }
+
+    @Test
+    void invoice_to_xml_for_added_tax_total() {
+        final Invoice invoice = this.invoice
+            .withTaxTotal(new TaxTotal(new TaxAmount("322", "EUR")));
+
+        final Element xml = InvoiceApi.from(invoice).process().xml();
+
+        assertThat(xml.find("TaxTotal").check().size(), equalTo(2));
+
+        //Max 2 elements
+        assertThrows(IllegalArgumentException.class, ()->this.invoice
+            .withTaxTotal(new TaxTotal(new TaxAmount("322", "EUR"))));
     }
 }

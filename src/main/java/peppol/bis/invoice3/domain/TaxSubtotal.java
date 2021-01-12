@@ -15,14 +15,32 @@
  */
 package peppol.bis.invoice3.domain;
 
-public class TaxSubtotal {
+import org.eaxy.Element;
+import org.eaxy.Node;
+import org.eaxy.QualifiedName;
+import org.eaxy.Xml;
+
+import static peppol.bis.invoice3.domain.Namespaces.CAC_NS;
+
+public class TaxSubtotal implements XmlElement {
     private Amount taxableAmount;
     private Amount taxAmount;
     private TaxCategory taxCategory;
 
-    public TaxSubtotal(Amount taxableAmount, Amount taxAmount, TaxCategory taxCategory) {
+    public TaxSubtotal(TaxableAmount taxableAmount, TaxAmount taxAmount, TaxCategory taxCategory) {
         this.taxableAmount = taxableAmount;
         this.taxAmount = taxAmount;
         this.taxCategory = taxCategory;
+    }
+
+    @Override
+    public Node node() {
+        final Element elm = Xml.el(new QualifiedName(CAC_NS, name()));
+
+        elm.add(taxableAmount.node());
+        elm.add(taxAmount.node());
+        elm.add(taxCategory.node());
+
+        return elm;
     }
 }

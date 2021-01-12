@@ -15,17 +15,37 @@
  */
 package peppol.bis.invoice3.domain;
 
-public class TaxTotal {
+import org.eaxy.Element;
+import org.eaxy.Node;
+import org.eaxy.QualifiedName;
+import org.eaxy.Xml;
 
-    private Amount taxAmount;
+import java.util.Optional;
+
+import static peppol.bis.invoice3.domain.Namespaces.CAC_NS;
+
+public class TaxTotal implements XmlElement {
+
+    private TaxAmount taxAmount;
     private TaxSubtotal taxSubtotal;
 
-    public TaxTotal(Amount taxAmount) {
+    public TaxTotal(TaxAmount taxAmount) {
         this.taxAmount = taxAmount;
     }
 
     public TaxTotal withTaxSubtotal(TaxSubtotal taxSubtotal) {
         this.taxSubtotal = taxSubtotal;
         return this;
+    }
+
+    @Override
+    public Node node() {
+        final Element elm = Xml.el(new QualifiedName(CAC_NS, name()));
+
+        elm.add(taxAmount.node());
+
+        Optional.ofNullable(taxSubtotal).ifPresent(amount -> elm.add(amount.node()));
+
+        return elm;
     }
 }

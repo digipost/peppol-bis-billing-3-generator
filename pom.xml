@@ -9,10 +9,10 @@
         <version>6</version>
     </parent>
 
-    <artifactId>peppol-bis-invoice-3-generator</artifactId>
+    <artifactId>peppol-bis-billing-3-generator</artifactId>
     <version>0-SNAPSHOT</version>
-    <description>Peppol bis invoice 3 generator</description>
-    <name>peppol-bis-invoice-3-generator</name>
+    <description>Peppol BIS Billing 3 generator</description>
+    <name>peppol-bis-billing-3-generator</name>
 
     <licenses>
         <license>

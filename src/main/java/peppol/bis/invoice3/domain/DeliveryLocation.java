@@ -15,9 +15,17 @@
  */
 package peppol.bis.invoice3.domain;
 
-public class DeliveryLocation {
+import org.eaxy.Element;
+import org.eaxy.Node;
+import org.eaxy.QualifiedName;
+import org.eaxy.Xml;
+
+import static peppol.bis.invoice3.domain.Namespaces.CAC_NS;
+import static peppol.bis.invoice3.domain.Namespaces.CBC_NS;
+
+public class DeliveryLocation implements XmlElement {
     private String id;
-    private Address address; // Yes, this is named differently here!
+    private Address address;
 
     public DeliveryLocation withId(String Id) {
         this.id = Id;
@@ -27,5 +35,15 @@ public class DeliveryLocation {
     public DeliveryLocation withAddress(Address address) {
         this.address = address;
         return this;
+    }
+
+    @Override
+    public Node node() {
+        final Element elm = Xml.el(new QualifiedName(CAC_NS, name()));
+
+        optional(this.id, "ID", elm, CBC_NS);
+        optional(this.address, elm);
+
+        return elm;
     }
 }

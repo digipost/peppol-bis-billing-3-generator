@@ -65,9 +65,9 @@ public class ExampleUsage1 {
 
         final AccountingSupplierParty accountingSupplierParty = new AccountingSupplierParty(
             new Party(
-                new EndpointID("0192", "998765432")
+                new EndpointID("998765432").withSchemeID("0192")
                 , new PostalAddress(new Country("NO")).withStreetName("Oslogate 1").withCityName("Oslo").withPostalZone("0342")
-                , new PartyLegalEntity("Acme Cargo AS", new CompanyID("0192", "998765432"))
+                , new PartyLegalEntity("Acme Cargo AS").withCompanyID(new CompanyID("998765432").withSchemeID("0192"))
             ).withPartyIdentification(new PartyIdentification("998765432"))
                 .withPartyName(new PartyName("PartyName"))
                 .withPartyTaxScheme(new PartyTaxScheme("NO998765432MVA", new TaxScheme("VAT")))
@@ -77,9 +77,9 @@ public class ExampleUsage1 {
 
         final AccountingCustomerParty accountingCustomerParty = new AccountingCustomerParty(
             new Party(
-                new EndpointID("0192", "987654320")
+                new EndpointID("987654320").withSchemeID("0192")
                 , new PostalAddress(new Country("NO")).withStreetName("Sandnesgate 3").withCityName("Sandnes").withPostalZone("4313")
-                , new PartyLegalEntity("Acme As", new CompanyID("0192", "987654320"))
+                , new PartyLegalEntity("Acme As").withCompanyID(new CompanyID("987654320").withSchemeID("0192"))
             ).withPartyIdentification(new PartyIdentification("10030177835"))
                 .withPartyName(new PartyName("Acme As"))
                 .withPartyTaxScheme(new PartyTaxScheme("NO987654320MVA", new TaxScheme("VAT")))
@@ -121,7 +121,7 @@ public class ExampleUsage1 {
 
 
         final PaymentMeans paymentMeans1 = new PaymentMeans(
-            new PaymentMeansCode("58", "SEPA credit transfer")
+            new PaymentMeansCode("58").withName("SEPA credit transfer")
         ).withPaymentID("123456789101")
             .withPayeeFinancialAccount(
                 new PayeeFinancialAccount("NO6960650514745")
@@ -129,7 +129,7 @@ public class ExampleUsage1 {
             );
 
         final PaymentMeans paymentMeans2 = new PaymentMeans(
-            new PaymentMeansCode("30", "Credit transfer")
+            new PaymentMeansCode("30").withName("Credit transfer")
         ).withPaymentID("123456789101")
             .withPayeeFinancialAccount(
                 new PayeeFinancialAccount("60650514745")

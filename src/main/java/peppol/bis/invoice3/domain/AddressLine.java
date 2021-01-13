@@ -15,10 +15,27 @@
  */
 package peppol.bis.invoice3.domain;
 
-public class AddressLine {
-    private String line;
+import org.eaxy.Element;
+import org.eaxy.Node;
+import org.eaxy.QualifiedName;
+import org.eaxy.Xml;
+
+import static peppol.bis.invoice3.domain.Namespaces.CAC_NS;
+import static peppol.bis.invoice3.domain.Namespaces.CBC_NS;
+
+public class AddressLine implements XmlElement {
+    private final String line;
 
     public AddressLine(String line) {
         this.line = line;
+    }
+
+    @Override
+    public Node node() {
+        final Element elm = Xml.el(new QualifiedName(CAC_NS, name()));
+
+        required(this.line, "Line", elm, CBC_NS);
+
+        return elm;
     }
 }

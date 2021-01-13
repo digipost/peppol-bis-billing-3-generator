@@ -15,10 +15,26 @@
  */
 package peppol.bis.invoice3.domain;
 
-public class DeliveryParty {
-    private PartyName partyName;
+import org.eaxy.Element;
+import org.eaxy.Node;
+import org.eaxy.QualifiedName;
+import org.eaxy.Xml;
+
+import static peppol.bis.invoice3.domain.Namespaces.CAC_NS;
+
+public class DeliveryParty implements XmlElement {
+    private final PartyName partyName;
 
     public DeliveryParty(PartyName partyName) {
         this.partyName = partyName;
+    }
+
+    @Override
+    public Node node() {
+        final Element elm = Xml.el(new QualifiedName(CAC_NS, name()));
+
+        required(this.partyName, elm);
+
+        return elm;
     }
 }

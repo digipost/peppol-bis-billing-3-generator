@@ -15,48 +15,10 @@
  */
 package peppol.bis.invoice3.domain;
 
-public class Address {
-
-    private String streetName;
-    private String additionalStreetName;
-    private String cityName;
-    private String postalZone;
-    private String countrySubentity;
-    private Country country;
-    private AddressLine addressLine;
+public class Address extends AbstractAddress<Address> {
 
     public Address(Country country) {
-        this.country = country;
-    }
-
-    public Address withAddressLine(AddressLine addressLine) {
-        this.addressLine = addressLine;
-        return this;
-    }
-
-    public Address withCountrySubentity(String countrySubentity) {
-        this.countrySubentity = countrySubentity;
-        return this;
-    }
-
-    public Address withPostalZone(String postalZone) {
-        this.postalZone = postalZone;
-        return this;
-    }
-
-    public Address withCityName(String cityName) {
-        this.cityName = cityName;
-        return this;
-    }
-
-    public Address withAdditionalStreetName(String additionalStreetName) {
-        this.additionalStreetName = additionalStreetName;
-        return this;
-    }
-
-    public Address withStreetName(String streetName) {
-        this.streetName = streetName;
-        return this;
+        super(country);
     }
 
 }

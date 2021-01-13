@@ -15,16 +15,24 @@
  */
 package peppol.bis.invoice3.domain;
 
+import org.eaxy.Element;
+import org.eaxy.Node;
+import org.eaxy.QualifiedName;
+import org.eaxy.Xml;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class Party {
+import static peppol.bis.invoice3.domain.Namespaces.CAC_NS;
+import static peppol.bis.invoice3.domain.Namespaces.CBC_NS;
+
+public class Party implements XmlElement {
 
     private EndpointID endpointID;
     private PartyIdentification partyIdentification;
     private PartyName partyName;
     private PostalAddress postalAddress;
-    private List<PartyTaxScheme> partyTaxSchemes = new ArrayList<>();
+    private List<XmlElement> partyTaxSchemes = new ArrayList<>();
     private PartyLegalEntity partyLegalEntity;
     private Contact contact;
 
@@ -53,6 +61,23 @@ public class Party {
     public Party withContact(Contact contact) {
         this.contact = contact;
         return this;
+    }
+
+    @Override
+    public Node node() {
+        final Element elm = Xml.el(new QualifiedName(CAC_NS, name()));
+
+        required(this.endpointID, elm);
+        required(this.postalAddress, elm);
+        required(this.partyLegalEntity, elm);
+
+        optional(this.contact, elm);
+        optional(this.partyIdentification, elm);
+        optional(this.partyName, elm);
+
+        list(this.partyTaxSchemes, elm);
+
+        return elm;
     }
 
 }

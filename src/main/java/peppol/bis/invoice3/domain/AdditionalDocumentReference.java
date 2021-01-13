@@ -15,10 +15,19 @@
  */
 package peppol.bis.invoice3.domain;
 
-public class AdditionalDocumentReference {
+import org.eaxy.Element;
+import org.eaxy.Node;
+import org.eaxy.QualifiedName;
+import org.eaxy.Xml;
 
-    private String id;
-    private String DocumentDescription;
+import static peppol.bis.invoice3.domain.Namespaces.CAC_NS;
+import static peppol.bis.invoice3.domain.Namespaces.CBC_NS;
+
+public class AdditionalDocumentReference implements XmlElement {
+
+    private final String id;
+    private String documentTypeCode;
+    private String documentDescription;
     private Attachment attachment;
 
     public AdditionalDocumentReference(String id) {
@@ -26,12 +35,29 @@ public class AdditionalDocumentReference {
     }
 
     public AdditionalDocumentReference withDocumentDescription(String DocumentDescription) {
-        this.DocumentDescription = DocumentDescription;
+        this.documentDescription = DocumentDescription;
+        return this;
+    }
+
+    public AdditionalDocumentReference withDocumentTypeCode(String documentTypeCode) {
+        this.documentTypeCode = documentTypeCode;
         return this;
     }
 
     public AdditionalDocumentReference withAttachment(Attachment Attachment) {
         this.attachment = Attachment;
         return this;
+    }
+
+    @Override
+    public Node node() {
+        final Element elm = Xml.el(new QualifiedName(CAC_NS, name()));
+
+        required(this.id, "ID", elm, CBC_NS);
+        optional(this.documentTypeCode, "DocumentTypeCode", elm, CBC_NS);
+        optional(this.documentDescription, "DocumentDescription", elm, CBC_NS);
+        optional(this.attachment, elm);
+
+        return elm;
     }
 }

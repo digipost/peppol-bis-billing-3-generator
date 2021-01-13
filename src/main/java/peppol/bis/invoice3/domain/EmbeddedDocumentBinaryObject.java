@@ -15,14 +15,30 @@
  */
 package peppol.bis.invoice3.domain;
 
-public class EmbeddedDocumentBinaryObject {
-    private String mimeCode;
-    private String filename;
-    private String value;
+import org.eaxy.Node;
+import org.eaxy.QualifiedName;
+import org.eaxy.Xml;
+
+import static peppol.bis.invoice3.domain.Namespaces.CBC_NS;
+
+public class EmbeddedDocumentBinaryObject implements XmlElement {
+    private final String mimeCode;
+    private final String filename;
+    private final String value;
 
     public EmbeddedDocumentBinaryObject(String mimeCode, String filename, String value) {
         this.mimeCode = mimeCode;
         this.filename = filename;
         this.value = value;
+    }
+
+    @Override
+    public Node node() {
+        return Xml.el(
+            new QualifiedName(CBC_NS, this.name())
+            , Xml.text(this.value)
+            , Xml.attr("mimeCode", this.mimeCode)
+            , Xml.attr("filename", this.filename)
+        );
     }
 }

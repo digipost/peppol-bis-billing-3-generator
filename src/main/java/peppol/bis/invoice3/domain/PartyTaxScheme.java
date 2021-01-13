@@ -15,13 +15,31 @@
  */
 package peppol.bis.invoice3.domain;
 
-public class PartyTaxScheme {
+import org.eaxy.Element;
+import org.eaxy.Node;
+import org.eaxy.QualifiedName;
+import org.eaxy.Xml;
 
-    private String companyID;
-    private TaxScheme taxScheme;
+import static peppol.bis.invoice3.domain.Namespaces.CAC_NS;
+import static peppol.bis.invoice3.domain.Namespaces.CBC_NS;
+
+public class PartyTaxScheme implements XmlElement {
+
+    private final String companyID;
+    private final TaxScheme taxScheme;
 
     public PartyTaxScheme(String companyID, TaxScheme taxScheme) {
         this.companyID = companyID;
         this.taxScheme = taxScheme;
+    }
+
+    @Override
+    public Node node() {
+        final Element elm = Xml.el(new QualifiedName(CAC_NS, name()));
+
+        required(this.companyID, "CompanyID", elm, CBC_NS);
+        required(this.taxScheme, elm);
+
+        return elm;
     }
 }

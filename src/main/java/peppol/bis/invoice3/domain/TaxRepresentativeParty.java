@@ -15,14 +15,32 @@
  */
 package peppol.bis.invoice3.domain;
 
-public class TaxRepresentativeParty {
-    private PartyName partyName;
-    private PostalAddress postalAddress;
-    private PartyTaxScheme partyTaxScheme;
+import org.eaxy.Element;
+import org.eaxy.Node;
+import org.eaxy.QualifiedName;
+import org.eaxy.Xml;
+
+import static peppol.bis.invoice3.domain.Namespaces.CAC_NS;
+
+public class TaxRepresentativeParty implements XmlElement {
+    private final PartyName partyName;
+    private final PostalAddress postalAddress;
+    private final PartyTaxScheme partyTaxScheme;
 
     public TaxRepresentativeParty(PartyName partyName, PostalAddress postalAddress, PartyTaxScheme partyTaxScheme) {
         this.partyName = partyName;
         this.postalAddress = postalAddress;
         this.partyTaxScheme = partyTaxScheme;
+    }
+
+    @Override
+    public Node node() {
+        final Element elm = Xml.el(new QualifiedName(CAC_NS, name()));
+
+        required(this.partyName, elm);
+        required(this.postalAddress, elm);
+        required(this.partyTaxScheme, elm);
+
+        return elm;
     }
 }

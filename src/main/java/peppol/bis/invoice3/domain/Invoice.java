@@ -53,13 +53,14 @@ public class Invoice implements XmlRootElement, XmlElement {
     private ReceiptDocumentReference receiptDocumentReference;
     private OriginatorDocumentReference originatorDocumentReference;
     private ContractDocumentReference contractDocumentReference;
-    private List<AdditionalDocumentReference> additionalDocumentReferences = new ArrayList<>();
+    private final List<XmlElement> additionalDocumentReferences = new ArrayList<>();
     private ProjectReference projectReference;
     private AccountingSupplierParty accountingSupplierParty;
     private AccountingCustomerParty accountingCustomerParty;
+    private PayeeParty payeeParty;
     private TaxRepresentativeParty taxRepresentativeParty;
     private Delivery delivery;
-    private final List<PaymentMeans> paymentMeans = new ArrayList<>();
+    private final List<XmlElement> paymentMeans = new ArrayList<>();
     private PaymentTerms paymentTerms;
     private final List<XmlElement> allowanceCharges = new ArrayList<>();
     private final List<XmlElement> taxTotals = new ArrayList<>();
@@ -174,6 +175,10 @@ public class Invoice implements XmlRootElement, XmlElement {
         return this;
     }
 
+    public Invoice withPayeeParty(PayeeParty payeeParty) {
+        this.payeeParty = payeeParty;
+        return this;
+    }
     public Invoice withPaymentMeans(PaymentMeans paymentMeans) {
         this.paymentMeans.add(paymentMeans);
         return this;
@@ -225,6 +230,10 @@ public class Invoice implements XmlRootElement, XmlElement {
         required(this.invoiceTypeCode, "InvoiceTypeCode", elm, CBC_NS);
         required(this.documentCurrencyCode, "DocumentCurrencyCode", elm, CBC_NS);
 
+        required(this.accountingSupplierParty, elm);
+        required(this.accountingCustomerParty, elm);
+
+        optional(this.payeeParty, elm);
         optional(this.note, "Note", elm, CBC_NS);
         optional(this.taxPointDate, "TaxPointDate", elm, CBC_NS);
         optional(this.taxCurrencyCode, "TaxCurrencyCode", elm, CBC_NS);
@@ -239,12 +248,16 @@ public class Invoice implements XmlRootElement, XmlElement {
         optional(this.invoicePeriod, elm);
         optional(this.orderReference, elm);
         optional(this.billingReference, elm);
+        optional(this.delivery, elm);
+        optional(this.taxRepresentativeParty, elm);
 
         required(this.legalMonetaryTotal, elm);
 
+        list(this.additionalDocumentReferences, elm);
         list(this.taxTotals, elm);
         list(this.invoiceLines, elm);
         list(this.allowanceCharges, elm);
+        list(this.paymentMeans, elm);
 
         return elm;
     }

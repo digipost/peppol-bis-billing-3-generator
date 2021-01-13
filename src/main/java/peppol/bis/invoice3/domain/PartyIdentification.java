@@ -15,11 +15,28 @@
  */
 package peppol.bis.invoice3.domain;
 
-public class PartyIdentification {
+import org.eaxy.Element;
+import org.eaxy.Node;
+import org.eaxy.QualifiedName;
+import org.eaxy.Xml;
 
-    private String id;
+import static peppol.bis.invoice3.domain.Namespaces.CAC_NS;
+import static peppol.bis.invoice3.domain.Namespaces.CBC_NS;
+
+public class PartyIdentification implements XmlElement {
+
+    private final String id;
 
     public PartyIdentification(String id) {
         this.id = id;
+    }
+
+    @Override
+    public Node node() {
+        final Element elm = Xml.el(new QualifiedName(CAC_NS, name()));
+
+        required(this.id, "ID", elm, CBC_NS);
+
+        return elm;
     }
 }

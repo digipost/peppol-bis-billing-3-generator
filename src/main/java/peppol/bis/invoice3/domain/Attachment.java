@@ -15,15 +15,34 @@
  */
 package peppol.bis.invoice3.domain;
 
-public class Attachment {
+import org.eaxy.Element;
+import org.eaxy.Node;
+import org.eaxy.QualifiedName;
+import org.eaxy.Xml;
+
+import static peppol.bis.invoice3.domain.Namespaces.CAC_NS;
+
+public class Attachment implements XmlElement {
     private EmbeddedDocumentBinaryObject embeddedDocumentBinaryObject;
     private ExternalReference externalReference;
 
-    public Attachment(EmbeddedDocumentBinaryObject embeddedDocumentBinaryObject) {
-        this.embeddedDocumentBinaryObject = embeddedDocumentBinaryObject;
+    public Attachment withExternalReference(ExternalReference externalReference) {
+        this.externalReference = externalReference;
+        return this;
     }
 
-    public Attachment(ExternalReference externalReference) {
-        this.externalReference = externalReference;
+    public Attachment withEmbeddedDocumentBinaryObject(EmbeddedDocumentBinaryObject embeddedDocumentBinaryObject) {
+        this.embeddedDocumentBinaryObject = embeddedDocumentBinaryObject;
+        return this;
+    }
+
+    @Override
+    public Node node() {
+        final Element elm = Xml.el(new QualifiedName(CAC_NS, name()));
+
+        optional(this.embeddedDocumentBinaryObject, elm);
+        optional(this.externalReference, elm);
+
+        return elm;
     }
 }

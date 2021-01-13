@@ -15,7 +15,15 @@
  */
 package peppol.bis.invoice3.domain;
 
-public class PaymentMeans {
+import org.eaxy.Element;
+import org.eaxy.Node;
+import org.eaxy.QualifiedName;
+import org.eaxy.Xml;
+
+import static peppol.bis.invoice3.domain.Namespaces.CAC_NS;
+import static peppol.bis.invoice3.domain.Namespaces.CBC_NS;
+
+public class PaymentMeans implements XmlElement {
     private PaymentMeansCode paymentMeansCode;
     private String paymentID;
     private CardAccount cardAccount;
@@ -46,4 +54,16 @@ public class PaymentMeans {
         return this;
     }
 
+    @Override
+    public Node node() {
+        final Element elm = Xml.el(new QualifiedName(CAC_NS, name()));
+
+        required(this.paymentMeansCode, elm);
+        optional(this.paymentID, "PaymentID", elm, CBC_NS);
+        optional(this.cardAccount, elm);
+        optional(this.payeeFinancialAccount, elm);
+        optional(this.paymentMandate, elm);
+
+        return elm;
+    }
 }

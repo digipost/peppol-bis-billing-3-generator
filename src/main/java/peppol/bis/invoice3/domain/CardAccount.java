@@ -15,9 +15,17 @@
  */
 package peppol.bis.invoice3.domain;
 
-public class CardAccount {
-    private String primaryAccountNumberID;
-    private String networkID;
+import org.eaxy.Element;
+import org.eaxy.Node;
+import org.eaxy.QualifiedName;
+import org.eaxy.Xml;
+
+import static peppol.bis.invoice3.domain.Namespaces.CAC_NS;
+import static peppol.bis.invoice3.domain.Namespaces.CBC_NS;
+
+public class CardAccount implements XmlElement {
+    private final String primaryAccountNumberID;
+    private final String networkID;
     private String holderName;
 
     public CardAccount(String primaryAccountNumberID, String networkID) {
@@ -28,5 +36,16 @@ public class CardAccount {
     public CardAccount withHolderName(String holderName) {
         this.holderName = holderName;
         return this;
+    }
+
+    @Override
+    public Node node() {
+        final Element elm = Xml.el(new QualifiedName(CAC_NS, name()));
+
+        required(this.primaryAccountNumberID, "PrimaryAccountNumberID", elm, CBC_NS);
+        required(this.networkID, "NetworkID", elm, CBC_NS);
+        optional(this.holderName, "HolderName", elm, CBC_NS);
+
+        return elm;
     }
 }

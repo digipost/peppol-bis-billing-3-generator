@@ -1,0 +1,84 @@
+/**
+ * Copyright (C) Posten Norge AS
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package peppol.bis.invoice3.domain;
+
+import org.eaxy.Element;
+import org.eaxy.Node;
+import org.eaxy.QualifiedName;
+import org.eaxy.Xml;
+
+import static peppol.bis.invoice3.domain.Namespaces.CAC_NS;
+import static peppol.bis.invoice3.domain.Namespaces.CBC_NS;
+
+public class AbstractAddress<T extends AbstractAddress<T>> implements XmlElement {
+    private String streetName;
+    private String additionalStreetName;
+    private String cityName;
+    private String postalZone;
+    private String countrySubentity;
+    private final Country country;
+    private AddressLine addressLine;
+
+    public AbstractAddress(Country country) {
+        this.country = country;
+    }
+
+    public T withAddressLine(AddressLine addressLine) {
+        this.addressLine = addressLine;
+        return (T) this;
+    }
+
+    public T withCountrySubentity(String countrySubentity) {
+        this.countrySubentity = countrySubentity;
+        return (T) this;
+    }
+
+    public T withPostalZone(String postalZone) {
+        this.postalZone = postalZone;
+        return (T) this;
+    }
+
+    public T withCityName(String cityName) {
+        this.cityName = cityName;
+        return (T) this;
+    }
+
+    public T withAdditionalStreetName(String additionalStreetName) {
+        this.additionalStreetName = additionalStreetName;
+        return (T) this;
+    }
+
+    public T withStreetName(String streetName) {
+        this.streetName = streetName;
+        return (T) this;
+    }
+
+    @Override
+    public Node node() {
+        final Element elm = Xml.el(new QualifiedName(CAC_NS, name()));
+
+        required(this.country, elm);
+
+        optional(this.streetName, "StreetName", elm, CBC_NS);
+        optional(this.additionalStreetName, "AdditionalStreetName", elm, CBC_NS);
+        optional(this.cityName, "CityName", elm, CBC_NS);
+        optional(this.postalZone, "PostalZone", elm, CBC_NS);
+        optional(this.countrySubentity, "CountrySubentity", elm, CBC_NS);
+        optional(this.addressLine, elm);
+
+        return elm;
+    }
+}

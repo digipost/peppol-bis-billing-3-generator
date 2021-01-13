@@ -18,46 +18,37 @@ package peppol.bis.invoice3;
 import org.eaxy.Element;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import peppol.bis.invoice3.domain.PartyTaxScheme;
 import peppol.bis.invoice3.domain.TaxAmount;
 import peppol.bis.invoice3.domain.TaxCategory;
 import peppol.bis.invoice3.domain.TaxScheme;
 import peppol.bis.invoice3.domain.TaxSubtotal;
-import peppol.bis.invoice3.domain.TaxTotal;
 import peppol.bis.invoice3.domain.TaxableAmount;
 
+import static org.hamcrest.Matchers.equalTo;
 import static peppol.bis.invoice3.XmlAsserts.assertElementNameIs;
 import static peppol.bis.invoice3.XmlAsserts.assertRequiredElement;
 import static peppol.bis.invoice3.XmlAsserts.assertUnsetOptionalElement;
 import static peppol.bis.invoice3.domain.Namespaces.CAC_NS;
 
-public class TaxTotalTest  {
+public class PartyTaxSchemeTest {
 
-    private TaxTotal taxTotal;
+    private PartyTaxScheme partyTaxScheme;
 
     @BeforeEach
     void setUp() {
-        taxTotal = new TaxTotal(
-            new TaxAmount("1233", "EUR")
+        partyTaxScheme = new PartyTaxScheme(
+            "FR932874294", new TaxScheme("VAT")
         );
     }
 
     @Test
     void to_xml_required_elements() {
-        final Element element = (Element) taxTotal.node();
-        assertElementNameIs(element, "TaxTotal", CAC_NS);
+        final Element element = (Element) partyTaxScheme.node();
+        assertElementNameIs(element, "PartyTaxScheme", CAC_NS);
 
-        assertRequiredElement(element, "TaxAmount");
-
-        assertUnsetOptionalElement(element, "TaxSubtotal");
+        assertRequiredElement(element, "CompanyID", equalTo("FR932874294"));
+        assertRequiredElement(element, "TaxScheme");
     }
 
-    @Test
-    void to_xml_optional_elements() {
-        taxTotal
-            .withTaxSubtotal(new TaxSubtotal(new TaxableAmount("123", "EUR"), new TaxAmount("124", "EUR"), new TaxCategory("g", new TaxScheme("VAT"))));
-
-        final Element element = (Element) taxTotal.node();
-
-        assertRequiredElement(element, "TaxSubtotal");
-    }
 }

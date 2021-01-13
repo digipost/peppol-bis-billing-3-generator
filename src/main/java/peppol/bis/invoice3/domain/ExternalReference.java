@@ -15,10 +15,27 @@
  */
 package peppol.bis.invoice3.domain;
 
-public class ExternalReference {
-    private String uri;
+import org.eaxy.Element;
+import org.eaxy.Node;
+import org.eaxy.QualifiedName;
+import org.eaxy.Xml;
+
+import static peppol.bis.invoice3.domain.Namespaces.CAC_NS;
+import static peppol.bis.invoice3.domain.Namespaces.CBC_NS;
+
+public class ExternalReference implements XmlElement {
+    private final String uri;
 
     public ExternalReference(String uri) {
         this.uri = uri;
+    }
+
+    @Override
+    public Node node() {
+        final Element elm = Xml.el(new QualifiedName(CAC_NS, name()));
+
+        required(this.uri, "URI",  elm, CBC_NS);
+
+        return elm;
     }
 }

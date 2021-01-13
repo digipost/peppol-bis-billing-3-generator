@@ -21,36 +21,26 @@ import org.eaxy.QualifiedName;
 import org.eaxy.Xml;
 
 import static peppol.bis.invoice3.domain.Namespaces.CAC_NS;
-import static peppol.bis.invoice3.domain.Namespaces.CBC_NS;
 
-public class PartyLegalEntity implements XmlElement {
+public class PayeePartyPartyLegalEntity implements XmlElement {
 
-    private final String registrationName;
-    private CompanyID companyID;
-    private String companyLegalForm;
+    private final CompanyID companyID;
 
-    public PartyLegalEntity(String registrationName) {
-        this.registrationName = registrationName;
-    }
-
-    public PartyLegalEntity withCompanyLegalForm(String companyLegalForm) {
-        this.companyLegalForm = companyLegalForm;
-        return this;
-    }
-
-    public PartyLegalEntity withCompanyID(CompanyID companyID) {
+    public PayeePartyPartyLegalEntity(CompanyID companyID) {
         this.companyID = companyID;
-        return this;
     }
 
     @Override
     public Node node() {
         final Element elm = Xml.el(new QualifiedName(CAC_NS, name()));
 
-        optional(this.registrationName, "RegistrationName", elm, CBC_NS);
-        optional(this.companyID, elm);
-        optional(this.companyLegalForm, "CompanyLegalForm", elm, CBC_NS);
+        required(this.companyID, elm);
 
         return elm;
+    }
+
+    @Override
+    public String name() {
+        return "PartyLegalEntity";
     }
 }

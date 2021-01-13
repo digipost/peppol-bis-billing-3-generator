@@ -24,7 +24,7 @@ import static peppol.bis.invoice3.domain.Namespaces.CAC_NS;
 import static peppol.bis.invoice3.domain.Namespaces.CBC_NS;
 
 public class ProjectReference implements XmlElement {
-    private String id;
+    private final String id;
 
     public ProjectReference(String id) {
         this.id = id;

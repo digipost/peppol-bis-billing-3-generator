@@ -15,12 +15,37 @@
  */
 package peppol.bis.invoice3.domain;
 
-public class EndpointID {
-    private String schemeID;
-    private String value;
+import org.eaxy.Element;
+import org.eaxy.Node;
+import org.eaxy.QualifiedName;
+import org.eaxy.Xml;
 
-    public EndpointID(String schemeID, String value) {
-        this.schemeID = schemeID;
+import java.util.Optional;
+
+import static peppol.bis.invoice3.domain.Namespaces.CBC_NS;
+
+public class EndpointID implements XmlElement{
+    private final String value;
+    private String schemeID;
+
+    public EndpointID(String value) {
         this.value = value;
+    }
+
+    public EndpointID withSchemeID(String schemeID) {
+        this.schemeID = schemeID;
+        return this;
+    }
+
+    @Override
+    public Node node() {
+        final Element el = Xml.el(
+            new QualifiedName(CBC_NS, this.name())
+            , Xml.text(this.value)
+        );
+
+        Optional.ofNullable(this.schemeID).ifPresent(v -> el.attr("schemeID", v));
+
+        return el;
     }
 }

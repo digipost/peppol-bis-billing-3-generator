@@ -15,7 +15,15 @@
  */
 package peppol.bis.invoice3.domain;
 
-public class Delivery {
+import org.eaxy.Element;
+import org.eaxy.Node;
+import org.eaxy.QualifiedName;
+import org.eaxy.Xml;
+
+import static peppol.bis.invoice3.domain.Namespaces.CAC_NS;
+import static peppol.bis.invoice3.domain.Namespaces.CBC_NS;
+
+public class Delivery implements XmlElement {
     private String actualDeliveryDate;
     private DeliveryLocation deliveryLocation;
     private DeliveryParty deliveryParty;
@@ -33,5 +41,16 @@ public class Delivery {
     public Delivery withDeliveryLocation(DeliveryLocation DeliveryLocation) {
         this.deliveryLocation = DeliveryLocation;
         return this;
+    }
+
+    @Override
+    public Node node() {
+        final Element elm = Xml.el(new QualifiedName(CAC_NS, name()));
+
+        optional(this.actualDeliveryDate, "ActualDeliveryDate", elm, CBC_NS);
+        optional(this.deliveryLocation, elm);
+        optional(this.deliveryParty, elm);
+
+        return elm;
     }
 }

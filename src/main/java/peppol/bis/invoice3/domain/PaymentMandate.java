@@ -15,7 +15,15 @@
  */
 package peppol.bis.invoice3.domain;
 
-public class PaymentMandate {
+import org.eaxy.Element;
+import org.eaxy.Node;
+import org.eaxy.QualifiedName;
+import org.eaxy.Xml;
+
+import static peppol.bis.invoice3.domain.Namespaces.CAC_NS;
+import static peppol.bis.invoice3.domain.Namespaces.CBC_NS;
+
+public class PaymentMandate implements XmlElement {
     private String id;
     private PayeeFinancialAccount payeeFinancialAccount;
 
@@ -29,4 +37,13 @@ public class PaymentMandate {
         return this;
     }
 
+    @Override
+    public Node node() {
+        final Element elm = Xml.el(new QualifiedName(CAC_NS, name()));
+
+        optional(this.id, "ID", elm, CBC_NS);
+        optional(this.payeeFinancialAccount, elm);
+
+        return elm;
+    }
 }

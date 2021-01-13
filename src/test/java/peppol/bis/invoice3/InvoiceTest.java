@@ -18,11 +18,17 @@ package peppol.bis.invoice3;
 import org.eaxy.Element;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import peppol.bis.invoice3.domain.AccountingCustomerParty;
+import peppol.bis.invoice3.domain.AccountingSupplierParty;
+import peppol.bis.invoice3.domain.AdditionalDocumentReference;
 import peppol.bis.invoice3.domain.Amount;
 import peppol.bis.invoice3.domain.BillingReference;
 import peppol.bis.invoice3.domain.ClassifiedTaxCategory;
 import peppol.bis.invoice3.domain.ContractDocumentReference;
+import peppol.bis.invoice3.domain.Country;
+import peppol.bis.invoice3.domain.Delivery;
 import peppol.bis.invoice3.domain.DespatchDocumentReference;
+import peppol.bis.invoice3.domain.EndpointID;
 import peppol.bis.invoice3.domain.Invoice;
 import peppol.bis.invoice3.domain.InvoiceAllowanceCharge;
 import peppol.bis.invoice3.domain.InvoiceDocumentReference;
@@ -34,8 +40,16 @@ import peppol.bis.invoice3.domain.LegalMonetaryTotal;
 import peppol.bis.invoice3.domain.LineExtensionAmount;
 import peppol.bis.invoice3.domain.OrderReference;
 import peppol.bis.invoice3.domain.OriginatorDocumentReference;
+import peppol.bis.invoice3.domain.Party;
+import peppol.bis.invoice3.domain.PartyLegalEntity;
+import peppol.bis.invoice3.domain.PartyName;
+import peppol.bis.invoice3.domain.PartyTaxScheme;
 import peppol.bis.invoice3.domain.PayableAmount;
+import peppol.bis.invoice3.domain.PayeeParty;
+import peppol.bis.invoice3.domain.PaymentMeans;
+import peppol.bis.invoice3.domain.PaymentMeansCode;
 import peppol.bis.invoice3.domain.PaymentTerms;
+import peppol.bis.invoice3.domain.PostalAddress;
 import peppol.bis.invoice3.domain.Price;
 import peppol.bis.invoice3.domain.PriceAmount;
 import peppol.bis.invoice3.domain.ProjectReference;
@@ -44,6 +58,7 @@ import peppol.bis.invoice3.domain.TaxAmount;
 import peppol.bis.invoice3.domain.TaxCategory;
 import peppol.bis.invoice3.domain.TaxExclusiveAmount;
 import peppol.bis.invoice3.domain.TaxInclusiveAmount;
+import peppol.bis.invoice3.domain.TaxRepresentativeParty;
 import peppol.bis.invoice3.domain.TaxScheme;
 import peppol.bis.invoice3.domain.TaxTotal;
 
@@ -84,8 +99,16 @@ public class InvoiceTest  {
             "33445566"
             , "2017-11-01"
             , "EUR"
-            , null
-            , null
+            , new AccountingSupplierParty(new Party(
+                new EndpointID("")
+                , new PostalAddress(new Country("NO"))
+                , new PartyLegalEntity("")
+            ))
+            , new AccountingCustomerParty(new Party(
+                new EndpointID("")
+                , new PostalAddress(new Country("NO"))
+                , new PartyLegalEntity("")
+            ))
             , taxTotal
             , legalMonetaryTotal
             , invoiceLine
@@ -104,6 +127,8 @@ public class InvoiceTest  {
         assertRequiredElement(element, "DocumentCurrencyCode", equalTo("EUR"));
 
         assertRequiredElement(element, "LegalMonetaryTotal");
+        assertRequiredElement(element, "AccountingCustomerParty");
+        assertRequiredElement(element, "AccountingSupplierParty");
 
         assertThat(element.find("TaxTotal").check().size(), equalTo(1));
         assertThat(element.find("InvoiceLine").check().size(), equalTo(1));
@@ -194,6 +219,15 @@ public class InvoiceTest  {
             .withInvoicePeriod(new InvoicePeriod("2020-11-11", "2020-12-12"))
             .withOrderReference(new OrderReference("98776"))
             .withBillingReference(new BillingReference(new InvoiceDocumentReference("inv123")))
+            .withDelivery(new Delivery())
+            .withTaxRepresentativeParty(new TaxRepresentativeParty(
+                new PartyName("Tax Representative Name AS")
+                , new PostalAddress(new Country("NO"))
+                , new PartyTaxScheme("FR932874294", new TaxScheme("VAT"))
+            ))
+            .withAdditionalDocumentReferences(new AdditionalDocumentReference("AB23456"))
+            .withPaymentMeans(new PaymentMeans(new PaymentMeansCode("30")))
+            .withPayeeParty(new PayeeParty(new PartyName("")))
             ;
 
         final Element element = InvoiceApi.from(invoice).process().xml();
@@ -207,6 +241,11 @@ public class InvoiceTest  {
         assertRequiredElement(element, "InvoicePeriod");
         assertRequiredElement(element, "OrderReference");
         assertRequiredElement(element, "BillingReference");
+        assertRequiredElement(element, "Delivery");
+        assertRequiredElement(element, "TaxRepresentativeParty");
+        assertRequiredElement(element, "AdditionalDocumentReference");
+        assertRequiredElement(element, "PaymentMeans");
+        assertRequiredElement(element, "PayeeParty");
     }
 
     @Test

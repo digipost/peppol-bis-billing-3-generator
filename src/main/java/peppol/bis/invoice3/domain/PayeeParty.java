@@ -15,11 +15,18 @@
  */
 package peppol.bis.invoice3.domain;
 
-public class PayeeParty {
+import org.eaxy.Element;
+import org.eaxy.Node;
+import org.eaxy.QualifiedName;
+import org.eaxy.Xml;
 
+import static peppol.bis.invoice3.domain.Namespaces.CAC_NS;
+
+public class PayeeParty implements XmlElement {
+
+    private final PartyName partyName;
     private PartyIdentification partyIdentification;
-    private PartyName partyName;
-    private PartyLegalEntity partyLegalEntity;
+    private PayeePartyPartyLegalEntity partyLegalEntity;
 
     public PayeeParty(PartyName partyName) {
         this.partyName = partyName;
@@ -30,5 +37,19 @@ public class PayeeParty {
         return this;
     }
 
+    public PayeeParty withPartyLegalEntity(PayeePartyPartyLegalEntity partyLegalEntity) {
+        this.partyLegalEntity = partyLegalEntity;
+        return this;
+    }
 
+    @Override
+    public Node node() {
+        final Element elm = Xml.el(new QualifiedName(CAC_NS, name()));
+
+        required(this.partyName, elm);
+        optional(this.partyIdentification, elm);
+        optional(this.partyLegalEntity, elm);
+
+        return elm;
+    }
 }

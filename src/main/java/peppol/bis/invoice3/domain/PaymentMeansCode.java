@@ -15,13 +15,38 @@
  */
 package peppol.bis.invoice3.domain;
 
-public class PaymentMeansCode {
+import org.eaxy.Element;
+import org.eaxy.Node;
+import org.eaxy.QualifiedName;
+import org.eaxy.Xml;
 
-    private String code;
+import java.util.Optional;
+
+import static peppol.bis.invoice3.domain.Namespaces.CBC_NS;
+
+public class PaymentMeansCode implements XmlElement {
+
+    private final String code;
     private String name;
 
-    public PaymentMeansCode(String code, String name) {
+    public PaymentMeansCode(String code) {
         this.code = code;
+    }
+
+    public PaymentMeansCode withName(String name) {
         this.name = name;
+        return this;
+    }
+
+    @Override
+    public Node node() {
+        final Element el = Xml.el(
+            new QualifiedName(CBC_NS, this.name())
+            , Xml.text(this.code)
+        );
+
+        Optional.ofNullable(this.name).ifPresent(v -> el.attr("name", v));
+
+        return el;
     }
 }

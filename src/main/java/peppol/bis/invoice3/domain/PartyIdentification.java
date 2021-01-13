@@ -21,13 +21,12 @@ import org.eaxy.QualifiedName;
 import org.eaxy.Xml;
 
 import static peppol.bis.invoice3.domain.Namespaces.CAC_NS;
-import static peppol.bis.invoice3.domain.Namespaces.CBC_NS;
 
 public class PartyIdentification implements XmlElement {
 
-    private final String id;
+    private final ID id;
 
-    public PartyIdentification(String id) {
+    public PartyIdentification(ID id) {
         this.id = id;
     }
 
@@ -35,7 +34,7 @@ public class PartyIdentification implements XmlElement {
     public Node node() {
         final Element elm = Xml.el(new QualifiedName(CAC_NS, name()));
 
-        required(this.id, "ID", elm, CBC_NS);
+        required(this.id, elm);
 
         return elm;
     }

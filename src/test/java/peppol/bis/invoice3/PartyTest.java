@@ -21,6 +21,7 @@ import org.junit.jupiter.api.Test;
 import peppol.bis.invoice3.domain.Contact;
 import peppol.bis.invoice3.domain.Country;
 import peppol.bis.invoice3.domain.EndpointID;
+import peppol.bis.invoice3.domain.ID;
 import peppol.bis.invoice3.domain.Party;
 import peppol.bis.invoice3.domain.PartyIdentification;
 import peppol.bis.invoice3.domain.PartyLegalEntity;
@@ -68,7 +69,7 @@ public class PartyTest {
             .withContact(new Contact())
             .withPartyName(new PartyName(""))
             .withPartyTaxScheme(new PartyTaxScheme("", new TaxScheme("")))
-            .withPartyIdentification(new PartyIdentification(""))
+            .withPartyIdentification(new PartyIdentification(new ID("")))
             ;
 
         final Element element = (Element) party.node();

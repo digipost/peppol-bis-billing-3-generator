@@ -19,6 +19,7 @@ import org.eaxy.Element;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import peppol.bis.invoice3.domain.CompanyID;
+import peppol.bis.invoice3.domain.ID;
 import peppol.bis.invoice3.domain.PartyIdentification;
 import peppol.bis.invoice3.domain.PartyName;
 import peppol.bis.invoice3.domain.PayeeParty;
@@ -55,7 +56,7 @@ public class PayeePartyTest {
     void to_xml_optional_elements() {
         payeeParty
             .withPartyLegalEntity(new PayeePartyPartyLegalEntity(new CompanyID("")))
-            .withPartyIdentification(new PartyIdentification(""));
+            .withPartyIdentification(new PartyIdentification(new ID("")));
 
         final Element element = (Element) payeeParty.node();
 

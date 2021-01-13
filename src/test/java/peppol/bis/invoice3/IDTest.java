@@ -16,32 +16,29 @@
 package peppol.bis.invoice3;
 
 import org.eaxy.Element;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import peppol.bis.invoice3.domain.ID;
-import peppol.bis.invoice3.domain.PartyIdentification;
 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
-import static peppol.bis.invoice3.XmlAsserts.assertElementNameIs;
-import static peppol.bis.invoice3.XmlAsserts.assertRequiredElement;
-import static peppol.bis.invoice3.domain.Namespaces.CAC_NS;
 
-class PartyIdentificationTest {
 
-    private PartyIdentification partyIdentification;
+class IDTest {
 
-    @BeforeEach
-    void setUp() {
-        partyIdentification = new PartyIdentification(
-            new ID("5060012349998")
-        );
+    @Test
+    void ID_to_xml() {
+        final Element element = (Element) new ID("7300010000001").node();
+        assertThat(element.getName().getName(), equalTo("ID"));
+        assertThat(element.text(), equalTo("7300010000001"));
+        assertThat(element.attrs().get("schemeID"), equalTo(null));
     }
 
     @Test
-    void to_xml_basic_elements() {
-        final Element element = (Element) partyIdentification.node();
-        assertElementNameIs(element, "PartyIdentification", CAC_NS);
-
-        assertRequiredElement(element, "ID", equalTo("5060012349998"));
+    void ID_to_xml_with_name() {
+        final Element element = (Element) new ID("7300010000001").withSchemeID("0088").node();
+        assertThat(element.getName().getName(), equalTo("ID"));
+        assertThat(element.text(), equalTo("7300010000001"));
+        assertThat(element.attrs().get("schemeID"), equalTo("0088"));
     }
+
 }

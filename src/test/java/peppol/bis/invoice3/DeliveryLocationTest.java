@@ -21,6 +21,7 @@ import org.junit.jupiter.api.Test;
 import peppol.bis.invoice3.domain.Address;
 import peppol.bis.invoice3.domain.Country;
 import peppol.bis.invoice3.domain.DeliveryLocation;
+import peppol.bis.invoice3.domain.ID;
 
 import static org.hamcrest.Matchers.equalTo;
 import static peppol.bis.invoice3.XmlAsserts.assertElementNameIs;
@@ -48,7 +49,7 @@ public class DeliveryLocationTest {
 
     @Test
     void to_xml_optional_elements() {
-        deliveryLocation.withId("0080").withAddress(new Address(new Country("NO")));
+        deliveryLocation.withId(new ID("0080")).withAddress(new Address(new Country("NO")));
 
         final Element element = (Element) deliveryLocation.node();
 

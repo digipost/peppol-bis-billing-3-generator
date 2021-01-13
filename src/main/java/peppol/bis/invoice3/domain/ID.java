@@ -20,30 +20,33 @@ import org.eaxy.Node;
 import org.eaxy.QualifiedName;
 import org.eaxy.Xml;
 
-import static peppol.bis.invoice3.domain.Namespaces.CAC_NS;
+import java.util.Optional;
+
 import static peppol.bis.invoice3.domain.Namespaces.CBC_NS;
 
-public class DeliveryLocation implements XmlElement {
-    private ID id;
-    private Address address;
+public class ID implements XmlElement{
 
-    public DeliveryLocation withId(ID Id) {
-        this.id = Id;
-        return this;
+    private final String id;
+    private String schemeID;
+
+    public ID(String id) {
+        this.id = id;
     }
 
-    public DeliveryLocation withAddress(Address address) {
-        this.address = address;
+    public ID withSchemeID(String schemeID) {
+        this.schemeID = schemeID;
         return this;
     }
 
     @Override
     public Node node() {
-        final Element elm = Xml.el(new QualifiedName(CAC_NS, name()));
+        final Element el = Xml.el(
+            new QualifiedName(CBC_NS, this.name())
+            , Xml.text(this.id)
+        );
 
-        optional(this.id, elm);
-        optional(this.address, elm);
+        Optional.ofNullable(this.schemeID).ifPresent(v -> el.attr("schemeID", v));
 
-        return elm;
+        return el;
     }
 }

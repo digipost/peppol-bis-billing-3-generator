@@ -29,6 +29,7 @@ import peppol.bis.invoice3.domain.DeliveryLocation;
 import peppol.bis.invoice3.domain.DeliveryParty;
 import peppol.bis.invoice3.domain.EndpointID;
 import peppol.bis.invoice3.domain.FinancialInstitutionBranch;
+import peppol.bis.invoice3.domain.ID;
 import peppol.bis.invoice3.domain.Invoice;
 import peppol.bis.invoice3.domain.InvoiceLine;
 import peppol.bis.invoice3.domain.Item;
@@ -68,7 +69,7 @@ public class ExampleUsage1 {
                 new EndpointID("998765432").withSchemeID("0192")
                 , new PostalAddress(new Country("NO")).withStreetName("Oslogate 1").withCityName("Oslo").withPostalZone("0342")
                 , new PartyLegalEntity("Acme Cargo AS").withCompanyID(new CompanyID("998765432").withSchemeID("0192"))
-            ).withPartyIdentification(new PartyIdentification("998765432"))
+            ).withPartyIdentification(new PartyIdentification(new ID("998765432")))
                 .withPartyName(new PartyName("PartyName"))
                 .withPartyTaxScheme(new PartyTaxScheme("NO998765432MVA", new TaxScheme("VAT")))
                 .withPartyTaxScheme(new PartyTaxScheme("Foretaksregisteret", new TaxScheme("TAX")))
@@ -80,7 +81,7 @@ public class ExampleUsage1 {
                 new EndpointID("987654320").withSchemeID("0192")
                 , new PostalAddress(new Country("NO")).withStreetName("Sandnesgate 3").withCityName("Sandnes").withPostalZone("4313")
                 , new PartyLegalEntity("Acme As").withCompanyID(new CompanyID("987654320").withSchemeID("0192"))
-            ).withPartyIdentification(new PartyIdentification("10030177835"))
+            ).withPartyIdentification(new PartyIdentification(new ID("10030177835")))
                 .withPartyName(new PartyName("Acme As"))
                 .withPartyTaxScheme(new PartyTaxScheme("NO987654320MVA", new TaxScheme("VAT")))
         );
@@ -152,6 +153,6 @@ public class ExampleUsage1 {
             .withPaymentMeans(paymentMeans1)
             .withPaymentMeans(paymentMeans2);
 
-        //InvoiceApi.from(invoice).process().log();
+        InvoiceApi.from(invoice).process().log();
     }
 }

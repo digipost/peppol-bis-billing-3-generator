@@ -24,10 +24,10 @@ import static peppol.bis.invoice3.domain.Namespaces.CAC_NS;
 import static peppol.bis.invoice3.domain.Namespaces.CBC_NS;
 
 public class DocumentReference implements XmlElement {
-    private final String id;
+    private final ID id;
     private final String documentTypeCode;
 
-    public DocumentReference(String id, String documentTypeCode) {
+    public DocumentReference(ID id, String documentTypeCode) {
         this.id = id;
         this.documentTypeCode = documentTypeCode;
     }
@@ -36,7 +36,7 @@ public class DocumentReference implements XmlElement {
     public Node node() {
         final Element elm = Xml.el(new QualifiedName(CAC_NS, name()));
 
-        required(this.id, "ID", elm, CBC_NS);
+        required(this.id, elm);
         required(this.documentTypeCode, "DocumentTypeCode", elm, CBC_NS);
 
         return elm;

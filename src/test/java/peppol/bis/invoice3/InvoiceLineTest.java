@@ -18,6 +18,7 @@ package peppol.bis.invoice3;
 import org.eaxy.Element;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import peppol.bis.invoice3.domain.ID;
 import peppol.bis.invoice3.domain.InvoiceLineAllowanceCharge;
 import peppol.bis.invoice3.domain.PriceAllowanceCharge;
 import peppol.bis.invoice3.domain.Amount;
@@ -80,7 +81,7 @@ public class InvoiceLineTest {
             .withAccountingCost("1287:65464")
             .withInvoicePeriod(new InvoicePeriod("2020-11-11", "2020-12-12"))
             .withOrderLineReference(new OrderLineReference("id12"))
-            .withDocumentReference(new DocumentReference("doc12", "130"))
+            .withDocumentReference(new DocumentReference(new ID("doc12"), "130"))
             ;
 
         final Element element = (Element) invoiceLine.node();

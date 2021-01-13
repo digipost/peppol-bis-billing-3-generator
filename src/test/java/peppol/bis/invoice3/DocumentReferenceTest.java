@@ -19,6 +19,7 @@ import org.eaxy.Element;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import peppol.bis.invoice3.domain.DocumentReference;
+import peppol.bis.invoice3.domain.ID;
 
 import static org.hamcrest.Matchers.equalTo;
 import static peppol.bis.invoice3.XmlAsserts.assertElementNameIs;
@@ -32,7 +33,7 @@ public class DocumentReferenceTest {
     @BeforeEach
     void setUp() {
         documentReference = new DocumentReference(
-            "doc12", "130"
+            new ID("doc12"), "130"
         );
     }
 

@@ -27,6 +27,7 @@
     <modules>
         <module>api</module>
         <module>domain</module>
+        <module>validation</module>
     </modules>
 
     <properties>

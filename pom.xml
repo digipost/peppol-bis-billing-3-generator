@@ -9,10 +9,11 @@
         <version>6</version>
     </parent>
 
-    <artifactId>peppol-bis-billing-3-generator</artifactId>
+    <artifactId>peppol-bis-billing-3-generator-parent</artifactId>
     <version>0-SNAPSHOT</version>
+    <packaging>pom</packaging>
     <description>Peppol BIS Billing 3 generator</description>
-    <name>peppol-bis-billing-3-generator</name>
+    <name>peppol-bis-billing-3-generator-parent</name>
 
     <licenses>
         <license>
@@ -22,6 +23,10 @@
             <comments>A business-friendly OSS license</comments>
         </license>
     </licenses>
+
+    <modules>
+        <module>domain</module>
+    </modules>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -38,39 +43,19 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+            <dependency>
+                <groupId>org.eaxy</groupId>
+                <artifactId>eaxy</artifactId>
+                <version>0.2.2</version>
+            </dependency>
+            <dependency>
+                <groupId>org.hamcrest</groupId>
+                <artifactId>hamcrest</artifactId>
+                <version>2.2-rc1</version>
+                <scope>test</scope>
+            </dependency>
         </dependencies>
     </dependencyManagement>
-
-    <dependencies>
-        <dependency>
-            <groupId>org.eaxy</groupId>
-            <artifactId>eaxy</artifactId>
-            <version>0.2.2</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-engine</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.hamcrest</groupId>
-            <artifactId>hamcrest</artifactId>
-            <version>2.2-rc1</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-core</artifactId>
-            <version>3.3.3</version>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
 
     <build>
         <pluginManagement>
@@ -181,7 +166,7 @@
                 <artifactId>license-maven-plugin</artifactId>
                 <version>3.0</version>
                 <configuration>
-                    <header>src/main/license-header.txt</header>
+                    <header>domain/src/main/license-header.txt</header>
                     <strictCheck>true</strictCheck>
                     <excludes>
                         <exclude>LICENCE*</exclude>
@@ -246,9 +231,9 @@
     </build>
 
     <scm>
-        <connection>scm:git:git@github.com:digipost/digipost-micrometer-prometheus.git</connection>
-        <developerConnection>scm:git:git@github.com:digipost/digipost-micrometer-prometheus.git</developerConnection>
-        <url>scm:git:git@github.com:digipost/digipost-micrometer-prometheus</url>
+        <connection>scm:git:git@github.com:digipost/peppol-bis-billing-3-generator.git</connection>
+        <developerConnection>scm:git:git@github.com:digipost/peppol-bis-billing-3-generator.git</developerConnection>
+        <url>scm:git:git@github.com:digipost/peppol-bis-billing-3-generator</url>
         <tag>HEAD</tag>
     </scm>
 </project>

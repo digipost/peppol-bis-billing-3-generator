@@ -117,7 +117,7 @@ public class InvoiceTest  {
 
     @Test
     void invoice_to_xml_for_basic_elements() {
-        final Element element = InvoiceApi.from(invoice).process().xml();
+        final Element element = invoice.xmlRoot();
 
         assertRequiredElement(element, "CustomizationID", equalTo("urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0"));
         assertRequiredElement(element, "ProfileID", equalTo("urn:fdc:peppol.eu:2017:poacc:billing:01:1.0"));
@@ -171,7 +171,7 @@ public class InvoiceTest  {
             .withAccountingCost("Project cost code 123")
             .withBuyerReference("abs1234");
 
-        final Element element = InvoiceApi.from(invoice).process().xml();
+        final Element element = invoice.xmlRoot();
 
         assertRequiredElement(element, "DueDate", equalTo("2020-02-01"));
         assertRequiredElement(element, "Note", equalTo("Paganini no. 5"));
@@ -187,7 +187,7 @@ public class InvoiceTest  {
             .withProcessNumber(13)
             .withInvoiceTypeCode(780);
 
-        final Element element = InvoiceApi.from(invoice).process().xml();
+        final Element element = invoice.xmlRoot();
 
         assertRequiredElement(element, "ProfileID", equalTo("urn:fdc:peppol.eu:2017:poacc:billing:13:1.0"));
         assertRequiredElement(element, "InvoiceTypeCode", equalTo("780"));
@@ -198,7 +198,7 @@ public class InvoiceTest  {
         final Invoice invoice = this.invoice
             .withTaxTotal(new TaxTotal(new TaxAmount("322", "EUR")));
 
-        final Element element = InvoiceApi.from(invoice).process().xml();
+        final Element element = invoice.xmlRoot();
 
         assertThat(element.find("TaxTotal").check().size(), equalTo(2));
 
@@ -230,7 +230,7 @@ public class InvoiceTest  {
             .withPayeeParty(new PayeeParty(new PartyName("")))
             ;
 
-        final Element element = InvoiceApi.from(invoice).process().xml();
+        final Element element = invoice.xmlRoot();
 
         assertRequiredElement(element, "PaymentTerms");
         assertRequiredElement(element, "ProjectReference");
@@ -262,9 +262,9 @@ public class InvoiceTest  {
                 invoiceLine
             );
 
-        final Element xml = InvoiceApi.from(invoice).process().xml();
+        final Element element = invoice.xmlRoot();
 
-        assertThat(xml.find("InvoiceLine").check().size(), equalTo(2));
+        assertThat(element.find("InvoiceLine").check().size(), equalTo(2));
     }
 
 

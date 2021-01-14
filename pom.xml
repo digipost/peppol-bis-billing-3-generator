@@ -25,6 +25,7 @@
     </licenses>
 
     <modules>
+        <module>api</module>
         <module>domain</module>
     </modules>
 

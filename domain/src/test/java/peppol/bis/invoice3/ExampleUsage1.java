@@ -19,7 +19,6 @@ import org.junit.jupiter.api.Test;
 import peppol.bis.invoice3.domain.AccountingCustomerParty;
 import peppol.bis.invoice3.domain.AccountingSupplierParty;
 import peppol.bis.invoice3.domain.Address;
-import peppol.bis.invoice3.domain.Amount;
 import peppol.bis.invoice3.domain.ClassifiedTaxCategory;
 import peppol.bis.invoice3.domain.CompanyID;
 import peppol.bis.invoice3.domain.Contact;
@@ -32,6 +31,7 @@ import peppol.bis.invoice3.domain.FinancialInstitutionBranch;
 import peppol.bis.invoice3.domain.ID;
 import peppol.bis.invoice3.domain.Invoice;
 import peppol.bis.invoice3.domain.InvoiceLine;
+import peppol.bis.invoice3.domain.InvoicedQuantity;
 import peppol.bis.invoice3.domain.Item;
 import peppol.bis.invoice3.domain.LegalMonetaryTotal;
 import peppol.bis.invoice3.domain.LineExtensionAmount;
@@ -47,7 +47,6 @@ import peppol.bis.invoice3.domain.PaymentMeansCode;
 import peppol.bis.invoice3.domain.PaymentTerms;
 import peppol.bis.invoice3.domain.PostalAddress;
 import peppol.bis.invoice3.domain.Price;
-import peppol.bis.invoice3.domain.InvoicedQuantity;
 import peppol.bis.invoice3.domain.PriceAmount;
 import peppol.bis.invoice3.domain.SellersItemIdentification;
 import peppol.bis.invoice3.domain.TaxAmount;
@@ -152,7 +151,5 @@ public class ExampleUsage1 {
             .withDelivery(delivery)
             .withPaymentMeans(paymentMeans1)
             .withPaymentMeans(paymentMeans2);
-
-        InvoiceApi.from(invoice).process().log();
     }
 }

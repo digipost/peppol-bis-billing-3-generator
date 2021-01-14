@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package peppol.bis.invoice3;
+package peppol.bis.invoice3.domain;
 
 import org.junit.jupiter.api.Test;
 import peppol.bis.invoice3.domain.AccountingCustomerParty;
@@ -60,8 +60,7 @@ import peppol.bis.invoice3.domain.TaxableAmount;
 
 public class ExampleUsage1 {
 
-    @Test
-    void caseStudy1_NO() {
+    public static Invoice example1(){
 
         final AccountingSupplierParty accountingSupplierParty = new AccountingSupplierParty(
             new Party(
@@ -151,5 +150,12 @@ public class ExampleUsage1 {
             .withDelivery(delivery)
             .withPaymentMeans(paymentMeans1)
             .withPaymentMeans(paymentMeans2);
+
+        return invoice;
+    }
+
+    @Test
+    void caseStudy1_NO() {
+        example1().xmlRoot();
     }
 }

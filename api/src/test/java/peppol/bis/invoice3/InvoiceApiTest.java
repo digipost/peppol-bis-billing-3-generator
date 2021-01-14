@@ -13,22 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package peppol.bis.invoice3.api;
+package peppol.bis.invoice3;
 
-import peppol.bis.invoice3.domain.Invoice;
+import org.junit.jupiter.api.Test;
+import peppol.bis.invoice3.domain.ExampleUsage1;
 
-public class From {
+class InvoiceApiTest {
 
-    private final Invoice invoice;
-    private final InvoiceToXml invoiceToXml;
-
-    public From(Invoice invoice, InvoiceToXml invoiceToXml) {
-        this.invoice = invoice;
-        this.invoiceToXml = invoiceToXml;
+    @Test
+    void name() {
+        final String invoiceAsText = InvoiceApi.from(ExampleUsage1.example1())
+            .process()
+            .validate()
+            .log()
+            .xml()
+            .toIndentedXML();
     }
-
-    public To process(){
-        return new To(invoiceToXml.transform(invoice), invoice);
-    }
-
 }

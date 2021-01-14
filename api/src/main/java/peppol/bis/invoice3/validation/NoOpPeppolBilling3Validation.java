@@ -13,32 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package peppol.bis.invoice3.api;
+package peppol.bis.invoice3.validation;
 
-import org.eaxy.Element;
 import peppol.bis.invoice3.domain.Invoice;
-import peppol.bis.invoice3.validation.NoOpPeppolBilling3Validation;
 
-public class To {
-    private final Element xml;
-    private final Invoice invoice;
-
-    public To(Element xml, Invoice invoice) {
-        this.xml = xml;
-        this.invoice = invoice;
-    }
-
-    public To log() {
-        System.out.println(xml.toIndentedXML());
-        return this;
-    }
-
-    public Element xml() {
-        return xml;
-    }
-
-    public To validate() {
-        new NoOpPeppolBilling3Validation().isInvoiceValid(this.invoice);
-        return this;
+public class NoOpPeppolBilling3Validation implements PeppolBilling3Validation {
+    @Override
+    public boolean isInvoiceValid(Invoice invoice) {
+        return true;
     }
 }

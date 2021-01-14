@@ -16,29 +16,32 @@
 package peppol.bis.invoice3.api;
 
 import org.eaxy.Element;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import peppol.bis.invoice3.InvoiceApi;
 import peppol.bis.invoice3.domain.Invoice;
-import peppol.bis.invoice3.validation.NoOpPeppolBilling3Validation;
 
 public class To {
-    private final Element xml;
-    private final Invoice invoice;
 
-    public To(Element xml, Invoice invoice) {
-        this.xml = xml;
+    private static final Logger LOGGER = LoggerFactory.getLogger(InvoiceApi.class);
+
+    private final Invoice invoice;
+    private Element asXml;
+
+    public To(Invoice invoice) {
         this.invoice = invoice;
     }
 
     public To log() {
-        System.out.println(xml.toIndentedXML());
+        LOGGER.info(xml().toIndentedXML());
         return this;
     }
 
     public Element xml() {
-        return xml;
+        if (asXml == null) {
+            asXml = invoice.xmlRoot();
+        }
+        return asXml;
     }
 
-    public To validate() {
-        new NoOpPeppolBilling3Validation().isInvoiceValid(this.invoice);
-        return this;
-    }
 }

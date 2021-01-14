@@ -15,20 +15,11 @@
  */
 package peppol.bis.invoice3.api;
 
-import org.eaxy.Element;
-import peppol.bis.invoice3.domain.XmlRootElement;
+public class ValidationResult {
 
+    private final boolean valid;
 
-public class InvoiceToXml {
-
-    public InvoiceToXml() {
-
-    }
-
-    public Element transform(XmlRootElement invoice) {
-
-        Element root = invoice.xmlRoot();
-
-        return root;
+    public ValidationResult(boolean valid) {
+        this.valid = valid;
     }
 }

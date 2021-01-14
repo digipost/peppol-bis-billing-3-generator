@@ -20,6 +20,17 @@
             <version>0-SNAPSHOT</version>
         </dependency>
         <dependency>
+            <groupId>no.digipost</groupId>
+            <artifactId>peppol-bis-billing-3-generator-validation</artifactId>
+            <optional>true</optional>
+            <scope>compile</scope>
+            <version>0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.eaxy</groupId>
             <artifactId>eaxy</artifactId>
         </dependency>

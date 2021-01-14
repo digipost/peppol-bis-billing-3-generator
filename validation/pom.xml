@@ -20,6 +20,27 @@
             <version>0-SNAPSHOT</version>
         </dependency>
         <dependency>
+            <groupId>com.helger</groupId>
+            <artifactId>ph-commons</artifactId>
+            <version>9.5.4</version>
+        </dependency>
+        <dependency>
+            <groupId>com.helger.phive.rules</groupId>
+            <artifactId>phive-rules-peppol</artifactId>
+            <version>2.0.3</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.helger.phive</groupId>
+            <artifactId>phive-engine</artifactId>
+            <version>7.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.helger.phive</groupId>
+            <artifactId>phive-api</artifactId>
+            <version>7.0.1</version>
+        </dependency>
+        <dependency>
             <groupId>org.eaxy</groupId>
             <artifactId>eaxy</artifactId>
         </dependency>

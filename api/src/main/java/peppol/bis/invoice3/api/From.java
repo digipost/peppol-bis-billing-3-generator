@@ -20,15 +20,17 @@ import peppol.bis.invoice3.domain.Invoice;
 public class From {
 
     private final Invoice invoice;
-    private final InvoiceToXml invoiceToXml;
 
-    public From(Invoice invoice, InvoiceToXml invoiceToXml) {
+    public From(Invoice invoice) {
         this.invoice = invoice;
-        this.invoiceToXml = invoiceToXml;
     }
 
-    public To process(){
-        return new To(invoiceToXml.transform(invoice), invoice);
+    public Validate validate(){
+        return new Validate(invoice);
+    }
+
+    public To to(){
+        return new To(invoice);
     }
 
 }

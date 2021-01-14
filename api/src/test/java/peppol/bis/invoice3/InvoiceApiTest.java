@@ -18,15 +18,24 @@ package peppol.bis.invoice3;
 import org.junit.jupiter.api.Test;
 import peppol.bis.invoice3.domain.ExampleUsage1;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.core.StringContains.containsString;
+
 class InvoiceApiTest {
 
     @Test
-    void name() {
+    void code_examples_for_api() {
         final String invoiceAsText = InvoiceApi.from(ExampleUsage1.example1())
-            .process()
-            .validate()
+            .to()
             .log()
             .xml()
             .toIndentedXML();
+
+        assertThat(invoiceAsText, containsString("<Invoice"));
+
+        InvoiceApi.from(ExampleUsage1.example1())
+            .validate()
+            .result();
+
     }
 }

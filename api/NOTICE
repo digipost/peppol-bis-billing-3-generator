@@ -16,4 +16,5 @@ This project includes:
   jsr305 under GNU Lesser Public License
   peppol-bis-billing-3-generator-api under Apache License, Version 2.0
   peppol-bis-billing-3-generator-domain under Apache License, Version 2.0
+  SLF4J API Module under MIT License
 

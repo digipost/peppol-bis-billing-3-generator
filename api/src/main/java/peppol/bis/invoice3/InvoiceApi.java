@@ -16,12 +16,11 @@
 package peppol.bis.invoice3;
 
 import peppol.bis.invoice3.api.From;
-import peppol.bis.invoice3.api.InvoiceToXml;
 import peppol.bis.invoice3.domain.Invoice;
 
 public class InvoiceApi {
 
     public static From from(Invoice invoice) {
-        return new From(invoice, new InvoiceToXml());
+        return new From(invoice);
     }
 }

@@ -15,28 +15,45 @@
  */
 package peppol.bis.invoice3;
 
+import com.helger.phive.peppol.PeppolValidation391;
+import com.helger.phive.peppol.PeppolValidation3_11_1;
 import org.junit.jupiter.api.Test;
 import peppol.bis.invoice3.api.Validate;
 import peppol.bis.invoice3.domain.ExampleUsage1;
 import peppol.bis.invoice3.domain.Invoice;
+import peppol.bis.invoice3.validation.DefaultPeppolBilling3Validation;
 import peppol.bis.invoice3.validation.ValidationResult;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.StringContains.containsString;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class InvoiceApiTest {
 
     @Test
-    void code_examples_for_api() {
+    void code_examples_for_api_billing_3_0_9() {
+        DefaultPeppolBilling3Validation.setVesid(PeppolValidation3_11_1.VID_OPENPEPPOL_INVOICE_V3);
+
         final Invoice invoice = ExampleUsage1.example1();
         assertThat(invoice.xmlRoot().toXML(), containsString("<Invoice"));
 
         final ValidationResult result = new Validate(invoice).result();
-        assertTrue(result.isValid(), "We except the example to be a valid peppol billing. But has errors: \n" + String.join("\n", result.errors()));
+        System.out.println(String.join("Warns: \n", result.warns()));
+        assertFalse(result.isValid(), "We except the example to be an invalid peppol billing");
+    }
 
+    @Test
+    void code_examples_for_api_billing_3_0_5h() {
+        DefaultPeppolBilling3Validation.setVesid(PeppolValidation391.VID_OPENPEPPOL_INVOICE_V3);
+
+        final Invoice invoice = ExampleUsage1.example1();
+        assertThat(invoice.xmlRoot().toXML(), containsString("<Invoice"));
+
+        final ValidationResult result = new Validate(invoice).result();
         System.out.println(String.join("Warns: \n", result.warns()));
 
-        // Psudo: DigipostClient.send(invoice.xmlRoot().asInputStream());
+        assertTrue(result.isValid(), "We except the example to be a valid peppol billing. But has errors: \n" + String.join("\n", result.errors()));
+
     }
 }

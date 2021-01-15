@@ -15,7 +15,6 @@
  */
 package peppol.bis.invoice3.validation;
 
-import com.helger.commons.error.IError;
 import com.helger.commons.error.list.ErrorList;
 import com.helger.commons.io.resource.inmemory.ReadableResourceString;
 import com.helger.phive.api.execute.ValidationExecutionManager;
@@ -26,32 +25,28 @@ import com.helger.phive.api.result.ValidationResultList;
 import com.helger.phive.engine.source.IValidationSourceXML;
 import com.helger.phive.engine.source.ValidationSourceXML;
 import com.helger.phive.peppol.PeppolValidation;
-import com.helger.phive.peppol.PeppolValidation391;
 import com.helger.phive.peppol.PeppolValidation3_11_1;
 import peppol.bis.invoice3.domain.Invoice;
 
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Locale;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 import static java.util.Collections.emptyList;
 
 public class DefaultPeppolBilling3Validation implements PeppolBilling3Validation {
 
-    private static final ValidationExecutorSetRegistry<IValidationSourceXML> validationExecutorSetRegistry = new ValidationExecutorSetRegistry<>();
+    private static ValidationExecutorSetRegistry<IValidationSourceXML> validationExecutorSetRegistry;
+    private static VESID vesid;
 
     {
-        PeppolValidation.initStandard (validationExecutorSetRegistry);
-        PeppolValidation.initThirdParty (validationExecutorSetRegistry);
+        if(vesid == null)
+            DefaultPeppolBilling3Validation.setVesid(PeppolValidation3_11_1.VID_OPENPEPPOL_INVOICE_V3);
     }
 
     @Override
     public ValidationResult isInvoiceValid(Invoice invoice) {
-
-        //final VESID vesid = PeppolValidation3_11_1.VID_OPENPEPPOL_INVOICE_V3;
-        final VESID vesid = PeppolValidation391.VID_OPENPEPPOL_INVOICE_V3;
 
         final IValidationExecutorSet<IValidationSourceXML> aVES = validationExecutorSetRegistry.getOfID(vesid);
         if (aVES != null) {
@@ -62,7 +57,7 @@ public class DefaultPeppolBilling3Validation implements PeppolBilling3Validation
             if (vResult.containsAtLeastOneError()) {
 
                 return new DefaultValidationResult(Validity.INVALID, getTextFrom(vResult.getAllErrors()), getTextFrom(vResult.getAllFailures()));
-            } else if(vResult.containsAtLeastOneFailure()) {
+            } else if (vResult.containsAtLeastOneFailure()) {
 
                 return new DefaultValidationResult(Validity.WITH_WARNINGS, emptyList(), getTextFrom(vResult.getAllFailures()));
             }
@@ -72,7 +67,14 @@ public class DefaultPeppolBilling3Validation implements PeppolBilling3Validation
         throw new IllegalStateException("Expected validation source is not available on classpath");
     }
 
-    private List<String> getTextFrom(ErrorList errorList){
+    public static void setVesid(VESID vesid) {
+        DefaultPeppolBilling3Validation.validationExecutorSetRegistry = new ValidationExecutorSetRegistry<>();
+        DefaultPeppolBilling3Validation.vesid                         = vesid;
+        PeppolValidation.initStandard(validationExecutorSetRegistry);
+        PeppolValidation.initThirdParty(validationExecutorSetRegistry);
+    }
+
+    private List<String> getTextFrom(ErrorList errorList) {
         return errorList.stream()
             .map(s -> s.getAsString(Locale.getDefault()))
             .collect(Collectors.toList());

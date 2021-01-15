@@ -19,6 +19,7 @@ import peppol.bis.invoice3.domain.Invoice;
 import peppol.bis.invoice3.validation.DefaultPeppolBilling3Validation;
 import peppol.bis.invoice3.validation.NoOpPeppolBilling3Validation;
 import peppol.bis.invoice3.validation.PeppolBilling3Validation;
+import peppol.bis.invoice3.validation.ValidationResult;
 
 public class Validate {
 
@@ -31,9 +32,7 @@ public class Validate {
     }
 
     public ValidationResult result(){
-        final boolean invoiceValid = this.billing3Validation.isInvoiceValid(this.invoice);
-
-        return new ValidationResult(invoiceValid);
+        return this.billing3Validation.isInvoiceValid(this.invoice);
     }
 
     public static boolean peppolValidatorOnClasspath() {

@@ -68,14 +68,12 @@ public class Party implements XmlElement {
         final Element elm = Xml.el(new QualifiedName(CAC_NS, name()));
 
         required(this.endpointID, elm);
-        required(this.postalAddress, elm);
-        required(this.partyLegalEntity, elm);
-
-        optional(this.contact, elm);
         optional(this.partyIdentification, elm);
         optional(this.partyName, elm);
-
+        required(this.postalAddress, elm);
         list(this.partyTaxSchemes, elm);
+        required(this.partyLegalEntity, elm);
+        optional(this.contact, elm);
 
         return elm;
     }

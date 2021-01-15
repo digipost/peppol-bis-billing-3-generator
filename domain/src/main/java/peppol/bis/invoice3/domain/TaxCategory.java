@@ -55,11 +55,10 @@ public class TaxCategory implements XmlElement {
         final Element elm = Xml.el(new QualifiedName(CAC_NS, name()));
 
         required(this.id, "ID", elm, CBC_NS);
-        required(this.taxScheme, elm);
-
         optional(this.percent, "Percent", elm, CBC_NS);
         optional(this.taxExemptionReasonCode, "TaxExemptionReasonCode", elm, CBC_NS);
         optional(this.taxExemptionReason, "TaxExemptionReason", elm, CBC_NS);
+        required(this.taxScheme, elm);
 
         return elm;
     }

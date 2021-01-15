@@ -16,72 +16,34 @@
 package peppol.bis.invoice3.domain;
 
 import org.junit.jupiter.api.Test;
-import peppol.bis.invoice3.domain.AccountingCustomerParty;
-import peppol.bis.invoice3.domain.AccountingSupplierParty;
-import peppol.bis.invoice3.domain.Address;
-import peppol.bis.invoice3.domain.ClassifiedTaxCategory;
-import peppol.bis.invoice3.domain.CompanyID;
-import peppol.bis.invoice3.domain.Contact;
-import peppol.bis.invoice3.domain.Country;
-import peppol.bis.invoice3.domain.Delivery;
-import peppol.bis.invoice3.domain.DeliveryLocation;
-import peppol.bis.invoice3.domain.DeliveryParty;
-import peppol.bis.invoice3.domain.EndpointID;
-import peppol.bis.invoice3.domain.FinancialInstitutionBranch;
-import peppol.bis.invoice3.domain.ID;
-import peppol.bis.invoice3.domain.Invoice;
-import peppol.bis.invoice3.domain.InvoiceLine;
-import peppol.bis.invoice3.domain.InvoicedQuantity;
-import peppol.bis.invoice3.domain.Item;
-import peppol.bis.invoice3.domain.LegalMonetaryTotal;
-import peppol.bis.invoice3.domain.LineExtensionAmount;
-import peppol.bis.invoice3.domain.Party;
-import peppol.bis.invoice3.domain.PartyIdentification;
-import peppol.bis.invoice3.domain.PartyLegalEntity;
-import peppol.bis.invoice3.domain.PartyName;
-import peppol.bis.invoice3.domain.PartyTaxScheme;
-import peppol.bis.invoice3.domain.PayableAmount;
-import peppol.bis.invoice3.domain.PayeeFinancialAccount;
-import peppol.bis.invoice3.domain.PaymentMeans;
-import peppol.bis.invoice3.domain.PaymentMeansCode;
-import peppol.bis.invoice3.domain.PaymentTerms;
-import peppol.bis.invoice3.domain.PostalAddress;
-import peppol.bis.invoice3.domain.Price;
-import peppol.bis.invoice3.domain.PriceAmount;
-import peppol.bis.invoice3.domain.SellersItemIdentification;
-import peppol.bis.invoice3.domain.TaxAmount;
-import peppol.bis.invoice3.domain.TaxCategory;
-import peppol.bis.invoice3.domain.TaxExclusiveAmount;
-import peppol.bis.invoice3.domain.TaxInclusiveAmount;
-import peppol.bis.invoice3.domain.TaxScheme;
-import peppol.bis.invoice3.domain.TaxSubtotal;
-import peppol.bis.invoice3.domain.TaxTotal;
-import peppol.bis.invoice3.domain.TaxableAmount;
 
 public class ExampleUsage1 {
+
+    public static final String ORGNR_BRING = "916725280";
+
 
     public static Invoice example1(){
 
         final AccountingSupplierParty accountingSupplierParty = new AccountingSupplierParty(
             new Party(
-                new EndpointID("998765432").withSchemeID("0192")
+                new EndpointID(ORGNR_BRING).withSchemeID("0192")
                 , new PostalAddress(new Country("NO")).withStreetName("Oslogate 1").withCityName("Oslo").withPostalZone("0342")
-                , new PartyLegalEntity("Acme Cargo AS").withCompanyID(new CompanyID("998765432").withSchemeID("0192"))
-            ).withPartyIdentification(new PartyIdentification(new ID("998765432")))
+                , new PartyLegalEntity("Acme Cargo AS").withCompanyID(new CompanyID(ORGNR_BRING).withSchemeID("0192"))
+            ).withPartyIdentification(new PartyIdentification(new ID(ORGNR_BRING)))
                 .withPartyName(new PartyName("PartyName"))
-                .withPartyTaxScheme(new PartyTaxScheme("NO998765432MVA", new TaxScheme("VAT")))
+                .withPartyTaxScheme(new PartyTaxScheme("NO" + ORGNR_BRING +  "MVA", new TaxScheme("VAT")))
                 .withPartyTaxScheme(new PartyTaxScheme("Foretaksregisteret", new TaxScheme("TAX")))
                 .withContact(new Contact().withTelephone("04321 (abroad +47 12341234)"))
         );
 
         final AccountingCustomerParty accountingCustomerParty = new AccountingCustomerParty(
             new Party(
-                new EndpointID("987654320").withSchemeID("0192")
+                new EndpointID(ORGNR_BRING).withSchemeID("0192")
                 , new PostalAddress(new Country("NO")).withStreetName("Sandnesgate 3").withCityName("Sandnes").withPostalZone("4313")
-                , new PartyLegalEntity("Acme As").withCompanyID(new CompanyID("987654320").withSchemeID("0192"))
+                , new PartyLegalEntity("Acme As").withCompanyID(new CompanyID(ORGNR_BRING).withSchemeID("0192"))
             ).withPartyIdentification(new PartyIdentification(new ID("10030177835")))
                 .withPartyName(new PartyName("Acme As"))
-                .withPartyTaxScheme(new PartyTaxScheme("NO987654320MVA", new TaxScheme("VAT")))
+                .withPartyTaxScheme(new PartyTaxScheme("NO916725280MVA", new TaxScheme("VAT")))
         );
 
         final TaxTotal taxTotal = new TaxTotal(
@@ -128,7 +90,7 @@ public class ExampleUsage1 {
             );
 
         final PaymentMeans paymentMeans2 = new PaymentMeans(
-            new PaymentMeansCode("30").withName("Credit transfer")
+            new PaymentMeansCode("30")
         ).withPaymentID("123456789101")
             .withPayeeFinancialAccount(
                 new PayeeFinancialAccount("60650514745")

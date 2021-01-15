@@ -81,17 +81,14 @@ public class Item implements XmlElement {
     public Node node() {
         final Element elm = Xml.el(new QualifiedName(CAC_NS, name()));
 
-        required(this.name, "Name", elm, CBC_NS);
-        required(this.classifiedTaxCategory, elm);
-
         optional(this.description, "Description", elm, CBC_NS);
-
+        required(this.name, "Name", elm, CBC_NS);
         optional(this.buyersItemIdentification, elm);
         optional(this.sellersItemIdentification, elm);
         optional(this.standardItemIdentification, elm);
         optional(this.originCountry, elm);
-
         list(this.commodityClassifications, elm);
+        required(this.classifiedTaxCategory, elm);
         list(this.additionalItemProperties, elm);
 
         return elm;

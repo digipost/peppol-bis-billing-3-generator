@@ -15,10 +15,6 @@
  */
 package peppol.bis.invoice3.validation;
 
-import peppol.bis.invoice3.domain.Invoice;
-
-public interface PeppolBilling3Validation {
-
-    ValidationResult isInvoiceValid(Invoice invoice);
-
+public enum Validity {
+    VALID, INVALID, WITH_WARNINGS;
 }

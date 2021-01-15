@@ -70,14 +70,13 @@ public class AbstractAddress<T extends AbstractAddress<T>> implements XmlElement
     public Node node() {
         final Element elm = Xml.el(new QualifiedName(CAC_NS, name()));
 
-        required(this.country, elm);
-
         optional(this.streetName, "StreetName", elm, CBC_NS);
         optional(this.additionalStreetName, "AdditionalStreetName", elm, CBC_NS);
         optional(this.cityName, "CityName", elm, CBC_NS);
         optional(this.postalZone, "PostalZone", elm, CBC_NS);
         optional(this.countrySubentity, "CountrySubentity", elm, CBC_NS);
         optional(this.addressLine, elm);
+        required(this.country, elm);
 
         return elm;
     }

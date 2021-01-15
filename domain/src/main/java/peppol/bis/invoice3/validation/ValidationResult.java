@@ -13,13 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package peppol.bis.invoice3.api;
+package peppol.bis.invoice3.validation;
 
-public class ValidationResult {
+import java.util.List;
 
-    private final boolean valid;
+public interface ValidationResult {
 
-    public ValidationResult(boolean valid) {
-        this.valid = valid;
+    Validity getValidity();
+
+    default boolean isValid() {
+        return getValidity() == Validity.VALID || getValidity() == Validity.WITH_WARNINGS;
     }
+
+    List<String> errors();
+    List<String> warns();
 }

@@ -15,9 +15,12 @@
  */
 package peppol.bis.invoice3.validation;
 
+import com.helger.commons.error.IError;
+import com.helger.commons.error.list.ErrorList;
 import com.helger.commons.io.resource.inmemory.ReadableResourceString;
 import com.helger.phive.api.execute.ValidationExecutionManager;
 import com.helger.phive.api.executorset.IValidationExecutorSet;
+import com.helger.phive.api.executorset.VESID;
 import com.helger.phive.api.executorset.ValidationExecutorSetRegistry;
 import com.helger.phive.api.result.ValidationResultList;
 import com.helger.phive.engine.source.IValidationSourceXML;
@@ -25,36 +28,53 @@ import com.helger.phive.engine.source.ValidationSourceXML;
 import com.helger.phive.peppol.PeppolValidation;
 import com.helger.phive.peppol.PeppolValidation391;
 import com.helger.phive.peppol.PeppolValidation3_11_1;
-import org.eaxy.Element;
 import peppol.bis.invoice3.domain.Invoice;
 
 import java.nio.charset.StandardCharsets;
+import java.util.List;
+import java.util.Locale;
+import java.util.Objects;
+import java.util.stream.Collectors;
+
+import static java.util.Collections.emptyList;
 
 public class DefaultPeppolBilling3Validation implements PeppolBilling3Validation {
 
-    @Override
-    public boolean isInvoiceValid(Invoice invoice) {
-        final Element element = invoice.xmlRoot();
+    private static final ValidationExecutorSetRegistry<IValidationSourceXML> validationExecutorSetRegistry = new ValidationExecutorSetRegistry<>();
 
-        final ValidationExecutorSetRegistry<IValidationSourceXML> validationExecutorSetRegistry = new ValidationExecutorSetRegistry<>();
-
+    {
         PeppolValidation.initStandard (validationExecutorSetRegistry);
         PeppolValidation.initThirdParty (validationExecutorSetRegistry);
+    }
 
-        final IValidationExecutorSet<IValidationSourceXML> aVES = validationExecutorSetRegistry.getOfID(PeppolValidation391.VID_OPENPEPPOL_INVOICE_V3);
+    @Override
+    public ValidationResult isInvoiceValid(Invoice invoice) {
+
+        //final VESID vesid = PeppolValidation3_11_1.VID_OPENPEPPOL_INVOICE_V3;
+        final VESID vesid = PeppolValidation391.VID_OPENPEPPOL_INVOICE_V3;
+
+        final IValidationExecutorSet<IValidationSourceXML> aVES = validationExecutorSetRegistry.getOfID(vesid);
         if (aVES != null) {
             // Shortcut introduced in v6
             final ValidationSourceXML validationSourceXML = ValidationSourceXML.create(new ReadableResourceString(invoice.xmlRoot().toXML(), StandardCharsets.UTF_8));
 
-            final ValidationResultList aValidationResult = ValidationExecutionManager.executeValidation(aVES, validationSourceXML);
-            if (aValidationResult.containsAtLeastOneError()) {
-                // errors found ...
-            } else {
-                // no errors (but maybe warnings) found
+            final ValidationResultList vResult = ValidationExecutionManager.executeValidation(aVES, validationSourceXML);
+            if (vResult.containsAtLeastOneError()) {
+
+                return new DefaultValidationResult(Validity.INVALID, getTextFrom(vResult.getAllErrors()), getTextFrom(vResult.getAllFailures()));
+            } else if(vResult.containsAtLeastOneFailure()) {
+
+                return new DefaultValidationResult(Validity.WITH_WARNINGS, emptyList(), getTextFrom(vResult.getAllFailures()));
             }
 
-            return true;
+            return new DefaultValidationResult(Validity.VALID, emptyList(), emptyList());
         }
-        return false;
+        throw new IllegalStateException("Expected validation source is not available on classpath");
+    }
+
+    private List<String> getTextFrom(ErrorList errorList){
+        return errorList.stream()
+            .map(s -> s.getAsString(Locale.getDefault()))
+            .collect(Collectors.toList());
     }
 }

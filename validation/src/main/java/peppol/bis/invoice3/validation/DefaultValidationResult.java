@@ -15,29 +15,32 @@
  */
 package peppol.bis.invoice3.validation;
 
-import peppol.bis.invoice3.domain.Invoice;
-
-import java.util.Collections;
 import java.util.List;
 
-public class NoOpPeppolBilling3Validation implements PeppolBilling3Validation {
+public class DefaultValidationResult implements ValidationResult {
+
+    private final Validity validity;
+    private final List<String> errors;
+    private final List<String> warns;
+
+    public DefaultValidationResult(Validity validity, List<String> errors, List<String> warns) {
+        this.validity = validity;
+        this.errors   = errors;
+        this.warns    = warns;
+    }
+
     @Override
-    public ValidationResult isInvoiceValid(Invoice invoice) {
-        return new ValidationResult() {
-            @Override
-            public Validity getValidity() {
-                return Validity.VALID;
-            }
+    public Validity getValidity() {
+        return this.validity;
+    }
 
-            @Override
-            public List<String> errors() {
-                return Collections.emptyList();
-            }
+    @Override
+    public List<String> errors() {
+        return this.errors;
+    }
 
-            @Override
-            public List<String> warns() {
-                return Collections.emptyList();
-            }
-        };
+    @Override
+    public List<String> warns() {
+        return this.warns;
     }
 }

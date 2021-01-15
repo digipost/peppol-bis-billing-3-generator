@@ -224,40 +224,34 @@ public class Invoice implements XmlRootElement, XmlElement {
         required(this.profileID, "ProfileID", elm, CBC_NS);
         required(this.id, "ID", elm, CBC_NS);
         required(this.issueDate, "IssueDate", elm, CBC_NS);
-
         optional(this.dueDate, "DueDate", elm, CBC_NS);
-
         required(this.invoiceTypeCode, "InvoiceTypeCode", elm, CBC_NS);
-        required(this.documentCurrencyCode, "DocumentCurrencyCode", elm, CBC_NS);
-
-        required(this.accountingSupplierParty, elm);
-        required(this.accountingCustomerParty, elm);
-
-        optional(this.payeeParty, elm);
         optional(this.note, "Note", elm, CBC_NS);
         optional(this.taxPointDate, "TaxPointDate", elm, CBC_NS);
+        required(this.documentCurrencyCode, "DocumentCurrencyCode", elm, CBC_NS);
         optional(this.taxCurrencyCode, "TaxCurrencyCode", elm, CBC_NS);
         optional(this.accountingCost, "AccountingCost", elm, CBC_NS);
         optional(this.buyerReference, "BuyerReference", elm, CBC_NS);
-        optional(this.paymentTerms, elm);
-        optional(this.projectReference, elm);
-        optional(this.contractDocumentReference, elm);
-        optional(this.originatorDocumentReference, elm);
-        optional(this.receiptDocumentReference, elm);
-        optional(this.despatchDocumentReference, elm);
         optional(this.invoicePeriod, elm);
         optional(this.orderReference, elm);
         optional(this.billingReference, elm);
-        optional(this.delivery, elm);
-        optional(this.taxRepresentativeParty, elm);
-
-        required(this.legalMonetaryTotal, elm);
-
+        optional(this.despatchDocumentReference, elm);
+        optional(this.receiptDocumentReference, elm);
+        optional(this.originatorDocumentReference, elm);
+        optional(this.contractDocumentReference, elm);
         list(this.additionalDocumentReferences, elm);
-        list(this.taxTotals, elm);
-        list(this.invoiceLines, elm);
-        list(this.allowanceCharges, elm);
+        optional(this.projectReference, elm);
+        required(this.accountingSupplierParty, elm);
+        required(this.accountingCustomerParty, elm);
+        optional(this.payeeParty, elm);
+        optional(this.taxRepresentativeParty, elm);
+        optional(this.delivery, elm);
         list(this.paymentMeans, elm);
+        optional(this.paymentTerms, elm);
+        list(this.allowanceCharges, elm);
+        list(this.taxTotals, elm);
+        required(this.legalMonetaryTotal, elm);
+        list(this.invoiceLines, elm);
 
         return elm;
     }

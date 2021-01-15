@@ -16,31 +16,31 @@
 package peppol.bis.invoice3.domain;
 
 import org.junit.jupiter.api.Test;
+import peppol.bis.invoice3.api.PeppolBillingApi;
+import peppol.bis.invoice3.validation.ValidationResult;
 
 public class ExampleUsage1 {
-
-    public static final String ORGNR_BRING = "916725280";
 
 
     public static Invoice example1(){
 
         final AccountingSupplierParty accountingSupplierParty = new AccountingSupplierParty(
             new Party(
-                new EndpointID(ORGNR_BRING).withSchemeID("0192")
+                new EndpointID("916725280").withSchemeID("0192")
                 , new PostalAddress(new Country("NO")).withStreetName("Oslogate 1").withCityName("Oslo").withPostalZone("0342")
-                , new PartyLegalEntity("Acme Cargo AS").withCompanyID(new CompanyID(ORGNR_BRING).withSchemeID("0192"))
-            ).withPartyIdentification(new PartyIdentification(new ID(ORGNR_BRING)))
+                , new PartyLegalEntity("Acme Cargo AS").withCompanyID(new CompanyID("916725280").withSchemeID("0192"))
+            ).withPartyIdentification(new PartyIdentification(new ID("916725280")))
                 .withPartyName(new PartyName("PartyName"))
-                .withPartyTaxScheme(new PartyTaxScheme("NO" + ORGNR_BRING +  "MVA", new TaxScheme("VAT")))
+                .withPartyTaxScheme(new PartyTaxScheme("NO" + "916725280" +  "MVA", new TaxScheme("VAT")))
                 .withPartyTaxScheme(new PartyTaxScheme("Foretaksregisteret", new TaxScheme("TAX")))
                 .withContact(new Contact().withTelephone("04321 (abroad +47 12341234)"))
         );
 
         final AccountingCustomerParty accountingCustomerParty = new AccountingCustomerParty(
             new Party(
-                new EndpointID(ORGNR_BRING).withSchemeID("0192")
+                new EndpointID("916725280").withSchemeID("0192")
                 , new PostalAddress(new Country("NO")).withStreetName("Sandnesgate 3").withCityName("Sandnes").withPostalZone("4313")
-                , new PartyLegalEntity("Acme As").withCompanyID(new CompanyID(ORGNR_BRING).withSchemeID("0192"))
+                , new PartyLegalEntity("Acme As").withCompanyID(new CompanyID("916725280").withSchemeID("0192"))
             ).withPartyIdentification(new PartyIdentification(new ID("10030177835")))
                 .withPartyName(new PartyName("Acme As"))
                 .withPartyTaxScheme(new PartyTaxScheme("NO916725280MVA", new TaxScheme("VAT")))
@@ -112,6 +112,22 @@ public class ExampleUsage1 {
             .withDelivery(delivery)
             .withPaymentMeans(paymentMeans1)
             .withPaymentMeans(paymentMeans2);
+
+        final PeppolBillingApi<Invoice> api = PeppolBillingApi.create(invoice);
+
+        final ValidationResult validationResult = api.validate();
+
+        if(validationResult.isValid()){
+            // You have a valid peppol billing file and can either print it to file from string or
+            // send it to Digipost through the ApiClient
+            api.prettyPrint();
+            api.inputStream();
+        } else {
+            // You have validation errors and you need to check them an correct them
+            validationResult.errors().forEach(System.out::println);
+            validationResult.warns().forEach(System.out::println);
+        }
+
 
         return invoice;
     }

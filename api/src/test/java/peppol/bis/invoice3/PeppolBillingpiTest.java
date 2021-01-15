@@ -29,7 +29,7 @@ import static org.hamcrest.core.StringContains.containsString;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class InvoiceApiTest {
+class PeppolBillingpiTest {
 
     @Test
     void code_examples_for_api_billing_3_0_9() {

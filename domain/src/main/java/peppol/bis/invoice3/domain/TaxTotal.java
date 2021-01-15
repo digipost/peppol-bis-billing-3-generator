@@ -20,19 +20,22 @@ import org.eaxy.Node;
 import org.eaxy.QualifiedName;
 import org.eaxy.Xml;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static peppol.bis.invoice3.domain.Namespaces.CAC_NS;
 
 public class TaxTotal implements XmlElement {
 
     private final TaxAmount taxAmount;
-    private TaxSubtotal taxSubtotal;
+    private final List<XmlElement> taxSubtotals = new ArrayList<>();
 
     public TaxTotal(TaxAmount taxAmount) {
         this.taxAmount = taxAmount;
     }
 
     public TaxTotal withTaxSubtotal(TaxSubtotal taxSubtotal) {
-        this.taxSubtotal = taxSubtotal;
+        this.taxSubtotals.add(taxSubtotal);
         return this;
     }
 
@@ -42,7 +45,7 @@ public class TaxTotal implements XmlElement {
 
         required(this.taxAmount, elm);
 
-        optional(this.taxSubtotal, elm);
+        list(this.taxSubtotals, elm);
 
         return elm;
     }

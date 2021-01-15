@@ -17,7 +17,8 @@ package peppol.bis.invoice3.domain;
 
 public class InvoicedQuantity extends BaseQuantity {
 
-    public InvoicedQuantity(String unitCode, String value) {
-        super(unitCode, value);
+    public InvoicedQuantity(String value, String unitCode) {
+        super(value);
+        super.withUnitCode(unitCode);
     }
 }

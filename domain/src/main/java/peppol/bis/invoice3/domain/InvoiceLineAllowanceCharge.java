@@ -61,12 +61,11 @@ public class InvoiceLineAllowanceCharge implements XmlElement {
         final Element elm = Xml.el(new QualifiedName(CAC_NS, name()));
 
         required(String.valueOf(this.chargeIndicator), "ChargeIndicator", elm, CBC_NS);
-        required(this.amount, elm);
-
-        optional(this.baseAmount, elm);
         optional(this.allowanceChargeReasonCode, "AllowanceChargeReasonCode", elm, CBC_NS);
         optional(this.allowanceChargeReason, "AllowanceChargeReason", elm, CBC_NS);
         optional(this.multiplierFactorNumeric, "MultiplierFactorNumeric", elm, CBC_NS);
+        required(this.amount, elm);
+        optional(this.baseAmount, elm);
 
         return elm;
     }

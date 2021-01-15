@@ -83,20 +83,16 @@ public class InvoiceLine implements XmlElement {
         final Element elm = Xml.el(new QualifiedName(CAC_NS, name()));
 
         required(this.id, "ID", elm, CBC_NS);
-
+        optional(this.note, "Note", elm, CBC_NS);
         required(this.invoicedQuantity, elm);
         required(this.lineExtensionAmount, elm);
-        required(this.item, elm);
-        required(this.price, elm);
-
-        optional(this.note, "Note", elm, CBC_NS);
         optional(this.accountingCost, "AccountingCost", elm, CBC_NS);
-
         optional(this.invoicePeriod, elm);
         optional(this.orderLineReference, elm);
         optional(this.documentReference, elm);
-
         list(allowanceCharges, elm);
+        required(this.item, elm);
+        required(this.price, elm);
 
         return elm;
     }

@@ -18,6 +18,7 @@ package peppol.bis.invoice3;
 import org.eaxy.Element;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import peppol.bis.invoice3.domain.ID;
 import peppol.bis.invoice3.domain.StandardItemIdentification;
 
 import static org.hamcrest.Matchers.equalTo;
@@ -32,7 +33,7 @@ class StandardItemIdentificationTest {
     @BeforeEach
     void setUp() {
         standardItemIdentification = new StandardItemIdentification(
-            "foo12"
+            new ID("foo12")
         );
     }
 

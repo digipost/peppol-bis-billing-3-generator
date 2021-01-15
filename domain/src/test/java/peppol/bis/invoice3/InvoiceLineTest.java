@@ -20,7 +20,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import peppol.bis.invoice3.domain.ID;
 import peppol.bis.invoice3.domain.InvoiceLineAllowanceCharge;
-import peppol.bis.invoice3.domain.PriceAllowanceCharge;
 import peppol.bis.invoice3.domain.Amount;
 import peppol.bis.invoice3.domain.ClassifiedTaxCategory;
 import peppol.bis.invoice3.domain.DocumentReference;
@@ -49,7 +48,7 @@ public class InvoiceLineTest {
     void setUp() {
         invoiceLine = new InvoiceLine(
             "2"
-            , new InvoicedQuantity("STK", "1")
+            , new InvoicedQuantity("1", "STK")
             , new LineExtensionAmount("1272", "EUR")
             , new Item("Power cord", new ClassifiedTaxCategory("S", new TaxScheme("VAT")))
             , new Price(new PriceAmount("1233", "EUR"))

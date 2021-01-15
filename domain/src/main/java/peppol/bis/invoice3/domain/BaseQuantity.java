@@ -15,27 +15,37 @@
  */
 package peppol.bis.invoice3.domain;
 
+import org.eaxy.Element;
 import org.eaxy.Node;
 import org.eaxy.QualifiedName;
 import org.eaxy.Xml;
 
+import java.util.Optional;
+
 import static peppol.bis.invoice3.domain.Namespaces.CBC_NS;
 
 public class BaseQuantity implements XmlElement {
-    private final String unitCode;
+    private String unitCode;
     private final String value;
 
-    public BaseQuantity(String unitCode, String value) {
-        this.unitCode = unitCode;
+    public BaseQuantity(String value) {
         this.value = value;
+    }
+
+    public BaseQuantity withUnitCode(String unitCode) {
+        this.unitCode = unitCode;
+        return this;
     }
 
     @Override
     public Node node() {
-        return Xml.el(
+        final Element el = Xml.el(
             new QualifiedName(CBC_NS, this.name())
             , Xml.text(this.value)
-            , Xml.attr("unitCode", this.unitCode)
         );
+
+        Optional.ofNullable(this.unitCode).ifPresent(v -> el.attr("unitCode", v));
+
+        return el;
     }
 }

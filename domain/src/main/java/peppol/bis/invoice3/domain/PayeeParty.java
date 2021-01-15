@@ -46,8 +46,8 @@ public class PayeeParty implements XmlElement {
     public Node node() {
         final Element elm = Xml.el(new QualifiedName(CAC_NS, name()));
 
-        required(this.partyName, elm);
         optional(this.partyIdentification, elm);
+        required(this.partyName, elm);
         optional(this.partyLegalEntity, elm);
 
         return elm;

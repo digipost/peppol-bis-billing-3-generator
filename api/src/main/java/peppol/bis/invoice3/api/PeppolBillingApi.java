@@ -25,6 +25,8 @@ import java.nio.charset.StandardCharsets;
 
 public class PeppolBillingApi<T extends XmlRootElement> {
 
+    private static final String XML_FIRST_LINE = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
+
     public static PeppolBillingApi<Invoice> create(Invoice xmlRootElement) {
         return new PeppolBillingApi<>(xmlRootElement);
     }
@@ -43,10 +45,10 @@ public class PeppolBillingApi<T extends XmlRootElement> {
     }
 
     public String prettyPrint() {
-        return this.object.xmlRoot().toIndentedXML();
+        return XML_FIRST_LINE + this.object.xmlRoot().toIndentedXML();
     }
 
     public InputStream inputStream() {
-        return new ByteArrayInputStream(this.object.xmlRoot().toXML().getBytes(StandardCharsets.UTF_8));
+        return new ByteArrayInputStream(this.prettyPrint().getBytes(StandardCharsets.UTF_8));
     }
 }

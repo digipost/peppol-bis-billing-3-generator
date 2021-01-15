@@ -89,7 +89,7 @@ public class InvoiceTest  {
 
         final InvoiceLine invoiceLine = new InvoiceLine(
             "1"
-            , new InvoicedQuantity("STK", "1")
+            , new InvoicedQuantity("1", "STK")
             , new LineExtensionAmount("1272", "EUR")
             , new Item("Laptop computer", new ClassifiedTaxCategory("S", new TaxScheme("VAT")))
             , new Price(new PriceAmount("1233", "EUR"))
@@ -252,7 +252,7 @@ public class InvoiceTest  {
     void invoice_to_xml_for_added_invoice_lines() {
         final InvoiceLine invoiceLine = new InvoiceLine(
             "2"
-            , new InvoicedQuantity("STK", "1")
+            , new InvoicedQuantity("1", "STK")
             , new LineExtensionAmount("1272", "EUR")
             , new Item("Power cord", new ClassifiedTaxCategory("S", new TaxScheme("VAT")))
             , new Price(new PriceAmount("1233", "EUR"))

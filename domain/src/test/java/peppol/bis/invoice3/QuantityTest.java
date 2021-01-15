@@ -28,7 +28,7 @@ class QuantityTest {
 
     @Test
     void BaseQuantity_to_xml() {
-        final Element element = (Element) new BaseQuantity("STK", "1").node();
+        final Element element = (Element) new BaseQuantity("1").withUnitCode("STK").node();
         assertThat(element.getName().getName(), equalTo("BaseQuantity"));
         assertThat(element.text(), equalTo("1"));
         assertThat(element.attrs().get("unitCode"), equalTo("STK"));
@@ -36,7 +36,7 @@ class QuantityTest {
 
     @Test
     void InvoicedQuantity_to_xml() {
-        final Element element = (Element) new InvoicedQuantity("STK", "1").node();
+        final Element element = (Element) new InvoicedQuantity("1", "STK").node();
         assertThat(element.getName().getName(), equalTo("InvoicedQuantity"));
         assertThat(element.text(), equalTo("1"));
         assertThat(element.attrs().get("unitCode"), equalTo("STK"));

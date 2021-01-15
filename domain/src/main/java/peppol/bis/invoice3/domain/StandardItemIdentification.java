@@ -24,9 +24,9 @@ import static peppol.bis.invoice3.domain.Namespaces.CAC_NS;
 import static peppol.bis.invoice3.domain.Namespaces.CBC_NS;
 
 public class StandardItemIdentification implements XmlElement {
-    private final String id;
+    private final ID id;
 
-    public StandardItemIdentification(String id) {
+    public StandardItemIdentification(ID id) {
         this.id = id;
     }
 
@@ -34,7 +34,7 @@ public class StandardItemIdentification implements XmlElement {
     public Node node() {
         final Element elm = Xml.el(new QualifiedName(CAC_NS, name()));
 
-        required(this.id, "ID", elm, CBC_NS);
+        required(this.id, elm);
 
         return elm;
     }

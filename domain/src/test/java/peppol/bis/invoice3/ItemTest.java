@@ -22,6 +22,7 @@ import peppol.bis.invoice3.domain.AdditionalItemProperty;
 import peppol.bis.invoice3.domain.BuyersItemIdentification;
 import peppol.bis.invoice3.domain.ClassifiedTaxCategory;
 import peppol.bis.invoice3.domain.CommodityClassification;
+import peppol.bis.invoice3.domain.ID;
 import peppol.bis.invoice3.domain.Item;
 import peppol.bis.invoice3.domain.ItemClassificationCode;
 import peppol.bis.invoice3.domain.OriginCountry;
@@ -67,7 +68,7 @@ class ItemTest {
             .withDescription("A description")
             .withAdditionalItemProperty(new AdditionalItemProperty("key", "val"))
             .withBuyersItemIdentification(new BuyersItemIdentification("1"))
-            .withStandardItemIdentification(new StandardItemIdentification("2"))
+            .withStandardItemIdentification(new StandardItemIdentification(new ID("2")))
             .withSellersItemIdentification(new SellersItemIdentification("3"))
             .withCommodityClassification(new CommodityClassification(new ItemClassificationCode("65434568", "STI")))
             .withOriginCountry(new OriginCountry("NO"))

@@ -54,7 +54,7 @@ public class PriceTest  {
     @Test
     void to_xml_optional_elements() {
         price
-            .withBaseQuantity(new BaseQuantity("STK", "1"))
+            .withBaseQuantity(new BaseQuantity("1").withUnitCode("STK"))
             .withAllowanceCharge(new PriceAllowanceCharge(true, new BaseAmount("123", "EUR")));
 
         final Element element = (Element) price.node();

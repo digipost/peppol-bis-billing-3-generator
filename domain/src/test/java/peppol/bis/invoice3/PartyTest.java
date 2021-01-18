@@ -66,7 +66,7 @@ public class PartyTest {
     @Test
     void to_xml_optional_elements() {
         party
-            .withContact(new Contact())
+            .withContact(new Contact().withTelephone("123123"))
             .withPartyName(new PartyName(""))
             .withPartyTaxScheme(new PartyTaxScheme("", new TaxScheme("")))
             .withPartyIdentification(new PartyIdentification(new ID("")))

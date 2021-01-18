@@ -39,7 +39,7 @@ public interface XmlElement {
         elm.add(Xml.el(new QualifiedName(ns, name), Xml.text(value)));
     }
     default void optional(XmlElement node, Element elm) {
-        Optional.ofNullable(node).ifPresent(n -> elm.add(n.node()));
+        Optional.ofNullable(node).filter(s -> !s.empty()).ifPresent(n -> elm.add(n.node()));
     }
 
     default void optional(String value, String name, Element elm, Namespace ns) {
@@ -48,5 +48,9 @@ public interface XmlElement {
 
     default void list(List<XmlElement> list, Element elm){
         list.stream().map(XmlElement::node).forEach(elm::add);
+    }
+
+    default boolean empty(){
+        return false;
     }
 }

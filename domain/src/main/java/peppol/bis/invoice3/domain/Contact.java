@@ -53,4 +53,9 @@ public class Contact implements XmlElement {
 
         return elm;
     }
+
+    @Override
+    public boolean empty() {
+        return name == null && telephone == null && electronicMail == null;
+    }
 }

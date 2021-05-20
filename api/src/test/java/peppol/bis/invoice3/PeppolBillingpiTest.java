@@ -33,7 +33,7 @@ class PeppolBillingpiTest {
 
     @Test
     void code_examples_for_api_billing_3_0_9() {
-        DefaultPeppolBilling3Validation.setVesid(PeppolValidation3_11_1.VID_OPENPEPPOL_INVOICE_V3);
+        DefaultPeppolBilling3Validation.setVesid_invoice(PeppolValidation3_11_1.VID_OPENPEPPOL_INVOICE_V3);
 
         final Invoice invoice = ExampleUsage1.example1();
         assertThat(invoice.xmlRoot().toXML(), containsString("<Invoice"));
@@ -45,7 +45,7 @@ class PeppolBillingpiTest {
 
     @Test
     void code_examples_for_api_billing_3_0_5h() {
-        DefaultPeppolBilling3Validation.setVesid(PeppolValidation391.VID_OPENPEPPOL_INVOICE_V3);
+        DefaultPeppolBilling3Validation.setVesid_invoice(PeppolValidation391.VID_OPENPEPPOL_INVOICE_V3);
 
         final Invoice invoice = ExampleUsage1.example1();
         assertThat(invoice.xmlRoot().toXML(), containsString("<Invoice"));
@@ -59,7 +59,7 @@ class PeppolBillingpiTest {
 
     @Test
     void Norwegian_code_examples_for_api_billing_3_0_5h() {
-        DefaultPeppolBilling3Validation.setVesid(PeppolValidation3_11_1.VID_OPENPEPPOL_INVOICE_V3);
+        DefaultPeppolBilling3Validation.setVesid_invoice(PeppolValidation3_11_1.VID_OPENPEPPOL_INVOICE_V3);
 
         final Invoice invoice = ExampleUsage1.norwegianExample();
         assertThat(invoice.xmlRoot().toXML(), containsString("<Invoice"));

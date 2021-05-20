@@ -15,19 +15,24 @@
  */
 package peppol.bis.invoice3.api;
 
+import peppol.bis.invoice3.domain.BillingCommon;
+import peppol.bis.invoice3.domain.CreditNote;
 import peppol.bis.invoice3.domain.Invoice;
-import peppol.bis.invoice3.domain.XmlRootElement;
 import peppol.bis.invoice3.validation.ValidationResult;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 
-public class PeppolBillingApi<T extends XmlRootElement> {
+public class PeppolBillingApi<T extends BillingCommon> {
 
     private static final String XML_FIRST_LINE = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
 
     public static PeppolBillingApi<Invoice> create(Invoice xmlRootElement) {
+        return new PeppolBillingApi<>(xmlRootElement);
+    }
+
+    public static PeppolBillingApi<CreditNote> create(CreditNote xmlRootElement) {
         return new PeppolBillingApi<>(xmlRootElement);
     }
 
@@ -38,10 +43,7 @@ public class PeppolBillingApi<T extends XmlRootElement> {
     }
 
     public ValidationResult validate() {
-        if (this.object instanceof Invoice) {
-            return new Validate((Invoice) this.object).result();
-        }
-        throw new IllegalArgumentException("type " + this.object.getClass().getSimpleName() + " can not be validated now");
+        return new Validate(this.object).result();
     }
 
     public String prettyPrint() {

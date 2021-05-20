@@ -15,10 +15,10 @@
  */
 package peppol.bis.invoice3.validation;
 
-import peppol.bis.invoice3.domain.Invoice;
+import peppol.bis.invoice3.domain.BillingCommon;
 
 public interface PeppolBilling3Validation {
 
-    ValidationResult isInvoiceValid(Invoice invoice);
+    <TYPE extends BillingCommon> ValidationResult isValid(TYPE invoice);
 
 }

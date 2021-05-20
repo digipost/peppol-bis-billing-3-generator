@@ -51,6 +51,26 @@ public class PeppolBillingApi<T> {
         return new Validate(this.object).result();
     }
 
+    public boolean isCreditNote() {
+        if (this.object instanceof CreditNote) {
+            return true;
+        }
+        if (this.object instanceof Document) {
+            return ((Document) this.object).getRootElement().getNamespace(null).getUri().endsWith("CreditNote-2");
+        }
+        return false;
+    }
+
+    public boolean isInvoice() {
+        if (this.object instanceof Invoice) {
+            return true;
+        }
+        if (this.object instanceof Document) {
+            return ((Document) this.object).getRootElement().getNamespace(null).getUri().endsWith("Invoice-2");
+        }
+        return false;
+    }
+
     public String prettyPrint() {
         return XML_FIRST_LINE + (this.object instanceof BillingCommon ? ((BillingCommon) this.object).xmlRoot() : ((Document) this.object).getRootElement()).toIndentedXML();
     }

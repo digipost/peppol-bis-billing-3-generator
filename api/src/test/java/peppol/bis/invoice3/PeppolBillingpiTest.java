@@ -90,6 +90,14 @@ class PeppolBillingpiTest {
         final PeppolBillingApi<Document> api = PeppolBillingApi.create(document);
 
         final ValidationResult result = api.validate();
-        assertTrue(result.isValid(), "We except the example to be a valid peppol billing. But has errors: \n" + String.join("\n", result.errors()));
+        assertTrue(result.isValid(), "We expect the example to be a valid peppol billing. But has errors: \n" + String.join("\n", result.errors()));
+    }
+
+    @Test
+    void should_be_invoice() throws IOException {
+        final Document document = Xml.readResource("norwegian-example.xml");
+
+        final PeppolBillingApi<Document> api = PeppolBillingApi.create(document);
+        assertTrue(api.isInvoice(), "We expect the example to be an invoice");
     }
 }

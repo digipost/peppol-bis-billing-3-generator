@@ -15,6 +15,7 @@
  */
 package peppol.bis.invoice3.api;
 
+import org.eaxy.Document;
 import peppol.bis.invoice3.domain.BillingCommon;
 import peppol.bis.invoice3.domain.CreditNote;
 import peppol.bis.invoice3.domain.Invoice;
@@ -24,7 +25,7 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 
-public class PeppolBillingApi<T extends BillingCommon> {
+public class PeppolBillingApi<T> {
 
     private static final String XML_FIRST_LINE = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
 
@@ -34,6 +35,10 @@ public class PeppolBillingApi<T extends BillingCommon> {
 
     public static PeppolBillingApi<CreditNote> create(CreditNote xmlRootElement) {
         return new PeppolBillingApi<>(xmlRootElement);
+    }
+
+    public static PeppolBillingApi<Document> create(Document document) {
+        return new PeppolBillingApi<>(document);
     }
 
     private final T object;
@@ -47,8 +52,9 @@ public class PeppolBillingApi<T extends BillingCommon> {
     }
 
     public String prettyPrint() {
-        return XML_FIRST_LINE + this.object.xmlRoot().toIndentedXML();
+        return XML_FIRST_LINE + (this.object instanceof BillingCommon ? ((BillingCommon) this.object).xmlRoot() : ((Document) this.object).getRootElement()).toIndentedXML();
     }
+
 
     public InputStream inputStream() {
         return new ByteArrayInputStream(this.prettyPrint().getBytes(StandardCharsets.UTF_8));

@@ -15,10 +15,13 @@
  */
 package peppol.bis.invoice3.validation;
 
+import org.eaxy.Document;
 import peppol.bis.invoice3.domain.BillingCommon;
 
 public interface PeppolBilling3Validation {
 
-    <TYPE extends BillingCommon> ValidationResult isValid(TYPE invoice);
+    <TYPE extends BillingCommon<TYPE>> ValidationResult isValid(TYPE billing);
+
+    ValidationResult isValid(Document billingDocument);
 
 }

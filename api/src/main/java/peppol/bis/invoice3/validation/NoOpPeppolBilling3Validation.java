@@ -15,6 +15,7 @@
  */
 package peppol.bis.invoice3.validation;
 
+import org.eaxy.Document;
 import peppol.bis.invoice3.domain.BillingCommon;
 import peppol.bis.invoice3.domain.XmlRootElement;
 
@@ -22,9 +23,17 @@ import java.util.Collections;
 import java.util.List;
 
 public class NoOpPeppolBilling3Validation implements PeppolBilling3Validation {
+    @Override
+    public ValidationResult isValid(Document billingDocument) {
+        return getValidationResult();
+    }
 
     @Override
-    public <TYPE extends BillingCommon> ValidationResult isValid(TYPE invoice) {
+    public <TYPE extends BillingCommon<TYPE>> ValidationResult isValid(TYPE billing) {
+        return getValidationResult();
+    }
+
+    private ValidationResult getValidationResult() {
         return new ValidationResult() {
             @Override
             public Validity getValidity() {

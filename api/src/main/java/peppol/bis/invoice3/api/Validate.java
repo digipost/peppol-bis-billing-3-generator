@@ -15,7 +15,8 @@
  */
 package peppol.bis.invoice3.api;
 
-import peppol.bis.invoice3.domain.Invoice;
+import org.eaxy.Document;
+import peppol.bis.invoice3.domain.BillingCommon;
 import peppol.bis.invoice3.validation.DefaultPeppolBilling3Validation;
 import peppol.bis.invoice3.validation.NoOpPeppolBilling3Validation;
 import peppol.bis.invoice3.validation.PeppolBilling3Validation;
@@ -23,16 +24,20 @@ import peppol.bis.invoice3.validation.ValidationResult;
 
 public class Validate {
 
-    private final Invoice invoice;
+    private final Object object;
     private final PeppolBilling3Validation billing3Validation;
 
-    public Validate(Invoice invoice) {
-        this.invoice = invoice;
+    public Validate(Object object) {
+        this.object             = object;
         this.billing3Validation = peppolValidatorOnClasspath() ? new DefaultPeppolBilling3Validation() : new NoOpPeppolBilling3Validation();
     }
 
-    public ValidationResult result(){
-        return this.billing3Validation.isInvoiceValid(this.invoice);
+    public ValidationResult result() {
+        if (this.object instanceof BillingCommon) {
+            return this.billing3Validation.isValid((BillingCommon) this.object);
+        } else {
+            return this.billing3Validation.isValid((Document) this.object);
+        }
     }
 
     public static boolean peppolValidatorOnClasspath() {

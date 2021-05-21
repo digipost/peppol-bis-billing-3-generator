@@ -13,15 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package peppol.bis.invoice3.validation;
+package peppol.bis.invoice3.domain;
 
-import org.eaxy.Document;
-import peppol.bis.invoice3.domain.BillingCommon;
-
-public interface PeppolBilling3Validation {
-
-    <TYPE extends BillingCommon<TYPE>> ValidationResult isValid(TYPE billing);
-
-    ValidationResult isValid(Document billingDocument);
-
+public class CreditedQuantity extends InvoicedQuantity {
+    public CreditedQuantity(String value, String unitCode) {
+        super(value, unitCode);
+    }
 }

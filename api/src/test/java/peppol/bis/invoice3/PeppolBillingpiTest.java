@@ -17,12 +17,17 @@ package peppol.bis.invoice3;
 
 import com.helger.phive.peppol.PeppolValidation391;
 import com.helger.phive.peppol.PeppolValidation3_11_1;
+import org.eaxy.Document;
+import org.eaxy.Xml;
 import org.junit.jupiter.api.Test;
+import peppol.bis.invoice3.api.PeppolBillingApi;
 import peppol.bis.invoice3.api.Validate;
 import peppol.bis.invoice3.domain.ExampleUsage1;
 import peppol.bis.invoice3.domain.Invoice;
 import peppol.bis.invoice3.validation.DefaultPeppolBilling3Validation;
 import peppol.bis.invoice3.validation.ValidationResult;
+
+import java.io.IOException;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.StringContains.containsString;
@@ -33,7 +38,7 @@ class PeppolBillingpiTest {
 
     @Test
     void code_examples_for_api_billing_3_0_9() {
-        DefaultPeppolBilling3Validation.setVesid(PeppolValidation3_11_1.VID_OPENPEPPOL_INVOICE_V3);
+        DefaultPeppolBilling3Validation.setVesid_invoice(PeppolValidation3_11_1.VID_OPENPEPPOL_INVOICE_V3);
 
         final Invoice invoice = ExampleUsage1.example1();
         assertThat(invoice.xmlRoot().toXML(), containsString("<Invoice"));
@@ -45,7 +50,7 @@ class PeppolBillingpiTest {
 
     @Test
     void code_examples_for_api_billing_3_0_5h() {
-        DefaultPeppolBilling3Validation.setVesid(PeppolValidation391.VID_OPENPEPPOL_INVOICE_V3);
+        DefaultPeppolBilling3Validation.setVesid_invoice(PeppolValidation391.VID_OPENPEPPOL_INVOICE_V3);
 
         final Invoice invoice = ExampleUsage1.example1();
         assertThat(invoice.xmlRoot().toXML(), containsString("<Invoice"));
@@ -59,7 +64,7 @@ class PeppolBillingpiTest {
 
     @Test
     void Norwegian_code_examples_for_api_billing_3_0_5h() {
-        DefaultPeppolBilling3Validation.setVesid(PeppolValidation3_11_1.VID_OPENPEPPOL_INVOICE_V3);
+        DefaultPeppolBilling3Validation.setVesid_invoice(PeppolValidation3_11_1.VID_OPENPEPPOL_INVOICE_V3);
 
         final Invoice invoice = ExampleUsage1.norwegianExample();
         assertThat(invoice.xmlRoot().toXML(), containsString("<Invoice"));
@@ -69,5 +74,30 @@ class PeppolBillingpiTest {
 
         assertTrue(result.isValid(), "We except the example to be a valid peppol billing. But has errors: \n" + String.join("\n", result.errors()));
 
+    }
+
+    @Test
+    void should_extract_type_from_namespace() throws IOException {
+        final Document document = Xml.readResource("norwegian-example.xml");
+
+        assertThat(document.getRootElement().getNamespace(null).getUri(), containsString("Invoice-2"));
+    }
+
+    @Test
+    void should_validate_xml_file() throws IOException {
+        final Document document = Xml.readResource("norwegian-example.xml");
+
+        final PeppolBillingApi<Document> api = PeppolBillingApi.create(document);
+
+        final ValidationResult result = api.validate();
+        assertTrue(result.isValid(), "We expect the example to be a valid peppol billing. But has errors: \n" + String.join("\n", result.errors()));
+    }
+
+    @Test
+    void should_be_invoice() throws IOException {
+        final Document document = Xml.readResource("norwegian-example.xml");
+
+        final PeppolBillingApi<Document> api = PeppolBillingApi.create(document);
+        assertTrue(api.isInvoice(), "We expect the example to be an invoice");
     }
 }

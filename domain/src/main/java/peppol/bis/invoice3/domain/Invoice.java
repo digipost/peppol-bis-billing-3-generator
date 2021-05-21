@@ -17,20 +17,17 @@ package peppol.bis.invoice3.domain;
 
 import org.eaxy.Element;
 import org.eaxy.Namespace;
-import org.eaxy.Node;
-import org.eaxy.Xml;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static java.lang.String.format;
-import static peppol.bis.invoice3.domain.Namespaces.CAC_NS;
 import static peppol.bis.invoice3.domain.Namespaces.CBC_NS;
 
 public class Invoice extends BillingCommon<Invoice>{
 
     private static final int UNCL1001_Commercial_invoice = 380;
+    public static final String INVOICE_NAMESPACE = "urn:oasis:names:specification:ubl:schema:xsd:Invoice-2";
 
     private String dueDate;
     private String invoiceTypeCode;
@@ -196,7 +193,7 @@ public class Invoice extends BillingCommon<Invoice>{
 
     @Override
     protected Namespace ROOT_NS() {
-        return new Namespace("urn:oasis:names:specification:ubl:schema:xsd:Invoice-2");
+        return new Namespace(INVOICE_NAMESPACE);
     }
 
     @Override

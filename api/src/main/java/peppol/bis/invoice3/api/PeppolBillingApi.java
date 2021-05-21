@@ -15,20 +15,30 @@
  */
 package peppol.bis.invoice3.api;
 
+import org.eaxy.Document;
+import peppol.bis.invoice3.domain.BillingCommon;
+import peppol.bis.invoice3.domain.CreditNote;
 import peppol.bis.invoice3.domain.Invoice;
-import peppol.bis.invoice3.domain.XmlRootElement;
 import peppol.bis.invoice3.validation.ValidationResult;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 
-public class PeppolBillingApi<T extends XmlRootElement> {
+public class PeppolBillingApi<T> {
 
     private static final String XML_FIRST_LINE = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
 
     public static PeppolBillingApi<Invoice> create(Invoice xmlRootElement) {
         return new PeppolBillingApi<>(xmlRootElement);
+    }
+
+    public static PeppolBillingApi<CreditNote> create(CreditNote xmlRootElement) {
+        return new PeppolBillingApi<>(xmlRootElement);
+    }
+
+    public static PeppolBillingApi<Document> create(Document document) {
+        return new PeppolBillingApi<>(document);
     }
 
     private final T object;
@@ -38,15 +48,33 @@ public class PeppolBillingApi<T extends XmlRootElement> {
     }
 
     public ValidationResult validate() {
-        if (this.object instanceof Invoice) {
-            return new Validate((Invoice) this.object).result();
+        return new Validate(this.object).result();
+    }
+
+    public boolean isCreditNote() {
+        if (this.object instanceof CreditNote) {
+            return true;
         }
-        throw new IllegalArgumentException("type " + this.object.getClass().getSimpleName() + " can not be validated now");
+        if (this.object instanceof Document) {
+            return ((Document) this.object).getRootElement().getNamespace(null).getUri().endsWith("CreditNote-2");
+        }
+        return false;
+    }
+
+    public boolean isInvoice() {
+        if (this.object instanceof Invoice) {
+            return true;
+        }
+        if (this.object instanceof Document) {
+            return ((Document) this.object).getRootElement().getNamespace(null).getUri().endsWith("Invoice-2");
+        }
+        return false;
     }
 
     public String prettyPrint() {
-        return XML_FIRST_LINE + this.object.xmlRoot().toIndentedXML();
+        return XML_FIRST_LINE + (this.object instanceof BillingCommon ? ((BillingCommon) this.object).xmlRoot() : ((Document) this.object).getRootElement()).toIndentedXML();
     }
+
 
     public InputStream inputStream() {
         return new ByteArrayInputStream(this.prettyPrint().getBytes(StandardCharsets.UTF_8));

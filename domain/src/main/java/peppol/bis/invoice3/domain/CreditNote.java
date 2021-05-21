@@ -24,15 +24,14 @@ import java.util.List;
 import static java.lang.String.format;
 import static peppol.bis.invoice3.domain.Namespaces.CBC_NS;
 
-public class Invoice extends BillingCommon<Invoice>{
+public class CreditNote extends BillingCommon<CreditNote> implements XmlRootElement, XmlElement {
 
     private static final int UNCL1001_Commercial_invoice = 380;
-    public static final String INVOICE_NAMESPACE = "urn:oasis:names:specification:ubl:schema:xsd:Invoice-2";
+    public static final String CREDIT_NOTE_NAMESPACE = "urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2";
 
-    private String dueDate;
+    private String profileID;
     private String invoiceTypeCode;
     private String note;
-
     private String taxCurrencyCode;
     private final String documentCurrencyCode;
     private String accountingCost;
@@ -52,13 +51,14 @@ public class Invoice extends BillingCommon<Invoice>{
     private TaxRepresentativeParty taxRepresentativeParty;
     private Delivery delivery;
     private final List<XmlElement> paymentMeans = new ArrayList<>();
+    private String paymentDueDate;
     private PaymentTerms paymentTerms;
     private final List<XmlElement> allowanceCharges = new ArrayList<>();
     private final List<XmlElement> taxTotals = new ArrayList<>();
     private final LegalMonetaryTotal legalMonetaryTotal;
-    private final List<XmlElement> invoiceLines = new ArrayList<>();
+    private final List<XmlElement> creditNoteLines = new ArrayList<>();
 
-    public Invoice(String id, String issueDate, String documentCurrencyCode, AccountingSupplierParty accountingSupplierParty, AccountingCustomerParty accountingCustomerParty, TaxTotal taxTotal, LegalMonetaryTotal legalMonetaryTotal, InvoiceLine invoiceLine) {
+    public CreditNote(String id, String issueDate, String documentCurrencyCode, AccountingSupplierParty accountingSupplierParty, AccountingCustomerParty accountingCustomerParty, TaxTotal taxTotal, LegalMonetaryTotal legalMonetaryTotal, CreditNoteLine creditNoteLine) {
         super(id, issueDate);
         this.accountingSupplierParty = accountingSupplierParty;
         this.accountingCustomerParty = accountingCustomerParty;
@@ -66,122 +66,126 @@ public class Invoice extends BillingCommon<Invoice>{
         this.withInvoiceTypeCode(UNCL1001_Commercial_invoice);
         this.documentCurrencyCode = documentCurrencyCode;
         this.taxTotals.add(taxTotal);
-        this.invoiceLines.add(invoiceLine);
+        this.creditNoteLines.add(creditNoteLine);
     }
 
+    public CreditNote withProcessNumber(int processNumber) {
+        this.profileID = "urn:fdc:peppol.eu:2017:poacc:billing:NN:1.0".replace("NN", format("%02d", processNumber));
+        return this;
+    }
 
-    public Invoice withInvoiceTypeCode(int invoiceTypeCode) {
+    public CreditNote withInvoiceTypeCode(int invoiceTypeCode) {
         this.invoiceTypeCode = String.valueOf(invoiceTypeCode);
         return this;
     }
 
-    public Invoice withBuyerReference(String buyerReference) {
+    public CreditNote withBuyerReference(String buyerReference) {
         this.buyerReference = buyerReference;
         return this;
     }
 
-    public Invoice withDueDate(String dueDate) {
-        this.dueDate = dueDate;
+    public CreditNote withPaymentDueDate(String paymentDueDate) {
+        this.paymentDueDate = paymentDueDate;
         return this;
     }
 
-    public Invoice withNote(String note) {
+    public CreditNote withNote(String note) {
         this.note = note;
         return this;
     }
 
-    public Invoice withTaxCurrencyCode(String taxCurrencyCode) {
+    public CreditNote withTaxCurrencyCode(String taxCurrencyCode) {
         this.taxCurrencyCode = taxCurrencyCode;
         return this;
     }
 
-    public Invoice withAccountingCost(String accountingCost) {
+    public CreditNote withAccountingCost(String accountingCost) {
         this.accountingCost = accountingCost;
         return this;
     }
 
-    public Invoice withInvoicePeriod(InvoicePeriod invoicePeriod) {
+    public CreditNote withInvoicePeriod(InvoicePeriod invoicePeriod) {
         this.invoicePeriod = invoicePeriod;
         return this;
     }
 
-    public Invoice withOrderReference(OrderReference orderReference) {
+    public CreditNote withOrderReference(OrderReference orderReference) {
         this.orderReference = orderReference;
         return this;
     }
 
-    public Invoice withBillingReference(BillingReference billingReference) {
+    public CreditNote withBillingReference(BillingReference billingReference) {
         this.billingReference = billingReference;
         return this;
     }
 
-    public Invoice withDespatchDocumentReference(DespatchDocumentReference despatchDocumentReference) {
+    public CreditNote withDespatchDocumentReference(DespatchDocumentReference despatchDocumentReference) {
         this.despatchDocumentReference = despatchDocumentReference;
         return this;
     }
 
-    public Invoice withReceiptDocumentReference(ReceiptDocumentReference receiptDocumentReference) {
+    public CreditNote withReceiptDocumentReference(ReceiptDocumentReference receiptDocumentReference) {
         this.receiptDocumentReference = receiptDocumentReference;
         return this;
     }
 
-    public Invoice withOriginatorDocumentReference(OriginatorDocumentReference originatorDocumentReference) {
+    public CreditNote withOriginatorDocumentReference(OriginatorDocumentReference originatorDocumentReference) {
         this.originatorDocumentReference = originatorDocumentReference;
         return this;
     }
 
-    public Invoice withContractDocumentReference(ContractDocumentReference contractDocumentReference) {
+    public CreditNote withContractDocumentReference(ContractDocumentReference contractDocumentReference) {
         this.contractDocumentReference = contractDocumentReference;
         return this;
     }
 
-    public Invoice withAdditionalDocumentReferences(AdditionalDocumentReference additionalDocumentReference) {
+    public CreditNote withAdditionalDocumentReferences(AdditionalDocumentReference additionalDocumentReference) {
         this.additionalDocumentReferences.add(additionalDocumentReference);
         return this;
     }
 
-    public Invoice withProjectReference(ProjectReference projectReference) {
+    public CreditNote withProjectReference(ProjectReference projectReference) {
         this.projectReference = projectReference;
         return this;
     }
 
-    public Invoice withTaxRepresentativeParty(TaxRepresentativeParty taxRepresentativeParty) {
+    public CreditNote withTaxRepresentativeParty(TaxRepresentativeParty taxRepresentativeParty) {
         this.taxRepresentativeParty = taxRepresentativeParty;
         return this;
     }
 
-    public Invoice withDelivery(Delivery delivery) {
+    public CreditNote withDelivery(Delivery delivery) {
         this.delivery = delivery;
         return this;
     }
 
-    public Invoice withPayeeParty(PayeeParty payeeParty) {
+    public CreditNote withPayeeParty(PayeeParty payeeParty) {
         this.payeeParty = payeeParty;
         return this;
     }
-    public Invoice withPaymentMeans(PaymentMeans paymentMeans) {
+    public CreditNote withPaymentMeans(PaymentMeans paymentMeans) {
         this.paymentMeans.add(paymentMeans);
         return this;
     }
 
-    public Invoice withPaymentTerms(PaymentTerms paymentTerms) {
+    public CreditNote withPaymentTerms(PaymentTerms paymentTerms) {
         this.paymentTerms = paymentTerms;
         return this;
     }
 
-    public Invoice withAllowanceCharge(InvoiceAllowanceCharge allowanceCharge) {
+    public CreditNote withAllowanceCharge(InvoiceAllowanceCharge allowanceCharge) {
         this.allowanceCharges.add(allowanceCharge);
         return this;
     }
 
-    public Invoice withTaxTotal(TaxTotal taxTotal) {
+    public CreditNote withTaxTotal(TaxTotal taxTotal) {
         if (this.taxTotals.size() >= 2) throw new IllegalArgumentException("Too many TaxTotal");
         this.taxTotals.add(taxTotal);
         return this;
     }
 
-    public Invoice withInvoiceLine(InvoiceLine invoiceLine) {
-        this.invoiceLines.add(invoiceLine);
+    public CreditNote withInvoiceLine(InvoiceLine invoiceLine) {
+        this.creditNoteLines.add(invoiceLine);
         return this;
     }
 
@@ -190,21 +194,19 @@ public class Invoice extends BillingCommon<Invoice>{
         return node();
     }
 
-
     @Override
     protected Namespace ROOT_NS() {
-        return new Namespace(INVOICE_NAMESPACE);
+        return new Namespace(CREDIT_NOTE_NAMESPACE);
     }
 
     @Override
     public Element node() {
         final Element elm = super.node();
 
-
-        optional(this.dueDate, "DueDate", elm, CBC_NS);
-        required(this.invoiceTypeCode, "InvoiceTypeCode", elm, CBC_NS);
-        optional(this.note, "Note", elm, CBC_NS);
         optional(super.taxPointDate, "TaxPointDate", elm, CBC_NS);
+
+        required(this.invoiceTypeCode, "CreditNoteTypeCode", elm, CBC_NS);
+        optional(this.note, "Note", elm, CBC_NS);
         required(this.documentCurrencyCode, "DocumentCurrencyCode", elm, CBC_NS);
         optional(this.taxCurrencyCode, "TaxCurrencyCode", elm, CBC_NS);
         optional(this.accountingCost, "AccountingCost", elm, CBC_NS);
@@ -214,21 +216,21 @@ public class Invoice extends BillingCommon<Invoice>{
         optional(this.billingReference, elm);
         optional(this.despatchDocumentReference, elm);
         optional(this.receiptDocumentReference, elm);
-        optional(this.originatorDocumentReference, elm);
         optional(this.contractDocumentReference, elm);
         list(this.additionalDocumentReferences, elm);
-        optional(this.projectReference, elm);
+        optional(this.originatorDocumentReference, elm);
         required(this.accountingSupplierParty, elm);
         required(this.accountingCustomerParty, elm);
         optional(this.payeeParty, elm);
         optional(this.taxRepresentativeParty, elm);
         optional(this.delivery, elm);
         list(this.paymentMeans, elm);
+        optional(this.paymentDueDate, "PaymentDueDate", elm, CBC_NS);
         optional(this.paymentTerms, elm);
         list(this.allowanceCharges, elm);
         list(this.taxTotals, elm);
         required(this.legalMonetaryTotal, elm);
-        list(this.invoiceLines, elm);
+        list(this.creditNoteLines, elm);
 
         return elm;
     }

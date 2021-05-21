@@ -22,6 +22,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.stream.Collectors;
 
+import org.eaxy.Document;
+
 import com.helger.commons.error.list.ErrorList;
 import com.helger.commons.io.resource.inmemory.ReadableResourceString;
 import com.helger.phive.api.execute.ValidationExecutionManager;
@@ -35,43 +37,81 @@ import com.helger.phive.peppol.PeppolValidation;
 import com.helger.phive.peppol.PeppolValidation3_12_0;
 import com.helger.phive.peppol.legacy.PeppolLegacyThirdpartyValidation;
 
+import peppol.bis.invoice3.domain.BillingCommon;
+import peppol.bis.invoice3.domain.CreditNote;
 import peppol.bis.invoice3.domain.Invoice;
 
 public class DefaultPeppolBilling3Validation implements PeppolBilling3Validation {
 
     private static ValidationExecutorSetRegistry<IValidationSourceXML> validationExecutorSetRegistry;
-    private static VESID vesid;
+    private static VESID vesid_invoice;
+    private static VESID vesid_creditNote;
 
     {
-        if(vesid == null)
-            DefaultPeppolBilling3Validation.setVesid(PeppolValidation3_12_0.VID_OPENPEPPOL_INVOICE_V3);
+        if (vesid_invoice == null)
+            DefaultPeppolBilling3Validation.setVesid_invoice(PeppolValidation3_12_0.VID_OPENPEPPOL_INVOICE_V3);
+        if (vesid_creditNote == null)
+            DefaultPeppolBilling3Validation.setVesid_creditNote(PeppolValidation3_12_0.VID_OPENPEPPOL_CREDIT_NOTE_V3);
     }
 
     @Override
-    public ValidationResult isInvoiceValid(Invoice invoice) {
+    public <TYPE extends BillingCommon<TYPE>> ValidationResult isValid(TYPE billing) {
+        IValidationExecutorSet<IValidationSourceXML> aVES = null;
+        if (billing instanceof Invoice) {
+            aVES = validationExecutorSetRegistry.getOfID(vesid_invoice);
+        }
+        if (billing instanceof CreditNote) {
+            aVES = validationExecutorSetRegistry.getOfID(vesid_creditNote);
+        }
 
-        final IValidationExecutorSet<IValidationSourceXML> aVES = validationExecutorSetRegistry.getOfID(vesid);
         if (aVES != null) {
-            // Shortcut introduced in v6
-            final ValidationSourceXML validationSourceXML = ValidationSourceXML.create(new ReadableResourceString(invoice.xmlRoot().toXML(), StandardCharsets.UTF_8));
-
-            final ValidationResultList vResult = ValidationExecutionManager.executeValidation(aVES, validationSourceXML);
-            if (vResult.containsAtLeastOneError()) {
-
-                return new DefaultValidationResult(Validity.INVALID, getTextFrom(vResult.getAllErrors()), getTextFrom(vResult.getAllFailures()));
-            } else if (vResult.containsAtLeastOneFailure()) {
-
-                return new DefaultValidationResult(Validity.WITH_WARNINGS, emptyList(), getTextFrom(vResult.getAllFailures()));
-            }
-
-            return new DefaultValidationResult(Validity.VALID, emptyList(), emptyList());
+            return doValidation(aVES, billing.xmlRoot().toXML());
         }
         throw new IllegalStateException("Expected validation source is not available on classpath");
     }
 
-    public static void setVesid(VESID vesid) {
+    @Override
+    public ValidationResult isValid(Document billingDocument) {
+        IValidationExecutorSet<IValidationSourceXML> aVES = null;
+        if (billingDocument.getRootElement().getNamespace(null).getUri().endsWith("Invoice-2")) {
+            aVES = validationExecutorSetRegistry.getOfID(vesid_invoice);
+        }
+        if (billingDocument.getRootElement().getNamespace(null).getUri().endsWith("CreditNote-2")) {
+            aVES = validationExecutorSetRegistry.getOfID(vesid_creditNote);
+        }
+
+        if (aVES != null) {
+            return doValidation(aVES, billingDocument.toXML());
+        }
+        throw new IllegalStateException("Expected validation source is not available on classpath");
+    }
+
+    private ValidationResult doValidation(IValidationExecutorSet<IValidationSourceXML> aVES, String s) {
+        // Shortcut introduced in v6
+        final ValidationSourceXML validationSourceXML = ValidationSourceXML.create(new ReadableResourceString(s, StandardCharsets.UTF_8));
+
+        final ValidationResultList vResult = ValidationExecutionManager.executeValidation(aVES, validationSourceXML);
+        if (vResult.containsAtLeastOneError()) {
+
+            return new DefaultValidationResult(Validity.INVALID, getTextFrom(vResult.getAllErrors()), getTextFrom(vResult.getAllFailures()));
+        } else if (vResult.containsAtLeastOneFailure()) {
+
+            return new DefaultValidationResult(Validity.WITH_WARNINGS, emptyList(), getTextFrom(vResult.getAllFailures()));
+        }
+
+        return new DefaultValidationResult(Validity.VALID, emptyList(), emptyList());
+    }
+
+    public static void setVesid_invoice(VESID vesid_invoice) {
         DefaultPeppolBilling3Validation.validationExecutorSetRegistry = new ValidationExecutorSetRegistry<>();
-        DefaultPeppolBilling3Validation.vesid                         = vesid;
+        DefaultPeppolBilling3Validation.vesid_invoice                 = vesid_invoice;
+        PeppolValidation.initStandard(validationExecutorSetRegistry);
+        PeppolLegacyThirdpartyValidation.init(validationExecutorSetRegistry);
+    }
+
+    public static void setVesid_creditNote(VESID vesid_creditNote) {
+        DefaultPeppolBilling3Validation.validationExecutorSetRegistry = new ValidationExecutorSetRegistry<>();
+        DefaultPeppolBilling3Validation.vesid_creditNote              = vesid_creditNote;
         PeppolValidation.initStandard(validationExecutorSetRegistry);
         PeppolLegacyThirdpartyValidation.init (validationExecutorSetRegistry);
     }

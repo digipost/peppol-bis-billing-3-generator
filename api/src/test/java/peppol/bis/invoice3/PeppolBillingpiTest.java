@@ -15,8 +15,8 @@
  */
 package peppol.bis.invoice3;
 
-import com.helger.phive.peppol.PeppolValidation391;
 import com.helger.phive.peppol.PeppolValidation3_11_1;
+import com.helger.phive.peppol.PeppolValidation3_12_0;
 import org.eaxy.Document;
 import org.eaxy.Xml;
 import org.junit.jupiter.api.Test;
@@ -38,7 +38,7 @@ class PeppolBillingpiTest {
 
     @Test
     void code_examples_for_api_billing_3_0_9() {
-        DefaultPeppolBilling3Validation.setVesid_invoice(PeppolValidation3_11_1.VID_OPENPEPPOL_INVOICE_V3);
+        DefaultPeppolBilling3Validation.setVesid_invoice(PeppolValidation3_12_0.VID_OPENPEPPOL_INVOICE_V3);
 
         final Invoice invoice = ExampleUsage1.example1();
         assertThat(invoice.xmlRoot().toXML(), containsString("<Invoice"));
@@ -46,20 +46,6 @@ class PeppolBillingpiTest {
         final ValidationResult result = new Validate(invoice).result();
         System.out.println(String.join("Warns: \n", result.warns()));
         assertFalse(result.isValid(), "We except the example to be an invalid peppol billing");
-    }
-
-    @Test
-    void code_examples_for_api_billing_3_0_5h() {
-        DefaultPeppolBilling3Validation.setVesid_invoice(PeppolValidation391.VID_OPENPEPPOL_INVOICE_V3);
-
-        final Invoice invoice = ExampleUsage1.example1();
-        assertThat(invoice.xmlRoot().toXML(), containsString("<Invoice"));
-
-        final ValidationResult result = new Validate(invoice).result();
-        System.out.println(String.join("Warns: \n", result.warns()));
-
-        assertTrue(result.isValid(), "We except the example to be a valid peppol billing. But has errors: \n" + String.join("\n", result.errors()));
-
     }
 
     @Test

@@ -4,8 +4,7 @@
 
 # Peppol bis billing 3 generator
 
-This is a Pojo implementation of https://docs.peppol.eu/poacc/billing/3.0/. For now
-only Invoice is created.
+This is a Pojo implementation of https://docs.peppol.eu/poacc/billing/3.0/.
 
 The principle is that the domain classes in plain java encode naming and cardinality
 and they can produce xml from itself. 
@@ -15,6 +14,7 @@ it ease of use and no dependency nature.
 
 We use `phive-api` for optional validation.
 
+This is Java 11.
 
 # Installation
 

@@ -21,9 +21,9 @@ This project includes:
   Old JAXB Runtime under Eclipse Distribution License - v 1.0
   peppol-bis-billing-3-generator-domain under Apache License, Version 2.0
   peppol-bis-billing-3-generator-validation under Apache License, Version 2.0
-  ph-collection under Apache 2
   ph-commons under Apache 2
   ph-jaxb under Apache 2
+  ph-jaxb-adapter under Apache 2
   ph-jaxb-pom under Apache 2
   ph-schematron-api under Apache 2
   ph-schematron-pur under Apache 2
@@ -34,6 +34,7 @@ This project includes:
   ph-xsds-ccts-cct-schemamodule under Apache 2
   ph-xsds-xades132 under Apache 2
   ph-xsds-xades141 under Apache 2
+  ph-xsds-xml under Apache 2
   ph-xsds-xmldsig under Apache 2
   phive-api under Apache 2
   phive-engine under Apache 2

@@ -25,7 +25,7 @@ import com.helger.phive.api.result.ValidationResultList;
 import com.helger.phive.engine.source.IValidationSourceXML;
 import com.helger.phive.engine.source.ValidationSourceXML;
 import com.helger.phive.peppol.PeppolValidation;
-import com.helger.phive.peppol.PeppolValidation3_11_1;
+import com.helger.phive.peppol.PeppolValidation3_12_0;
 import org.eaxy.Document;
 import peppol.bis.invoice3.domain.BillingCommon;
 import peppol.bis.invoice3.domain.CreditNote;
@@ -46,9 +46,9 @@ public class DefaultPeppolBilling3Validation implements PeppolBilling3Validation
 
     {
         if (vesid_invoice == null)
-            DefaultPeppolBilling3Validation.setVesid_invoice(PeppolValidation3_11_1.VID_OPENPEPPOL_INVOICE_V3);
+            DefaultPeppolBilling3Validation.setVesid_invoice(PeppolValidation3_12_0.VID_OPENPEPPOL_INVOICE_V3);
         if (vesid_creditNote == null)
-            DefaultPeppolBilling3Validation.setVesid_creditNote(PeppolValidation3_11_1.VID_OPENPEPPOL_CREDIT_NOTE_V3);
+            DefaultPeppolBilling3Validation.setVesid_creditNote(PeppolValidation3_12_0.VID_OPENPEPPOL_CREDIT_NOTE_V3);
     }
 
     @Override
@@ -103,14 +103,12 @@ public class DefaultPeppolBilling3Validation implements PeppolBilling3Validation
         DefaultPeppolBilling3Validation.validationExecutorSetRegistry = new ValidationExecutorSetRegistry<>();
         DefaultPeppolBilling3Validation.vesid_invoice                 = vesid_invoice;
         PeppolValidation.initStandard(validationExecutorSetRegistry);
-        PeppolValidation.initThirdParty(validationExecutorSetRegistry);
     }
 
     public static void setVesid_creditNote(VESID vesid_creditNote) {
         DefaultPeppolBilling3Validation.validationExecutorSetRegistry = new ValidationExecutorSetRegistry<>();
         DefaultPeppolBilling3Validation.vesid_creditNote              = vesid_creditNote;
         PeppolValidation.initStandard(validationExecutorSetRegistry);
-        PeppolValidation.initThirdParty(validationExecutorSetRegistry);
     }
 
     private List<String> getTextFrom(ErrorList errorList) {

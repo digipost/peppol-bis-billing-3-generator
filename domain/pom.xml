@@ -10,7 +10,6 @@
     </parent>
 
     <artifactId>peppol-bis-billing-3-generator-domain</artifactId>
-    <version>0-SNAPSHOT</version>
     <description>Peppol BIS Billing 3 generator Domain</description>
 
     <dependencies>

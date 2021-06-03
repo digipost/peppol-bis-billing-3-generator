@@ -111,8 +111,7 @@ public class InvoiceTest  {
             ))
             , taxTotal
             , legalMonetaryTotal
-            , invoiceLine
-        );
+        ).withInvoiceLine(invoiceLine);
     }
 
     @Test

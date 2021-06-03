@@ -21,7 +21,6 @@ import org.eaxy.Namespace;
 import java.util.ArrayList;
 import java.util.List;
 
-import static java.lang.String.format;
 import static peppol.bis.invoice3.domain.Namespaces.CBC_NS;
 
 public class CreditNote extends BillingCommon<CreditNote> implements XmlRootElement, XmlElement {
@@ -43,9 +42,8 @@ public class CreditNote extends BillingCommon<CreditNote> implements XmlRootElem
     private OriginatorDocumentReference originatorDocumentReference;
     private ContractDocumentReference contractDocumentReference;
     private final List<XmlElement> additionalDocumentReferences = new ArrayList<>();
-    private ProjectReference projectReference;
-    private AccountingSupplierParty accountingSupplierParty;
-    private AccountingCustomerParty accountingCustomerParty;
+    private final AccountingSupplierParty accountingSupplierParty;
+    private final AccountingCustomerParty accountingCustomerParty;
     private PayeeParty payeeParty;
     private TaxRepresentativeParty taxRepresentativeParty;
     private Delivery delivery;
@@ -57,7 +55,7 @@ public class CreditNote extends BillingCommon<CreditNote> implements XmlRootElem
     private final LegalMonetaryTotal legalMonetaryTotal;
     private final List<XmlElement> creditNoteLines = new ArrayList<>();
 
-    public CreditNote(String id, String issueDate, String documentCurrencyCode, AccountingSupplierParty accountingSupplierParty, AccountingCustomerParty accountingCustomerParty, TaxTotal taxTotal, LegalMonetaryTotal legalMonetaryTotal, CreditNoteLine creditNoteLine) {
+    public CreditNote(String id, String issueDate, String documentCurrencyCode, AccountingSupplierParty accountingSupplierParty, AccountingCustomerParty accountingCustomerParty, TaxTotal taxTotal, LegalMonetaryTotal legalMonetaryTotal) {
         super(id, issueDate);
         this.accountingSupplierParty = accountingSupplierParty;
         this.accountingCustomerParty = accountingCustomerParty;
@@ -65,8 +63,11 @@ public class CreditNote extends BillingCommon<CreditNote> implements XmlRootElem
         this.withInvoiceTypeCode(UNCL1001_Commercial_invoice);
         this.documentCurrencyCode = documentCurrencyCode;
         this.taxTotals.add(taxTotal);
-        this.creditNoteLines.add(creditNoteLine);
     }
+
+    public CreditNote(String id, String issueDate, String documentCurrencyCode, AccountingSupplierParty accountingSupplierParty, AccountingCustomerParty accountingCustomerParty, TaxTotal taxTotal, LegalMonetaryTotal legalMonetaryTotal, List<CreditNoteLine> creditNoteLines) {
+        this(id, issueDate, documentCurrencyCode, accountingSupplierParty, accountingCustomerParty, taxTotal, legalMonetaryTotal);
+        this.creditNoteLines.addAll(creditNoteLines);
     }
 
     public CreditNote withInvoiceTypeCode(int invoiceTypeCode) {
@@ -136,11 +137,6 @@ public class CreditNote extends BillingCommon<CreditNote> implements XmlRootElem
 
     public CreditNote withAdditionalDocumentReferences(AdditionalDocumentReference additionalDocumentReference) {
         this.additionalDocumentReferences.add(additionalDocumentReference);
-        return this;
-    }
-
-    public CreditNote withProjectReference(ProjectReference projectReference) {
-        this.projectReference = projectReference;
         return this;
     }
 

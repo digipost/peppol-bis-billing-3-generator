@@ -190,7 +190,6 @@ public class ExampleUsage1 {
             , accountingCustomerParty
             , taxTotal
             , legalMonetaryTotal
-            , invoiceLine1
         ).withDueDate("2013-07-20")
             .withInvoiceTypeCode(380)
             .withNote("Ordered in our booth at the convention.")
@@ -258,7 +257,8 @@ public class ExampleUsage1 {
                     , new Amount("100", "NOK")
                     , new TaxCategory("S", new TaxScheme("VAT")).withPercent("25")
                 ).withAllowanceChargeReasonCode("95").withAllowanceChargeReason("Promotion discount")
-            ).withInvoiceLine(invoiceLine2)
+            ).withInvoiceLine(invoiceLine1)
+            .withInvoiceLine(invoiceLine2)
             .withInvoiceLine(invoiceLine3)
             .withInvoiceLine(invoiceLine4)
             .withInvoiceLine(invoiceLine5)
@@ -349,8 +349,8 @@ public class ExampleUsage1 {
             , accountingCustomerParty
             , taxTotal
             , legalMonetaryTotal
-            , invoiceLine
         ).withBuyerReference("n/a")
+            .withInvoiceLine(invoiceLine)
             .withDueDate("2020-11-30")
             .withPaymentTerms(new PaymentTerms("10 dager"))
             .withDelivery(delivery)

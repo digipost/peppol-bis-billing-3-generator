@@ -21,7 +21,6 @@ import org.eaxy.Namespace;
 import java.util.ArrayList;
 import java.util.List;
 
-import static java.lang.String.format;
 import static peppol.bis.invoice3.domain.Namespaces.CBC_NS;
 
 public class Invoice extends BillingCommon<Invoice>{
@@ -46,8 +45,8 @@ public class Invoice extends BillingCommon<Invoice>{
     private ContractDocumentReference contractDocumentReference;
     private final List<XmlElement> additionalDocumentReferences = new ArrayList<>();
     private ProjectReference projectReference;
-    private AccountingSupplierParty accountingSupplierParty;
-    private AccountingCustomerParty accountingCustomerParty;
+    private final AccountingSupplierParty accountingSupplierParty;
+    private final AccountingCustomerParty accountingCustomerParty;
     private PayeeParty payeeParty;
     private TaxRepresentativeParty taxRepresentativeParty;
     private Delivery delivery;
@@ -58,7 +57,7 @@ public class Invoice extends BillingCommon<Invoice>{
     private final LegalMonetaryTotal legalMonetaryTotal;
     private final List<XmlElement> invoiceLines = new ArrayList<>();
 
-    public Invoice(String id, String issueDate, String documentCurrencyCode, AccountingSupplierParty accountingSupplierParty, AccountingCustomerParty accountingCustomerParty, TaxTotal taxTotal, LegalMonetaryTotal legalMonetaryTotal, InvoiceLine invoiceLine) {
+    public Invoice(String id, String issueDate, String documentCurrencyCode, AccountingSupplierParty accountingSupplierParty, AccountingCustomerParty accountingCustomerParty, TaxTotal taxTotal, LegalMonetaryTotal legalMonetaryTotal) {
         super(id, issueDate);
         this.accountingSupplierParty = accountingSupplierParty;
         this.accountingCustomerParty = accountingCustomerParty;
@@ -66,9 +65,11 @@ public class Invoice extends BillingCommon<Invoice>{
         this.withInvoiceTypeCode(UNCL1001_Commercial_invoice);
         this.documentCurrencyCode = documentCurrencyCode;
         this.taxTotals.add(taxTotal);
-        this.invoiceLines.add(invoiceLine);
     }
-
+    public Invoice(String id, String issueDate, String documentCurrencyCode, AccountingSupplierParty accountingSupplierParty, AccountingCustomerParty accountingCustomerParty, TaxTotal taxTotal, LegalMonetaryTotal legalMonetaryTotal, List<InvoiceLine> invoiceLines) {
+        this(id, issueDate, documentCurrencyCode, accountingSupplierParty, accountingCustomerParty, taxTotal, legalMonetaryTotal);
+        this.invoiceLines.addAll(invoiceLines);
+    }
 
     public Invoice withInvoiceTypeCode(int invoiceTypeCode) {
         this.invoiceTypeCode = String.valueOf(invoiceTypeCode);
@@ -217,6 +218,7 @@ public class Invoice extends BillingCommon<Invoice>{
         optional(this.originatorDocumentReference, elm);
         optional(this.contractDocumentReference, elm);
         list(this.additionalDocumentReferences, elm);
+        optional(this.projectReference, elm);
         optional(this.projectReference, elm);
         required(this.accountingSupplierParty, elm);
         required(this.accountingCustomerParty, elm);

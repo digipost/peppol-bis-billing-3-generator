@@ -31,12 +31,6 @@
         </dependency>
 
         <dependency>
-            <groupId>com.helger.phive.rules</groupId>
-            <artifactId>phive-rules-peppol</artifactId>
-            <version>2.1.4</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
             <scope>test</scope>

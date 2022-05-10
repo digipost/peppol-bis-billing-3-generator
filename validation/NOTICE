@@ -12,21 +12,23 @@ specific language governing permissions and limitations
 under the License.
 
 This project includes:
+  Apache Commons Codec under Apache License, Version 2.0
+  Apache Commons Logging under The Apache Software License, Version 2.0
+  Apache HttpClient under Apache License, Version 2.0
+  Apache HttpCore under Apache License, Version 2.0
   Eaxy Easy XML library under The Apache Licence, version 2.0
   FindBugs-jsr305 under The Apache Software License, Version 2.0
-  Jakarta Activation under EDL 1.0
   Jakarta Activation API jar under EDL 1.0
   Jakarta XML Binding API under Eclipse Distribution License - v 1.0
   jsr305 under GNU Lesser Public License
-  Old JAXB Runtime under Eclipse Distribution License - v 1.0
   peppol-bis-billing-3-generator-domain under Apache License, Version 2.0
   peppol-bis-billing-3-generator-validation under Apache License, Version 2.0
+  ph-cii-d16b under Apache 2
   ph-commons under Apache 2
   ph-jaxb under Apache 2
   ph-jaxb-adapter under Apache 2
-  ph-jaxb-pom under Apache 2
   ph-schematron-api under Apache 2
-  ph-schematron-pur under Apache 2
+  ph-schematron-pure under Apache 2
   ph-schematron-schxslt under Apache 2
   ph-schematron-xslt under Apache 2
   ph-ubl21 under Apache 2
@@ -42,4 +44,6 @@ This project includes:
   Saxon-HE under Mozilla Public License Version 2.0
   SchXslt Core under MIT License
   SLF4J API Module under MIT License
+  XML Commons External Components XML APIs under The Apache Software License, Version 2.0 or The SAX License or The W3C License
+  XML Resolver under Apache License version 2.0
 

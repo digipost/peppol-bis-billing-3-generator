@@ -13,9 +13,9 @@ under the License.
 
 This project includes:
   Apache Commons Codec under Apache License, Version 2.0
-  Apache Commons Logging under The Apache Software License, Version 2.0
   Apache HttpClient under Apache License, Version 2.0
-  Apache HttpCore under Apache License, Version 2.0
+  Apache HttpComponents Core HTTP/1.1 under Apache License, Version 2.0
+  Apache HttpComponents Core HTTP/2 under Apache License, Version 2.0
   Eaxy Easy XML library under The Apache Licence, version 2.0
   FindBugs-jsr305 under The Apache Software License, Version 2.0
   Jakarta Activation API jar under EDL 1.0

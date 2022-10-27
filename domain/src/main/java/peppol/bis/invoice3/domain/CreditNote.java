@@ -25,7 +25,7 @@ import static peppol.bis.invoice3.domain.Namespaces.CBC_NS;
 
 public class CreditNote extends BillingCommon<CreditNote> implements XmlRootElement, XmlElement {
 
-    private static final int UNCL1001_Commercial_invoice = 380;
+    private static final int UNCL1001_Commercial_invoice = 381;
     public static final String CREDIT_NOTE_NAMESPACE = "urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2";
 
     private String invoiceTypeCode;

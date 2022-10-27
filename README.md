@@ -125,7 +125,7 @@ final LegalMonetaryTotal legalMonetaryTotal = new LegalMonetaryTotal(
 );
 
 final InvoiceLine invoiceLine = new InvoiceLine(
-    "1", new InvoicedQuantity("STK", "1")
+    "1", new InvoicedQuantity("1", "STK")
     , new LineExtensionAmount("2860.00", "NOK")
     , new Item(
     "Frakt", new ClassifiedTaxCategory("G", new TaxScheme("VAT")).withPercent("0.000")
@@ -150,14 +150,6 @@ final PaymentMeans paymentMeans1 = new PaymentMeans(
             .withFinancialInstitutionBranch(new FinancialInstitutionBranch("NDEANOKK"))
     );
 
-final PaymentMeans paymentMeans2 = new PaymentMeans(
-    new PaymentMeansCode("30")
-).withPaymentID("123456789101")
-    .withPayeeFinancialAccount(
-        new PayeeFinancialAccount("60650514745")
-            .withFinancialInstitutionBranch(new FinancialInstitutionBranch("NDEANOKK"))
-    );
-
 final Invoice invoice = new Invoice(
     "12345678910"
     , "2020-11-19"
@@ -166,13 +158,12 @@ final Invoice invoice = new Invoice(
     , accountingCustomerParty
     , taxTotal
     , legalMonetaryTotal
-    , invoiceLine
+    , Collections.singletonList(invoiceLine)
 ).withBuyerReference("n/a")
     .withDueDate("2020-11-30")
     .withPaymentTerms(new PaymentTerms("10 dager"))
     .withDelivery(delivery)
-    .withPaymentMeans(paymentMeans1)
-    .withPaymentMeans(paymentMeans2);
+    .withPaymentMeans(paymentMeans1);
 
 
 // Perform validation (if you add peppol-bis-billing-3-generator-validation on classpath
@@ -183,7 +174,7 @@ final ValidationResult validationResult = api.validate();
 if(validationResult.isValid()){
     // You have a valid peppol billing file and can either print it to file from string or 
     // send it to Digipost through the ApiClient
-    api.prettyPrint();
+    final String xml = api.prettyPrint();
     api.inputStream();
 } else {
     // You have validation errors and you need to check them an correct them

@@ -39,7 +39,7 @@ jobs:
           else
             TAG=${GITHUB_REF#refs/heads/}-SNAPSHOT
           fi
-          echo "version=${TAG//\//-}" >> GITHUB_OUTPUT
+          echo "version=${TAG//\//-}" >> $GITHUB_OUTPUT
 
   deploy_snapshot:
     if: startsWith(github.ref, 'refs/heads/')

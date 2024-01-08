@@ -71,6 +71,20 @@ public class PeppolBillingApi<T> {
         return false;
     }
 
+    public String getSupplierCountryIdentifier() {
+        if (this.object instanceof Document) {
+            return ((Document) this.object).find("AccountingSupplierParty", "Party", "PostalAddress", "Country", "IdentificationCode").single().text().trim();
+        }
+        throw new RuntimeException("Mandatory property missing in document: AccountingSupplierParty -> Party -> PostalAddress -> Country -> IdentificationCode");
+    }
+
+    public String getCustomerCountryIdentifier() {
+        if (this.object instanceof Document) {
+            return ((Document) this.object).find("AccountingCustomerParty", "Party", "PostalAddress", "Country", "IdentificationCode").single().text().trim();
+        }
+        throw new RuntimeException("Mandatory property missing in document: AccountingCustomerParty -> Party -> PostalAddress -> Country -> IdentificationCode");
+    }
+
     public String prettyPrint() {
         return XML_FIRST_LINE + (this.object instanceof BillingCommon ? ((BillingCommon) this.object).xmlRoot() : ((Document) this.object).getRootElement()).toIndentedXML();
     }

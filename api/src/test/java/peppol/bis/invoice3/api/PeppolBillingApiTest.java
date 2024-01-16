@@ -35,6 +35,7 @@ class PeppolBillingApiTest {
             PeppolBillingApi<Document> peppolBillingApi = new PeppolBillingApi<>(document);
             assertEquals("NO", peppolBillingApi.getCustomerCountryIdentifier());
             assertEquals("NO", peppolBillingApi.getSupplierCountryIdentifier());
+            assertEquals("0192:123456785", peppolBillingApi.getSupplierEndpointID());
         }
     }
 

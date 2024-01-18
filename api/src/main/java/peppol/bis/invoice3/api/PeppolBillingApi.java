@@ -16,6 +16,7 @@
 package peppol.bis.invoice3.api;
 
 import org.eaxy.Document;
+import org.eaxy.Element;
 import peppol.bis.invoice3.domain.BillingCommon;
 import peppol.bis.invoice3.domain.CreditNote;
 import peppol.bis.invoice3.domain.Invoice;
@@ -69,6 +70,28 @@ public class PeppolBillingApi<T> {
             return ((Document) this.object).getRootElement().getNamespace(null).getUri().endsWith("Invoice-2");
         }
         return false;
+    }
+
+    public String getSupplierCountryIdentifier() {
+        if (this.object instanceof Document) {
+            return ((Document) this.object).find("AccountingSupplierParty", "Party", "PostalAddress", "Country", "IdentificationCode").single().text().trim();
+        }
+        throw new RuntimeException("Mandatory property missing in document: AccountingSupplierParty -> Party -> PostalAddress -> Country -> IdentificationCode");
+    }
+
+    public String getCustomerCountryIdentifier() {
+        if (this.object instanceof Document) {
+            return ((Document) this.object).find("AccountingCustomerParty", "Party", "PostalAddress", "Country", "IdentificationCode").single().text().trim();
+        }
+        throw new RuntimeException("Mandatory property missing in document: AccountingCustomerParty -> Party -> PostalAddress -> Country -> IdentificationCode");
+    }
+
+    public String getSupplierEndpointID() {
+        if (this.object instanceof Document) {
+            Element element = ((Document) this.object).find("AccountingSupplierParty", "Party", "EndpointID").single();
+            return element.attr("schemeID").trim() + ":" + element.text().trim();
+        }
+        throw new RuntimeException("Mandatory property missing in document: AccountingSupplierParty -> Party -> EndpointID");
     }
 
     public String prettyPrint() {

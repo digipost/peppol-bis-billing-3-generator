@@ -49,7 +49,7 @@ jobs:
     name: Deploy snapshot
     steps:
       - uses: actions/checkout@v4
-      - uses: digipost/action-maven-publish@1.1.0
+      - uses: digipost/action-maven-publish@1.3.2
         with:
           sonatype_secrets: ${{ secrets.sonatype_secrets }}
           release_version: ${{ needs.makeversion.outputs.version }}
@@ -64,7 +64,7 @@ jobs:
       - name: Check out Git repository
         uses: actions/checkout@v4
       - name: Release to Central Repository
-        uses: digipost/action-maven-publish@1.1.0
+        uses: digipost/action-maven-publish@1.3.2
         with:
           sonatype_secrets: ${{ secrets.sonatype_secrets }}
           release_version: ${{ needs.makeversion.outputs.version }}

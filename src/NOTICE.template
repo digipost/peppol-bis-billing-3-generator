@@ -8,7 +8,4 @@ Licensed under Apache 2 - http://www.apache.org/licenses/LICENSE-2.0.html
 
 This software includes third party software subject to the following licenses:
 
-  Eaxy Easy XML library under The Apache Licence, version 2.0
-  jsr305 under GNU Lesser Public License
-  peppol-bis-billing-3-generator-domain under Apache License, Version 2.0
-
+#GENERATED_NOTICES#

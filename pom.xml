@@ -6,7 +6,7 @@
     <parent>
         <groupId>no.digipost</groupId>
         <artifactId>digipost-open-super-pom</artifactId>
-        <version>7</version>
+        <version>13</version>
     </parent>
 
     <artifactId>peppol-bis-billing-3-generator-parent</artifactId>
@@ -69,185 +69,38 @@
         <pluginManagement>
             <plugins>
                 <plugin>
-                    <artifactId>maven-clean-plugin</artifactId>
-                    <version>3.1.0</version>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-resources-plugin</artifactId>
-                    <version>3.1.0</version>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-enforcer-plugin</artifactId>
-                    <version>3.0.0-M2</version>
-                    <configuration>
-                        <rules>
-                            <requireMavenVersion>
-                                <version>3.3.1</version>
-                            </requireMavenVersion>
-                            <bannedDependencies>
-                                <includes>
-                                    <include>javax.servlet</include>
-                                </includes>
-                                <excludes>
-                                    <exclude>javax.*</exclude>
-                                    <exclude>org.hamcrest:hamcrest-core</exclude>
-                                </excludes>
-                            </bannedDependencies>
-                        </rules>
-                    </configuration>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-surefire-plugin</artifactId>
-                    <version>3.3.1</version>
-                    <configuration>
-                        <argLine>-Djava.util.logging.config.file=/logging.properties</argLine>
-                    </configuration>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.felix</groupId>
-                    <artifactId>maven-bundle-plugin</artifactId>
-                    <version>2.4.0</version>
-                    <extensions>true</extensions>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-dependency-plugin</artifactId>
+                    <artifactId>maven-deploy-plugin</artifactId>
                     <version>3.1.1</version>
                 </plugin>
                 <plugin>
-                    <artifactId>maven-jar-plugin</artifactId>
-                    <version>3.1.2</version>
+                    <artifactId>maven-clean-plugin</artifactId>
+                    <version>3.3.1</version>
+                    <configuration>
+                        <filesets>
+                            <fileset>
+                                <directory>.</directory>
+                                <includes>
+                                    <include>dependency-reduced-pom.xml</include>
+                                </includes>
+                            </fileset>
+                        </filesets>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-dependency-plugin</artifactId>
+                    <version>3.6.0</version>
                 </plugin>
                 <plugin>
                     <artifactId>maven-install-plugin</artifactId>
                     <version>3.1.1</version>
                 </plugin>
                 <plugin>
-                    <artifactId>maven-deploy-plugin</artifactId>
-                    <version>3.1.2</version>
-                </plugin>
-                <plugin>
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>versions-maven-plugin</artifactId>
-                    <version>2.17.1</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>exec-maven-plugin</artifactId>
-                    <version>3.3.0</version>
-                </plugin>
-                <plugin>
-                    <groupId>com.github.siom79.japicmp</groupId>
-                    <artifactId>japicmp-maven-plugin</artifactId>
-                    <version>0.14.1</version>
-                    <configuration>
-                        <newVersion>
-                            <file>
-                                <path>${project.build.directory}/${project.build.finalName}.${project.packaging}</path>
-                            </file>
-                        </newVersion>
-                        <parameter>
-                            <onlyModified>true</onlyModified>
-                            <onlyBinaryIncompatible>true</onlyBinaryIncompatible>
-                            <includes>
-                                <include>no.digipost</include>
-                            </includes>
-                        </parameter>
-                    </configuration>
+                    <version>2.16.1</version>
                 </plugin>
             </plugins>
         </pluginManagement>
-        <plugins>
-            <plugin>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.13.0</version>
-                <configuration>
-                    <source>${maven.compiler.source}</source>
-                    <target>${maven.compiler.target}</target>
-                </configuration>
-            </plugin>
-            <plugin>
-                <artifactId>maven-dependency-plugin</artifactId>
-                <version>3.1.1</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>analyze-only</goal>
-                        </goals>
-                        <configuration>
-                            <failOnWarning>true</failOnWarning>
-                            <ignoreNonCompile>true</ignoreNonCompile>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>com.mycila</groupId>
-                <artifactId>license-maven-plugin</artifactId>
-                <version>3.0</version>
-                <configuration>
-                    <header>domain/src/main/license-header.txt</header>
-                    <strictCheck>true</strictCheck>
-                    <excludes>
-                        <exclude>LICENCE*</exclude>
-                        <exclude>NOTICE</exclude>
-                        <exclude>.github/**/*.yml</exclude>
-                        <exclude>**/*.html</exclude>
-                        <exclude>**/*.xml</exclude>
-                        <exclude>**/*.log</exclude>
-                        <exclude>**/*.txt</exclude>
-                        <exclude>**/*.pem</exclude>
-                        <exclude>**/*.cer</exclude>
-                        <exclude>**/*.response</exclude>
-                        <exclude>**/logging.properties</exclude>
-                        <exclude>.editorconfig</exclude>
-                        <exclude>.java-version</exclude>
-                        <exclude>.drone.yml</exclude>
-                        <exclude>.mvn/maven.config</exclude>
-                    </excludes>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>check-license-header</id>
-                        <goals>
-                            <goal>check</goal>
-                        </goals>
-                        <phase>test</phase>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.jasig.maven</groupId>
-                <artifactId>notice-maven-plugin</artifactId>
-                <version>2.0.0</version>
-                <configuration>
-                    <excludeOptional>true</excludeOptional>
-                    <excludeScopes>
-                        <excludeScope>test</excludeScope>
-                    </excludeScopes>
-                </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>generate</goal>
-                        </goals>
-                        <phase>generate-resources</phase>
-                    </execution>
-                </executions>
-                <dependencies>
-                    <dependency>
-                        <groupId>jakarta.xml.bind</groupId>
-                        <artifactId>jakarta.xml.bind-api</artifactId>
-                        <version>2.3.2</version>
-                    </dependency>
-                    <dependency>
-                        <groupId>org.glassfish.jaxb</groupId>
-                        <artifactId>jaxb-runtime</artifactId>
-                        <version>2.3.2</version>
-                    </dependency>
-                </dependencies>
-            </plugin>
-        </plugins>
     </build>
 
     <scm>

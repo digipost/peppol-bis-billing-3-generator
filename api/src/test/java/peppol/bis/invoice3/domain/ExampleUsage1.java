@@ -333,14 +333,6 @@ public class ExampleUsage1 {
                     .withFinancialInstitutionBranch(new FinancialInstitutionBranch("NDEANOKK"))
             );
 
-        final PaymentMeans paymentMeans2 = new PaymentMeans(
-            new PaymentMeansCode("30")
-        ).withPaymentID("123456789101")
-            .withPayeeFinancialAccount(
-                new PayeeFinancialAccount("60650514745")
-                    .withFinancialInstitutionBranch(new FinancialInstitutionBranch("NDEANOKK"))
-            );
-
         final Invoice invoice = new Invoice(
             "12345678910"
             , "2020-11-19"
@@ -354,8 +346,7 @@ public class ExampleUsage1 {
             .withDueDate("2020-11-30")
             .withPaymentTerms(new PaymentTerms("10 dager"))
             .withDelivery(delivery)
-            .withPaymentMeans(paymentMeans1)
-            .withPaymentMeans(paymentMeans2);
+            .withPaymentMeans(paymentMeans1);
 
         final PeppolBillingApi<Invoice> api = PeppolBillingApi.create(invoice);
 

@@ -10,6 +10,9 @@
     </parent>
 
     <artifactId>peppol-bis-billing-3-generator-api</artifactId>
+
+    <name>${project.artifactId}</name>
+
     <description>Peppol BIS Billing 3 generator Api</description>
 
     <dependencies>

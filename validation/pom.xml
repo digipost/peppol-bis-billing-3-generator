@@ -10,6 +10,8 @@
     </parent>
 
     <artifactId>peppol-bis-billing-3-generator-validation</artifactId>
+
+    <name>${project.artifactId}</name>
     <description>Peppol BIS Billing 3 generator Validation</description>
 
     <dependencies>

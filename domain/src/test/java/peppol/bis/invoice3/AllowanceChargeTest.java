@@ -25,6 +25,7 @@ import peppol.bis.invoice3.domain.InvoiceLineAllowanceCharge;
 import peppol.bis.invoice3.domain.PriceAllowanceCharge;
 import peppol.bis.invoice3.domain.TaxCategory;
 import peppol.bis.invoice3.domain.TaxScheme;
+import peppol.bis.invoice3.domain.codes.CurrencyIdCode;
 
 import static org.hamcrest.Matchers.equalTo;
 import static peppol.bis.invoice3.XmlAsserts.assertElementNameIs;
@@ -41,13 +42,13 @@ class AllowanceChargeTest {
     @BeforeEach
     void setUp() {
         priceAllowanceCharge = new PriceAllowanceCharge(
-            true, new Amount("123", "EUR")
+            true, new Amount("123", CurrencyIdCode.EUR)
         );
         invoiceAllowanceCharge = new InvoiceAllowanceCharge(
-            true, new Amount("123", "EUR"), new TaxCategory("G", new TaxScheme("VAT"))
+            true, new Amount("123", CurrencyIdCode.EUR), new TaxCategory("G", new TaxScheme("VAT"))
         );
         invoiceLineAllowanceCharge = new InvoiceLineAllowanceCharge(
-            true, new Amount("123", "EUR")
+            true, new Amount("123", CurrencyIdCode.EUR)
         );
     }
 
@@ -64,7 +65,7 @@ class AllowanceChargeTest {
 
     @Test
     void PriceAllowanceCharge_to_xml_optional_elements() {
-        priceAllowanceCharge.withBaseAmount(new BaseAmount("344", "EUR"));
+        priceAllowanceCharge.withBaseAmount(new BaseAmount("344", CurrencyIdCode.EUR));
 
         final Element element = (Element) priceAllowanceCharge.node();
 
@@ -86,7 +87,7 @@ class AllowanceChargeTest {
     @Test
     void InvoiceAllowanceCharge_to_xml_optional_elements() {
         invoiceAllowanceCharge
-            .withBaseAmount(new BaseAmount("344", "EUR"))
+            .withBaseAmount(new BaseAmount("344", CurrencyIdCode.EUR))
             .withAllowanceChargeReasonCode("95")
             .withAllowanceChargeReason("Discount")
             .withMultiplierFactorNumeric("20")
@@ -114,7 +115,7 @@ class AllowanceChargeTest {
     @Test
     void InvoiceLineAllowanceCharge_to_xml_optional_elements() {
         invoiceLineAllowanceCharge
-            .withBaseAmount(new BaseAmount("344", "EUR"))
+            .withBaseAmount(new BaseAmount("344", CurrencyIdCode.EUR))
             .withAllowanceChargeReasonCode("95")
             .withAllowanceChargeReason("Discount")
             .withMultiplierFactorNumeric("20")

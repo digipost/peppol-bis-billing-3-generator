@@ -15,8 +15,18 @@
  */
 package peppol.bis.invoice3.domain;
 
+import peppol.bis.invoice3.domain.codes.CurrencyIdCode;
+
 public class ChargeTotalAmount extends Amount{
+
+    /**
+     * @deprecated
+     */
     public ChargeTotalAmount(String amount, String currencyID) {
+        super(amount, currencyID);
+    }
+
+    public ChargeTotalAmount(String amount, CurrencyIdCode currencyID) {
         super(amount, currencyID);
     }
 }

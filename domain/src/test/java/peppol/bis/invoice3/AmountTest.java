@@ -29,23 +29,43 @@ import peppol.bis.invoice3.domain.PriceAmount;
 import peppol.bis.invoice3.domain.TaxExclusiveAmount;
 import peppol.bis.invoice3.domain.TaxInclusiveAmount;
 import peppol.bis.invoice3.domain.TaxableAmount;
+import peppol.bis.invoice3.domain.codes.CurrencyIdCode;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 
 class AmountTest {
 
     @Test
     void Amount_to_xml() {
-        final Element element = (Element) new Amount("1273", "EUR").node();
+        final Element element = (Element) new Amount("1273", CurrencyIdCode.EUR).node();
         assertThat(element.getName().getName(), equalTo("Amount"));
         assertThat(element.text(), equalTo("1273"));
         assertThat(element.attrs().get("currencyID"), equalTo("EUR"));
     }
 
     @Test
+    void Amount_to_xmlAsString() {
+        final Element element = (Element) new Amount("1273", "EUR").node();
+        assertThat(element.getName().getName(), equalTo("Amount"));
+        assertThat(element.text(), equalTo("1273"));
+        assertThat(element.attrs().get("currencyID"), equalTo("EUR"));
+
+        assertThrows(IllegalArgumentException.class, ()-> new Amount("1273", "DUMMY"));
+    }
+
+    @Test
     void LineExtensionAmount_to_xml() {
+        final Element element = (Element) new LineExtensionAmount("1273", CurrencyIdCode.EUR).node();
+        assertThat(element.getName().getName(), equalTo("LineExtensionAmount"));
+        assertThat(element.text(), equalTo("1273"));
+        assertThat(element.attrs().get("currencyID"), equalTo("EUR"));
+    }
+
+    @Test
+    void LineExtensionAmount_to_xmlAsString() {
         final Element element = (Element) new LineExtensionAmount("1273", "EUR").node();
         assertThat(element.getName().getName(), equalTo("LineExtensionAmount"));
         assertThat(element.text(), equalTo("1273"));
@@ -54,81 +74,188 @@ class AmountTest {
 
     @Test
     void TaxExclusiveAmount_to_xml() {
-        final Element element = (Element) new TaxExclusiveAmount("1273", "EUR").node();
+        final Element element = (Element) new TaxExclusiveAmount("1273", CurrencyIdCode.EUR).node();
         assertThat(element.getName().getName(), equalTo("TaxExclusiveAmount"));
         assertThat(element.text(), equalTo("1273"));
         assertThat(element.attrs().get("currencyID"), equalTo("EUR"));
     }
 
     @Test
+    void TaxExclusiveAmount_to_xmlAsString() {
+        final Element element = (Element) new TaxExclusiveAmount("1273", "EUR").node();
+        assertThat(element.getName().getName(), equalTo("TaxExclusiveAmount"));
+        assertThat(element.text(), equalTo("1273"));
+        assertThat(element.attrs().get("currencyID"), equalTo("EUR"));
+
+        assertThrows(IllegalArgumentException.class, ()-> new TaxExclusiveAmount("1273", "DUMMY"));
+
+    }
+
+    @Test
     void TaxInclusiveAmount_to_xml() {
-        final Element element = (Element) new TaxInclusiveAmount("1273", "EUR").node();
+        final Element element = (Element) new TaxInclusiveAmount("1273", CurrencyIdCode.EUR).node();
         assertThat(element.getName().getName(), equalTo("TaxInclusiveAmount"));
         assertThat(element.text(), equalTo("1273"));
         assertThat(element.attrs().get("currencyID"), equalTo("EUR"));
     }
 
     @Test
+    void TaxInclusiveAmount_to_xmlAsString() {
+        final Element element = (Element) new TaxInclusiveAmount("1273", "EUR").node();
+        assertThat(element.getName().getName(), equalTo("TaxInclusiveAmount"));
+        assertThat(element.text(), equalTo("1273"));
+        assertThat(element.attrs().get("currencyID"), equalTo("EUR"));
+
+        assertThrows(IllegalArgumentException.class, () -> new TaxInclusiveAmount("1273", "DUMMY"));
+
+    }
+
+    @Test
     void PayableAmount_to_xml() {
-        final Element element = (Element) new PayableAmount("1273", "EUR").node();
+        final Element element = (Element) new PayableAmount("1273", CurrencyIdCode.EUR).node();
         assertThat(element.getName().getName(), equalTo("PayableAmount"));
         assertThat(element.text(), equalTo("1273"));
         assertThat(element.attrs().get("currencyID"), equalTo("EUR"));
     }
 
     @Test
+    void PayableAmount_to_xmlAsString() {
+        final Element element = (Element) new PayableAmount("1273", "EUR").node();
+        assertThat(element.getName().getName(), equalTo("PayableAmount"));
+        assertThat(element.text(), equalTo("1273"));
+        assertThat(element.attrs().get("currencyID"), equalTo("EUR"));
+
+        assertThrows(IllegalArgumentException.class, () -> new PayableAmount("1273", "DUMMY"));
+    }
+
+    @Test
     void AllowanceTotalAmount_to_xml() {
-        final Element element = (Element) new AllowanceTotalAmount("1273", "EUR").node();
+        final Element element = (Element) new AllowanceTotalAmount("1273", CurrencyIdCode.EUR).node();
         assertThat(element.getName().getName(), equalTo("AllowanceTotalAmount"));
         assertThat(element.text(), equalTo("1273"));
         assertThat(element.attrs().get("currencyID"), equalTo("EUR"));
     }
 
     @Test
+    void AllowanceTotalAmount_to_xmlAsString() {
+        final Element element = (Element) new AllowanceTotalAmount("1273", "EUR").node();
+        assertThat(element.getName().getName(), equalTo("AllowanceTotalAmount"));
+        assertThat(element.text(), equalTo("1273"));
+        assertThat(element.attrs().get("currencyID"), equalTo("EUR"));
+
+        assertThrows(IllegalArgumentException.class, () -> new AllowanceTotalAmount("1273", "DUMMY"));
+
+    }
+
+    @Test
     void ChargeTotalAmount_to_xml() {
-        final Element element = (Element) new ChargeTotalAmount("1273", "EUR").node();
+        final Element element = (Element) new ChargeTotalAmount("1273", CurrencyIdCode.EUR).node();
         assertThat(element.getName().getName(), equalTo("ChargeTotalAmount"));
         assertThat(element.text(), equalTo("1273"));
         assertThat(element.attrs().get("currencyID"), equalTo("EUR"));
     }
 
     @Test
+    void ChargeTotalAmount_to_xmlAsString() {
+        final Element element = (Element) new ChargeTotalAmount("1273", "EUR").node();
+        assertThat(element.getName().getName(), equalTo("ChargeTotalAmount"));
+        assertThat(element.text(), equalTo("1273"));
+        assertThat(element.attrs().get("currencyID"), equalTo("EUR"));
+
+        assertThrows(IllegalArgumentException.class, () -> new ChargeTotalAmount("1273", "DUMMY"));
+
+    }
+
+    @Test
     void PrepaidAmount_to_xml() {
-        final Element element = (Element) new PrepaidAmount("1273", "EUR").node();
+        final Element element = (Element) new PrepaidAmount("1273", CurrencyIdCode.EUR).node();
         assertThat(element.getName().getName(), equalTo("PrepaidAmount"));
         assertThat(element.text(), equalTo("1273"));
         assertThat(element.attrs().get("currencyID"), equalTo("EUR"));
     }
 
     @Test
+    void PrepaidAmount_to_xmlAsString() {
+        final Element element = (Element) new PrepaidAmount("1273", "EUR").node();
+        assertThat(element.getName().getName(), equalTo("PrepaidAmount"));
+        assertThat(element.text(), equalTo("1273"));
+        assertThat(element.attrs().get("currencyID"), equalTo("EUR"));
+
+        assertThrows(IllegalArgumentException.class, () -> new PrepaidAmount("1273", "DUMMY"));
+
+    }
+
+    @Test
     void PayableRoundingAmount_to_xml() {
-        final Element element = (Element) new PayableRoundingAmount("1273", "EUR").node();
+        final Element element = (Element) new PayableRoundingAmount("1273", CurrencyIdCode.EUR).node();
         assertThat(element.getName().getName(), equalTo("PayableRoundingAmount"));
         assertThat(element.text(), equalTo("1273"));
         assertThat(element.attrs().get("currencyID"), equalTo("EUR"));
     }
 
     @Test
+    void PayableRoundingAmount_to_xmlAsString() {
+        final Element element = (Element) new PayableRoundingAmount("1273", "EUR").node();
+        assertThat(element.getName().getName(), equalTo("PayableRoundingAmount"));
+        assertThat(element.text(), equalTo("1273"));
+        assertThat(element.attrs().get("currencyID"), equalTo("EUR"));
+
+        assertThrows(IllegalArgumentException.class, () -> new PayableRoundingAmount("1273", "DUMMY"));
+
+    }
+
+    @Test
     void PriceAmount_to_xml() {
-        final Element element = (Element) new PriceAmount("1273", "EUR").node();
+        final Element element = (Element) new PriceAmount("1273", CurrencyIdCode.EUR).node();
         assertThat(element.getName().getName(), equalTo("PriceAmount"));
         assertThat(element.text(), equalTo("1273"));
         assertThat(element.attrs().get("currencyID"), equalTo("EUR"));
     }
 
     @Test
+    void PriceAmount_to_xmlAsString() {
+        final Element element = (Element) new PriceAmount("1273", "EUR").node();
+        assertThat(element.getName().getName(), equalTo("PriceAmount"));
+        assertThat(element.text(), equalTo("1273"));
+        assertThat(element.attrs().get("currencyID"), equalTo("EUR"));
+
+        assertThrows(IllegalArgumentException.class, () -> new PriceAmount("1273", "DUMMY"));
+
+    }
+
+    @Test
     void TaxableAmount_to_xml() {
-        final Element element = (Element) new TaxableAmount("1273", "EUR").node();
+        final Element element = (Element) new TaxableAmount("1273", CurrencyIdCode.EUR).node();
         assertThat(element.getName().getName(), equalTo("TaxableAmount"));
         assertThat(element.text(), equalTo("1273"));
         assertThat(element.attrs().get("currencyID"), equalTo("EUR"));
     }
 
     @Test
+    void TaxableAmount_to_xmlAsString() {
+        final Element element = (Element) new TaxableAmount("1273", "EUR").node();
+        assertThat(element.getName().getName(), equalTo("TaxableAmount"));
+        assertThat(element.text(), equalTo("1273"));
+        assertThat(element.attrs().get("currencyID"), equalTo("EUR"));
+
+        assertThrows(IllegalArgumentException.class, () -> new TaxableAmount("1273", "DUMMY"));
+    }
+
+    @Test
     void BaseAmount_to_xml() {
+        final Element element = (Element) new BaseAmount("1273", CurrencyIdCode.EUR).node();
+        assertThat(element.getName().getName(), equalTo("BaseAmount"));
+        assertThat(element.text(), equalTo("1273"));
+        assertThat(element.attrs().get("currencyID"), equalTo("EUR"));
+    }
+
+    @Test
+    void BaseAmount_to_xmlAsString() {
         final Element element = (Element) new BaseAmount("1273", "EUR").node();
         assertThat(element.getName().getName(), equalTo("BaseAmount"));
         assertThat(element.text(), equalTo("1273"));
         assertThat(element.attrs().get("currencyID"), equalTo("EUR"));
+
+        assertThrows(IllegalArgumentException.class, ()-> new BaseAmount("1273", "DUMMY"));
     }
 }

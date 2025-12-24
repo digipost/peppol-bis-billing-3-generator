@@ -15,8 +15,18 @@
  */
 package peppol.bis.invoice3.domain;
 
+import peppol.bis.invoice3.domain.codes.CurrencyIdCode;
+
 public class TaxableAmount extends Amount{
+
+    /**
+     * @deprecated
+     */
     public TaxableAmount(String amount, String currencyID) {
+        super(amount, currencyID);
+    }
+
+    public TaxableAmount(String amount, CurrencyIdCode currencyID) {
         super(amount, currencyID);
     }
 }

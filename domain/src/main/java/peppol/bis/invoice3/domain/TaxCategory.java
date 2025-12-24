@@ -61,7 +61,7 @@ public class TaxCategory implements XmlElement {
      */
     public TaxCategory withTaxExemptionReasonCode(String taxExemptionReasonCode) {
         try {
-            this.taxExemptionReasonCode = TaxExemptionReasonCode.valueOf(taxExemptionReasonCode);
+            this.taxExemptionReasonCode = TaxExemptionReasonCode.fromCode(taxExemptionReasonCode);
         } catch (IllegalArgumentException ex) {
             throw new IllegalArgumentException(
                     "Invalid TaxExemptionReasonCode (UNECERec20): " + taxExemptionReasonCode, ex

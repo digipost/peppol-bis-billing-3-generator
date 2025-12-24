@@ -18,14 +18,29 @@ package peppol.bis.invoice3.domain;
 import org.eaxy.Node;
 import org.eaxy.QualifiedName;
 import org.eaxy.Xml;
+import peppol.bis.invoice3.domain.codes.CurrencyIdCode;
 
 import static peppol.bis.invoice3.domain.Namespaces.CBC_NS;
 
 public class Amount implements XmlElement {
     private final String amount;
-    private final String currencyID;
+    private final CurrencyIdCode currencyID;
 
+    /**
+     * @deprecated
+     */
     public Amount(String amount, String currencyID) {
+        this.amount = amount;
+        try {
+            this.currencyID = CurrencyIdCode.valueOf(currencyID);
+        } catch (IllegalArgumentException ex) {
+            throw new IllegalArgumentException(
+                    "Invalid CurrencyIdCode (ISO4217): " + currencyID, ex
+            );
+        }
+    }
+
+    public Amount(String amount, CurrencyIdCode currencyID) {
         this.amount = amount;
         this.currencyID = currencyID;
     }
@@ -35,7 +50,7 @@ public class Amount implements XmlElement {
         return Xml.el(
             new QualifiedName(CBC_NS, this.name())
             , Xml.text(this.amount)
-            , Xml.attr("currencyID", this.currencyID)
+            , Xml.attr("currencyID", this.currencyID.name())
         );
     }
 }

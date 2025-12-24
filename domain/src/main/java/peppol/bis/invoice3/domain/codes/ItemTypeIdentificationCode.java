@@ -1,0 +1,389 @@
+package peppol.bis.invoice3.domain.codes;
+
+/**
+ * Item type identification code (UNCL7143)
+ * UNCL7143 version D.19A
+ *
+ * @author Jonathan Cambier
+ */
+public enum ItemTypeIdentificationCode {
+  /** Product version number */
+  AA,
+  /** Assembly */
+  AB,
+  /** HIBC (Health Industry Bar Code) */
+  AC,
+  /** Cold roll number */
+  AD,
+  /** Hot roll number */
+  AE,
+  /** Slab number */
+  AF,
+  /** Software revision number */
+  AG,
+  /** UPC (Universal Product Code) Consumer package code (1-5-5) */
+  AH,
+  /** UPC (Universal Product Code) Consumer package code (1-5-5-1) */
+  AI,
+  /** Sample number */
+  AJ,
+  /** Pack number */
+  AK,
+  /** UPC (Universal Product Code) Shipping container code (1-2-5-5) */
+  AL,
+  /** UPC (Universal Product Code)/EAN (European article number) Shipping container code (1-2-5-5-1) */
+  AM,
+  /** UPC (Universal Product Code) suffix */
+  AN,
+  /** State label code */
+  AO,
+  /** Heat number */
+  AP,
+  /** Coupon number */
+  AQ,
+  /** Resource number */
+  AR,
+  /** Work task number */
+  AS,
+  /** Price look up number */
+  AT,
+  /** NSN (North Atlantic Treaty Organization Stock Number) */
+  AU,
+  /** Refined product code */
+  AV,
+  /** Exhibit */
+  AW,
+  /** End item */
+  AX,
+  /** Federal supply classification */
+  AY,
+  /** Engineering data list */
+  AZ,
+  /** Milestone event number */
+  BA,
+  /** Lot number */
+  BB,
+  /** National drug code 4-4-2 format */
+  BC,
+  /** National drug code 5-3-2 format */
+  BD,
+  /** National drug code 5-4-1 format */
+  BE,
+  /** National drug code 5-4-2 format */
+  BF,
+  /** National drug code */
+  BG,
+  /** Part number */
+  BH,
+  /** Local Stock Number (LSN) */
+  BI,
+  /** Next higher assembly number */
+  BJ,
+  /** Data category */
+  BK,
+  /** Control number */
+  BL,
+  /** Special material identification code */
+  BM,
+  /** Locally assigned control number */
+  BN,
+  /** Buyer's colour */
+  BO,
+  /** Buyer's part number */
+  BP,
+  /** Variable measure product code */
+  BQ,
+  /** Financial phase */
+  BR,
+  /** Contract breakdown */
+  BS,
+  /** Technical phase */
+  BT,
+  /** Dye lot number */
+  BU,
+  /** Daily statement of activities */
+  BV,
+  /** Periodical statement of activities within a bilaterally agreed time period */
+  BW,
+  /** Calendar week statement of activities */
+  BX,
+  /** Calendar month statement of activities */
+  BY,
+  /** Original equipment number */
+  BZ,
+  /** Industry commodity code */
+  CC,
+  /** Commodity grouping */
+  CG,
+  /** Colour number */
+  CL,
+  /** Contract number */
+  CR,
+  /** Customs article number */
+  CV,
+  /** Drawing revision number */
+  DR,
+  /** Drawing */
+  DW,
+  /** Engineering change level */
+  EC,
+  /** Material code */
+  EF,
+  /** EMDN (European Medical Device Nomenclature) */
+  EMD,
+  /** International Article Numbering Association (EAN) */
+  EN,
+  /** Fish species */
+  FS,
+  /** Buyer's internal product group code */
+  GB,
+  /** Global model number */
+  GMN,
+  /** National product group code */
+  GN,
+  /** General specification number */
+  GS,
+  /** Harmonised system */
+  HS,
+  /** ISBN (International Standard Book Number) */
+  IB,
+  /** Buyer's item number */
+  IN,
+  /** ISSN (International Standard Serial Number) */
+  IS,
+  /** Buyer's style number */
+  IT,
+  /** Buyer's size code */
+  IZ,
+  /** Machine number */
+  MA,
+  /** Manufacturer's (producer's) article number */
+  MF,
+  /** Model number */
+  MN,
+  /** Product/service identification number */
+  MP,
+  /** Batch number */
+  NB,
+  /** Customer order number */
+  ON,
+  /** Part number description */
+  PD,
+  /** Purchaser's order line number */
+  PL,
+  /** Purchase order number */
+  PO,
+  /** Promotional variant number */
+  PV,
+  /** Buyer's qualifier for size */
+  QS,
+  /** Returnable container number */
+  RC,
+  /** Release number */
+  RN,
+  /** Run number */
+  RU,
+  /** Record keeping of model year */
+  RY,
+  /** Supplier's article number */
+  SA,
+  /** Standard group of products (mixed assortment) */
+  SG,
+  /** SKU (Stock keeping unit) */
+  SK,
+  /** Serial number */
+  SN,
+  /** RSK number */
+  SRS,
+  /** IFLS (Institut Francais du Libre Service) 5 digit product classification code */
+  SRT,
+  /** IFLS (Institut Francais du Libre Service) 9 digit product classification code */
+  SRU,
+  /** GS1 Global Trade Item Number */
+  SRV,
+  /** EDIS (Energy Data Identification System) */
+  SRW,
+  /** Slaughter number */
+  SRX,
+  /** Official animal number */
+  SRY,
+  /** Harmonized tariff schedule */
+  SRZ,
+  /** Supplier's supplier article number */
+  SS,
+  /** 46 Level DOT Code */
+  SSA,
+  /** Airline Tariff 6D */
+  SSB,
+  /** Title 49 Code of Federal Regulations */
+  SSC,
+  /** International Civil Aviation Administration code */
+  SSD,
+  /** Hazardous Materials ID DOT */
+  SSE,
+  /** Endorsement */
+  SSF,
+  /** Air Force Regulation 71-4 */
+  SSG,
+  /** Breed */
+  SSH,
+  /** Chemical Abstract Service (CAS) registry number */
+  SSI,
+  /** Engine model designation */
+  SSJ,
+  /** Institutional Meat Purchase Specifications (IMPS) Number */
+  SSK,
+  /** Price Look-Up code (PLU) */
+  SSL,
+  /** International Maritime Organization (IMO) Code */
+  SSM,
+  /** Bureau of Explosives 600-A (rail) */
+  SSN,
+  /** United Nations Dangerous Goods List */
+  SSO,
+  /** International Code of Botanical Nomenclature (ICBN) */
+  SSP,
+  /** International Code of Zoological Nomenclature (ICZN) */
+  SSQ,
+  /** International Code of Nomenclature for Cultivated Plants (ICNCP) */
+  SSR,
+  /** Distributor’s article identifier */
+  SSS,
+  /** Norwegian Classification system ENVA */
+  SST,
+  /** Supplier assigned classification */
+  SSU,
+  /** Mexican classification system AMECE */
+  SSV,
+  /** German classification system CCG */
+  SSW,
+  /** Finnish classification system EANFIN */
+  SSX,
+  /** Canadian classification system ICC */
+  SSY,
+  /** French classification system IFLS5 */
+  SSZ,
+  /** Style number */
+  ST,
+  /** Dutch classification system CBL */
+  STA,
+  /** Japanese classification system JICFS */
+  STB,
+  /** European Union dairy subsidy eligibility classification */
+  STC,
+  /** GS1 Spain classification system */
+  STD,
+  /** GS1 Poland classification system */
+  STE,
+  /** Federal Agency on Technical Regulating and Metrology of the Russian Federation */
+  STF,
+  /** Efficient Consumer Response (ECR) Austria classification system */
+  STG,
+  /** GS1 Italy classification system */
+  STH,
+  /** CPV (Common Procurement Vocabulary) */
+  STI,
+  /** IFDA (International Foodservice Distributors Association) */
+  STJ,
+  /** AHFS (American Hospital Formulary Service) pharmacologic -therapeutic classification */
+  STK,
+  /** ATC (Anatomical Therapeutic Chemical) classification system */
+  STL,
+  /** CLADIMED (Classification des Dispositifs Médicaux) */
+  STM,
+  /** CMDR (Canadian Medical Device Regulations) classification system */
+  STN,
+  /** CNDM (Classificazione Nazionale dei Dispositivi Medici) */
+  STO,
+  /** UK DM&D (Dictionary of Medicines & Devices) standard coding scheme */
+  STP,
+  /** eCl@ss */
+  STQ,
+  /** EDMA (European Diagnostic Manufacturers Association) Product Classification */
+  STR,
+  /** EGAR (European Generic Article Register) */
+  STS,
+  /** GMDN (Global Medical Devices Nomenclature) */
+  STT,
+  /** GPI (Generic Product Identifier) */
+  STU,
+  /** HCPCS (Healthcare Common Procedure Coding System) */
+  STV,
+  /** ICPS (International Classification for Patient Safety) */
+  STW,
+  /** MedDRA (Medical Dictionary for Regulatory Activities) */
+  STX,
+  /** Medical Columbus */
+  STY,
+  /** NAPCS (North American Product Classification System) */
+  STZ,
+  /** NHS (National Health Services) eClass */
+  SUA,
+  /** US FDA (Food and Drug Administration) Product Code Classification Database */
+  SUB,
+  /** SNOMED CT (Systematized Nomenclature of Medicine-Clinical Terms) */
+  SUC,
+  /** UMDNS (Universal Medical Device Nomenclature System) */
+  SUD,
+  /** GS1 Global Returnable Asset Identifier, non-serialised */
+  SUE,
+  /** IMEI */
+  SUF,
+  /** Waste Type (EMSA) */
+  SUG,
+  /** Ship's store classification type */
+  SUH,
+  /** Emergency fire code */
+  SUI,
+  /** Emergency spillage code */
+  SUJ,
+  /** IMDG packing group */
+  SUK,
+  /** MARPOL Code IBC */
+  SUL,
+  /** IMDG subsidiary risk class */
+  SUM,
+  /** Transport group number */
+  TG,
+  /** Taxonomic Serial Number */
+  TSN,
+  /** IMDG main hazard class */
+  TSO,
+  /** EU Combined Nomenclature */
+  TSP,
+  /** Therapeutic classification number */
+  TSQ,
+  /** European Waste Catalogue */
+  TSR,
+  /** Price grouping code */
+  TSS,
+  /** UNSPSC */
+  TST,
+  /** EU RoHS Directive */
+  TSU,
+  /** Ultimate customer's article number */
+  UA,
+  /** UPC (Universal product code) */
+  UP,
+  /** Vendor item number */
+  VN,
+  /** Vendor's (seller's) part number */
+  VP,
+  /** Vendor's supplemental item number */
+  VS,
+  /** Vendor specification number */
+  VX,
+  /** Mutually defined */
+  ZZZ,
+  /** Phytosanitary Passport identifier */
+  PPI;
+
+  public static ItemTypeIdentificationCode fromCode(String code) {
+    try {
+      return ItemTypeIdentificationCode.valueOf(code);
+    } catch (IllegalArgumentException e) {
+      throw new IllegalArgumentException("No ItemTypeIdentificationCode with code " + code);
+    }
+
+  }
+}

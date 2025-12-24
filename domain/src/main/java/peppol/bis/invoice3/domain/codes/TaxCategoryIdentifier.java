@@ -1,5 +1,12 @@
 package peppol.bis.invoice3.domain.codes;
 
+/**
+ * Duty or tax or fee category code (Subset of UNCL5305)
+ * UNCL5305
+ * https://docs.peppol.eu/poacc/billing/3.0/codelist/UNCL5305/
+ *
+ * @author Jonathan Cambier
+ */
 public enum TaxCategoryIdentifier {
 
   /**

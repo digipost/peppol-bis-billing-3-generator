@@ -18,10 +18,13 @@ package peppol.bis.invoice3;
 import org.eaxy.Element;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import peppol.bis.invoice3.domain.BaseQuantity;
 import peppol.bis.invoice3.domain.ItemClassificationCode;
+import peppol.bis.invoice3.domain.codes.ItemTypeIdentificationCode;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static peppol.bis.invoice3.XmlAsserts.assertElementNameIs;
 import static peppol.bis.invoice3.XmlAsserts.assertRequiredElement;
 import static peppol.bis.invoice3.domain.Namespaces.CAC_NS;
@@ -34,7 +37,7 @@ public class ItemClassificationCodeTest {
     @BeforeEach
     void setUp() {
         itemClassificationCode = new ItemClassificationCode(
-        "9873242", "STK"
+        "9873242", ItemTypeIdentificationCode.STK
         );
     }
 
@@ -49,10 +52,21 @@ public class ItemClassificationCodeTest {
     }
 
     @Test
+    void to_xml_basic_elementsWithCodeAsString() {
+        final Element element = (Element) new ItemClassificationCode(
+                "9873242", "STK"
+        ).node();
+        assertThat(element.attrs().get("listID"), equalTo("STK"));
+
+        assertThrows(IllegalArgumentException.class, () -> new ItemClassificationCode("9873242", "DUMMY"));
+    }
+
+    @Test
     void to_xml_optional_attrs() {
         itemClassificationCode.withlistVersionID("19.0501");
 
         final Element element = (Element) itemClassificationCode.node();
         assertThat(element.attrs().get("listVersionID"), equalTo("19.0501"));
     }
+
 }

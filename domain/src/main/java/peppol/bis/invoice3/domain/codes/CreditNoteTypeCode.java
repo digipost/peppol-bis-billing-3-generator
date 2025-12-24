@@ -1,0 +1,46 @@
+package peppol.bis.invoice3.domain.codes;
+
+/**
+ * Credit note type code (UNCL1001 subset)
+ * UNCL1001-cn
+ * version: D.16B
+ * https://docs.peppol.eu/poacc/billing/3.0/codelist/UNCL1001-cn/
+ *
+ * @author Jonathan Cambier
+ */
+public enum CreditNoteTypeCode {
+  /** Credit note related to goods or services */
+  CN_81("81"),
+  /** Credit note related to financial adjustments */
+  CN_83("83"),
+  /** Credit note */
+  CN_381("381"),
+  /** Factored credit note */
+  CN_396("396"),
+  /** Forwarder's credit note */
+  CN_532("532");
+
+  private final String code;
+
+  CreditNoteTypeCode(String code) {
+    this.code = code;
+  }
+
+  public String getCode() {
+    return code;
+  }
+
+  public static CreditNoteTypeCode fromCode(String code) {
+    for (CreditNoteTypeCode ve : values()) {
+      if (ve.code.equals(code)) {
+        return ve;
+      }
+    }
+    throw new IllegalArgumentException("No CreditNoteTypeCode with code " + code);
+  }
+
+  @Override
+  public String toString() {
+    return code;
+  }
+}

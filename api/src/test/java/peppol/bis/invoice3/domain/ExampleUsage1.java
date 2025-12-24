@@ -17,6 +17,7 @@ package peppol.bis.invoice3.domain;
 
 import org.junit.jupiter.api.Test;
 import peppol.bis.invoice3.api.PeppolBillingApi;
+import peppol.bis.invoice3.domain.codes.InvoiceTypeCode;
 import peppol.bis.invoice3.validation.ValidationResult;
 
 public class ExampleUsage1 {
@@ -191,7 +192,7 @@ public class ExampleUsage1 {
             , taxTotal
             , legalMonetaryTotal
         ).withDueDate("2013-07-20")
-            .withInvoiceTypeCode(380)
+            .withInvoiceTypeCode(InvoiceTypeCode.INV_380)
             .withNote("Ordered in our booth at the convention.")
             .withTaxPointDate("2013-06-30")
             .withAccountingCost("Project cost code 123")

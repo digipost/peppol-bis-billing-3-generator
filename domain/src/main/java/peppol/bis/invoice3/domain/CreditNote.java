@@ -17,6 +17,7 @@ package peppol.bis.invoice3.domain;
 
 import org.eaxy.Element;
 import org.eaxy.Namespace;
+import peppol.bis.invoice3.domain.codes.CreditNoteTypeCode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,10 +26,10 @@ import static peppol.bis.invoice3.domain.Namespaces.CBC_NS;
 
 public class CreditNote extends BillingCommon<CreditNote> implements XmlRootElement, XmlElement {
 
-    private static final int UNCL1001_Commercial_invoice = 381;
+    private static final CreditNoteTypeCode UNCL1001_Commercial_invoice = CreditNoteTypeCode.CN_381;
     public static final String CREDIT_NOTE_NAMESPACE = "urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2";
 
-    private String invoiceTypeCode;
+    private CreditNoteTypeCode invoiceTypeCode;
     private String note;
     private String taxCurrencyCode;
     private final String documentCurrencyCode;
@@ -70,8 +71,8 @@ public class CreditNote extends BillingCommon<CreditNote> implements XmlRootElem
         this.creditNoteLines.addAll(creditNoteLines);
     }
 
-    public CreditNote withInvoiceTypeCode(int invoiceTypeCode) {
-        this.invoiceTypeCode = String.valueOf(invoiceTypeCode);
+    public CreditNote withInvoiceTypeCode(CreditNoteTypeCode invoiceTypeCode) {
+        this.invoiceTypeCode = invoiceTypeCode;
         return this;
     }
 
@@ -196,7 +197,7 @@ public class CreditNote extends BillingCommon<CreditNote> implements XmlRootElem
 
         optional(super.taxPointDate, "TaxPointDate", elm, CBC_NS);
 
-        required(this.invoiceTypeCode, "CreditNoteTypeCode", elm, CBC_NS);
+        required(this.invoiceTypeCode.getCode(), "CreditNoteTypeCode", elm, CBC_NS);
         optional(this.note, "Note", elm, CBC_NS);
         required(this.documentCurrencyCode, "DocumentCurrencyCode", elm, CBC_NS);
         optional(this.taxCurrencyCode, "TaxCurrencyCode", elm, CBC_NS);

@@ -62,6 +62,7 @@ import peppol.bis.invoice3.domain.TaxRepresentativeParty;
 import peppol.bis.invoice3.domain.TaxScheme;
 import peppol.bis.invoice3.domain.TaxTotal;
 import peppol.bis.invoice3.domain.codes.CurrencyIdCode;
+import peppol.bis.invoice3.domain.codes.InvoiceTypeCode;
 import peppol.bis.invoice3.domain.codes.UnitIdCode;
 
 import java.util.List;
@@ -188,7 +189,7 @@ public class InvoiceTest  {
     void invoice_to_xml_for_overwritten_defaults() {
         final Invoice invoice = this.invoice
             .withProcessNumber(13)
-            .withInvoiceTypeCode(780);
+            .withInvoiceTypeCode(InvoiceTypeCode.INV_780);
 
         final Element element = invoice.xmlRoot();
 

@@ -35,7 +35,7 @@ public class ItemClassificationCode implements XmlElement {
      */
     public ItemClassificationCode(String code, String listID) {
         this.code = code;
-        this.listID = ItemTypeIdentificationCode.fromCode(listID);
+        this.listID = ItemTypeIdentificationCode.valueOf(listID);
     }
 
     public ItemClassificationCode(String code, ItemTypeIdentificationCode listID) {

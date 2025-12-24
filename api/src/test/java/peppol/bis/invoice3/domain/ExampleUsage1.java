@@ -17,6 +17,7 @@ package peppol.bis.invoice3.domain;
 
 import org.junit.jupiter.api.Test;
 import peppol.bis.invoice3.api.PeppolBillingApi;
+import peppol.bis.invoice3.domain.codes.AllowanceReasonCode;
 import peppol.bis.invoice3.domain.codes.InvoiceTypeCode;
 import peppol.bis.invoice3.validation.ValidationResult;
 
@@ -250,14 +251,14 @@ public class ExampleUsage1 {
                     true
                     , new Amount("100", "NOK")
                     , new TaxCategory("S", new TaxScheme("VAT")).withPercent("25")
-                ).withAllowanceChargeReasonCode("FC").withAllowanceChargeReason("Freight")
+                ).withAllowanceChargeReasonCode(AllowanceReasonCode.ARC_41).withAllowanceChargeReason("Freight")
             )
             .withAllowanceCharge(
                 new InvoiceAllowanceCharge(
                     false
                     , new Amount("100", "NOK")
                     , new TaxCategory("S", new TaxScheme("VAT")).withPercent("25")
-                ).withAllowanceChargeReasonCode("95").withAllowanceChargeReason("Promotion discount")
+                ).withAllowanceChargeReasonCode(AllowanceReasonCode.ARC_95).withAllowanceChargeReason("Promotion discount")
             ).withInvoiceLine(invoiceLine1)
             .withInvoiceLine(invoiceLine2)
             .withInvoiceLine(invoiceLine3)

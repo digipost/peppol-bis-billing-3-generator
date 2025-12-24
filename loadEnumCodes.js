@@ -27,6 +27,7 @@ async function loadMetadata(url, prefix, fileName) {
         codeMetadata.enumChain = "";
 
         const divs = $('dd:last div');
+        let needMethods = false;
         divs.each((index, element) => {
             const div = $(element);
             const strongText = div.find('strong').text().trim();
@@ -35,13 +36,20 @@ async function loadMetadata(url, prefix, fileName) {
             codeMetadata.enumChain += `  /** ${strongText} */\n`;
 
             if (prefix) {
-                codeMetadata.enumChain += `  ${prefix}_${codeText}("${codeText}")${index === divs.length - 1 ? ';' : ','}\n`;
+                needMethods = true;
+                codeMetadata.enumChain += `  ${prefix}_${codeText.replaceAll("-", "_")}("${codeText}")${index === divs.length - 1 ? ';' : ','}\n`;
             } else {
-                codeMetadata.enumChain += `  ${codeText}${index === divs.length - 1 ? ';' : ','}\n`;
+                if (codeText.includes("-")) {
+                    needMethods = true;
+
+                    codeMetadata.enumChain += `  ${codeText.replaceAll("-", "_")}("${codeText}")${index === divs.length - 1 ? ';' : ','}\n`;
+                } else {
+                    codeMetadata.enumChain += `  ${codeText}${index === divs.length - 1 ? ';' : ','}\n`;
+                }
             }
         });
 
-        if (prefix) {
+        if (needMethods) {
             codeMetadata.enumChain += "\n";
             codeMetadata.enumChain +=
                 "  private final String code;\n\n" +
@@ -132,7 +140,7 @@ await writeMetaData(currencyIdCode);
 
 let ElectronicAddressScheme = await loadMetadata(
     "https://docs.peppol.eu/poacc/billing/3.0/codelist/eas/",
-    "AES",
+    "EAS",
     "ElectronicAddressScheme"
 );
 await writeMetaData(ElectronicAddressScheme);
@@ -161,7 +169,7 @@ await writeMetaData(TaxCategoryIdentifier);
 
 let TaxExemptionReasonCode = await loadMetadata(
     "https://docs.peppol.eu/poacc/billing/3.0/codelist/vatex/",
-    "VATEX",
+    null,
     "TaxExemptionReasonCode"
 );
 await writeMetaData(TaxExemptionReasonCode);
@@ -187,12 +195,12 @@ let PaymentMeansCode = await loadMetadata(
 );
 await writeMetaData(PaymentMeansCode);
 
-let AllowanceReasonCodes = await loadMetadata(
+let AllowanceReasonCode = await loadMetadata(
     "https://docs.peppol.eu/poacc/billing/3.0/codelist/UNCL5189/",
     "ARC",
     "AllowanceReasonCodes"
 );
-await writeMetaData(AllowanceReasonCodes);
+await writeMetaData(AllowanceReasonCode);
 
 let ChargeReasonCode = await loadMetadata(
     "https://docs.peppol.eu/poacc/billing/3.0/codelist/UNCL7161/",

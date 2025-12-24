@@ -10,191 +10,191 @@ package peppol.bis.invoice3.domain.codes;
  */
 public enum ElectronicAddressScheme {
   /** System Information et Repertoire des Entreprise et des Etablissements: SIRENE */
-  AES_0002("0002"),
+  EAS_0002("0002"),
   /** Organisationsnummer (Swedish legal entities) */
-  AES_0007("0007"),
+  EAS_0007("0007"),
   /** SIRET-CODE */
-  AES_0009("0009"),
+  EAS_0009("0009"),
   /** LY-tunnus */
-  AES_0037("0037"),
+  EAS_0037("0037"),
   /** Data Universal Numbering System (D-U-N-S Number) */
-  AES_0060("0060"),
+  EAS_0060("0060"),
   /** EAN Location Code */
-  AES_0088("0088"),
+  EAS_0088("0088"),
   /** DANISH CHAMBER OF COMMERCE Scheme (EDIRA compliant) */
-  AES_0096("0096"),
+  EAS_0096("0096"),
   /** FTI - Ediforum Italia, (EDIRA compliant) */
-  AES_0097("0097"),
+  EAS_0097("0097"),
   /** "Vereniging van Kamers van Koophandel en Fabrieken in Nederland (Association of
             Chambers of Commerce and Industry in the Netherlands), Scheme (EDIRA compliant)" */
-  AES_0106("0106"),
+  EAS_0106("0106"),
   /** Directorates of the European Commission */
-  AES_0130("0130"),
+  EAS_0130("0130"),
   /** SIA Object Identifiers */
-  AES_0135("0135"),
+  EAS_0135("0135"),
   /** SECETI Object Identifiers */
-  AES_0142("0142"),
+  EAS_0142("0142"),
   /** Australian Business Number (ABN) Scheme */
-  AES_0151("0151"),
+  EAS_0151("0151"),
   /** Odette International Limited */
-  AES_0177("0177"),
+  EAS_0177("0177"),
   /** Numéro d'identification suisse des enterprises (IDE), Swiss Unique Business
             Identification Number (UIDB) */
-  AES_0183("0183"),
+  EAS_0183("0183"),
   /** DIGSTORG */
-  AES_0184("0184"),
+  EAS_0184("0184"),
   /** Corporate Number of The Social Security and Tax Number System */
-  AES_0188("0188"),
+  EAS_0188("0188"),
   /** Dutch Originator's Identification Number */
-  AES_0190("0190"),
+  EAS_0190("0190"),
   /** Centre of Registers and Information Systems of the Ministry of Justice */
-  AES_0191("0191"),
+  EAS_0191("0191"),
   /** Enhetsregisteret ved Bronnoysundregisterne */
-  AES_0192("0192"),
+  EAS_0192("0192"),
   /** UBL.BE party identifier */
-  AES_0193("0193"),
+  EAS_0193("0193"),
   /** Singapore UEN identifier */
-  AES_0195("0195"),
+  EAS_0195("0195"),
   /** Kennitala - Iceland legal id for individuals and legal entities */
-  AES_0196("0196"),
+  EAS_0196("0196"),
   /** ERSTORG */
-  AES_0198("0198"),
+  EAS_0198("0198"),
   /** Legal Entity Identifier (LEI) */
-  AES_0199("0199"),
+  EAS_0199("0199"),
   /** Legal entity code (Lithuania) */
-  AES_0200("0200"),
+  EAS_0200("0200"),
   /** Codice Univoco Unità Organizzativa iPA */
-  AES_0201("0201"),
+  EAS_0201("0201"),
   /** Indirizzo di Posta Elettronica Certificata */
-  AES_0202("0202"),
+  EAS_0202("0202"),
   /** Leitweg-ID */
-  AES_0204("0204"),
+  EAS_0204("0204"),
   /** Numero d'entreprise / ondernemingsnummer / Unternehmensnummer */
-  AES_0208("0208"),
+  EAS_0208("0208"),
   /** GS1 identification keys */
-  AES_0209("0209"),
+  EAS_0209("0209"),
   /** CODICE FISCALE */
-  AES_0210("0210"),
+  EAS_0210("0210"),
   /** PARTITA IVA */
-  AES_0211("0211"),
+  EAS_0211("0211"),
   /** Finnish Organization Identifier */
-  AES_0212("0212"),
+  EAS_0212("0212"),
   /** Finnish Organization Value Add Tax Identifier */
-  AES_0213("0213"),
+  EAS_0213("0213"),
   /** Net service ID */
-  AES_0215("0215"),
+  EAS_0215("0215"),
   /** OVTcode */
-  AES_0216("0216"),
+  EAS_0216("0216"),
   /** Unified registration number (Latvia) */
-  AES_0218("0218"),
+  EAS_0218("0218"),
   /** The registered number of the qualified invoice issuer (Japan) */
-  AES_0221("0221"),
+  EAS_0221("0221"),
   /** National e-Invoicing Framework (Malaysia) */
-  AES_0230("0230"),
+  EAS_0230("0230"),
   /** UAE Tax Identification Number (TIN) */
-  AES_0235("0235"),
+  EAS_0235("0235"),
   /** Hungary VAT number */
-  AES_9910("9910"),
+  EAS_9910("9910"),
   /** Business Registers Network */
-  AES_9913("9913"),
+  EAS_9913("9913"),
   /** Österreichische Umsatzsteuer-Identifikationsnummer */
-  AES_9914("9914"),
+  EAS_9914("9914"),
   /** "Österreichisches Verwaltungs bzw. Organisationskennzeichen" */
-  AES_9915("9915"),
+  EAS_9915("9915"),
   /** "SOCIETY FOR WORLDWIDE INTERBANK FINANCIAL, TELECOMMUNICATION S.W.I.F.T" */
-  AES_9918("9918"),
+  EAS_9918("9918"),
   /** Kennziffer des Unternehmensregisters */
-  AES_9919("9919"),
+  EAS_9919("9919"),
   /** Agencia Española de Administración Tributaria */
-  AES_9920("9920"),
+  EAS_9920("9920"),
   /** Andorra VAT number */
-  AES_9922("9922"),
+  EAS_9922("9922"),
   /** Albania VAT number */
-  AES_9923("9923"),
+  EAS_9923("9923"),
   /** Bosnia and Herzegovina VAT number */
-  AES_9924("9924"),
+  EAS_9924("9924"),
   /** Belgium VAT number */
-  AES_9925("9925"),
+  EAS_9925("9925"),
   /** Bulgaria VAT number */
-  AES_9926("9926"),
+  EAS_9926("9926"),
   /** Switzerland VAT number */
-  AES_9927("9927"),
+  EAS_9927("9927"),
   /** Cyprus VAT number */
-  AES_9928("9928"),
+  EAS_9928("9928"),
   /** Czech Republic VAT number */
-  AES_9929("9929"),
+  EAS_9929("9929"),
   /** Germany VAT number */
-  AES_9930("9930"),
+  EAS_9930("9930"),
   /** Estonia VAT number */
-  AES_9931("9931"),
+  EAS_9931("9931"),
   /** United Kingdom VAT number */
-  AES_9932("9932"),
+  EAS_9932("9932"),
   /** Greece VAT number */
-  AES_9933("9933"),
+  EAS_9933("9933"),
   /** Croatia VAT number */
-  AES_9934("9934"),
+  EAS_9934("9934"),
   /** Ireland VAT number */
-  AES_9935("9935"),
+  EAS_9935("9935"),
   /** Liechtenstein VAT number */
-  AES_9936("9936"),
+  EAS_9936("9936"),
   /** Lithuania VAT number */
-  AES_9937("9937"),
+  EAS_9937("9937"),
   /** Luxemburg VAT number */
-  AES_9938("9938"),
+  EAS_9938("9938"),
   /** Latvia VAT number */
-  AES_9939("9939"),
+  EAS_9939("9939"),
   /** Monaco VAT number */
-  AES_9940("9940"),
+  EAS_9940("9940"),
   /** Montenegro VAT number */
-  AES_9941("9941"),
+  EAS_9941("9941"),
   /** Macedonia, the former Yugoslav Republic of VAT number */
-  AES_9942("9942"),
+  EAS_9942("9942"),
   /** Malta VAT number */
-  AES_9943("9943"),
+  EAS_9943("9943"),
   /** Netherlands VAT number */
-  AES_9944("9944"),
+  EAS_9944("9944"),
   /** Poland VAT number */
-  AES_9945("9945"),
+  EAS_9945("9945"),
   /** Portugal VAT number */
-  AES_9946("9946"),
+  EAS_9946("9946"),
   /** Romania VAT number */
-  AES_9947("9947"),
+  EAS_9947("9947"),
   /** Serbia VAT number */
-  AES_9948("9948"),
+  EAS_9948("9948"),
   /** Slovenia VAT number */
-  AES_9949("9949"),
+  EAS_9949("9949"),
   /** Slovakia VAT number */
-  AES_9950("9950"),
+  EAS_9950("9950"),
   /** San Marino VAT number */
-  AES_9951("9951"),
+  EAS_9951("9951"),
   /** Turkey VAT number */
-  AES_9952("9952"),
+  EAS_9952("9952"),
   /** Holy See (Vatican City State) VAT number */
-  AES_9953("9953"),
+  EAS_9953("9953"),
   /** French VAT number */
-  AES_9957("9957"),
+  EAS_9957("9957"),
   /** Employer Identification Number (EIN, USA) */
-  AES_9959("9959"),
+  EAS_9959("9959"),
   /** Standard Company Code */
-  AES_0147("0147"),
+  EAS_0147("0147"),
   /** Identification number of economic subjects: (ICO) */
-  AES_0154("0154"),
+  EAS_0154("0154"),
   /** Identification number of economic subject (ICO) Act on State Statistics of 29 November 2001, § 27 */
-  AES_0158("0158"),
+  EAS_0158("0158"),
   /** Teikoku Company Code */
-  AES_0170("0170"),
+  EAS_0170("0170"),
   /** KOIOS Open Technical Dictionary */
-  AES_0194("0194"),
+  EAS_0194("0194"),
   /** eDelivery Network Participant identifier */
-  AES_0203("0203"),
+  EAS_0203("0203"),
   /** CODDEST */
-  AES_0205("0205"),
+  EAS_0205("0205"),
   /** The Netherlands Chamber of Commerce and Industry establishment number */
-  AES_0217("0217"),
+  EAS_0217("0217"),
   /** FRCTC ELECTRONIC ADDRESS */
-  AES_0225("0225"),
+  EAS_0225("0225"),
   /** Register of legal persons (in French : Répertoire des personnes morales) */
-  AES_0240("0240");
+  EAS_0240("0240");
 
   private final String code;
 

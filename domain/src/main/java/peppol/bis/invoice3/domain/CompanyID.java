@@ -37,13 +37,7 @@ public class CompanyID implements XmlElement{
      * @deprecated
      */
     public CompanyID withSchemeID(String schemeID) {
-        try {
-            this.schemeID = ElectronicAddressScheme.fromCode(schemeID);
-        } catch (IllegalArgumentException ex) {
-            throw new IllegalArgumentException(
-                    "Invalid ElectronicAddressScheme (ICD): " + schemeID, ex
-            );
-        }
+        this.schemeID = ElectronicAddressScheme.fromCode(schemeID);
         return this;
     }
 

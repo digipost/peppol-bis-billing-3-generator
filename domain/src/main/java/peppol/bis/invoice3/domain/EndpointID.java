@@ -37,14 +37,8 @@ public class EndpointID implements XmlElement{
      * @deprecated
      */
     public EndpointID withSchemeID(String schemeID) {
-        try {
-            this.schemeID = ElectronicAddressScheme.fromCode(schemeID);
-        } catch (IllegalArgumentException ex) {
-            throw new IllegalArgumentException(
-                    "Invalid ElectronicAddressScheme (ICD): " + schemeID, ex
-            );
-        }
-        return this;
+       this.schemeID = ElectronicAddressScheme.fromCode(schemeID);
+       return this;
     }
 
     public EndpointID withSchemeID(ElectronicAddressScheme schemeID) {

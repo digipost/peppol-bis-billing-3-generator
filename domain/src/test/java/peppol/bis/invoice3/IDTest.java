@@ -18,9 +18,11 @@ package peppol.bis.invoice3;
 import org.eaxy.Element;
 import org.junit.jupiter.api.Test;
 import peppol.bis.invoice3.domain.ID;
+import peppol.bis.invoice3.domain.codes.ElectronicAddressScheme;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 
 class IDTest {
@@ -35,10 +37,21 @@ class IDTest {
 
     @Test
     void ID_to_xml_with_name() {
-        final Element element = (Element) new ID("7300010000001").withSchemeID("0088").node();
+        final Element element = (Element) new ID("7300010000001").withSchemeID(ElectronicAddressScheme.EAS_0088).node();
         assertThat(element.getName().getName(), equalTo("ID"));
         assertThat(element.text(), equalTo("7300010000001"));
         assertThat(element.attrs().get("schemeID"), equalTo("0088"));
     }
+
+    @Test
+    void ID_to_xml_with_nameAsString() {
+        final Element element = (Element) new ID("7300010000001").withSchemeID("0088").node();
+        assertThat(element.getName().getName(), equalTo("ID"));
+        assertThat(element.text(), equalTo("7300010000001"));
+        assertThat(element.attrs().get("schemeID"), equalTo("0088"));
+
+        assertThrows(IllegalArgumentException.class, ()-> new ID("7300010000001").withSchemeID("DUMMY"));
+    }
+
 
 }

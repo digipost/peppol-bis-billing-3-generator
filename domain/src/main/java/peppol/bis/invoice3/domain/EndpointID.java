@@ -19,6 +19,7 @@ import org.eaxy.Element;
 import org.eaxy.Node;
 import org.eaxy.QualifiedName;
 import org.eaxy.Xml;
+import peppol.bis.invoice3.domain.codes.ElectronicAddressScheme;
 
 import java.util.Optional;
 
@@ -26,13 +27,27 @@ import static peppol.bis.invoice3.domain.Namespaces.CBC_NS;
 
 public class EndpointID implements XmlElement{
     private final String value;
-    private String schemeID;
+    private ElectronicAddressScheme schemeID;
 
     public EndpointID(String value) {
         this.value = value;
     }
 
+    /**
+     * @deprecated
+     */
     public EndpointID withSchemeID(String schemeID) {
+        try {
+            this.schemeID = ElectronicAddressScheme.fromCode(schemeID);
+        } catch (IllegalArgumentException ex) {
+            throw new IllegalArgumentException(
+                    "Invalid ElectronicAddressScheme (ICD): " + schemeID, ex
+            );
+        }
+        return this;
+    }
+
+    public EndpointID withSchemeID(ElectronicAddressScheme schemeID) {
         this.schemeID = schemeID;
         return this;
     }
@@ -44,7 +59,7 @@ public class EndpointID implements XmlElement{
             , Xml.text(this.value)
         );
 
-        Optional.ofNullable(this.schemeID).ifPresent(v -> el.attr("schemeID", v));
+        Optional.ofNullable(this.schemeID).ifPresent(v -> el.attr("schemeID", v.getCode()));
 
         return el;
     }

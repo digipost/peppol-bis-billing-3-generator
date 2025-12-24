@@ -62,6 +62,7 @@ import peppol.bis.invoice3.domain.TaxRepresentativeParty;
 import peppol.bis.invoice3.domain.TaxScheme;
 import peppol.bis.invoice3.domain.TaxTotal;
 import peppol.bis.invoice3.domain.codes.CurrencyIdCode;
+import peppol.bis.invoice3.domain.codes.UnitIdCode;
 
 import java.util.List;
 
@@ -92,7 +93,7 @@ public class InvoiceTest  {
 
         final InvoiceLine invoiceLine = new InvoiceLine(
             "1"
-            , new InvoicedQuantity("1", "STK")
+            , new InvoicedQuantity("1", UnitIdCode.X_STK)
             , new LineExtensionAmount("1272", CurrencyIdCode.EUR)
             , new Item("Laptop computer", new ClassifiedTaxCategory("S", new TaxScheme("VAT")))
             , new Price(new PriceAmount("1233", CurrencyIdCode.EUR))
@@ -254,7 +255,7 @@ public class InvoiceTest  {
     void invoice_to_xml_for_added_invoice_lines() {
         final InvoiceLine invoiceLine = new InvoiceLine(
             "2"
-            , new InvoicedQuantity("1", "STK")
+            , new InvoicedQuantity("1", UnitIdCode.X_STK)
             , new LineExtensionAmount("1272", CurrencyIdCode.EUR)
             , new Item("Power cord", new ClassifiedTaxCategory("S", new TaxScheme("VAT")))
             , new Price(new PriceAmount("1233", CurrencyIdCode.EUR))
@@ -347,7 +348,7 @@ public class InvoiceTest  {
 
         final InvoiceLine invoiceLine = new InvoiceLine(
                 "1"
-                , new InvoicedQuantity("1", "STK")
+                , new InvoicedQuantity("1", UnitIdCode.X_STK)
                 , new LineExtensionAmount("1272", CurrencyIdCode.EUR)
                 , new Item("Laptop computer", new ClassifiedTaxCategory("S", new TaxScheme("VAT")))
                 , new Price(new PriceAmount("1233", CurrencyIdCode.EUR))

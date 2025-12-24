@@ -1,0 +1,4373 @@
+package peppol.bis.invoice3.domain.codes;
+
+/**
+ * Recommendation 20, including Recommendation 21 codes - prefixed with X (UN/ECE)
+ * UNECERec20
+ * https://docs.peppol.eu/poacc/billing/3.0/codelist/UNECERec20/
+ *
+ * @author Jonathan Cambier
+ */
+public enum UnitIdCode {
+
+  /** group */
+  X_10("10"),
+  /** outfit */
+  X_11("11"),
+  /** ration */
+  X_13("13"),
+  /** shot */
+  X_14("14"),
+  /** stick, military */
+  X_15("15"),
+  /** twenty foot container */
+  X_20("20"),
+  /** forty foot container */
+  X_21("21"),
+  /** decilitre per gram */
+  X_22("22"),
+  /** gram per cubic centimetre */
+  X_23("23"),
+  /** theoretical pound */
+  X_24("24"),
+  /** gram per square centimetre */
+  X_25("25"),
+  /** theoretical ton */
+  X_27("27"),
+  /** kilogram per square metre */
+  X_28("28"),
+  /** kilopascal square metre per gram */
+  X_33("33"),
+  /** kilopascal per millimetre */
+  X_34("34"),
+  /** millilitre per square centimetre second */
+  X_35("35"),
+  /** ounce per square foot */
+  X_37("37"),
+  /** ounce per square foot per 0,01inch */
+  X_38("38"),
+  /** millilitre per second */
+  X_40("40"),
+  /** millilitre per minute */
+  X_41("41"),
+  /** sitas */
+  X_56("56"),
+  /** mesh */
+  X_57("57"),
+  /** net kilogram */
+  X_58("58"),
+  /** part per million */
+  X_59("59"),
+  /** percent weight */
+  X_60("60"),
+  /** part per billion (US) */
+  X_61("61"),
+  /** millipascal */
+  X_74("74"),
+  /** milli-inch */
+  X_77("77"),
+  /** pound per square inch absolute */
+  X_80("80"),
+  /** henry */
+  X_81("81"),
+  /** foot pound-force */
+  X_85("85"),
+  /** pound per cubic foot */
+  X_87("87"),
+  /** poise */
+  X_89("89"),
+  /** stokes */
+  X_91("91"),
+  /** fixed rate */
+  X_1I("1I"),
+  /** radian per second */
+  X_2A("2A"),
+  /** radian per second squared */
+  X_2B("2B"),
+  /** roentgen */
+  X_2C("2C"),
+  /** volt AC */
+  X_2G("2G"),
+  /** volt DC */
+  X_2H("2H"),
+  /** British thermal unit (international table) per hour */
+  X_2I("2I"),
+  /** cubic centimetre per second */
+  X_2J("2J"),
+  /** cubic foot per hour */
+  X_2K("2K"),
+  /** cubic foot per minute */
+  X_2L("2L"),
+  /** centimetre per second */
+  X_2M("2M"),
+  /** decibel */
+  X_2N("2N"),
+  /** kilobyte */
+  X_2P("2P"),
+  /** kilobecquerel */
+  X_2Q("2Q"),
+  /** kilocurie */
+  X_2R("2R"),
+  /** megagram */
+  X_2U("2U"),
+  /** metre per minute */
+  X_2X("2X"),
+  /** milliroentgen */
+  X_2Y("2Y"),
+  /** millivolt */
+  X_2Z("2Z"),
+  /** megajoule */
+  X_3B("3B"),
+  /** manmonth */
+  X_3C("3C"),
+  /** centistokes */
+  X_4C("4C"),
+  /** microlitre */
+  X_4G("4G"),
+  /** micrometre (micron) */
+  X_4H("4H"),
+  /** milliampere */
+  X_4K("4K"),
+  /** megabyte */
+  X_4L("4L"),
+  /** milligram per hour */
+  X_4M("4M"),
+  /** megabecquerel */
+  X_4N("4N"),
+  /** microfarad */
+  X_4O("4O"),
+  /** newton per metre */
+  X_4P("4P"),
+  /** ounce inch */
+  X_4Q("4Q"),
+  /** ounce foot */
+  X_4R("4R"),
+  /** picofarad */
+  X_4T("4T"),
+  /** pound per hour */
+  X_4U("4U"),
+  /** ton (US) per hour */
+  X_4W("4W"),
+  /** kilolitre per hour */
+  X_4X("4X"),
+  /** barrel (US) per minute */
+  X_5A("5A"),
+  /** batch */
+  X_5B("5B"),
+  /** MMSCF/day */
+  X_5E("5E"),
+  /** hydraulic horse power */
+  X_5J("5J"),
+  /** ampere square metre per joule second */
+  X_A10("A10"),
+  /** angstrom */
+  X_A11("A11"),
+  /** astronomical unit */
+  X_A12("A12"),
+  /** attojoule */
+  X_A13("A13"),
+  /** barn */
+  X_A14("A14"),
+  /** barn per electronvolt */
+  X_A15("A15"),
+  /** barn per steradian electronvolt */
+  X_A16("A16"),
+  /** barn per steradian */
+  X_A17("A17"),
+  /** becquerel per kilogram */
+  X_A18("A18"),
+  /** becquerel per cubic metre */
+  X_A19("A19"),
+  /** ampere per centimetre */
+  X_A2("A2"),
+  /** British thermal unit (international table) per second square foot degree
+   Rankine */
+  X_A20("A20"),
+  /** British thermal unit (international table) per pound degree Rankine */
+  X_A21("A21"),
+  /** British thermal unit (international table) per second foot degree Rankine */
+  X_A22("A22"),
+  /** British thermal unit (international table) per hour square foot degree Rankine */
+  X_A23("A23"),
+  /** candela per square metre */
+  X_A24("A24"),
+  /** coulomb metre */
+  X_A26("A26"),
+  /** coulomb metre squared per volt */
+  X_A27("A27"),
+  /** coulomb per cubic centimetre */
+  X_A28("A28"),
+  /** coulomb per cubic metre */
+  X_A29("A29"),
+  /** ampere per millimetre */
+  X_A3("A3"),
+  /** coulomb per cubic millimetre */
+  X_A30("A30"),
+  /** coulomb per kilogram second */
+  X_A31("A31"),
+  /** coulomb per mole */
+  X_A32("A32"),
+  /** coulomb per square centimetre */
+  X_A33("A33"),
+  /** coulomb per square metre */
+  X_A34("A34"),
+  /** coulomb per square millimetre */
+  X_A35("A35"),
+  /** cubic centimetre per mole */
+  X_A36("A36"),
+  /** cubic decimetre per mole */
+  X_A37("A37"),
+  /** cubic metre per coulomb */
+  X_A38("A38"),
+  /** cubic metre per kilogram */
+  X_A39("A39"),
+  /** ampere per square centimetre */
+  X_A4("A4"),
+  /** cubic metre per mole */
+  X_A40("A40"),
+  /** ampere per square metre */
+  X_A41("A41"),
+  /** curie per kilogram */
+  X_A42("A42"),
+  /** deadweight tonnage */
+  X_A43("A43"),
+  /** decalitre */
+  X_A44("A44"),
+  /** decametre */
+  X_A45("A45"),
+  /** decitex */
+  X_A47("A47"),
+  /** degree Rankine */
+  X_A48("A48"),
+  /** denier */
+  X_A49("A49"),
+  /** ampere square metre */
+  X_A5("A5"),
+  /** electronvolt */
+  X_A53("A53"),
+  /** electronvolt per metre */
+  X_A54("A54"),
+  /** electronvolt square metre */
+  X_A55("A55"),
+  /** electronvolt square metre per kilogram */
+  X_A56("A56"),
+  /** 8-part cloud cover */
+  X_A59("A59"),
+  /** ampere per square metre kelvin squared */
+  X_A6("A6"),
+  /** exajoule */
+  X_A68("A68"),
+  /** farad per metre */
+  X_A69("A69"),
+  /** ampere per square millimetre */
+  X_A7("A7"),
+  /** femtojoule */
+  X_A70("A70"),
+  /** femtometre */
+  X_A71("A71"),
+  /** foot per second squared */
+  X_A73("A73"),
+  /** foot pound-force per second */
+  X_A74("A74"),
+  /** freight ton */
+  X_A75("A75"),
+  /** gal */
+  X_A76("A76"),
+  /** ampere second */
+  X_A8("A8"),
+  /** gigacoulomb per cubic metre */
+  X_A84("A84"),
+  /** gigaelectronvolt */
+  X_A85("A85"),
+  /** gigahertz */
+  X_A86("A86"),
+  /** gigaohm */
+  X_A87("A87"),
+  /** gigaohm metre */
+  X_A88("A88"),
+  /** gigapascal */
+  X_A89("A89"),
+  /** rate */
+  X_A9("A9"),
+  /** gigawatt */
+  X_A90("A90"),
+  /** gon */
+  X_A91("A91"),
+  /** gram per cubic metre */
+  X_A93("A93"),
+  /** gram per mole */
+  X_A94("A94"),
+  /** gray */
+  X_A95("A95"),
+  /** gray per second */
+  X_A96("A96"),
+  /** hectopascal */
+  X_A97("A97"),
+  /** henry per metre */
+  X_A98("A98"),
+  /** bit */
+  X_A99("A99"),
+  /** ball */
+  X_AA("AA"),
+  /** bulk pack */
+  X_AB("AB"),
+  /** acre */
+  X_ACR("ACR"),
+  /** activity */
+  X_ACT("ACT"),
+  /** byte */
+  X_AD("AD"),
+  /** ampere per metre */
+  X_AE("AE"),
+  /** additional minute */
+  X_AH("AH"),
+  /** average minute per call */
+  X_AI("AI"),
+  /** fathom */
+  X_AK("AK"),
+  /** access line */
+  X_AL("AL"),
+  /** ampere hour */
+  X_AMH("AMH"),
+  /** ampere */
+  X_AMP("AMP"),
+  /** year */
+  X_ANN("ANN"),
+  /** troy ounce or apothecary ounce */
+  X_APZ("APZ"),
+  /** anti-hemophilic factor (AHF) unit */
+  X_AQ("AQ"),
+  /** assortment */
+  X_AS("AS"),
+  /** alcoholic strength by mass */
+  X_ASM("ASM"),
+  /** alcoholic strength by volume */
+  X_ASU("ASU"),
+  /** standard atmosphere */
+  X_ATM("ATM"),
+  /** american wire gauge */
+  X_AWG("AWG"),
+  /** assembly */
+  X_AY("AY"),
+  /** British thermal unit (international table) per pound */
+  X_AZ("AZ"),
+  /** barrel (US) per day */
+  X_B1("B1"),
+  /** bit per second */
+  X_B10("B10"),
+  /** joule per kilogram kelvin */
+  X_B11("B11"),
+  /** joule per metre */
+  X_B12("B12"),
+  /** joule per square metre */
+  X_B13("B13"),
+  /** joule per metre to the fourth power */
+  X_B14("B14"),
+  /** joule per mole */
+  X_B15("B15"),
+  /** joule per mole kelvin */
+  X_B16("B16"),
+  /** credit */
+  X_B17("B17"),
+  /** joule second */
+  X_B18("B18"),
+  /** digit */
+  X_B19("B19"),
+  /** joule square metre per kilogram */
+  X_B20("B20"),
+  /** kelvin per watt */
+  X_B21("B21"),
+  /** kiloampere */
+  X_B22("B22"),
+  /** kiloampere per square metre */
+  X_B23("B23"),
+  /** kiloampere per metre */
+  X_B24("B24"),
+  /** kilobecquerel per kilogram */
+  X_B25("B25"),
+  /** kilocoulomb */
+  X_B26("B26"),
+  /** kilocoulomb per cubic metre */
+  X_B27("B27"),
+  /** kilocoulomb per square metre */
+  X_B28("B28"),
+  /** kiloelectronvolt */
+  X_B29("B29"),
+  /** batting pound */
+  X_B3("B3"),
+  /** gibibit */
+  X_B30("B30"),
+  /** kilogram metre per second */
+  X_B31("B31"),
+  /** kilogram metre squared */
+  X_B32("B32"),
+  /** kilogram metre squared per second */
+  X_B33("B33"),
+  /** kilogram per cubic decimetre */
+  X_B34("B34"),
+  /** kilogram per litre */
+  X_B35("B35"),
+  /** barrel, imperial */
+  X_B4("B4"),
+  /** kilojoule per kelvin */
+  X_B41("B41"),
+  /** kilojoule per kilogram */
+  X_B42("B42"),
+  /** kilojoule per kilogram kelvin */
+  X_B43("B43"),
+  /** kilojoule per mole */
+  X_B44("B44"),
+  /** kilomole */
+  X_B45("B45"),
+  /** kilomole per cubic metre */
+  X_B46("B46"),
+  /** kilonewton */
+  X_B47("B47"),
+  /** kilonewton metre */
+  X_B48("B48"),
+  /** kiloohm */
+  X_B49("B49"),
+  /** kiloohm metre */
+  X_B50("B50"),
+  /** kilosecond */
+  X_B52("B52"),
+  /** kilosiemens */
+  X_B53("B53"),
+  /** kilosiemens per metre */
+  X_B54("B54"),
+  /** kilovolt per metre */
+  X_B55("B55"),
+  /** kiloweber per metre */
+  X_B56("B56"),
+  /** light year */
+  X_B57("B57"),
+  /** litre per mole */
+  X_B58("B58"),
+  /** lumen hour */
+  X_B59("B59"),
+  /** lumen per square metre */
+  X_B60("B60"),
+  /** lumen per watt */
+  X_B61("B61"),
+  /** lumen second */
+  X_B62("B62"),
+  /** lux hour */
+  X_B63("B63"),
+  /** lux second */
+  X_B64("B64"),
+  /** megaampere per square metre */
+  X_B66("B66"),
+  /** megabecquerel per kilogram */
+  X_B67("B67"),
+  /** gigabit */
+  X_B68("B68"),
+  /** megacoulomb per cubic metre */
+  X_B69("B69"),
+  /** cycle */
+  X_B7("B7"),
+  /** megacoulomb per square metre */
+  X_B70("B70"),
+  /** megaelectronvolt */
+  X_B71("B71"),
+  /** megagram per cubic metre */
+  X_B72("B72"),
+  /** meganewton */
+  X_B73("B73"),
+  /** meganewton metre */
+  X_B74("B74"),
+  /** megaohm */
+  X_B75("B75"),
+  /** megaohm metre */
+  X_B76("B76"),
+  /** megasiemens per metre */
+  X_B77("B77"),
+  /** megavolt */
+  X_B78("B78"),
+  /** megavolt per metre */
+  X_B79("B79"),
+  /** joule per cubic metre */
+  X_B8("B8"),
+  /** gigabit per second */
+  X_B80("B80"),
+  /** reciprocal metre squared reciprocal second */
+  X_B81("B81"),
+  /** inch per linear foot */
+  X_B82("B82"),
+  /** metre to the fourth power */
+  X_B83("B83"),
+  /** microampere */
+  X_B84("B84"),
+  /** microbar */
+  X_B85("B85"),
+  /** microcoulomb */
+  X_B86("B86"),
+  /** microcoulomb per cubic metre */
+  X_B87("B87"),
+  /** microcoulomb per square metre */
+  X_B88("B88"),
+  /** microfarad per metre */
+  X_B89("B89"),
+  /** microhenry */
+  X_B90("B90"),
+  /** microhenry per metre */
+  X_B91("B91"),
+  /** micronewton */
+  X_B92("B92"),
+  /** micronewton metre */
+  X_B93("B93"),
+  /** microohm */
+  X_B94("B94"),
+  /** microohm metre */
+  X_B95("B95"),
+  /** micropascal */
+  X_B96("B96"),
+  /** microradian */
+  X_B97("B97"),
+  /** microsecond */
+  X_B98("B98"),
+  /** microsiemens */
+  X_B99("B99"),
+  /** bar [unit of pressure] */
+  X_BAR("BAR"),
+  /** base box */
+  X_BB("BB"),
+  /** board foot */
+  X_BFT("BFT"),
+  /** brake horse power */
+  X_BHP("BHP"),
+  /** billion (EUR) */
+  X_BIL("BIL"),
+  /** dry barrel (US) */
+  X_BLD("BLD"),
+  /** barrel (US) */
+  X_BLL("BLL"),
+  /** hundred board foot */
+  X_BP("BP"),
+  /** beats per minute */
+  X_BPM("BPM"),
+  /** becquerel */
+  X_BQL("BQL"),
+  /** British thermal unit (international table) */
+  X_BTU("BTU"),
+  /** bushel (US) */
+  X_BUA("BUA"),
+  /** bushel (UK) */
+  X_BUI("BUI"),
+  /** call */
+  X_C0("C0"),
+  /** millifarad */
+  X_C10("C10"),
+  /** milligal */
+  X_C11("C11"),
+  /** milligram per metre */
+  X_C12("C12"),
+  /** milligray */
+  X_C13("C13"),
+  /** millihenry */
+  X_C14("C14"),
+  /** millijoule */
+  X_C15("C15"),
+  /** millimetre per second */
+  X_C16("C16"),
+  /** millimetre squared per second */
+  X_C17("C17"),
+  /** millimole */
+  X_C18("C18"),
+  /** mole per kilogram */
+  X_C19("C19"),
+  /** millinewton */
+  X_C20("C20"),
+  /** kibibit */
+  X_C21("C21"),
+  /** millinewton per metre */
+  X_C22("C22"),
+  /** milliohm metre */
+  X_C23("C23"),
+  /** millipascal second */
+  X_C24("C24"),
+  /** milliradian */
+  X_C25("C25"),
+  /** millisecond */
+  X_C26("C26"),
+  /** millisiemens */
+  X_C27("C27"),
+  /** millisievert */
+  X_C28("C28"),
+  /** millitesla */
+  X_C29("C29"),
+  /** microvolt per metre */
+  X_C3("C3"),
+  /** millivolt per metre */
+  X_C30("C30"),
+  /** milliwatt */
+  X_C31("C31"),
+  /** milliwatt per square metre */
+  X_C32("C32"),
+  /** milliweber */
+  X_C33("C33"),
+  /** mole */
+  X_C34("C34"),
+  /** mole per cubic decimetre */
+  X_C35("C35"),
+  /** mole per cubic metre */
+  X_C36("C36"),
+  /** kilobit */
+  X_C37("C37"),
+  /** mole per litre */
+  X_C38("C38"),
+  /** nanoampere */
+  X_C39("C39"),
+  /** nanocoulomb */
+  X_C40("C40"),
+  /** nanofarad */
+  X_C41("C41"),
+  /** nanofarad per metre */
+  X_C42("C42"),
+  /** nanohenry */
+  X_C43("C43"),
+  /** nanohenry per metre */
+  X_C44("C44"),
+  /** nanometre */
+  X_C45("C45"),
+  /** nanoohm metre */
+  X_C46("C46"),
+  /** nanosecond */
+  X_C47("C47"),
+  /** nanotesla */
+  X_C48("C48"),
+  /** nanowatt */
+  X_C49("C49"),
+  /** neper */
+  X_C50("C50"),
+  /** neper per second */
+  X_C51("C51"),
+  /** picometre */
+  X_C52("C52"),
+  /** newton metre second */
+  X_C53("C53"),
+  /** newton metre squared per kilogram squared */
+  X_C54("C54"),
+  /** newton per square metre */
+  X_C55("C55"),
+  /** newton per square millimetre */
+  X_C56("C56"),
+  /** newton second */
+  X_C57("C57"),
+  /** newton second per metre */
+  X_C58("C58"),
+  /** octave */
+  X_C59("C59"),
+  /** ohm centimetre */
+  X_C60("C60"),
+  /** ohm metre */
+  X_C61("C61"),
+  /** one */
+  X_C62("C62"),
+  /** parsec */
+  X_C63("C63"),
+  /** pascal per kelvin */
+  X_C64("C64"),
+  /** pascal second */
+  X_C65("C65"),
+  /** pascal second per cubic metre */
+  X_C66("C66"),
+  /** pascal second per metre */
+  X_C67("C67"),
+  /** petajoule */
+  X_C68("C68"),
+  /** phon */
+  X_C69("C69"),
+  /** centipoise */
+  X_C7("C7"),
+  /** picoampere */
+  X_C70("C70"),
+  /** picocoulomb */
+  X_C71("C71"),
+  /** picofarad per metre */
+  X_C72("C72"),
+  /** picohenry */
+  X_C73("C73"),
+  /** kilobit per second */
+  X_C74("C74"),
+  /** picowatt */
+  X_C75("C75"),
+  /** picowatt per square metre */
+  X_C76("C76"),
+  /** pound-force */
+  X_C78("C78"),
+  /** kilovolt ampere hour */
+  X_C79("C79"),
+  /** millicoulomb per kilogram */
+  X_C8("C8"),
+  /** rad */
+  X_C80("C80"),
+  /** radian */
+  X_C81("C81"),
+  /** radian square metre per mole */
+  X_C82("C82"),
+  /** radian square metre per kilogram */
+  X_C83("C83"),
+  /** radian per metre */
+  X_C84("C84"),
+  /** reciprocal angstrom */
+  X_C85("C85"),
+  /** reciprocal cubic metre */
+  X_C86("C86"),
+  /** reciprocal cubic metre per second */
+  X_C87("C87"),
+  /** reciprocal electron volt per cubic metre */
+  X_C88("C88"),
+  /** reciprocal henry */
+  X_C89("C89"),
+  /** coil group */
+  X_C9("C9"),
+  /** reciprocal joule per cubic metre */
+  X_C90("C90"),
+  /** reciprocal kelvin or kelvin to the power minus one */
+  X_C91("C91"),
+  /** reciprocal metre */
+  X_C92("C92"),
+  /** reciprocal square metre */
+  X_C93("C93"),
+  /** reciprocal minute */
+  X_C94("C94"),
+  /** reciprocal mole */
+  X_C95("C95"),
+  /** reciprocal pascal or pascal to the power minus one */
+  X_C96("C96"),
+  /** reciprocal second */
+  X_C97("C97"),
+  /** reciprocal second per metre squared */
+  X_C99("C99"),
+  /** carrying capacity in metric ton */
+  X_CCT("CCT"),
+  /** candela */
+  X_CDL("CDL"),
+  /** degree Celsius */
+  X_CEL("CEL"),
+  /** hundred */
+  X_CEN("CEN"),
+  /** card */
+  X_CG("CG"),
+  /** centigram */
+  X_CGM("CGM"),
+  /** coulomb per kilogram */
+  X_CKG("CKG"),
+  /** hundred leave */
+  X_CLF("CLF"),
+  /** centilitre */
+  X_CLT("CLT"),
+  /** square centimetre */
+  X_CMK("CMK"),
+  /** cubic centimetre */
+  X_CMQ("CMQ"),
+  /** centimetre */
+  X_CMT("CMT"),
+  /** hundred pack */
+  X_CNP("CNP"),
+  /** cental (UK) */
+  X_CNT("CNT"),
+  /** coulomb */
+  X_COU("COU"),
+  /** content gram */
+  X_CTG("CTG"),
+  /** metric carat */
+  X_CTM("CTM"),
+  /** content ton (metric) */
+  X_CTN("CTN"),
+  /** curie */
+  X_CUR("CUR"),
+  /** hundred pound (cwt) / hundred weight (US) */
+  X_CWA("CWA"),
+  /** hundred weight (UK) */
+  X_CWI("CWI"),
+  /** kilowatt hour per hour */
+  X_D03("D03"),
+  /** lot [unit of weight] */
+  X_D04("D04"),
+  /** reciprocal second per steradian */
+  X_D1("D1"),
+  /** siemens per metre */
+  X_D10("D10"),
+  /** mebibit */
+  X_D11("D11"),
+  /** siemens square metre per mole */
+  X_D12("D12"),
+  /** sievert */
+  X_D13("D13"),
+  /** sone */
+  X_D15("D15"),
+  /** square centimetre per erg */
+  X_D16("D16"),
+  /** square centimetre per steradian erg */
+  X_D17("D17"),
+  /** metre kelvin */
+  X_D18("D18"),
+  /** square metre kelvin per watt */
+  X_D19("D19"),
+  /** reciprocal second per steradian metre squared */
+  X_D2("D2"),
+  /** square metre per joule */
+  X_D20("D20"),
+  /** square metre per kilogram */
+  X_D21("D21"),
+  /** square metre per mole */
+  X_D22("D22"),
+  /** pen gram (protein) */
+  X_D23("D23"),
+  /** square metre per steradian */
+  X_D24("D24"),
+  /** square metre per steradian joule */
+  X_D25("D25"),
+  /** square metre per volt second */
+  X_D26("D26"),
+  /** steradian */
+  X_D27("D27"),
+  /** terahertz */
+  X_D29("D29"),
+  /** terajoule */
+  X_D30("D30"),
+  /** terawatt */
+  X_D31("D31"),
+  /** terawatt hour */
+  X_D32("D32"),
+  /** tesla */
+  X_D33("D33"),
+  /** tex */
+  X_D34("D34"),
+  /** megabit */
+  X_D36("D36"),
+  /** tonne per cubic metre */
+  X_D41("D41"),
+  /** tropical year */
+  X_D42("D42"),
+  /** unified atomic mass unit */
+  X_D43("D43"),
+  /** var */
+  X_D44("D44"),
+  /** volt squared per kelvin squared */
+  X_D45("D45"),
+  /** volt - ampere */
+  X_D46("D46"),
+  /** volt per centimetre */
+  X_D47("D47"),
+  /** volt per kelvin */
+  X_D48("D48"),
+  /** millivolt per kelvin */
+  X_D49("D49"),
+  /** kilogram per square centimetre */
+  X_D5("D5"),
+  /** volt per metre */
+  X_D50("D50"),
+  /** volt per millimetre */
+  X_D51("D51"),
+  /** watt per kelvin */
+  X_D52("D52"),
+  /** watt per metre kelvin */
+  X_D53("D53"),
+  /** watt per square metre */
+  X_D54("D54"),
+  /** watt per square metre kelvin */
+  X_D55("D55"),
+  /** watt per square metre kelvin to the fourth power */
+  X_D56("D56"),
+  /** watt per steradian */
+  X_D57("D57"),
+  /** watt per steradian square metre */
+  X_D58("D58"),
+  /** weber per metre */
+  X_D59("D59"),
+  /** roentgen per second */
+  X_D6("D6"),
+  /** weber per millimetre */
+  X_D60("D60"),
+  /** minute [unit of angle] */
+  X_D61("D61"),
+  /** second [unit of angle] */
+  X_D62("D62"),
+  /** book */
+  X_D63("D63"),
+  /** round */
+  X_D65("D65"),
+  /** number of words */
+  X_D68("D68"),
+  /** inch to the fourth power */
+  X_D69("D69"),
+  /** joule square metre */
+  X_D73("D73"),
+  /** kilogram per mole */
+  X_D74("D74"),
+  /** megacoulomb */
+  X_D77("D77"),
+  /** megajoule per second */
+  X_D78("D78"),
+  /** microwatt */
+  X_D80("D80"),
+  /** microtesla */
+  X_D81("D81"),
+  /** microvolt */
+  X_D82("D82"),
+  /** millinewton metre */
+  X_D83("D83"),
+  /** microwatt per square metre */
+  X_D85("D85"),
+  /** millicoulomb */
+  X_D86("D86"),
+  /** millimole per kilogram */
+  X_D87("D87"),
+  /** millicoulomb per cubic metre */
+  X_D88("D88"),
+  /** millicoulomb per square metre */
+  X_D89("D89"),
+  /** rem */
+  X_D91("D91"),
+  /** second per cubic metre */
+  X_D93("D93"),
+  /** second per cubic metre radian */
+  X_D94("D94"),
+  /** joule per gram */
+  X_D95("D95"),
+  /** decare */
+  X_DAA("DAA"),
+  /** ten day */
+  X_DAD("DAD"),
+  /** day */
+  X_DAY("DAY"),
+  /** dry pound */
+  X_DB("DB"),
+  /** Decibel-milliwatts */
+  X_DBM("DBM"),
+  /** Decibel watt */
+  X_DBW("DBW"),
+  /** degree [unit of angle] */
+  X_DD("DD"),
+  /** decade */
+  X_DEC("DEC"),
+  /** decigram */
+  X_DG("DG"),
+  /** decagram */
+  X_DJ("DJ"),
+  /** decilitre */
+  X_DLT("DLT"),
+  /** cubic decametre */
+  X_DMA("DMA"),
+  /** square decimetre */
+  X_DMK("DMK"),
+  /** standard kilolitre */
+  X_DMO("DMO"),
+  /** cubic decimetre */
+  X_DMQ("DMQ"),
+  /** decimetre */
+  X_DMT("DMT"),
+  /** decinewton metre */
+  X_DN("DN"),
+  /** dozen piece */
+  X_DPC("DPC"),
+  /** dozen pair */
+  X_DPR("DPR"),
+  /** displacement tonnage */
+  X_DPT("DPT"),
+  /** dram (US) */
+  X_DRA("DRA"),
+  /** dram (UK) */
+  X_DRI("DRI"),
+  /** dozen roll */
+  X_DRL("DRL"),
+  /** dry ton */
+  X_DT("DT"),
+  /** decitonne */
+  X_DTN("DTN"),
+  /** pennyweight */
+  X_DWT("DWT"),
+  /** dozen */
+  X_DZN("DZN"),
+  /** dozen pack */
+  X_DZP("DZP"),
+  /** newton per square centimetre */
+  X_E01("E01"),
+  /** megawatt hour per hour */
+  X_E07("E07"),
+  /** megawatt per hertz */
+  X_E08("E08"),
+  /** milliampere hour */
+  X_E09("E09"),
+  /** degree day */
+  X_E10("E10"),
+  /** mille */
+  X_E12("E12"),
+  /** kilocalorie (international table) */
+  X_E14("E14"),
+  /** kilocalorie (thermochemical) per hour */
+  X_E15("E15"),
+  /** million Btu(IT) per hour */
+  X_E16("E16"),
+  /** cubic foot per second */
+  X_E17("E17"),
+  /** tonne per hour */
+  X_E18("E18"),
+  /** ping */
+  X_E19("E19"),
+  /** megabit per second */
+  X_E20("E20"),
+  /** shares */
+  X_E21("E21"),
+  /** TEU */
+  X_E22("E22"),
+  /** tyre */
+  X_E23("E23"),
+  /** active unit */
+  X_E25("E25"),
+  /** dose */
+  X_E27("E27"),
+  /** air dry ton */
+  X_E28("E28"),
+  /** strand */
+  X_E30("E30"),
+  /** square metre per litre */
+  X_E31("E31"),
+  /** litre per hour */
+  X_E32("E32"),
+  /** foot per thousand */
+  X_E33("E33"),
+  /** gigabyte */
+  X_E34("E34"),
+  /** terabyte */
+  X_E35("E35"),
+  /** petabyte */
+  X_E36("E36"),
+  /** pixel */
+  X_E37("E37"),
+  /** megapixel */
+  X_E38("E38"),
+  /** dots per inch */
+  X_E39("E39"),
+  /** gross kilogram */
+  X_E4("E4"),
+  /** part per hundred thousand */
+  X_E40("E40"),
+  /** kilogram-force per square millimetre */
+  X_E41("E41"),
+  /** kilogram-force per square centimetre */
+  X_E42("E42"),
+  /** joule per square centimetre */
+  X_E43("E43"),
+  /** kilogram-force metre per square centimetre */
+  X_E44("E44"),
+  /** milliohm */
+  X_E45("E45"),
+  /** kilowatt hour per cubic metre */
+  X_E46("E46"),
+  /** kilowatt hour per kelvin */
+  X_E47("E47"),
+  /** service unit */
+  X_E48("E48"),
+  /** working day */
+  X_E49("E49"),
+  /** accounting unit */
+  X_E50("E50"),
+  /** job */
+  X_E51("E51"),
+  /** run foot */
+  X_E52("E52"),
+  /** test */
+  X_E53("E53"),
+  /** trip */
+  X_E54("E54"),
+  /** use */
+  X_E55("E55"),
+  /** well */
+  X_E56("E56"),
+  /** zone */
+  X_E57("E57"),
+  /** exabit per second */
+  X_E58("E58"),
+  /** exbibyte */
+  X_E59("E59"),
+  /** pebibyte */
+  X_E60("E60"),
+  /** tebibyte */
+  X_E61("E61"),
+  /** gibibyte */
+  X_E62("E62"),
+  /** mebibyte */
+  X_E63("E63"),
+  /** kibibyte */
+  X_E64("E64"),
+  /** exbibit per metre */
+  X_E65("E65"),
+  /** exbibit per square metre */
+  X_E66("E66"),
+  /** exbibit per cubic metre */
+  X_E67("E67"),
+  /** gigabyte per second */
+  X_E68("E68"),
+  /** gibibit per metre */
+  X_E69("E69"),
+  /** gibibit per square metre */
+  X_E70("E70"),
+  /** gibibit per cubic metre */
+  X_E71("E71"),
+  /** kibibit per metre */
+  X_E72("E72"),
+  /** kibibit per square metre */
+  X_E73("E73"),
+  /** kibibit per cubic metre */
+  X_E74("E74"),
+  /** mebibit per metre */
+  X_E75("E75"),
+  /** mebibit per square metre */
+  X_E76("E76"),
+  /** mebibit per cubic metre */
+  X_E77("E77"),
+  /** petabit */
+  X_E78("E78"),
+  /** petabit per second */
+  X_E79("E79"),
+  /** pebibit per metre */
+  X_E80("E80"),
+  /** pebibit per square metre */
+  X_E81("E81"),
+  /** pebibit per cubic metre */
+  X_E82("E82"),
+  /** terabit */
+  X_E83("E83"),
+  /** terabit per second */
+  X_E84("E84"),
+  /** tebibit per metre */
+  X_E85("E85"),
+  /** tebibit per cubic metre */
+  X_E86("E86"),
+  /** tebibit per square metre */
+  X_E87("E87"),
+  /** bit per metre */
+  X_E88("E88"),
+  /** bit per square metre */
+  X_E89("E89"),
+  /** reciprocal centimetre */
+  X_E90("E90"),
+  /** reciprocal day */
+  X_E91("E91"),
+  /** cubic decimetre per hour */
+  X_E92("E92"),
+  /** kilogram per hour */
+  X_E93("E93"),
+  /** kilomole per second */
+  X_E94("E94"),
+  /** mole per second */
+  X_E95("E95"),
+  /** degree per second */
+  X_E96("E96"),
+  /** millimetre per degree Celcius metre */
+  X_E97("E97"),
+  /** degree Celsius per kelvin */
+  X_E98("E98"),
+  /** hectopascal per bar */
+  X_E99("E99"),
+  /** each */
+  X_EA("EA"),
+  /** electronic mail box */
+  X_EB("EB"),
+  /** equivalent gallon */
+  X_EQ("EQ"),
+  /** bit per cubic metre */
+  X_F01("F01"),
+  /** kelvin per kelvin */
+  X_F02("F02"),
+  /** kilopascal per bar */
+  X_F03("F03"),
+  /** millibar per bar */
+  X_F04("F04"),
+  /** megapascal per bar */
+  X_F05("F05"),
+  /** poise per bar */
+  X_F06("F06"),
+  /** pascal per bar */
+  X_F07("F07"),
+  /** milliampere per inch */
+  X_F08("F08"),
+  /** kelvin per hour */
+  X_F10("F10"),
+  /** kelvin per minute */
+  X_F11("F11"),
+  /** kelvin per second */
+  X_F12("F12"),
+  /** slug */
+  X_F13("F13"),
+  /** gram per kelvin */
+  X_F14("F14"),
+  /** kilogram per kelvin */
+  X_F15("F15"),
+  /** milligram per kelvin */
+  X_F16("F16"),
+  /** pound-force per foot */
+  X_F17("F17"),
+  /** kilogram square centimetre */
+  X_F18("F18"),
+  /** kilogram square millimetre */
+  X_F19("F19"),
+  /** pound inch squared */
+  X_F20("F20"),
+  /** pound-force inch */
+  X_F21("F21"),
+  /** pound-force foot per ampere */
+  X_F22("F22"),
+  /** gram per cubic decimetre */
+  X_F23("F23"),
+  /** kilogram per kilomol */
+  X_F24("F24"),
+  /** gram per hertz */
+  X_F25("F25"),
+  /** gram per day */
+  X_F26("F26"),
+  /** gram per hour */
+  X_F27("F27"),
+  /** gram per minute */
+  X_F28("F28"),
+  /** gram per second */
+  X_F29("F29"),
+  /** kilogram per day */
+  X_F30("F30"),
+  /** kilogram per minute */
+  X_F31("F31"),
+  /** milligram per day */
+  X_F32("F32"),
+  /** milligram per minute */
+  X_F33("F33"),
+  /** milligram per second */
+  X_F34("F34"),
+  /** gram per day kelvin */
+  X_F35("F35"),
+  /** gram per hour kelvin */
+  X_F36("F36"),
+  /** gram per minute kelvin */
+  X_F37("F37"),
+  /** gram per second kelvin */
+  X_F38("F38"),
+  /** kilogram per day kelvin */
+  X_F39("F39"),
+  /** kilogram per hour kelvin */
+  X_F40("F40"),
+  /** kilogram per minute kelvin */
+  X_F41("F41"),
+  /** kilogram per second kelvin */
+  X_F42("F42"),
+  /** milligram per day kelvin */
+  X_F43("F43"),
+  /** milligram per hour kelvin */
+  X_F44("F44"),
+  /** milligram per minute kelvin */
+  X_F45("F45"),
+  /** milligram per second kelvin */
+  X_F46("F46"),
+  /** newton per millimetre */
+  X_F47("F47"),
+  /** pound-force per inch */
+  X_F48("F48"),
+  /** rod [unit of distance] */
+  X_F49("F49"),
+  /** micrometre per kelvin */
+  X_F50("F50"),
+  /** centimetre per kelvin */
+  X_F51("F51"),
+  /** metre per kelvin */
+  X_F52("F52"),
+  /** millimetre per kelvin */
+  X_F53("F53"),
+  /** milliohm per metre */
+  X_F54("F54"),
+  /** ohm per mile (statute mile) */
+  X_F55("F55"),
+  /** ohm per kilometre */
+  X_F56("F56"),
+  /** milliampere per pound-force per square inch */
+  X_F57("F57"),
+  /** reciprocal bar */
+  X_F58("F58"),
+  /** milliampere per bar */
+  X_F59("F59"),
+  /** degree Celsius per bar */
+  X_F60("F60"),
+  /** kelvin per bar */
+  X_F61("F61"),
+  /** gram per day bar */
+  X_F62("F62"),
+  /** gram per hour bar */
+  X_F63("F63"),
+  /** gram per minute bar */
+  X_F64("F64"),
+  /** gram per second bar */
+  X_F65("F65"),
+  /** kilogram per day bar */
+  X_F66("F66"),
+  /** kilogram per hour bar */
+  X_F67("F67"),
+  /** kilogram per minute bar */
+  X_F68("F68"),
+  /** kilogram per second bar */
+  X_F69("F69"),
+  /** milligram per day bar */
+  X_F70("F70"),
+  /** milligram per hour bar */
+  X_F71("F71"),
+  /** milligram per minute bar */
+  X_F72("F72"),
+  /** milligram per second bar */
+  X_F73("F73"),
+  /** gram per bar */
+  X_F74("F74"),
+  /** milligram per bar */
+  X_F75("F75"),
+  /** milliampere per millimetre */
+  X_F76("F76"),
+  /** pascal second per kelvin */
+  X_F77("F77"),
+  /** inch of water */
+  X_F78("F78"),
+  /** inch of mercury */
+  X_F79("F79"),
+  /** water horse power */
+  X_F80("F80"),
+  /** bar per kelvin */
+  X_F81("F81"),
+  /** hectopascal per kelvin */
+  X_F82("F82"),
+  /** kilopascal per kelvin */
+  X_F83("F83"),
+  /** millibar per kelvin */
+  X_F84("F84"),
+  /** megapascal per kelvin */
+  X_F85("F85"),
+  /** poise per kelvin */
+  X_F86("F86"),
+  /** volt per litre minute */
+  X_F87("F87"),
+  /** newton centimetre */
+  X_F88("F88"),
+  /** newton metre per degree */
+  X_F89("F89"),
+  /** newton metre per ampere */
+  X_F90("F90"),
+  /** bar litre per second */
+  X_F91("F91"),
+  /** bar cubic metre per second */
+  X_F92("F92"),
+  /** hectopascal litre per second */
+  X_F93("F93"),
+  /** hectopascal cubic metre per second */
+  X_F94("F94"),
+  /** millibar litre per second */
+  X_F95("F95"),
+  /** millibar cubic metre per second */
+  X_F96("F96"),
+  /** megapascal litre per second */
+  X_F97("F97"),
+  /** megapascal cubic metre per second */
+  X_F98("F98"),
+  /** pascal litre per second */
+  X_F99("F99"),
+  /** degree Fahrenheit */
+  X_FAH("FAH"),
+  /** farad */
+  X_FAR("FAR"),
+  /** fibre metre */
+  X_FBM("FBM"),
+  /** thousand cubic foot */
+  X_FC("FC"),
+  /** hundred cubic metre */
+  X_FF("FF"),
+  /** micromole */
+  X_FH("FH"),
+  /** failures in time */
+  X_FIT("FIT"),
+  /** flake ton */
+  X_FL("FL"),
+  /** Formazin nephelometric unit */
+  X_FNU("FNU"),
+  /** foot */
+  X_FOT("FOT"),
+  /** pound per square foot */
+  X_FP("FP"),
+  /** foot per minute */
+  X_FR("FR"),
+  /** foot per second */
+  X_FS("FS"),
+  /** square foot */
+  X_FTK("FTK"),
+  /** cubic foot */
+  X_FTQ("FTQ"),
+  /** pascal cubic metre per second */
+  X_G01("G01"),
+  /** centimetre per bar */
+  X_G04("G04"),
+  /** metre per bar */
+  X_G05("G05"),
+  /** millimetre per bar */
+  X_G06("G06"),
+  /** square inch per second */
+  X_G08("G08"),
+  /** square metre per second kelvin */
+  X_G09("G09"),
+  /** stokes per kelvin */
+  X_G10("G10"),
+  /** gram per cubic centimetre bar */
+  X_G11("G11"),
+  /** gram per cubic decimetre bar */
+  X_G12("G12"),
+  /** gram per litre bar */
+  X_G13("G13"),
+  /** gram per cubic metre bar */
+  X_G14("G14"),
+  /** gram per millilitre bar */
+  X_G15("G15"),
+  /** kilogram per cubic centimetre bar */
+  X_G16("G16"),
+  /** kilogram per litre bar */
+  X_G17("G17"),
+  /** kilogram per cubic metre bar */
+  X_G18("G18"),
+  /** newton metre per kilogram */
+  X_G19("G19"),
+  /** US gallon per minute */
+  X_G2("G2"),
+  /** pound-force foot per pound */
+  X_G20("G20"),
+  /** cup [unit of volume] */
+  X_G21("G21"),
+  /** peck */
+  X_G23("G23"),
+  /** tablespoon (US) */
+  X_G24("G24"),
+  /** teaspoon (US) */
+  X_G25("G25"),
+  /** stere */
+  X_G26("G26"),
+  /** cubic centimetre per kelvin */
+  X_G27("G27"),
+  /** litre per kelvin */
+  X_G28("G28"),
+  /** cubic metre per kelvin */
+  X_G29("G29"),
+  /** Imperial gallon per minute */
+  X_G3("G3"),
+  /** millilitre per kelvin */
+  X_G30("G30"),
+  /** kilogram per cubic centimetre */
+  X_G31("G31"),
+  /** ounce (avoirdupois) per cubic yard */
+  X_G32("G32"),
+  /** gram per cubic centimetre kelvin */
+  X_G33("G33"),
+  /** gram per cubic decimetre kelvin */
+  X_G34("G34"),
+  /** gram per litre kelvin */
+  X_G35("G35"),
+  /** gram per cubic metre kelvin */
+  X_G36("G36"),
+  /** gram per millilitre kelvin */
+  X_G37("G37"),
+  /** kilogram per cubic centimetre kelvin */
+  X_G38("G38"),
+  /** kilogram per litre kelvin */
+  X_G39("G39"),
+  /** kilogram per cubic metre kelvin */
+  X_G40("G40"),
+  /** square metre per second bar */
+  X_G41("G41"),
+  /** microsiemens per centimetre */
+  X_G42("G42"),
+  /** microsiemens per metre */
+  X_G43("G43"),
+  /** nanosiemens per centimetre */
+  X_G44("G44"),
+  /** nanosiemens per metre */
+  X_G45("G45"),
+  /** stokes per bar */
+  X_G46("G46"),
+  /** cubic centimetre per day */
+  X_G47("G47"),
+  /** cubic centimetre per hour */
+  X_G48("G48"),
+  /** cubic centimetre per minute */
+  X_G49("G49"),
+  /** gallon (US) per hour */
+  X_G50("G50"),
+  /** litre per second */
+  X_G51("G51"),
+  /** cubic metre per day */
+  X_G52("G52"),
+  /** cubic metre per minute */
+  X_G53("G53"),
+  /** millilitre per day */
+  X_G54("G54"),
+  /** millilitre per hour */
+  X_G55("G55"),
+  /** cubic inch per hour */
+  X_G56("G56"),
+  /** cubic inch per minute */
+  X_G57("G57"),
+  /** cubic inch per second */
+  X_G58("G58"),
+  /** milliampere per litre minute */
+  X_G59("G59"),
+  /** volt per bar */
+  X_G60("G60"),
+  /** cubic centimetre per day kelvin */
+  X_G61("G61"),
+  /** cubic centimetre per hour kelvin */
+  X_G62("G62"),
+  /** cubic centimetre per minute kelvin */
+  X_G63("G63"),
+  /** cubic centimetre per second kelvin */
+  X_G64("G64"),
+  /** litre per day kelvin */
+  X_G65("G65"),
+  /** litre per hour kelvin */
+  X_G66("G66"),
+  /** litre per minute kelvin */
+  X_G67("G67"),
+  /** litre per second kelvin */
+  X_G68("G68"),
+  /** cubic metre per day kelvin */
+  X_G69("G69"),
+  /** cubic metre per hour kelvin */
+  X_G70("G70"),
+  /** cubic metre per minute kelvin */
+  X_G71("G71"),
+  /** cubic metre per second kelvin */
+  X_G72("G72"),
+  /** millilitre per day kelvin */
+  X_G73("G73"),
+  /** millilitre per hour kelvin */
+  X_G74("G74"),
+  /** millilitre per minute kelvin */
+  X_G75("G75"),
+  /** millilitre per second kelvin */
+  X_G76("G76"),
+  /** millimetre to the fourth power */
+  X_G77("G77"),
+  /** cubic centimetre per day bar */
+  X_G78("G78"),
+  /** cubic centimetre per hour bar */
+  X_G79("G79"),
+  /** cubic centimetre per minute bar */
+  X_G80("G80"),
+  /** cubic centimetre per second bar */
+  X_G81("G81"),
+  /** litre per day bar */
+  X_G82("G82"),
+  /** litre per hour bar */
+  X_G83("G83"),
+  /** litre per minute bar */
+  X_G84("G84"),
+  /** litre per second bar */
+  X_G85("G85"),
+  /** cubic metre per day bar */
+  X_G86("G86"),
+  /** cubic metre per hour bar */
+  X_G87("G87"),
+  /** cubic metre per minute bar */
+  X_G88("G88"),
+  /** cubic metre per second bar */
+  X_G89("G89"),
+  /** millilitre per day bar */
+  X_G90("G90"),
+  /** millilitre per hour bar */
+  X_G91("G91"),
+  /** millilitre per minute bar */
+  X_G92("G92"),
+  /** millilitre per second bar */
+  X_G93("G93"),
+  /** cubic centimetre per bar */
+  X_G94("G94"),
+  /** litre per bar */
+  X_G95("G95"),
+  /** cubic metre per bar */
+  X_G96("G96"),
+  /** millilitre per bar */
+  X_G97("G97"),
+  /** microhenry per kiloohm */
+  X_G98("G98"),
+  /** microhenry per ohm */
+  X_G99("G99"),
+  /** gallon (US) per day */
+  X_GB("GB"),
+  /** gigabecquerel */
+  X_GBQ("GBQ"),
+  /** gram, dry weight */
+  X_GDW("GDW"),
+  /** pound per gallon (US) */
+  X_GE("GE"),
+  /** gram per metre (gram per 100 centimetres) */
+  X_GF("GF"),
+  /** gram of fissile isotope */
+  X_GFI("GFI"),
+  /** great gross */
+  X_GGR("GGR"),
+  /** gill (US) */
+  X_GIA("GIA"),
+  /** gram, including container */
+  X_GIC("GIC"),
+  /** gill (UK) */
+  X_GII("GII"),
+  /** gram, including inner packaging */
+  X_GIP("GIP"),
+  /** gram per millilitre */
+  X_GJ("GJ"),
+  /** gram per litre */
+  X_GL("GL"),
+  /** dry gallon (US) */
+  X_GLD("GLD"),
+  /** gallon (UK) */
+  X_GLI("GLI"),
+  /** gallon (US) */
+  X_GLL("GLL"),
+  /** gram per square metre */
+  X_GM("GM"),
+  /** milligram per square metre */
+  X_GO("GO"),
+  /** milligram per cubic metre */
+  X_GP("GP"),
+  /** microgram per cubic metre */
+  X_GQ("GQ"),
+  /** gram */
+  X_GRM("GRM"),
+  /** grain */
+  X_GRN("GRN"),
+  /** gross */
+  X_GRO("GRO"),
+  /** gigajoule */
+  X_GV("GV"),
+  /** gigawatt hour */
+  X_GWH("GWH"),
+  /** henry per kiloohm */
+  X_H03("H03"),
+  /** henry per ohm */
+  X_H04("H04"),
+  /** millihenry per kiloohm */
+  X_H05("H05"),
+  /** millihenry per ohm */
+  X_H06("H06"),
+  /** pascal second per bar */
+  X_H07("H07"),
+  /** microbecquerel */
+  X_H08("H08"),
+  /** reciprocal year */
+  X_H09("H09"),
+  /** reciprocal hour */
+  X_H10("H10"),
+  /** reciprocal month */
+  X_H11("H11"),
+  /** degree Celsius per hour */
+  X_H12("H12"),
+  /** degree Celsius per minute */
+  X_H13("H13"),
+  /** degree Celsius per second */
+  X_H14("H14"),
+  /** square centimetre per gram */
+  X_H15("H15"),
+  /** square decametre */
+  X_H16("H16"),
+  /** square hectometre */
+  X_H18("H18"),
+  /** cubic hectometre */
+  X_H19("H19"),
+  /** cubic kilometre */
+  X_H20("H20"),
+  /** blank */
+  X_H21("H21"),
+  /** volt square inch per pound-force */
+  X_H22("H22"),
+  /** volt per inch */
+  X_H23("H23"),
+  /** volt per microsecond */
+  X_H24("H24"),
+  /** percent per kelvin */
+  X_H25("H25"),
+  /** ohm per metre */
+  X_H26("H26"),
+  /** degree per metre */
+  X_H27("H27"),
+  /** microfarad per kilometre */
+  X_H28("H28"),
+  /** microgram per litre */
+  X_H29("H29"),
+  /** square micrometre (square micron) */
+  X_H30("H30"),
+  /** ampere per kilogram */
+  X_H31("H31"),
+  /** ampere squared second */
+  X_H32("H32"),
+  /** farad per kilometre */
+  X_H33("H33"),
+  /** hertz metre */
+  X_H34("H34"),
+  /** kelvin metre per watt */
+  X_H35("H35"),
+  /** megaohm per kilometre */
+  X_H36("H36"),
+  /** megaohm per metre */
+  X_H37("H37"),
+  /** megaampere */
+  X_H38("H38"),
+  /** megahertz kilometre */
+  X_H39("H39"),
+  /** newton per ampere */
+  X_H40("H40"),
+  /** newton metre watt to the power minus 0,5 */
+  X_H41("H41"),
+  /** pascal per metre */
+  X_H42("H42"),
+  /** siemens per centimetre */
+  X_H43("H43"),
+  /** teraohm */
+  X_H44("H44"),
+  /** volt second per metre */
+  X_H45("H45"),
+  /** volt per second */
+  X_H46("H46"),
+  /** watt per cubic metre */
+  X_H47("H47"),
+  /** attofarad */
+  X_H48("H48"),
+  /** centimetre per hour */
+  X_H49("H49"),
+  /** reciprocal cubic centimetre */
+  X_H50("H50"),
+  /** decibel per kilometre */
+  X_H51("H51"),
+  /** decibel per metre */
+  X_H52("H52"),
+  /** kilogram per bar */
+  X_H53("H53"),
+  /** kilogram per cubic decimetre kelvin */
+  X_H54("H54"),
+  /** kilogram per cubic decimetre bar */
+  X_H55("H55"),
+  /** kilogram per square metre second */
+  X_H56("H56"),
+  /** inch per two pi radiant */
+  X_H57("H57"),
+  /** metre per volt second */
+  X_H58("H58"),
+  /** square metre per newton */
+  X_H59("H59"),
+  /** cubic metre per cubic metre */
+  X_H60("H60"),
+  /** millisiemens per centimetre */
+  X_H61("H61"),
+  /** millivolt per minute */
+  X_H62("H62"),
+  /** milligram per square centimetre */
+  X_H63("H63"),
+  /** milligram per gram */
+  X_H64("H64"),
+  /** millilitre per cubic metre */
+  X_H65("H65"),
+  /** millimetre per year */
+  X_H66("H66"),
+  /** millimetre per hour */
+  X_H67("H67"),
+  /** millimole per gram */
+  X_H68("H68"),
+  /** picopascal per kilometre */
+  X_H69("H69"),
+  /** picosecond */
+  X_H70("H70"),
+  /** percent per month */
+  X_H71("H71"),
+  /** percent per hectobar */
+  X_H72("H72"),
+  /** percent per decakelvin */
+  X_H73("H73"),
+  /** watt per metre */
+  X_H74("H74"),
+  /** decapascal */
+  X_H75("H75"),
+  /** gram per millimetre */
+  X_H76("H76"),
+  /** module width */
+  X_H77("H77"),
+  /** French gauge */
+  X_H79("H79"),
+  /** rack unit */
+  X_H80("H80"),
+  /** millimetre per minute */
+  X_H81("H81"),
+  /** big point */
+  X_H82("H82"),
+  /** litre per kilogram */
+  X_H83("H83"),
+  /** gram millimetre */
+  X_H84("H84"),
+  /** reciprocal week */
+  X_H85("H85"),
+  /** piece */
+  X_H87("H87"),
+  /** megaohm kilometre */
+  X_H88("H88"),
+  /** percent per ohm */
+  X_H89("H89"),
+  /** percent per degree */
+  X_H90("H90"),
+  /** percent per ten thousand */
+  X_H91("H91"),
+  /** percent per one hundred thousand */
+  X_H92("H92"),
+  /** percent per hundred */
+  X_H93("H93"),
+  /** percent per thousand */
+  X_H94("H94"),
+  /** percent per volt */
+  X_H95("H95"),
+  /** percent per bar */
+  X_H96("H96"),
+  /** percent per inch */
+  X_H98("H98"),
+  /** percent per metre */
+  X_H99("H99"),
+  /** hank */
+  X_HA("HA"),
+  /** Piece Day */
+  X_HAD("HAD"),
+  /** hectobar */
+  X_HBA("HBA"),
+  /** hundred boxes */
+  X_HBX("HBX"),
+  /** hundred count */
+  X_HC("HC"),
+  /** hundred kilogram, dry weight */
+  X_HDW("HDW"),
+  /** head */
+  X_HEA("HEA"),
+  /** hectogram */
+  X_HGM("HGM"),
+  /** hundred cubic foot */
+  X_HH("HH"),
+  /** hundred international unit */
+  X_HIU("HIU"),
+  /** hundred kilogram, net mass */
+  X_HKM("HKM"),
+  /** hectolitre */
+  X_HLT("HLT"),
+  /** mile per hour (statute mile) */
+  X_HM("HM"),
+  /** Piece Month */
+  X_HMO("HMO"),
+  /** million cubic metre */
+  X_HMQ("HMQ"),
+  /** hectometre */
+  X_HMT("HMT"),
+  /** hectolitre of pure alcohol */
+  X_HPA("HPA"),
+  /** hertz */
+  X_HTZ("HTZ"),
+  /** hour */
+  X_HUR("HUR"),
+  /** Piece Week */
+  X_HWE("HWE"),
+  /** inch pound (pound inch) */
+  X_IA("IA"),
+  /** person */
+  X_IE("IE"),
+  /** inch */
+  X_INH("INH"),
+  /** square inch */
+  X_INK("INK"),
+  /** cubic inch */
+  X_INQ("INQ"),
+  /** international sugar degree */
+  X_ISD("ISD"),
+  /** inch per second */
+  X_IU("IU"),
+  /** international unit per gram */
+  X_IUG("IUG"),
+  /** inch per second squared */
+  X_IV("IV"),
+  /** percent per millimetre */
+  X_J10("J10"),
+  /** per mille per psi */
+  X_J12("J12"),
+  /** degree API */
+  X_J13("J13"),
+  /** degree Baume (origin scale) */
+  X_J14("J14"),
+  /** degree Baume (US heavy) */
+  X_J15("J15"),
+  /** degree Baume (US light) */
+  X_J16("J16"),
+  /** degree Balling */
+  X_J17("J17"),
+  /** degree Brix */
+  X_J18("J18"),
+  /** degree Fahrenheit hour square foot per British thermal unit (thermochemical) */
+  X_J19("J19"),
+  /** joule per kilogram */
+  X_J2("J2"),
+  /** degree Fahrenheit per kelvin */
+  X_J20("J20"),
+  /** degree Fahrenheit per bar */
+  X_J21("J21"),
+  /** degree Fahrenheit hour square foot per British thermal unit (international
+   table) */
+  X_J22("J22"),
+  /** degree Fahrenheit per hour */
+  X_J23("J23"),
+  /** degree Fahrenheit per minute */
+  X_J24("J24"),
+  /** degree Fahrenheit per second */
+  X_J25("J25"),
+  /** reciprocal degree Fahrenheit */
+  X_J26("J26"),
+  /** degree Oechsle */
+  X_J27("J27"),
+  /** degree Rankine per hour */
+  X_J28("J28"),
+  /** degree Rankine per minute */
+  X_J29("J29"),
+  /** degree Rankine per second */
+  X_J30("J30"),
+  /** degree Twaddell */
+  X_J31("J31"),
+  /** micropoise */
+  X_J32("J32"),
+  /** microgram per kilogram */
+  X_J33("J33"),
+  /** microgram per cubic metre kelvin */
+  X_J34("J34"),
+  /** microgram per cubic metre bar */
+  X_J35("J35"),
+  /** microlitre per litre */
+  X_J36("J36"),
+  /** baud */
+  X_J38("J38"),
+  /** British thermal unit (mean) */
+  X_J39("J39"),
+  /** British thermal unit (international table) foot per hour square foot degree
+   Fahrenheit */
+  X_J40("J40"),
+  /** British thermal unit (international table) inch per hour square foot degree
+   Fahrenheit */
+  X_J41("J41"),
+  /** British thermal unit (international table) inch per second square foot degree
+   Fahrenheit */
+  X_J42("J42"),
+  /** British thermal unit (international table) per pound degree Fahrenheit */
+  X_J43("J43"),
+  /** British thermal unit (international table) per minute */
+  X_J44("J44"),
+  /** British thermal unit (international table) per second */
+  X_J45("J45"),
+  /** British thermal unit (thermochemical) foot per hour square foot degree
+   Fahrenheit */
+  X_J46("J46"),
+  /** British thermal unit (thermochemical) per hour */
+  X_J47("J47"),
+  /** British thermal unit (thermochemical) inch per hour square foot degree
+   Fahrenheit */
+  X_J48("J48"),
+  /** British thermal unit (thermochemical) inch per second square foot degree
+   Fahrenheit */
+  X_J49("J49"),
+  /** British thermal unit (thermochemical) per pound degree Fahrenheit */
+  X_J50("J50"),
+  /** British thermal unit (thermochemical) per minute */
+  X_J51("J51"),
+  /** British thermal unit (thermochemical) per second */
+  X_J52("J52"),
+  /** coulomb square metre per kilogram */
+  X_J53("J53"),
+  /** megabaud */
+  X_J54("J54"),
+  /** watt second */
+  X_J55("J55"),
+  /** bar per bar */
+  X_J56("J56"),
+  /** barrel (UK petroleum) */
+  X_J57("J57"),
+  /** barrel (UK petroleum) per minute */
+  X_J58("J58"),
+  /** barrel (UK petroleum) per day */
+  X_J59("J59"),
+  /** barrel (UK petroleum) per hour */
+  X_J60("J60"),
+  /** barrel (UK petroleum) per second */
+  X_J61("J61"),
+  /** barrel (US petroleum) per hour */
+  X_J62("J62"),
+  /** barrel (US petroleum) per second */
+  X_J63("J63"),
+  /** bushel (UK) per day */
+  X_J64("J64"),
+  /** bushel (UK) per hour */
+  X_J65("J65"),
+  /** bushel (UK) per minute */
+  X_J66("J66"),
+  /** bushel (UK) per second */
+  X_J67("J67"),
+  /** bushel (US dry) per day */
+  X_J68("J68"),
+  /** bushel (US dry) per hour */
+  X_J69("J69"),
+  /** bushel (US dry) per minute */
+  X_J70("J70"),
+  /** bushel (US dry) per second */
+  X_J71("J71"),
+  /** centinewton metre */
+  X_J72("J72"),
+  /** centipoise per kelvin */
+  X_J73("J73"),
+  /** centipoise per bar */
+  X_J74("J74"),
+  /** calorie (mean) */
+  X_J75("J75"),
+  /** calorie (international table) per gram degree Celsius */
+  X_J76("J76"),
+  /** calorie (thermochemical) per centimetre second degree Celsius */
+  X_J78("J78"),
+  /** calorie (thermochemical) per gram degree Celsius */
+  X_J79("J79"),
+  /** calorie (thermochemical) per minute */
+  X_J81("J81"),
+  /** calorie (thermochemical) per second */
+  X_J82("J82"),
+  /** clo */
+  X_J83("J83"),
+  /** centimetre per second kelvin */
+  X_J84("J84"),
+  /** centimetre per second bar */
+  X_J85("J85"),
+  /** cubic centimetre per cubic metre */
+  X_J87("J87"),
+  /** cubic decimetre per day */
+  X_J90("J90"),
+  /** cubic decimetre per cubic metre */
+  X_J91("J91"),
+  /** cubic decimetre per minute */
+  X_J92("J92"),
+  /** cubic decimetre per second */
+  X_J93("J93"),
+  /** ounce (UK fluid) per day */
+  X_J95("J95"),
+  /** ounce (UK fluid) per hour */
+  X_J96("J96"),
+  /** ounce (UK fluid) per minute */
+  X_J97("J97"),
+  /** ounce (UK fluid) per second */
+  X_J98("J98"),
+  /** ounce (US fluid) per day */
+  X_J99("J99"),
+  /** joule per kelvin */
+  X_JE("JE"),
+  /** megajoule per kilogram */
+  X_JK("JK"),
+  /** megajoule per cubic metre */
+  X_JM("JM"),
+  /** pipeline joint */
+  X_JNT("JNT"),
+  /** joule */
+  X_JOU("JOU"),
+  /** hundred metre */
+  X_JPS("JPS"),
+  /** number of jewels */
+  X_JWL("JWL"),
+  /** kilowatt demand */
+  X_K1("K1"),
+  /** ounce (US fluid) per hour */
+  X_K10("K10"),
+  /** ounce (US fluid) per minute */
+  X_K11("K11"),
+  /** ounce (US fluid) per second */
+  X_K12("K12"),
+  /** foot per degree Fahrenheit */
+  X_K13("K13"),
+  /** foot per hour */
+  X_K14("K14"),
+  /** foot pound-force per hour */
+  X_K15("K15"),
+  /** foot pound-force per minute */
+  X_K16("K16"),
+  /** foot per psi */
+  X_K17("K17"),
+  /** foot per second degree Fahrenheit */
+  X_K18("K18"),
+  /** foot per second psi */
+  X_K19("K19"),
+  /** kilovolt ampere reactive demand */
+  X_K2("K2"),
+  /** reciprocal cubic foot */
+  X_K20("K20"),
+  /** cubic foot per degree Fahrenheit */
+  X_K21("K21"),
+  /** cubic foot per day */
+  X_K22("K22"),
+  /** cubic foot per psi */
+  X_K23("K23"),
+  /** gallon (UK) per day */
+  X_K26("K26"),
+  /** gallon (UK) per hour */
+  X_K27("K27"),
+  /** gallon (UK) per second */
+  X_K28("K28"),
+  /** kilovolt ampere reactive hour */
+  X_K3("K3"),
+  /** gallon (US liquid) per second */
+  X_K30("K30"),
+  /** gram-force per square centimetre */
+  X_K31("K31"),
+  /** gill (UK) per day */
+  X_K32("K32"),
+  /** gill (UK) per hour */
+  X_K33("K33"),
+  /** gill (UK) per minute */
+  X_K34("K34"),
+  /** gill (UK) per second */
+  X_K35("K35"),
+  /** gill (US) per day */
+  X_K36("K36"),
+  /** gill (US) per hour */
+  X_K37("K37"),
+  /** gill (US) per minute */
+  X_K38("K38"),
+  /** gill (US) per second */
+  X_K39("K39"),
+  /** standard acceleration of free fall */
+  X_K40("K40"),
+  /** grain per gallon (US) */
+  X_K41("K41"),
+  /** horsepower (boiler) */
+  X_K42("K42"),
+  /** horsepower (electric) */
+  X_K43("K43"),
+  /** inch per degree Fahrenheit */
+  X_K45("K45"),
+  /** inch per psi */
+  X_K46("K46"),
+  /** inch per second degree Fahrenheit */
+  X_K47("K47"),
+  /** inch per second psi */
+  X_K48("K48"),
+  /** reciprocal cubic inch */
+  X_K49("K49"),
+  /** kilobaud */
+  X_K50("K50"),
+  /** kilocalorie (mean) */
+  X_K51("K51"),
+  /** kilocalorie (international table) per hour metre degree Celsius */
+  X_K52("K52"),
+  /** kilocalorie (thermochemical) */
+  X_K53("K53"),
+  /** kilocalorie (thermochemical) per minute */
+  X_K54("K54"),
+  /** kilocalorie (thermochemical) per second */
+  X_K55("K55"),
+  /** kilomole per hour */
+  X_K58("K58"),
+  /** kilomole per cubic metre kelvin */
+  X_K59("K59"),
+  /** kilolitre */
+  X_K6("K6"),
+  /** kilomole per cubic metre bar */
+  X_K60("K60"),
+  /** kilomole per minute */
+  X_K61("K61"),
+  /** litre per litre */
+  X_K62("K62"),
+  /** reciprocal litre */
+  X_K63("K63"),
+  /** pound (avoirdupois) per degree Fahrenheit */
+  X_K64("K64"),
+  /** pound (avoirdupois) square foot */
+  X_K65("K65"),
+  /** pound (avoirdupois) per day */
+  X_K66("K66"),
+  /** pound per foot hour */
+  X_K67("K67"),
+  /** pound per foot second */
+  X_K68("K68"),
+  /** pound (avoirdupois) per cubic foot degree Fahrenheit */
+  X_K69("K69"),
+  /** pound (avoirdupois) per cubic foot psi */
+  X_K70("K70"),
+  /** pound (avoirdupois) per gallon (UK) */
+  X_K71("K71"),
+  /** pound (avoirdupois) per hour degree Fahrenheit */
+  X_K73("K73"),
+  /** pound (avoirdupois) per hour psi */
+  X_K74("K74"),
+  /** pound (avoirdupois) per cubic inch degree Fahrenheit */
+  X_K75("K75"),
+  /** pound (avoirdupois) per cubic inch psi */
+  X_K76("K76"),
+  /** pound (avoirdupois) per psi */
+  X_K77("K77"),
+  /** pound (avoirdupois) per minute */
+  X_K78("K78"),
+  /** pound (avoirdupois) per minute degree Fahrenheit */
+  X_K79("K79"),
+  /** pound (avoirdupois) per minute psi */
+  X_K80("K80"),
+  /** pound (avoirdupois) per second */
+  X_K81("K81"),
+  /** pound (avoirdupois) per second degree Fahrenheit */
+  X_K82("K82"),
+  /** pound (avoirdupois) per second psi */
+  X_K83("K83"),
+  /** pound per cubic yard */
+  X_K84("K84"),
+  /** pound-force per square foot */
+  X_K85("K85"),
+  /** pound-force per square inch degree Fahrenheit */
+  X_K86("K86"),
+  /** psi cubic inch per second */
+  X_K87("K87"),
+  /** psi litre per second */
+  X_K88("K88"),
+  /** psi cubic metre per second */
+  X_K89("K89"),
+  /** psi cubic yard per second */
+  X_K90("K90"),
+  /** pound-force second per square foot */
+  X_K91("K91"),
+  /** pound-force second per square inch */
+  X_K92("K92"),
+  /** reciprocal psi */
+  X_K93("K93"),
+  /** quart (UK liquid) per day */
+  X_K94("K94"),
+  /** quart (UK liquid) per hour */
+  X_K95("K95"),
+  /** quart (UK liquid) per minute */
+  X_K96("K96"),
+  /** quart (UK liquid) per second */
+  X_K97("K97"),
+  /** quart (US liquid) per day */
+  X_K98("K98"),
+  /** quart (US liquid) per hour */
+  X_K99("K99"),
+  /** cake */
+  X_KA("KA"),
+  /** katal */
+  X_KAT("KAT"),
+  /** kilocharacter */
+  X_KB("KB"),
+  /** kilobar */
+  X_KBA("KBA"),
+  /** kilogram of choline chloride */
+  X_KCC("KCC"),
+  /** kilogram drained net weight */
+  X_KDW("KDW"),
+  /** kelvin */
+  X_KEL("KEL"),
+  /** kilogram */
+  X_KGM("KGM"),
+  /** kilogram per second */
+  X_KGS("KGS"),
+  /** kilogram of hydrogen peroxide */
+  X_KHY("KHY"),
+  /** kilohertz */
+  X_KHZ("KHZ"),
+  /** kilogram per millimetre width */
+  X_KI("KI"),
+  /** kilogram, including container */
+  X_KIC("KIC"),
+  /** kilogram, including inner packaging */
+  X_KIP("KIP"),
+  /** kilosegment */
+  X_KJ("KJ"),
+  /** kilojoule */
+  X_KJO("KJO"),
+  /** kilogram per metre */
+  X_KL("KL"),
+  /** lactic dry material percentage */
+  X_KLK("KLK"),
+  /** kilolux */
+  X_KLX("KLX"),
+  /** kilogram of methylamine */
+  X_KMA("KMA"),
+  /** kilometre per hour */
+  X_KMH("KMH"),
+  /** square kilometre */
+  X_KMK("KMK"),
+  /** kilogram per cubic metre */
+  X_KMQ("KMQ"),
+  /** kilometre */
+  X_KMT("KMT"),
+  /** kilogram of nitrogen */
+  X_KNI("KNI"),
+  /** kilonewton per square metre */
+  X_KNM("KNM"),
+  /** kilogram named substance */
+  X_KNS("KNS"),
+  /** knot */
+  X_KNT("KNT"),
+  /** milliequivalence caustic potash per gram of product */
+  X_KO("KO"),
+  /** kilopascal */
+  X_KPA("KPA"),
+  /** kilogram of potassium hydroxide (caustic potash) */
+  X_KPH("KPH"),
+  /** kilogram of potassium oxide */
+  X_KPO("KPO"),
+  /** kilogram of phosphorus pentoxide (phosphoric anhydride) */
+  X_KPP("KPP"),
+  /** kiloroentgen */
+  X_KR("KR"),
+  /** kilogram of substance 90 % dry */
+  X_KSD("KSD"),
+  /** kilogram of sodium hydroxide (caustic soda) */
+  X_KSH("KSH"),
+  /** kit */
+  X_KT("KT"),
+  /** kilotonne */
+  X_KTN("KTN"),
+  /** kilogram of uranium */
+  X_KUR("KUR"),
+  /** kilovolt - ampere */
+  X_KVA("KVA"),
+  /** kilovar */
+  X_KVR("KVR"),
+  /** kilovolt */
+  X_KVT("KVT"),
+  /** kilogram per millimetre */
+  X_KW("KW"),
+  /** kilowatt hour */
+  X_KWH("KWH"),
+  /** Kilowatt hour per normalized cubic metre */
+  X_KWN("KWN"),
+  /** kilogram of tungsten trioxide */
+  X_KWO("KWO"),
+  /** Kilowatt hour per standard cubic metre */
+  X_KWS("KWS"),
+  /** kilowatt */
+  X_KWT("KWT"),
+  /** kilowatt year */
+  X_KWY("KWY"),
+  /** millilitre per kilogram */
+  X_KX("KX"),
+  /** quart (US liquid) per minute */
+  X_L10("L10"),
+  /** quart (US liquid) per second */
+  X_L11("L11"),
+  /** metre per second kelvin */
+  X_L12("L12"),
+  /** metre per second bar */
+  X_L13("L13"),
+  /** square metre hour degree Celsius per kilocalorie (international table) */
+  X_L14("L14"),
+  /** millipascal second per kelvin */
+  X_L15("L15"),
+  /** millipascal second per bar */
+  X_L16("L16"),
+  /** milligram per cubic metre kelvin */
+  X_L17("L17"),
+  /** milligram per cubic metre bar */
+  X_L18("L18"),
+  /** millilitre per litre */
+  X_L19("L19"),
+  /** litre per minute */
+  X_L2("L2"),
+  /** reciprocal cubic millimetre */
+  X_L20("L20"),
+  /** cubic millimetre per cubic metre */
+  X_L21("L21"),
+  /** mole per hour */
+  X_L23("L23"),
+  /** mole per kilogram kelvin */
+  X_L24("L24"),
+  /** mole per kilogram bar */
+  X_L25("L25"),
+  /** mole per litre kelvin */
+  X_L26("L26"),
+  /** mole per litre bar */
+  X_L27("L27"),
+  /** mole per cubic metre kelvin */
+  X_L28("L28"),
+  /** mole per cubic metre bar */
+  X_L29("L29"),
+  /** mole per minute */
+  X_L30("L30"),
+  /** milliroentgen aequivalent men */
+  X_L31("L31"),
+  /** nanogram per kilogram */
+  X_L32("L32"),
+  /** ounce (avoirdupois) per day */
+  X_L33("L33"),
+  /** ounce (avoirdupois) per hour */
+  X_L34("L34"),
+  /** ounce (avoirdupois) per minute */
+  X_L35("L35"),
+  /** ounce (avoirdupois) per second */
+  X_L36("L36"),
+  /** ounce (avoirdupois) per gallon (UK) */
+  X_L37("L37"),
+  /** ounce (avoirdupois) per gallon (US) */
+  X_L38("L38"),
+  /** ounce (avoirdupois) per cubic inch */
+  X_L39("L39"),
+  /** ounce (avoirdupois)-force */
+  X_L40("L40"),
+  /** ounce (avoirdupois)-force inch */
+  X_L41("L41"),
+  /** picosiemens per metre */
+  X_L42("L42"),
+  /** peck (UK) */
+  X_L43("L43"),
+  /** peck (UK) per day */
+  X_L44("L44"),
+  /** peck (UK) per hour */
+  X_L45("L45"),
+  /** peck (UK) per minute */
+  X_L46("L46"),
+  /** peck (UK) per second */
+  X_L47("L47"),
+  /** peck (US dry) per day */
+  X_L48("L48"),
+  /** peck (US dry) per hour */
+  X_L49("L49"),
+  /** peck (US dry) per minute */
+  X_L50("L50"),
+  /** peck (US dry) per second */
+  X_L51("L51"),
+  /** psi per psi */
+  X_L52("L52"),
+  /** pint (UK) per day */
+  X_L53("L53"),
+  /** pint (UK) per hour */
+  X_L54("L54"),
+  /** pint (UK) per minute */
+  X_L55("L55"),
+  /** pint (UK) per second */
+  X_L56("L56"),
+  /** pint (US liquid) per day */
+  X_L57("L57"),
+  /** pint (US liquid) per hour */
+  X_L58("L58"),
+  /** pint (US liquid) per minute */
+  X_L59("L59"),
+  /** pint (US liquid) per second */
+  X_L60("L60"),
+  /** slug per day */
+  X_L63("L63"),
+  /** slug per foot second */
+  X_L64("L64"),
+  /** slug per cubic foot */
+  X_L65("L65"),
+  /** slug per hour */
+  X_L66("L66"),
+  /** slug per minute */
+  X_L67("L67"),
+  /** slug per second */
+  X_L68("L68"),
+  /** tonne per kelvin */
+  X_L69("L69"),
+  /** tonne per bar */
+  X_L70("L70"),
+  /** tonne per day */
+  X_L71("L71"),
+  /** tonne per day kelvin */
+  X_L72("L72"),
+  /** tonne per day bar */
+  X_L73("L73"),
+  /** tonne per hour kelvin */
+  X_L74("L74"),
+  /** tonne per hour bar */
+  X_L75("L75"),
+  /** tonne per cubic metre kelvin */
+  X_L76("L76"),
+  /** tonne per cubic metre bar */
+  X_L77("L77"),
+  /** tonne per minute */
+  X_L78("L78"),
+  /** tonne per minute kelvin */
+  X_L79("L79"),
+  /** tonne per minute bar */
+  X_L80("L80"),
+  /** tonne per second */
+  X_L81("L81"),
+  /** tonne per second kelvin */
+  X_L82("L82"),
+  /** tonne per second bar */
+  X_L83("L83"),
+  /** ton (UK shipping) */
+  X_L84("L84"),
+  /** ton long per day */
+  X_L85("L85"),
+  /** ton (US shipping) */
+  X_L86("L86"),
+  /** ton short per degree Fahrenheit */
+  X_L87("L87"),
+  /** ton short per day */
+  X_L88("L88"),
+  /** ton short per hour degree Fahrenheit */
+  X_L89("L89"),
+  /** ton short per hour psi */
+  X_L90("L90"),
+  /** ton short per psi */
+  X_L91("L91"),
+  /** ton (UK long) per cubic yard */
+  X_L92("L92"),
+  /** ton (US short) per cubic yard */
+  X_L93("L93"),
+  /** ton-force (US short) */
+  X_L94("L94"),
+  /** common year */
+  X_L95("L95"),
+  /** sidereal year */
+  X_L96("L96"),
+  /** yard per degree Fahrenheit */
+  X_L98("L98"),
+  /** yard per psi */
+  X_L99("L99"),
+  /** pound per cubic inch */
+  X_LA("LA"),
+  /** lactose excess percentage */
+  X_LAC("LAC"),
+  /** pound */
+  X_LBR("LBR"),
+  /** troy pound (US) */
+  X_LBT("LBT"),
+  /** litre per day */
+  X_LD("LD"),
+  /** leaf */
+  X_LEF("LEF"),
+  /** linear foot */
+  X_LF("LF"),
+  /** labour hour */
+  X_LH("LH"),
+  /** link */
+  X_LK("LK"),
+  /** linear metre */
+  X_LM("LM"),
+  /** length */
+  X_LN("LN"),
+  /** lot [unit of procurement] */
+  X_LO("LO"),
+  /** liquid pound */
+  X_LP("LP"),
+  /** litre of pure alcohol */
+  X_LPA("LPA"),
+  /** layer */
+  X_LR("LR"),
+  /** lump sum */
+  X_LS("LS"),
+  /** ton (UK) or long ton (US) */
+  X_LTN("LTN"),
+  /** litre */
+  X_LTR("LTR"),
+  /** metric ton, lubricating oil */
+  X_LUB("LUB"),
+  /** lumen */
+  X_LUM("LUM"),
+  /** lux */
+  X_LUX("LUX"),
+  /** linear yard */
+  X_LY("LY"),
+  /** milligram per litre */
+  X_M1("M1"),
+  /** reciprocal cubic yard */
+  X_M10("M10"),
+  /** cubic yard per degree Fahrenheit */
+  X_M11("M11"),
+  /** cubic yard per day */
+  X_M12("M12"),
+  /** cubic yard per hour */
+  X_M13("M13"),
+  /** cubic yard per psi */
+  X_M14("M14"),
+  /** cubic yard per minute */
+  X_M15("M15"),
+  /** cubic yard per second */
+  X_M16("M16"),
+  /** kilohertz metre */
+  X_M17("M17"),
+  /** gigahertz metre */
+  X_M18("M18"),
+  /** Beaufort */
+  X_M19("M19"),
+  /** reciprocal megakelvin or megakelvin to the power minus one */
+  X_M20("M20"),
+  /** reciprocal kilovolt - ampere reciprocal hour */
+  X_M21("M21"),
+  /** millilitre per square centimetre minute */
+  X_M22("M22"),
+  /** newton per centimetre */
+  X_M23("M23"),
+  /** ohm kilometre */
+  X_M24("M24"),
+  /** percent per degree Celsius */
+  X_M25("M25"),
+  /** gigaohm per metre */
+  X_M26("M26"),
+  /** megahertz metre */
+  X_M27("M27"),
+  /** kilogram per kilogram */
+  X_M29("M29"),
+  /** reciprocal volt - ampere reciprocal second */
+  X_M30("M30"),
+  /** kilogram per kilometre */
+  X_M31("M31"),
+  /** pascal second per litre */
+  X_M32("M32"),
+  /** millimole per litre */
+  X_M33("M33"),
+  /** newton metre per square metre */
+  X_M34("M34"),
+  /** millivolt - ampere */
+  X_M35("M35"),
+  /** 30-day month */
+  X_M36("M36"),
+  /** actual/360 */
+  X_M37("M37"),
+  /** kilometre per second squared */
+  X_M38("M38"),
+  /** centimetre per second squared */
+  X_M39("M39"),
+  /** monetary value */
+  X_M4("M4"),
+  /** yard per second squared */
+  X_M40("M40"),
+  /** millimetre per second squared */
+  X_M41("M41"),
+  /** mile (statute mile) per second squared */
+  X_M42("M42"),
+  /** mil */
+  X_M43("M43"),
+  /** revolution */
+  X_M44("M44"),
+  /** degree [unit of angle] per second squared */
+  X_M45("M45"),
+  /** revolution per minute */
+  X_M46("M46"),
+  /** circular mil */
+  X_M47("M47"),
+  /** square mile (based on U.S. survey foot) */
+  X_M48("M48"),
+  /** chain (based on U.S. survey foot) */
+  X_M49("M49"),
+  /** microcurie */
+  X_M5("M5"),
+  /** furlong */
+  X_M50("M50"),
+  /** foot (U.S. survey) */
+  X_M51("M51"),
+  /** mile (based on U.S. survey foot) */
+  X_M52("M52"),
+  /** metre per pascal */
+  X_M53("M53"),
+  /** metre per radiant */
+  X_M55("M55"),
+  /** shake */
+  X_M56("M56"),
+  /** mile per minute */
+  X_M57("M57"),
+  /** mile per second */
+  X_M58("M58"),
+  /** metre per second pascal */
+  X_M59("M59"),
+  /** metre per hour */
+  X_M60("M60"),
+  /** inch per year */
+  X_M61("M61"),
+  /** kilometre per second */
+  X_M62("M62"),
+  /** inch per minute */
+  X_M63("M63"),
+  /** yard per second */
+  X_M64("M64"),
+  /** yard per minute */
+  X_M65("M65"),
+  /** yard per hour */
+  X_M66("M66"),
+  /** acre-foot (based on U.S. survey foot) */
+  X_M67("M67"),
+  /** cord (128 ft3) */
+  X_M68("M68"),
+  /** cubic mile (UK statute) */
+  X_M69("M69"),
+  /** micro-inch */
+  X_M7("M7"),
+  /** ton, register */
+  X_M70("M70"),
+  /** cubic metre per pascal */
+  X_M71("M71"),
+  /** bel */
+  X_M72("M72"),
+  /** kilogram per cubic metre pascal */
+  X_M73("M73"),
+  /** kilogram per pascal */
+  X_M74("M74"),
+  /** kilopound-force */
+  X_M75("M75"),
+  /** poundal */
+  X_M76("M76"),
+  /** kilogram metre per second squared */
+  X_M77("M77"),
+  /** pond */
+  X_M78("M78"),
+  /** square foot per hour */
+  X_M79("M79"),
+  /** stokes per pascal */
+  X_M80("M80"),
+  /** square centimetre per second */
+  X_M81("M81"),
+  /** square metre per second pascal */
+  X_M82("M82"),
+  /** denier */
+  X_M83("M83"),
+  /** pound per yard */
+  X_M84("M84"),
+  /** ton, assay */
+  X_M85("M85"),
+  /** pfund */
+  X_M86("M86"),
+  /** kilogram per second pascal */
+  X_M87("M87"),
+  /** tonne per month */
+  X_M88("M88"),
+  /** tonne per year */
+  X_M89("M89"),
+  /** million Btu per 1000 cubic foot */
+  X_M9("M9"),
+  /** kilopound per hour */
+  X_M90("M90"),
+  /** pound per pound */
+  X_M91("M91"),
+  /** pound-force foot */
+  X_M92("M92"),
+  /** newton metre per radian */
+  X_M93("M93"),
+  /** kilogram metre */
+  X_M94("M94"),
+  /** poundal foot */
+  X_M95("M95"),
+  /** poundal inch */
+  X_M96("M96"),
+  /** dyne metre */
+  X_M97("M97"),
+  /** kilogram centimetre per second */
+  X_M98("M98"),
+  /** gram centimetre per second */
+  X_M99("M99"),
+  /** megavolt ampere reactive hour */
+  X_MAH("MAH"),
+  /** megalitre */
+  X_MAL("MAL"),
+  /** megametre */
+  X_MAM("MAM"),
+  /** megavar */
+  X_MAR("MAR"),
+  /** megawatt */
+  X_MAW("MAW"),
+  /** thousand standard brick equivalent */
+  X_MBE("MBE"),
+  /** thousand board foot */
+  X_MBF("MBF"),
+  /** millibar */
+  X_MBR("MBR"),
+  /** microgram */
+  X_MC("MC"),
+  /** millicurie */
+  X_MCU("MCU"),
+  /** air dry metric ton */
+  X_MD("MD"),
+  /** milligram */
+  X_MGM("MGM"),
+  /** megahertz */
+  X_MHZ("MHZ"),
+  /** square mile (statute mile) */
+  X_MIK("MIK"),
+  /** thousand */
+  X_MIL("MIL"),
+  /** minute [unit of time] */
+  X_MIN("MIN"),
+  /** million */
+  X_MIO("MIO"),
+  /** million international unit */
+  X_MIU("MIU"),
+  /** Square Metre Day */
+  X_MKD("MKD"),
+  /** Square Metre Month */
+  X_MKM("MKM"),
+  /** Square Metre Week */
+  X_MKW("MKW"),
+  /** milliard */
+  X_MLD("MLD"),
+  /** millilitre */
+  X_MLT("MLT"),
+  /** square millimetre */
+  X_MMK("MMK"),
+  /** cubic millimetre */
+  X_MMQ("MMQ"),
+  /** millimetre */
+  X_MMT("MMT"),
+  /** kilogram, dry weight */
+  X_MND("MND"),
+  /** Mega Joule per Normalised cubic Metre */
+  X_MNJ("MNJ"),
+  /** month */
+  X_MON("MON"),
+  /** megapascal */
+  X_MPA("MPA"),
+  /** Cubic Metre Day */
+  X_MQD("MQD"),
+  /** cubic metre per hour */
+  X_MQH("MQH"),
+  /** Cubic Metre Month */
+  X_MQM("MQM"),
+  /** cubic metre per second */
+  X_MQS("MQS"),
+  /** Cubic Metre Week */
+  X_MQW("MQW"),
+  /** Metre Day */
+  X_MRD("MRD"),
+  /** Metre Month */
+  X_MRM("MRM"),
+  /** Metre Week */
+  X_MRW("MRW"),
+  /** metre per second squared */
+  X_MSK("MSK"),
+  /** square metre */
+  X_MTK("MTK"),
+  /** cubic metre */
+  X_MTQ("MTQ"),
+  /** metre */
+  X_MTR("MTR"),
+  /** metre per second */
+  X_MTS("MTS"),
+  /** milihertz */
+  X_MTZ("MTZ"),
+  /** megavolt - ampere */
+  X_MVA("MVA"),
+  /** megawatt hour (1000 kW.h) */
+  X_MWH("MWH"),
+  /** pen calorie */
+  X_N1("N1"),
+  /** pound foot per second */
+  X_N10("N10"),
+  /** pound inch per second */
+  X_N11("N11"),
+  /** Pferdestaerke */
+  X_N12("N12"),
+  /** centimetre of mercury (0 ºC) */
+  X_N13("N13"),
+  /** centimetre of water (4 ºC) */
+  X_N14("N14"),
+  /** foot of water (39.2 ºF) */
+  X_N15("N15"),
+  /** inch of mercury (32 ºF) */
+  X_N16("N16"),
+  /** inch of mercury (60 ºF) */
+  X_N17("N17"),
+  /** inch of water (39.2 ºF) */
+  X_N18("N18"),
+  /** inch of water (60 ºF) */
+  X_N19("N19"),
+  /** kip per square inch */
+  X_N20("N20"),
+  /** poundal per square foot */
+  X_N21("N21"),
+  /** ounce (avoirdupois) per square inch */
+  X_N22("N22"),
+  /** conventional metre of water */
+  X_N23("N23"),
+  /** gram per square millimetre */
+  X_N24("N24"),
+  /** pound per square yard */
+  X_N25("N25"),
+  /** poundal per square inch */
+  X_N26("N26"),
+  /** foot to the fourth power */
+  X_N27("N27"),
+  /** cubic decimetre per kilogram */
+  X_N28("N28"),
+  /** cubic foot per pound */
+  X_N29("N29"),
+  /** print point */
+  X_N3("N3"),
+  /** cubic inch per pound */
+  X_N30("N30"),
+  /** kilonewton per metre */
+  X_N31("N31"),
+  /** poundal per inch */
+  X_N32("N32"),
+  /** pound-force per yard */
+  X_N33("N33"),
+  /** poundal second per square foot */
+  X_N34("N34"),
+  /** poise per pascal */
+  X_N35("N35"),
+  /** newton second per square metre */
+  X_N36("N36"),
+  /** kilogram per metre second */
+  X_N37("N37"),
+  /** kilogram per metre minute */
+  X_N38("N38"),
+  /** kilogram per metre day */
+  X_N39("N39"),
+  /** kilogram per metre hour */
+  X_N40("N40"),
+  /** gram per centimetre second */
+  X_N41("N41"),
+  /** poundal second per square inch */
+  X_N42("N42"),
+  /** pound per foot minute */
+  X_N43("N43"),
+  /** pound per foot day */
+  X_N44("N44"),
+  /** cubic metre per second pascal */
+  X_N45("N45"),
+  /** foot poundal */
+  X_N46("N46"),
+  /** inch poundal */
+  X_N47("N47"),
+  /** watt per square centimetre */
+  X_N48("N48"),
+  /** watt per square inch */
+  X_N49("N49"),
+  /** British thermal unit (international table) per square foot hour */
+  X_N50("N50"),
+  /** British thermal unit (thermochemical) per square foot hour */
+  X_N51("N51"),
+  /** British thermal unit (thermochemical) per square foot minute */
+  X_N52("N52"),
+  /** British thermal unit (international table) per square foot second */
+  X_N53("N53"),
+  /** British thermal unit (thermochemical) per square foot second */
+  X_N54("N54"),
+  /** British thermal unit (international table) per square inch second */
+  X_N55("N55"),
+  /** calorie (thermochemical) per square centimetre minute */
+  X_N56("N56"),
+  /** calorie (thermochemical) per square centimetre second */
+  X_N57("N57"),
+  /** British thermal unit (international table) per cubic foot */
+  X_N58("N58"),
+  /** British thermal unit (thermochemical) per cubic foot */
+  X_N59("N59"),
+  /** British thermal unit (international table) per degree Fahrenheit */
+  X_N60("N60"),
+  /** British thermal unit (thermochemical) per degree Fahrenheit */
+  X_N61("N61"),
+  /** British thermal unit (international table) per degree Rankine */
+  X_N62("N62"),
+  /** British thermal unit (thermochemical) per degree Rankine */
+  X_N63("N63"),
+  /** British thermal unit (thermochemical) per pound degree Rankine */
+  X_N64("N64"),
+  /** kilocalorie (international table) per gram kelvin */
+  X_N65("N65"),
+  /** British thermal unit (39 ºF) */
+  X_N66("N66"),
+  /** British thermal unit (59 ºF) */
+  X_N67("N67"),
+  /** British thermal unit (60 ºF) */
+  X_N68("N68"),
+  /** calorie (20 ºC) */
+  X_N69("N69"),
+  /** quad (1015 BtuIT) */
+  X_N70("N70"),
+  /** therm (EC) */
+  X_N71("N71"),
+  /** therm (U.S.) */
+  X_N72("N72"),
+  /** British thermal unit (thermochemical) per pound */
+  X_N73("N73"),
+  /** British thermal unit (international table) per hour square foot degree
+   Fahrenheit */
+  X_N74("N74"),
+  /** British thermal unit (thermochemical) per hour square foot degree Fahrenheit */
+  X_N75("N75"),
+  /** British thermal unit (international table) per second square foot degree
+   Fahrenheit */
+  X_N76("N76"),
+  /** British thermal unit (thermochemical) per second square foot degree Fahrenheit */
+  X_N77("N77"),
+  /** kilowatt per square metre kelvin */
+  X_N78("N78"),
+  /** kelvin per pascal */
+  X_N79("N79"),
+  /** watt per metre degree Celsius */
+  X_N80("N80"),
+  /** kilowatt per metre kelvin */
+  X_N81("N81"),
+  /** kilowatt per metre degree Celsius */
+  X_N82("N82"),
+  /** metre per degree Celcius metre */
+  X_N83("N83"),
+  /** degree Fahrenheit hour per British thermal unit (international table) */
+  X_N84("N84"),
+  /** degree Fahrenheit hour per British thermal unit (thermochemical) */
+  X_N85("N85"),
+  /** degree Fahrenheit second per British thermal unit (international table) */
+  X_N86("N86"),
+  /** degree Fahrenheit second per British thermal unit (thermochemical) */
+  X_N87("N87"),
+  /** degree Fahrenheit hour square foot per British thermal unit (international table)
+   inch */
+  X_N88("N88"),
+  /** degree Fahrenheit hour square foot per British thermal unit (thermochemical)
+   inch */
+  X_N89("N89"),
+  /** kilofarad */
+  X_N90("N90"),
+  /** reciprocal joule */
+  X_N91("N91"),
+  /** picosiemens */
+  X_N92("N92"),
+  /** ampere per pascal */
+  X_N93("N93"),
+  /** franklin */
+  X_N94("N94"),
+  /** ampere minute */
+  X_N95("N95"),
+  /** biot */
+  X_N96("N96"),
+  /** gilbert */
+  X_N97("N97"),
+  /** volt per pascal */
+  X_N98("N98"),
+  /** picovolt */
+  X_N99("N99"),
+  /** milligram per kilogram */
+  X_NA("NA"),
+  /** number of articles */
+  X_NAR("NAR"),
+  /** number of cells */
+  X_NCL("NCL"),
+  /** newton */
+  X_NEW("NEW"),
+  /** message */
+  X_NF("NF"),
+  /** nil */
+  X_NIL("NIL"),
+  /** number of international units */
+  X_NIU("NIU"),
+  /** load */
+  X_NL("NL"),
+  /** Normalised cubic metre */
+  X_NM3("NM3"),
+  /** nautical mile */
+  X_NMI("NMI"),
+  /** number of packs */
+  X_NMP("NMP"),
+  /** number of parts */
+  X_NPT("NPT"),
+  /** net ton */
+  X_NT("NT"),
+  /** Nephelometric turbidity unit */
+  X_NTU("NTU"),
+  /** newton metre */
+  X_NU("NU"),
+  /** part per thousand */
+  X_NX("NX"),
+  /** panel */
+  X_OA("OA"),
+  /** ozone depletion equivalent */
+  X_ODE("ODE"),
+  /** ODS Grams */
+  X_ODG("ODG"),
+  /** ODS Kilograms */
+  X_ODK("ODK"),
+  /** ODS Milligrams */
+  X_ODM("ODM"),
+  /** ohm */
+  X_OHM("OHM"),
+  /** ounce per square yard */
+  X_ON("ON"),
+  /** ounce (avoirdupois) */
+  X_ONZ("ONZ"),
+  /** oscillations per minute */
+  X_OPM("OPM"),
+  /** overtime hour */
+  X_OT("OT"),
+  /** fluid ounce (US) */
+  X_OZA("OZA"),
+  /** fluid ounce (UK) */
+  X_OZI("OZI"),
+  /** percent */
+  X_P1("P1"),
+  /** coulomb per metre */
+  X_P10("P10"),
+  /** kiloweber */
+  X_P11("P11"),
+  /** gamma */
+  X_P12("P12"),
+  /** kilotesla */
+  X_P13("P13"),
+  /** joule per second */
+  X_P14("P14"),
+  /** joule per minute */
+  X_P15("P15"),
+  /** joule per hour */
+  X_P16("P16"),
+  /** joule per day */
+  X_P17("P17"),
+  /** kilojoule per second */
+  X_P18("P18"),
+  /** kilojoule per minute */
+  X_P19("P19"),
+  /** pound per foot */
+  X_P2("P2"),
+  /** kilojoule per hour */
+  X_P20("P20"),
+  /** kilojoule per day */
+  X_P21("P21"),
+  /** nanoohm */
+  X_P22("P22"),
+  /** ohm circular-mil per foot */
+  X_P23("P23"),
+  /** kilohenry */
+  X_P24("P24"),
+  /** lumen per square foot */
+  X_P25("P25"),
+  /** phot */
+  X_P26("P26"),
+  /** footcandle */
+  X_P27("P27"),
+  /** candela per square inch */
+  X_P28("P28"),
+  /** footlambert */
+  X_P29("P29"),
+  /** lambert */
+  X_P30("P30"),
+  /** stilb */
+  X_P31("P31"),
+  /** candela per square foot */
+  X_P32("P32"),
+  /** kilocandela */
+  X_P33("P33"),
+  /** millicandela */
+  X_P34("P34"),
+  /** Hefner-Kerze */
+  X_P35("P35"),
+  /** international candle */
+  X_P36("P36"),
+  /** British thermal unit (international table) per square foot */
+  X_P37("P37"),
+  /** British thermal unit (thermochemical) per square foot */
+  X_P38("P38"),
+  /** calorie (thermochemical) per square centimetre */
+  X_P39("P39"),
+  /** langley */
+  X_P40("P40"),
+  /** decade (logarithmic) */
+  X_P41("P41"),
+  /** pascal squared second */
+  X_P42("P42"),
+  /** bel per metre */
+  X_P43("P43"),
+  /** pound mole */
+  X_P44("P44"),
+  /** pound mole per second */
+  X_P45("P45"),
+  /** pound mole per minute */
+  X_P46("P46"),
+  /** kilomole per kilogram */
+  X_P47("P47"),
+  /** pound mole per pound */
+  X_P48("P48"),
+  /** newton square metre per ampere */
+  X_P49("P49"),
+  /** five pack */
+  X_P5("P5"),
+  /** weber metre */
+  X_P50("P50"),
+  /** mol per kilogram pascal */
+  X_P51("P51"),
+  /** mol per cubic metre pascal */
+  X_P52("P52"),
+  /** unit pole */
+  X_P53("P53"),
+  /** milligray per second */
+  X_P54("P54"),
+  /** microgray per second */
+  X_P55("P55"),
+  /** nanogray per second */
+  X_P56("P56"),
+  /** gray per minute */
+  X_P57("P57"),
+  /** milligray per minute */
+  X_P58("P58"),
+  /** microgray per minute */
+  X_P59("P59"),
+  /** nanogray per minute */
+  X_P60("P60"),
+  /** gray per hour */
+  X_P61("P61"),
+  /** milligray per hour */
+  X_P62("P62"),
+  /** microgray per hour */
+  X_P63("P63"),
+  /** nanogray per hour */
+  X_P64("P64"),
+  /** sievert per second */
+  X_P65("P65"),
+  /** millisievert per second */
+  X_P66("P66"),
+  /** microsievert per second */
+  X_P67("P67"),
+  /** nanosievert per second */
+  X_P68("P68"),
+  /** rem per second */
+  X_P69("P69"),
+  /** sievert per hour */
+  X_P70("P70"),
+  /** millisievert per hour */
+  X_P71("P71"),
+  /** microsievert per hour */
+  X_P72("P72"),
+  /** nanosievert per hour */
+  X_P73("P73"),
+  /** sievert per minute */
+  X_P74("P74"),
+  /** millisievert per minute */
+  X_P75("P75"),
+  /** microsievert per minute */
+  X_P76("P76"),
+  /** nanosievert per minute */
+  X_P77("P77"),
+  /** reciprocal square inch */
+  X_P78("P78"),
+  /** pascal square metre per kilogram */
+  X_P79("P79"),
+  /** millipascal per metre */
+  X_P80("P80"),
+  /** kilopascal per metre */
+  X_P81("P81"),
+  /** hectopascal per metre */
+  X_P82("P82"),
+  /** standard atmosphere per metre */
+  X_P83("P83"),
+  /** technical atmosphere per metre */
+  X_P84("P84"),
+  /** torr per metre */
+  X_P85("P85"),
+  /** psi per inch */
+  X_P86("P86"),
+  /** cubic metre per second square metre */
+  X_P87("P87"),
+  /** rhe */
+  X_P88("P88"),
+  /** pound-force foot per inch */
+  X_P89("P89"),
+  /** pound-force inch per inch */
+  X_P90("P90"),
+  /** perm (0 ºC) */
+  X_P91("P91"),
+  /** perm (23 ºC) */
+  X_P92("P92"),
+  /** byte per second */
+  X_P93("P93"),
+  /** kilobyte per second */
+  X_P94("P94"),
+  /** megabyte per second */
+  X_P95("P95"),
+  /** reciprocal volt */
+  X_P96("P96"),
+  /** reciprocal radian */
+  X_P97("P97"),
+  /** pascal to the power sum of stoichiometric numbers */
+  X_P98("P98"),
+  /** mole per cubiv metre to the power sum of stoichiometric numbers */
+  X_P99("P99"),
+  /** pascal */
+  X_PAL("PAL"),
+  /** pad */
+  X_PD("PD"),
+  /** proof litre */
+  X_PFL("PFL"),
+  /** proof gallon */
+  X_PGL("PGL"),
+  /** pitch */
+  X_PI("PI"),
+  /** degree Plato */
+  X_PLA("PLA"),
+  /** pound per inch of length */
+  X_PO("PO"),
+  /** page per inch */
+  X_PQ("PQ"),
+  /** pair */
+  X_PR("PR"),
+  /** pound-force per square inch */
+  X_PS("PS"),
+  /** dry pint (US) */
+  X_PTD("PTD"),
+  /** pint (UK) */
+  X_PTI("PTI"),
+  /** liquid pint (US) */
+  X_PTL("PTL"),
+  /** portion */
+  X_PTN("PTN"),
+  /** joule per tesla */
+  X_Q10("Q10"),
+  /** erlang */
+  X_Q11("Q11"),
+  /** octet */
+  X_Q12("Q12"),
+  /** octet per second */
+  X_Q13("Q13"),
+  /** shannon */
+  X_Q14("Q14"),
+  /** hartley */
+  X_Q15("Q15"),
+  /** natural unit of information */
+  X_Q16("Q16"),
+  /** shannon per second */
+  X_Q17("Q17"),
+  /** hartley per second */
+  X_Q18("Q18"),
+  /** natural unit of information per second */
+  X_Q19("Q19"),
+  /** second per kilogramm */
+  X_Q20("Q20"),
+  /** watt square metre */
+  X_Q21("Q21"),
+  /** second per radian cubic metre */
+  X_Q22("Q22"),
+  /** weber to the power minus one */
+  X_Q23("Q23"),
+  /** reciprocal inch */
+  X_Q24("Q24"),
+  /** dioptre */
+  X_Q25("Q25"),
+  /** one per one */
+  X_Q26("Q26"),
+  /** newton metre per metre */
+  X_Q27("Q27"),
+  /** kilogram per square metre pascal second */
+  X_Q28("Q28"),
+  /** microgram per hectogram */
+  X_Q29("Q29"),
+  /** pH (potential of Hydrogen) */
+  X_Q30("Q30"),
+  /** kilojoule per gram */
+  X_Q31("Q31"),
+  /** femtolitre */
+  X_Q32("Q32"),
+  /** picolitre */
+  X_Q33("Q33"),
+  /** nanolitre */
+  X_Q34("Q34"),
+  /** megawatts per minute */
+  X_Q35("Q35"),
+  /** square metre per cubic metre */
+  X_Q36("Q36"),
+  /** Standard cubic metre per day */
+  X_Q37("Q37"),
+  /** Standard cubic metre per hour */
+  X_Q38("Q38"),
+  /** Normalized cubic metre per day */
+  X_Q39("Q39"),
+  /** Normalized cubic metre per hour */
+  X_Q40("Q40"),
+  /** Joule per normalised cubic metre */
+  X_Q41("Q41"),
+  /** Joule per standard cubic metre */
+  X_Q42("Q42"),
+  /** meal */
+  X_Q3("Q3"),
+  /** page - facsimile */
+  X_QA("QA"),
+  /** quarter (of a year) */
+  X_QAN("QAN"),
+  /** page - hardcopy */
+  X_QB("QB"),
+  /** quire */
+  X_QR("QR"),
+  /** dry quart (US) */
+  X_QTD("QTD"),
+  /** quart (UK) */
+  X_QTI("QTI"),
+  /** liquid quart (US) */
+  X_QTL("QTL"),
+  /** quarter (UK) */
+  X_QTR("QTR"),
+  /** pica */
+  X_R1("R1"),
+  /** thousand cubic metre */
+  X_R9("R9"),
+  /** running or operating hour */
+  X_RH("RH"),
+  /** ream */
+  X_RM("RM"),
+  /** room */
+  X_ROM("ROM"),
+  /** pound per ream */
+  X_RP("RP"),
+  /** revolutions per minute */
+  X_RPM("RPM"),
+  /** revolutions per second */
+  X_RPS("RPS"),
+  /** revenue ton mile */
+  X_RT("RT"),
+  /** square foot per second */
+  X_S3("S3"),
+  /** square metre per second */
+  X_S4("S4"),
+  /** half year (6 months) */
+  X_SAN("SAN"),
+  /** score */
+  X_SCO("SCO"),
+  /** scruple */
+  X_SCR("SCR"),
+  /** second [unit of time] */
+  X_SEC("SEC"),
+  /** set */
+  X_SET("SET"),
+  /** segment */
+  X_SG("SG"),
+  /** siemens */
+  X_SIE("SIE"),
+  /** Standard cubic metre */
+  X_SM3("SM3"),
+  /** mile (statute mile) */
+  X_SMI("SMI"),
+  /** square */
+  X_SQ("SQ"),
+  /** square, roofing */
+  X_SQR("SQR"),
+  /** strip */
+  X_SR("SR"),
+  /** stick */
+  X_STC("STC"),
+  /** stone (UK) */
+  X_STI("STI"),
+  /** stick, cigarette */
+  X_STK("STK"),
+  /** standard litre */
+  X_STL("STL"),
+  /** ton (US) or short ton (UK/US) */
+  X_STN("STN"),
+  /** straw */
+  X_STW("STW"),
+  /** skein */
+  X_SW("SW"),
+  /** shipment */
+  X_SX("SX"),
+  /** syringe */
+  X_SYR("SYR"),
+  /** telecommunication line in service */
+  X_T0("T0"),
+  /** thousand piece */
+  X_T3("T3"),
+  /** kiloampere hour (thousand ampere hour) */
+  X_TAH("TAH"),
+  /** total acid number */
+  X_TAN("TAN"),
+  /** thousand square inch */
+  X_TI("TI"),
+  /** metric ton, including container */
+  X_TIC("TIC"),
+  /** metric ton, including inner packaging */
+  X_TIP("TIP"),
+  /** tonne kilometre */
+  X_TKM("TKM"),
+  /** kilogram of imported meat, less offal */
+  X_TMS("TMS"),
+  /** tonne (metric ton) */
+  X_TNE("TNE"),
+  /** ten pack */
+  X_TP("TP"),
+  /** teeth per inch */
+  X_TPI("TPI"),
+  /** ten pair */
+  X_TPR("TPR"),
+  /** thousand cubic metre per day */
+  X_TQD("TQD"),
+  /** trillion (EUR) */
+  X_TRL("TRL"),
+  /** ten set */
+  X_TST("TST"),
+  /** ten thousand sticks */
+  X_TTS("TTS"),
+  /** treatment */
+  X_U1("U1"),
+  /** tablet */
+  X_U2("U2"),
+  /** telecommunication line in service average */
+  X_UB("UB"),
+  /** telecommunication port */
+  X_UC("UC"),
+  /** volt - ampere per kilogram */
+  X_VA("VA"),
+  /** volt */
+  X_VLT("VLT"),
+  /** percent volume */
+  X_VP("VP"),
+  /** wet kilo */
+  X_W2("W2"),
+  /** watt per kilogram */
+  X_WA("WA"),
+  /** wet pound */
+  X_WB("WB"),
+  /** cord */
+  X_WCD("WCD"),
+  /** wet ton */
+  X_WE("WE"),
+  /** weber */
+  X_WEB("WEB"),
+  /** week */
+  X_WEE("WEE"),
+  /** wine gallon */
+  X_WG("WG"),
+  /** watt hour */
+  X_WHR("WHR"),
+  /** working month */
+  X_WM("WM"),
+  /** standard */
+  X_WSD("WSD"),
+  /** watt */
+  X_WTT("WTT"),
+  /** Gunter's chain */
+  X_X1("X1"),
+  /** square yard */
+  X_YDK("YDK"),
+  /** cubic yard */
+  X_YDQ("YDQ"),
+  /** yard */
+  X_YRD("YRD"),
+  /** hanging container */
+  X_Z11("Z11"),
+  /** nanomole */
+  X_Z9("Z9"),
+  /** page */
+  X_ZP("ZP"),
+  /** mutually defined */
+  X_ZZ("ZZ"),
+  /** Drum, steel */
+  X_X1A("X1A"),
+  /** Drum, aluminium */
+  X_X1B("X1B"),
+  /** Drum, plywood */
+  X_X1D("X1D"),
+  /** Container, flexible */
+  X_X1F("X1F"),
+  /** Drum, fibre */
+  X_X1G("X1G"),
+  /** Drum, wooden */
+  X_X1W("X1W"),
+  /** Barrel, wooden */
+  X_X2C("X2C"),
+  /** Jerrican, steel */
+  X_X3A("X3A"),
+  /** Jerrican, plastic */
+  X_X3H("X3H"),
+  /** Bag, super bulk */
+  X_X43("X43"),
+  /** Bag, polybag */
+  X_X44("X44"),
+  /** Box, steel */
+  X_X4A("X4A"),
+  /** Box, aluminium */
+  X_X4B("X4B"),
+  /** Box, natural wood */
+  X_X4C("X4C"),
+  /** Box, plywood */
+  X_X4D("X4D"),
+  /** Box, reconstituted wood */
+  X_X4F("X4F"),
+  /** Box, fibreboard */
+  X_X4G("X4G"),
+  /** Box, plastic */
+  X_X4H("X4H"),
+  /** Bag, woven plastic */
+  X_X5H("X5H"),
+  /** Bag, textile */
+  X_X5L("X5L"),
+  /** Bag, paper */
+  X_X5M("X5M"),
+  /** Composite packaging, plastic receptacle */
+  X_X6H("X6H"),
+  /** Composite packaging, glass receptacle */
+  X_X6P("X6P"),
+  /** Case, car */
+  X_X7A("X7A"),
+  /** Case, wooden */
+  X_X7B("X7B"),
+  /** Pallet, wooden */
+  X_X8A("X8A"),
+  /** Crate, wooden */
+  X_X8B("X8B"),
+  /** Bundle, wooden */
+  X_X8C("X8C"),
+  /** Intermediate bulk container, rigid plastic */
+  X_XAA("XAA"),
+  /** Receptacle, fibre */
+  X_XAB("XAB"),
+  /** Receptacle, paper */
+  X_XAC("XAC"),
+  /** Receptacle, wooden */
+  X_XAD("XAD"),
+  /** Aerosol */
+  X_XAE("XAE"),
+  /** Pallet, modular, collars 80cms * 60cms */
+  X_XAF("XAF"),
+  /** Pallet, shrinkwrapped */
+  X_XAG("XAG"),
+  /** Pallet, 100cms * 110cms */
+  X_XAH("XAH"),
+  /** Clamshell */
+  X_XAI("XAI"),
+  /** Cone */
+  X_XAJ("XAJ"),
+  /** Ball */
+  X_XAL("XAL"),
+  /** Ampoule, non-protected */
+  X_XAM("XAM"),
+  /** Ampoule, protected */
+  X_XAP("XAP"),
+  /** Atomizer */
+  X_XAT("XAT"),
+  /** Capsule */
+  X_XAV("XAV"),
+  /** Belt */
+  X_XB4("XB4"),
+  /** Barrel */
+  X_XBA("XBA"),
+  /** Bobbin */
+  X_XBB("XBB"),
+  /** Bottlecrate / bottlerack */
+  X_XBC("XBC"),
+  /** Board */
+  X_XBD("XBD"),
+  /** Bundle */
+  X_XBE("XBE"),
+  /** Balloon, non-protected */
+  X_XBF("XBF"),
+  /** Bag */
+  X_XBG("XBG"),
+  /** Bunch */
+  X_XBH("XBH"),
+  /** Bin */
+  X_XBI("XBI"),
+  /** Bucket */
+  X_XBJ("XBJ"),
+  /** Basket */
+  X_XBK("XBK"),
+  /** Bale, compressed */
+  X_XBL("XBL"),
+  /** Basin */
+  X_XBM("XBM"),
+  /** Bale, non-compressed */
+  X_XBN("XBN"),
+  /** Bottle, non-protected, cylindrical */
+  X_XBO("XBO"),
+  /** Balloon, protected */
+  X_XBP("XBP"),
+  /** Bottle, protected cylindrical */
+  X_XBQ("XBQ"),
+  /** Bar */
+  X_XBR("XBR"),
+  /** Bottle, non-protected, bulbous */
+  X_XBS("XBS"),
+  /** Bolt */
+  X_XBT("XBT"),
+  /** Butt */
+  X_XBU("XBU"),
+  /** Bottle, protected bulbous */
+  X_XBV("XBV"),
+  /** Box, for liquids */
+  X_XBW("XBW"),
+  /** Box */
+  X_XBX("XBX"),
+  /** Board, in bundle/bunch/truss */
+  X_XBY("XBY"),
+  /** Bars, in bundle/bunch/truss */
+  X_XBZ("XBZ"),
+  /** Can, rectangular */
+  X_XCA("XCA"),
+  /** Crate, beer */
+  X_XCB("XCB"),
+  /** Churn */
+  X_XCC("XCC"),
+  /** Can, with handle and spout */
+  X_XCD("XCD"),
+  /** Creel */
+  X_XCE("XCE"),
+  /** Coffer */
+  X_XCF("XCF"),
+  /** Cage */
+  X_XCG("XCG"),
+  /** Chest */
+  X_XCH("XCH"),
+  /** Canister */
+  X_XCI("XCI"),
+  /** Coffin */
+  X_XCJ("XCJ"),
+  /** Cask */
+  X_XCK("XCK"),
+  /** Coil */
+  X_XCL("XCL"),
+  /** Card */
+  X_XCM("XCM"),
+  /** Container, not otherwise specified as transport equipment */
+  X_XCN("XCN"),
+  /** Carboy, non-protected */
+  X_XCO("XCO"),
+  /** Carboy, protected */
+  X_XCP("XCP"),
+  /** Cartridge */
+  X_XCQ("XCQ"),
+  /** Crate */
+  X_XCR("XCR"),
+  /** Case */
+  X_XCS("XCS"),
+  /** Carton */
+  X_XCT("XCT"),
+  /** Cup */
+  X_XCU("XCU"),
+  /** Cover */
+  X_XCV("XCV"),
+  /** Cage, roll */
+  X_XCW("XCW"),
+  /** Can, cylindrical */
+  X_XCX("XCX"),
+  /** Cylinder */
+  X_XCY("XCY"),
+  /** Canvas */
+  X_XCZ("XCZ"),
+  /** Crate, multiple layer, plastic */
+  X_XDA("XDA"),
+  /** Crate, multiple layer, wooden */
+  X_XDB("XDB"),
+  /** Crate, multiple layer, cardboard */
+  X_XDC("XDC"),
+  /** Cage, Commonwealth Handling Equipment Pool (CHEP) */
+  X_XDG("XDG"),
+  /** Box, Commonwealth Handling Equipment Pool (CHEP), Eurobox */
+  X_XDH("XDH"),
+  /** Drum, iron */
+  X_XDI("XDI"),
+  /** Demijohn, non-protected */
+  X_XDJ("XDJ"),
+  /** Crate, bulk, cardboard */
+  X_XDK("XDK"),
+  /** Crate, bulk, plastic */
+  X_XDL("XDL"),
+  /** Crate, bulk, wooden */
+  X_XDM("XDM"),
+  /** Dispenser */
+  X_XDN("XDN"),
+  /** Demijohn, protected */
+  X_XDP("XDP"),
+  /** Drum */
+  X_XDR("XDR"),
+  /** Tray, one layer no cover, plastic */
+  X_XDS("XDS"),
+  /** Tray, one layer no cover, wooden */
+  X_XDT("XDT"),
+  /** Tray, one layer no cover, polystyrene */
+  X_XDU("XDU"),
+  /** Tray, one layer no cover, cardboard */
+  X_XDV("XDV"),
+  /** Tray, two layers no cover, plastic tray */
+  X_XDW("XDW"),
+  /** Tray, two layers no cover, wooden */
+  X_XDX("XDX"),
+  /** Tray, two layers no cover, cardboard */
+  X_XDY("XDY"),
+  /** Bag, plastic */
+  X_XEC("XEC"),
+  /** Case, with pallet base */
+  X_XED("XED"),
+  /** Case, with pallet base, wooden */
+  X_XEE("XEE"),
+  /** Case, with pallet base, cardboard */
+  X_XEF("XEF"),
+  /** Case, with pallet base, plastic */
+  X_XEG("XEG"),
+  /** Case, with pallet base, metal */
+  X_XEH("XEH"),
+  /** Case, isothermic */
+  X_XEI("XEI"),
+  /** Envelope */
+  X_XEN("XEN"),
+  /** Flexibag */
+  X_XFB("XFB"),
+  /** Crate, fruit */
+  X_XFC("XFC"),
+  /** Crate, framed */
+  X_XFD("XFD"),
+  /** Flexitank */
+  X_XFE("XFE"),
+  /** Firkin */
+  X_XFI("XFI"),
+  /** Flask */
+  X_XFL("XFL"),
+  /** Footlocker */
+  X_XFO("XFO"),
+  /** Filmpack */
+  X_XFP("XFP"),
+  /** Frame */
+  X_XFR("XFR"),
+  /** Foodtainer */
+  X_XFT("XFT"),
+  /** Cart, flatbed */
+  X_XFW("XFW"),
+  /** Bag, flexible container */
+  X_XFX("XFX"),
+  /** Bottle, gas */
+  X_XGB("XGB"),
+  /** Girder */
+  X_XGI("XGI"),
+  /** Container, gallon */
+  X_XGL("XGL"),
+  /** Receptacle, glass */
+  X_XGR("XGR"),
+  /** Tray, containing horizontally stacked flat items */
+  X_XGU("XGU"),
+  /** Bag, gunny */
+  X_XGY("XGY"),
+  /** Girders, in bundle/bunch/truss */
+  X_XGZ("XGZ"),
+  /** Basket, with handle, plastic */
+  X_XHA("XHA"),
+  /** Basket, with handle, wooden */
+  X_XHB("XHB"),
+  /** Basket, with handle, cardboard */
+  X_XHC("XHC"),
+  /** Hogshead */
+  X_XHG("XHG"),
+  /** Hanger */
+  X_XHN("XHN"),
+  /** Hamper */
+  X_XHR("XHR"),
+  /** Package, display, wooden */
+  X_XIA("XIA"),
+  /** Package, display, cardboard */
+  X_XIB("XIB"),
+  /** Package, display, plastic */
+  X_XIC("XIC"),
+  /** Package, display, metal */
+  X_XID("XID"),
+  /** Package, show */
+  X_XIE("XIE"),
+  /** Package, flow */
+  X_XIF("XIF"),
+  /** Package, paper wrapped */
+  X_XIG("XIG"),
+  /** Drum, plastic */
+  X_XIH("XIH"),
+  /** Package, cardboard, with bottle grip-holes */
+  X_XIK("XIK"),
+  /** Tray, rigid, lidded stackable (CEN TS 14482:2002) */
+  X_XIL("XIL"),
+  /** Ingot */
+  X_XIN("XIN"),
+  /** Ingots, in bundle/bunch/truss */
+  X_XIZ("XIZ"),
+  /** Bag, jumbo */
+  X_XJB("XJB"),
+  /** Jerrican, rectangular */
+  X_XJC("XJC"),
+  /** Jug */
+  X_XJG("XJG"),
+  /** Jar */
+  X_XJR("XJR"),
+  /** Jutebag */
+  X_XJT("XJT"),
+  /** Jerrican, cylindrical */
+  X_XJY("XJY"),
+  /** Keg */
+  X_XKG("XKG"),
+  /** Kit */
+  X_XKI("XKI"),
+  /** Luggage */
+  X_XLE("XLE"),
+  /** Log */
+  X_XLG("XLG"),
+  /** Lot */
+  X_XLT("XLT"),
+  /** Lug */
+  X_XLU("XLU"),
+  /** Liftvan */
+  X_XLV("XLV"),
+  /** Logs, in bundle/bunch/truss */
+  X_XLZ("XLZ"),
+  /** Crate, metal */
+  X_XMA("XMA"),
+  /** Bag, multiply */
+  X_XMB("XMB"),
+  /** Crate, milk */
+  X_XMC("XMC"),
+  /** Container, metal */
+  X_XME("XME"),
+  /** Receptacle, metal */
+  X_XMR("XMR"),
+  /** Sack, multi-wall */
+  X_XMS("XMS"),
+  /** Mat */
+  X_XMT("XMT"),
+  /** Receptacle, plastic wrapped */
+  X_XMW("XMW"),
+  /** Matchbox */
+  X_XMX("XMX"),
+  /** Not available */
+  X_XNA("XNA"),
+  /** Unpacked or unpackaged */
+  X_XNE("XNE"),
+  /** Unpacked or unpackaged, single unit */
+  X_XNF("XNF"),
+  /** Unpacked or unpackaged, multiple units */
+  X_XNG("XNG"),
+  /** Nest */
+  X_XNS("XNS"),
+  /** Net */
+  X_XNT("XNT"),
+  /** Net, tube, plastic */
+  X_XNU("XNU"),
+  /** Net, tube, textile */
+  X_XNV("XNV"),
+  /** Two sided cage on wheels with fixing strap */
+  X_XO1("XO1"),
+  /** Trolley */
+  X_XO2("XO2"),
+  /** Oneway pallet ISO 0 - 1/2 EURO Pallet */
+  X_XO3("XO3"),
+  /** Oneway pallet ISO 1 - 1/1 EURO Pallet */
+  X_XO4("XO4"),
+  /** Oneway pallet ISO 2 - 2/1 EURO Pallet */
+  X_XO5("XO5"),
+  /** Pallet with exceptional dimensions */
+  X_XO6("XO6"),
+  /** Wooden pallet 40 cm x 80 cm */
+  X_XO7("XO7"),
+  /** Plastic pallet SRS 60 cm x 80 cm */
+  X_XO8("XO8"),
+  /** Plastic pallet SRS 80 cm x 120 cm */
+  X_XO9("XO9"),
+  /** Pallet, CHEP 40 cm x 60 cm */
+  X_XOA("XOA"),
+  /** Pallet, CHEP 80 cm x 120 cm */
+  X_XOB("XOB"),
+  /** Pallet, CHEP 100 cm x 120 cm */
+  X_XOC("XOC"),
+  /** Pallet, AS 4068-1993 */
+  X_XOD("XOD"),
+  /** Pallet, ISO T11 */
+  X_XOE("XOE"),
+  /** Platform, unspecified weight or dimension */
+  X_XOF("XOF"),
+  /** Pallet ISO 0 - 1/2 EURO Pallet */
+  X_XOG("XOG"),
+  /** Pallet ISO 1 - 1/1 EURO Pallet */
+  X_XOH("XOH"),
+  /** Pallet ISO 2 – 2/1 EURO Pallet */
+  X_XOI("XOI"),
+  /** Block */
+  X_XOK("XOK"),
+  /** 1/4 EURO Pallet */
+  X_XOJ("XOJ"),
+  /** 1/8 EURO Pallet */
+  X_XOL("XOL"),
+  /** Synthetic pallet ISO 1 */
+  X_XOM("XOM"),
+  /** Synthetic pallet ISO 2 */
+  X_XON("XON"),
+  /** Wholesaler pallet */
+  X_XOP("XOP"),
+  /** Pallet 80 X 100 cm */
+  X_XOQ("XOQ"),
+  /** Pallet 60 X 100 cm */
+  X_XOR("XOR"),
+  /** Oneway pallet */
+  X_XOS("XOS"),
+  /** Returnable pallet */
+  X_XOV("XOV"),
+  /** Large bag, pallet sized */
+  X_XOW("XOW"),
+  /** Octabin */
+  X_XOT("XOT"),
+  /** Container, outer */
+  X_XOU("XOU"),
+  /** A wheeled pallet with raised rim (81 x 67 x 135) */
+  X_XOX("XOX"),
+  /** A Wheeled pallet with raised rim (81 x 72 x 135) */
+  X_XOY("XOY"),
+  /** Wheeled pallet with raised rim ( 81 x 60 x 16) */
+  X_XOZ("XOZ"),
+  /** CHEP pallet 60 cm x 80 cm  */
+  X_XP1("XP1"),
+  /** Pan */
+  X_XP2("XP2"),
+  /** LPR pallet 60 cm x 80 cm */
+  X_XP3("XP3"),
+  /** LPR pallet 80 cm x 120 cm */
+  X_XP4("XP4"),
+  /** Packet */
+  X_XPA("XPA"),
+  /** Pallet, box Combined open-ended box and pallet */
+  X_XPB("XPB"),
+  /** Parcel */
+  X_XPC("XPC"),
+  /** Pallet, modular, collars 80cms * 100cms */
+  X_XPD("XPD"),
+  /** Pallet, modular, collars 80cms * 120cms */
+  X_XPE("XPE"),
+  /** Pen */
+  X_XPF("XPF"),
+  /** Plate */
+  X_XPG("XPG"),
+  /** Pitcher */
+  X_XPH("XPH"),
+  /** Pipe */
+  X_XPI("XPI"),
+  /** Punnet */
+  X_XPJ("XPJ"),
+  /** Package */
+  X_XPK("XPK"),
+  /** Pail */
+  X_XPL("XPL"),
+  /** Plank */
+  X_XPN("XPN"),
+  /** Pouch */
+  X_XPO("XPO"),
+  /** Piece */
+  X_XPP("XPP"),
+  /** Receptacle, plastic */
+  X_XPR("XPR"),
+  /** Pot */
+  X_XPT("XPT"),
+  /** Tray */
+  X_XPU("XPU"),
+  /** Pipes, in bundle/bunch/truss */
+  X_XPV("XPV"),
+  /** Pallet */
+  X_XPX("XPX"),
+  /** Plates, in bundle/bunch/truss */
+  X_XPY("XPY"),
+  /** Planks, in bundle/bunch/truss */
+  X_XPZ("XPZ"),
+  /** Drum, steel, non-removable head */
+  X_XQA("XQA"),
+  /** Drum, steel, removable head */
+  X_XQB("XQB"),
+  /** Drum, aluminium, non-removable head */
+  X_XQC("XQC"),
+  /** Drum, aluminium, removable head */
+  X_XQD("XQD"),
+  /** Drum, plastic, non-removable head */
+  X_XQF("XQF"),
+  /** Drum, plastic, removable head */
+  X_XQG("XQG"),
+  /** Barrel, wooden, bung type */
+  X_XQH("XQH"),
+  /** Barrel, wooden, removable head */
+  X_XQJ("XQJ"),
+  /** Jerrican, steel, non-removable head */
+  X_XQK("XQK"),
+  /** Jerrican, steel, removable head */
+  X_XQL("XQL"),
+  /** Jerrican, plastic, non-removable head */
+  X_XQM("XQM"),
+  /** Jerrican, plastic, removable head */
+  X_XQN("XQN"),
+  /** Box, wooden, natural wood, ordinary */
+  X_XQP("XQP"),
+  /** Box, wooden, natural wood, with sift proof walls */
+  X_XQQ("XQQ"),
+  /** Box, plastic, expanded */
+  X_XQR("XQR"),
+  /** Box, plastic, solid */
+  X_XQS("XQS"),
+  /** Rod */
+  X_XRD("XRD"),
+  /** Ring */
+  X_XRG("XRG"),
+  /** Rack, clothing hanger */
+  X_XRJ("XRJ"),
+  /** Rack */
+  X_XRK("XRK"),
+  /** Reel */
+  X_XRL("XRL"),
+  /** Roll */
+  X_XRO("XRO"),
+  /** Rednet */
+  X_XRT("XRT"),
+  /** Rods, in bundle/bunch/truss */
+  X_XRZ("XRZ"),
+  /** Sack */
+  X_XSA("XSA"),
+  /** Slab */
+  X_XSB("XSB"),
+  /** Crate, shallow */
+  X_XSC("XSC"),
+  /** Spindle */
+  X_XSD("XSD"),
+  /** Sea-chest */
+  X_XSE("XSE"),
+  /** Sachet */
+  X_XSH("XSH"),
+  /** Skid */
+  X_XSI("XSI"),
+  /** Case, skeleton */
+  X_XSK("XSK"),
+  /** Slipsheet */
+  X_XSL("XSL"),
+  /** Sheetmetal */
+  X_XSM("XSM"),
+  /** Spool */
+  X_XSO("XSO"),
+  /** Sheet, plastic wrapping */
+  X_XSP("XSP"),
+  /** Case, steel */
+  X_XSS("XSS"),
+  /** Sheet */
+  X_XST("XST"),
+  /** Suitcase */
+  X_XSU("XSU"),
+  /** Envelope, steel */
+  X_XSV("XSV"),
+  /** Shrinkwrapped */
+  X_XSW("XSW"),
+  /** Set */
+  X_XSX("XSX"),
+  /** Sleeve */
+  X_XSY("XSY"),
+  /** Sheets, in bundle/bunch/truss */
+  X_XSZ("XSZ"),
+  /** Tablet */
+  X_XT1("XT1"),
+  /** Tub */
+  X_XTB("XTB"),
+  /** Tea-chest */
+  X_XTC("XTC"),
+  /** Tube, collapsible */
+  X_XTD("XTD"),
+  /** Tyre */
+  X_XTE("XTE"),
+  /** Tank container, generic */
+  X_XTG("XTG"),
+  /** Tierce */
+  X_XTI("XTI"),
+  /** Tank, rectangular */
+  X_XTK("XTK"),
+  /** Tub, with lid */
+  X_XTL("XTL"),
+  /** Tin */
+  X_XTN("XTN"),
+  /** Tun */
+  X_XTO("XTO"),
+  /** Trunk */
+  X_XTR("XTR"),
+  /** Truss */
+  X_XTS("XTS"),
+  /** Bag, tote */
+  X_XTT("XTT"),
+  /** Tube */
+  X_XTU("XTU"),
+  /** Tube, with nozzle */
+  X_XTV("XTV"),
+  /** Pallet, triwall */
+  X_XTW("XTW"),
+  /** Tank, cylindrical */
+  X_XTY("XTY"),
+  /** Tubes, in bundle/bunch/truss */
+  X_XTZ("XTZ"),
+  /** Uncaged */
+  X_XUC("XUC"),
+  /** Unit */
+  X_XUN("XUN"),
+  /** Vat */
+  X_XVA("XVA"),
+  /** Bulk, gas (at 1031 mbar and 15°C) */
+  X_XVG("XVG"),
+  /** Vial */
+  X_XVI("XVI"),
+  /** Vanpack */
+  X_XVK("XVK"),
+  /** Bulk, liquid */
+  X_XVL("XVL"),
+  /** Bulk, solid, large particles (“nodules”) */
+  X_XVO("XVO"),
+  /** Vacuum-packed */
+  X_XVP("XVP"),
+  /** Bulk, liquefied gas (at abnormal temperature/pressure) */
+  X_XVQ("XVQ"),
+  /** Vehicle */
+  X_XVN("XVN"),
+  /** Bulk, solid, granular particles (“grains”) */
+  X_XVR("XVR"),
+  /** Bulk, scrap metal */
+  X_XVS("XVS"),
+  /** Bulk, solid, fine particles (“powders”) */
+  X_XVY("XVY"),
+  /** Intermediate bulk container */
+  X_XWA("XWA"),
+  /** Wickerbottle */
+  X_XWB("XWB"),
+  /** Intermediate bulk container, steel */
+  X_XWC("XWC"),
+  /** Intermediate bulk container, aluminium */
+  X_XWD("XWD"),
+  /** Intermediate bulk container, metal */
+  X_XWF("XWF"),
+  /** Intermediate bulk container, steel, pressurised > 10 kpa */
+  X_XWG("XWG"),
+  /** Intermediate bulk container, aluminium, pressurised > 10 kpa */
+  X_XWH("XWH"),
+  /** Intermediate bulk container, metal, pressure 10 kpa */
+  X_XWJ("XWJ"),
+  /** Intermediate bulk container, steel, liquid */
+  X_XWK("XWK"),
+  /** Intermediate bulk container, aluminium, liquid */
+  X_XWL("XWL"),
+  /** Intermediate bulk container, metal, liquid */
+  X_XWM("XWM"),
+  /** Intermediate bulk container, woven plastic, without coat/liner */
+  X_XWN("XWN"),
+  /** Intermediate bulk container, woven plastic, coated */
+  X_XWP("XWP"),
+  /** Intermediate bulk container, woven plastic, with liner */
+  X_XWQ("XWQ"),
+  /** Intermediate bulk container, woven plastic, coated and liner */
+  X_XWR("XWR"),
+  /** Intermediate bulk container, plastic film */
+  X_XWS("XWS"),
+  /** Intermediate bulk container, textile with out coat/liner */
+  X_XWT("XWT"),
+  /** Intermediate bulk container, natural wood, with inner liner */
+  X_XWU("XWU"),
+  /** Intermediate bulk container, textile, coated */
+  X_XWV("XWV"),
+  /** Intermediate bulk container, textile, with liner */
+  X_XWW("XWW"),
+  /** Intermediate bulk container, textile, coated and liner */
+  X_XWX("XWX"),
+  /** Intermediate bulk container, plywood, with inner liner */
+  X_XWY("XWY"),
+  /** Intermediate bulk container, reconstituted wood, with inner liner */
+  X_XWZ("XWZ"),
+  /** Bag, woven plastic, without inner coat/liner */
+  X_XXA("XXA"),
+  /** Bag, woven plastic, sift proof */
+  X_XXB("XXB"),
+  /** Bag, woven plastic, water resistant */
+  X_XXC("XXC"),
+  /** Bag, plastics film */
+  X_XXD("XXD"),
+  /** Bag, textile, without inner coat/liner */
+  X_XXF("XXF"),
+  /** Bag, textile, sift proof */
+  X_XXG("XXG"),
+  /** Bag, textile, water resistant */
+  X_XXH("XXH"),
+  /** Bag, paper, multi-wall */
+  X_XXJ("XXJ"),
+  /** Bag, paper, multi-wall, water resistant */
+  X_XXK("XXK"),
+  /** Composite packaging, plastic receptacle in steel drum */
+  X_XYA("XYA"),
+  /** Composite packaging, plastic receptacle in steel crate box */
+  X_XYB("XYB"),
+  /** Composite packaging, plastic receptacle in aluminium drum */
+  X_XYC("XYC"),
+  /** Composite packaging, plastic receptacle in aluminium crate */
+  X_XYD("XYD"),
+  /** Composite packaging, plastic receptacle in wooden box */
+  X_XYF("XYF"),
+  /** Composite packaging, plastic receptacle in plywood drum */
+  X_XYG("XYG"),
+  /** Composite packaging, plastic receptacle in plywood box */
+  X_XYH("XYH"),
+  /** Composite packaging, plastic receptacle in fibre drum */
+  X_XYJ("XYJ"),
+  /** Composite packaging, plastic receptacle in fibreboard box */
+  X_XYK("XYK"),
+  /** Composite packaging, plastic receptacle in plastic drum */
+  X_XYL("XYL"),
+  /** Composite packaging, plastic receptacle in solid plastic box */
+  X_XYM("XYM"),
+  /** Composite packaging, glass receptacle in steel drum */
+  X_XYN("XYN"),
+  /** Composite packaging, glass receptacle in steel crate box */
+  X_XYP("XYP"),
+  /** Composite packaging, glass receptacle in aluminium drum */
+  X_XYQ("XYQ"),
+  /** Composite packaging, glass receptacle in aluminium crate */
+  X_XYR("XYR"),
+  /** Composite packaging, glass receptacle in wooden box */
+  X_XYS("XYS"),
+  /** Composite packaging, glass receptacle in plywood drum */
+  X_XYT("XYT"),
+  /** Composite packaging, glass receptacle in wickerwork hamper */
+  X_XYV("XYV"),
+  /** Composite packaging, glass receptacle in fibre drum */
+  X_XYW("XYW"),
+  /** Composite packaging, glass receptacle in fibreboard box */
+  X_XYX("XYX"),
+  /** Composite packaging, glass receptacle in expandable plastic pack */
+  X_XYY("XYY"),
+  /** Composite packaging, glass receptacle in solid plastic pack */
+  X_XYZ("XYZ"),
+  /** Intermediate bulk container, paper, multi-wall */
+  X_XZA("XZA"),
+  /** Bag, large */
+  X_XZB("XZB"),
+  /** Intermediate bulk container, paper, multi-wall, water resistant */
+  X_XZC("XZC"),
+  /** Intermediate bulk container, rigid plastic, with structural equipment, solids */
+  X_XZD("XZD"),
+  /** Intermediate bulk container, rigid plastic, freestanding, solids */
+  X_XZF("XZF"),
+  /** Intermediate bulk container, rigid plastic, with structural equipment,
+   pressurised */
+  X_XZG("XZG"),
+  /** Intermediate bulk container, rigid plastic, freestanding, pressurised */
+  X_XZH("XZH"),
+  /** Intermediate bulk container, rigid plastic, with structural equipment, liquids */
+  X_XZJ("XZJ"),
+  /** Intermediate bulk container, rigid plastic, freestanding, liquids */
+  X_XZK("XZK"),
+  /** Intermediate bulk container, composite, rigid plastic, solids */
+  X_XZL("XZL"),
+  /** Intermediate bulk container, composite, flexible plastic, solids */
+  X_XZM("XZM"),
+  /** Intermediate bulk container, composite, rigid plastic, pressurised */
+  X_XZN("XZN"),
+  /** Intermediate bulk container, composite, flexible plastic, pressurised */
+  X_XZP("XZP"),
+  /** Intermediate bulk container, composite, rigid plastic, liquids */
+  X_XZQ("XZQ"),
+  /** Intermediate bulk container, composite, flexible plastic, liquids */
+  X_XZR("XZR"),
+  /** Intermediate bulk container, composite */
+  X_XZS("XZS"),
+  /** Intermediate bulk container, fibreboard */
+  X_XZT("XZT"),
+  /** Intermediate bulk container, flexible */
+  X_XZU("XZU"),
+  /** Intermediate bulk container, metal, other than steel */
+  X_XZV("XZV"),
+  /** Intermediate bulk container, natural wood */
+  X_XZW("XZW"),
+  /** Intermediate bulk container, plywood */
+  X_XZX("XZX"),
+  /** Intermediate bulk container, reconstituted wood */
+  X_XZY("XZY"),
+  /** Mutually defined  */
+  X_XZZ("XZZ");
+
+  private final String code;
+
+  UnitIdCode(String code) {
+    this.code = code;
+  }
+
+  public String getCode() {
+    return code;
+  }
+
+  public static UnitIdCode fromCode(String code) {
+    for (UnitIdCode ve : values()) {
+      if (ve.code.equals(code)) {
+        return ve;
+      }
+    }
+    throw new IllegalArgumentException("No UnitIdCode with code " + code);
+  }
+
+  @Override
+  public String toString() {
+    return code;
+  }
+}

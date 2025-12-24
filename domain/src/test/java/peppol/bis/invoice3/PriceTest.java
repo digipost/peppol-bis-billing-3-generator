@@ -24,6 +24,7 @@ import peppol.bis.invoice3.domain.BaseQuantity;
 import peppol.bis.invoice3.domain.Price;
 import peppol.bis.invoice3.domain.PriceAmount;
 import peppol.bis.invoice3.domain.codes.CurrencyIdCode;
+import peppol.bis.invoice3.domain.codes.UnitIdCode;
 
 import static peppol.bis.invoice3.XmlAsserts.assertElementNameIs;
 import static peppol.bis.invoice3.XmlAsserts.assertRequiredElement;
@@ -55,7 +56,7 @@ public class PriceTest  {
     @Test
     void to_xml_optional_elements() {
         price
-            .withBaseQuantity(new BaseQuantity("1").withUnitCode("STK"))
+            .withBaseQuantity(new BaseQuantity("1").withUnitCode(UnitIdCode.X_STK))
             .withAllowanceCharge(new PriceAllowanceCharge(true, new BaseAmount("123", CurrencyIdCode.EUR)));
 
         final Element element = (Element) price.node();

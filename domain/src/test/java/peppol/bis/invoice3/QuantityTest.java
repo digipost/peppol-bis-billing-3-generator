@@ -19,27 +19,52 @@ import org.eaxy.Element;
 import org.junit.jupiter.api.Test;
 import peppol.bis.invoice3.domain.BaseQuantity;
 import peppol.bis.invoice3.domain.InvoicedQuantity;
+import peppol.bis.invoice3.domain.TaxInclusiveAmount;
+import peppol.bis.invoice3.domain.codes.UnitIdCode;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 
 class QuantityTest {
 
     @Test
     void BaseQuantity_to_xml() {
-        final Element element = (Element) new BaseQuantity("1").withUnitCode("STK").node();
+        final Element element = (Element) new BaseQuantity("1").withUnitCode(UnitIdCode.X_STK).node();
         assertThat(element.getName().getName(), equalTo("BaseQuantity"));
         assertThat(element.text(), equalTo("1"));
         assertThat(element.attrs().get("unitCode"), equalTo("STK"));
     }
 
     @Test
+    void BaseQuantity_to_xmlAsString() {
+        final Element element = (Element) new BaseQuantity("1").withUnitCode("STK").node();
+        assertThat(element.getName().getName(), equalTo("BaseQuantity"));
+        assertThat(element.text(), equalTo("1"));
+        assertThat(element.attrs().get("unitCode"), equalTo("STK"));
+
+        assertThrows(IllegalArgumentException.class, () -> new BaseQuantity("1").withUnitCode("DUMMY"));
+
+    }
+
+    @Test
     void InvoicedQuantity_to_xml() {
+        final Element element = (Element) new InvoicedQuantity("1", UnitIdCode.X_STK).node();
+        assertThat(element.getName().getName(), equalTo("InvoicedQuantity"));
+        assertThat(element.text(), equalTo("1"));
+        assertThat(element.attrs().get("unitCode"), equalTo("STK"));
+    }
+
+    @Test
+    void InvoicedQuantity_to_xmlAsString() {
         final Element element = (Element) new InvoicedQuantity("1", "STK").node();
         assertThat(element.getName().getName(), equalTo("InvoicedQuantity"));
         assertThat(element.text(), equalTo("1"));
         assertThat(element.attrs().get("unitCode"), equalTo("STK"));
+
+        assertThrows(IllegalArgumentException.class, () -> new InvoicedQuantity("1", "DUMMY"));
+
     }
 
 }

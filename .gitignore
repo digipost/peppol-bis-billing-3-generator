@@ -6,3 +6,4 @@ target/
 .settings
 .project
 .vscode/settings.json
+/node_modules/

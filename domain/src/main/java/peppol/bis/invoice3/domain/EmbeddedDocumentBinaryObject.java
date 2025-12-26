@@ -18,15 +18,26 @@ package peppol.bis.invoice3.domain;
 import org.eaxy.Node;
 import org.eaxy.QualifiedName;
 import org.eaxy.Xml;
+import peppol.bis.invoice3.domain.codes.MimeCode;
+import peppol.bis.invoice3.domain.codes.PeppolCodeResolver;
 
 import static peppol.bis.invoice3.domain.Namespaces.CBC_NS;
 
 public class EmbeddedDocumentBinaryObject implements XmlElement {
-    private final String mimeCode;
+    private final MimeCode mimeCode;
     private final String filename;
     private final String value;
 
+    /**
+     * @deprecated
+     */
     public EmbeddedDocumentBinaryObject(String mimeCode, String filename, String value) {
+        this.mimeCode = PeppolCodeResolver.fromCode(MimeCode.class, mimeCode);
+        this.filename = filename;
+        this.value = value;
+    }
+
+    public EmbeddedDocumentBinaryObject(MimeCode mimeCode, String filename, String value) {
         this.mimeCode = mimeCode;
         this.filename = filename;
         this.value = value;
@@ -37,7 +48,7 @@ public class EmbeddedDocumentBinaryObject implements XmlElement {
         return Xml.el(
             new QualifiedName(CBC_NS, this.name())
             , Xml.text(this.value)
-            , Xml.attr("mimeCode", this.mimeCode)
+            , Xml.attr("mimeCode", this.mimeCode.getCode())
             , Xml.attr("filename", this.filename)
         );
     }

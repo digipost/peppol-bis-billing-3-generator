@@ -15,8 +15,18 @@
  */
 package peppol.bis.invoice3.domain;
 
+import peppol.bis.invoice3.domain.codes.CurrencyIdCode;
+
 public class PriceAmount extends Amount{
+
+    /**
+     * @deprecated
+     */
     public PriceAmount(String amount, String currencyID) {
+        super(amount, currencyID);
+    }
+
+    public PriceAmount(String amount, CurrencyIdCode currencyID) {
         super(amount, currencyID);
     }
 }

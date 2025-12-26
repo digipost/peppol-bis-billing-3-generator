@@ -20,8 +20,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import peppol.bis.invoice3.domain.CommodityClassification;
 import peppol.bis.invoice3.domain.ItemClassificationCode;
+import peppol.bis.invoice3.domain.codes.ItemTypeIdentificationCode;
 
 import static org.hamcrest.Matchers.equalTo;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static peppol.bis.invoice3.XmlAsserts.assertElementNameIs;
 import static peppol.bis.invoice3.XmlAsserts.assertRequiredElement;
 import static peppol.bis.invoice3.domain.Namespaces.CAC_NS;
@@ -33,7 +35,7 @@ public class CommodityClassificationTest {
     @BeforeEach
     void setUp() {
         commodityClassification = new CommodityClassification(
-            new ItemClassificationCode("123123", "STY")
+            new ItemClassificationCode("123123", ItemTypeIdentificationCode.STY)
         );
     }
 
@@ -44,5 +46,4 @@ public class CommodityClassificationTest {
 
         assertRequiredElement(element, "ItemClassificationCode");
     }
-
 }

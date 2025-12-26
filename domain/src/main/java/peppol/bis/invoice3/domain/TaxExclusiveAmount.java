@@ -15,8 +15,18 @@
  */
 package peppol.bis.invoice3.domain;
 
+import peppol.bis.invoice3.domain.codes.CurrencyIdCode;
+
 public class TaxExclusiveAmount extends Amount {
+
+    /**
+     * @deprecated
+     */
     public TaxExclusiveAmount(String amount, String currencyID) {
+        super(amount, currencyID);
+    }
+
+    public TaxExclusiveAmount(String amount, CurrencyIdCode currencyID) {
         super(amount, currencyID);
     }
 }

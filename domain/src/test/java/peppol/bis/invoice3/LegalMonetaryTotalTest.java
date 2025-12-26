@@ -27,6 +27,7 @@ import peppol.bis.invoice3.domain.PayableRoundingAmount;
 import peppol.bis.invoice3.domain.PrepaidAmount;
 import peppol.bis.invoice3.domain.TaxExclusiveAmount;
 import peppol.bis.invoice3.domain.TaxInclusiveAmount;
+import peppol.bis.invoice3.domain.codes.CurrencyIdCode;
 
 import static peppol.bis.invoice3.XmlAsserts.assertElementNameIs;
 import static peppol.bis.invoice3.XmlAsserts.assertRequiredElement;
@@ -40,10 +41,10 @@ public class LegalMonetaryTotalTest {
     @BeforeEach
     void setUp() {
         legalMonetaryTotal = new LegalMonetaryTotal(
-            new LineExtensionAmount("1273", "EUR")
-            , new TaxExclusiveAmount("1273", "EUR")
-            , new TaxInclusiveAmount("1273", "EUR")
-            , new PayableAmount("1273", "EUR")
+            new LineExtensionAmount("1273", CurrencyIdCode.EUR)
+            , new TaxExclusiveAmount("1273", CurrencyIdCode.EUR)
+            , new TaxInclusiveAmount("1273", CurrencyIdCode.EUR)
+            , new PayableAmount("1273", CurrencyIdCode.EUR)
         );
     }
 
@@ -67,10 +68,10 @@ public class LegalMonetaryTotalTest {
     @Test
     void to_xml_for_optional_elements() {
         legalMonetaryTotal
-            .withAllowanceTotalAmount(new AllowanceTotalAmount("1273", "EUR"))
-            .withChargeTotalAmount(new ChargeTotalAmount("1273", "EUR"))
-            .withPayableRoundingAmount(new PayableRoundingAmount("1273", "EUR"))
-            .withPrepaidAmount(new PrepaidAmount("1273", "EUR"));
+            .withAllowanceTotalAmount(new AllowanceTotalAmount("1273", CurrencyIdCode.EUR))
+            .withChargeTotalAmount(new ChargeTotalAmount("1273", CurrencyIdCode.EUR))
+            .withPayableRoundingAmount(new PayableRoundingAmount("1273", CurrencyIdCode.EUR))
+            .withPrepaidAmount(new PrepaidAmount("1273", CurrencyIdCode.EUR));
 
         final Element element = (Element) legalMonetaryTotal.node();
 

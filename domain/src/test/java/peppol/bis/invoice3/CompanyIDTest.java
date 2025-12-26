@@ -19,9 +19,11 @@ import org.eaxy.Element;
 import org.junit.jupiter.api.Test;
 import peppol.bis.invoice3.domain.CompanyID;
 import peppol.bis.invoice3.domain.PaymentMeansCode;
+import peppol.bis.invoice3.domain.codes.ElectronicAddressScheme;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 
 class CompanyIDTest {
@@ -36,10 +38,19 @@ class CompanyIDTest {
 
     @Test
     void CompanyID_to_xml_with_name() {
-        final Element element = (Element) new CompanyID("987654321").withSchemeID("0002").node();
+        final Element element = (Element) new CompanyID("987654321").withSchemeID(ElectronicAddressScheme.EAS_0002).node();
         assertThat(element.getName().getName(), equalTo("CompanyID"));
         assertThat(element.text(), equalTo("987654321"));
         assertThat(element.attrs().get("schemeID"), equalTo("0002"));
     }
 
+    @Test
+    void CompanyID_to_xml_with_name_as_string() {
+        final Element element = (Element) new CompanyID("987654321").withSchemeID("0002").node();
+        assertThat(element.getName().getName(), equalTo("CompanyID"));
+        assertThat(element.text(), equalTo("987654321"));
+        assertThat(element.attrs().get("schemeID"), equalTo("0002"));
+
+        assertThrows(IllegalArgumentException.class, ()-> new CompanyID("987654321").withSchemeID("DUMMY"));
+    }
 }

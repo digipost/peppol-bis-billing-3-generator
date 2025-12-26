@@ -17,6 +17,9 @@ package peppol.bis.invoice3.domain;
 
 import org.eaxy.Element;
 import org.eaxy.Namespace;
+import peppol.bis.invoice3.domain.codes.CurrencyIdCode;
+import peppol.bis.invoice3.domain.codes.InvoiceTypeCode;
+import peppol.bis.invoice3.domain.codes.TaxCategoryIdentifier;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,15 +28,15 @@ import static peppol.bis.invoice3.domain.Namespaces.CBC_NS;
 
 public class Invoice extends BillingCommon<Invoice>{
 
-    private static final int UNCL1001_Commercial_invoice = 380;
+    private static final InvoiceTypeCode UNCL1001_Commercial_invoice = InvoiceTypeCode.INV_380;
     public static final String INVOICE_NAMESPACE = "urn:oasis:names:specification:ubl:schema:xsd:Invoice-2";
 
     private String dueDate;
-    private String invoiceTypeCode;
+    private InvoiceTypeCode invoiceTypeCode;
     private String note;
 
     private String taxCurrencyCode;
-    private final String documentCurrencyCode;
+    private final CurrencyIdCode documentCurrencyCode;
     private String accountingCost;
     private String buyerReference;
     private InvoicePeriod invoicePeriod;
@@ -57,7 +60,38 @@ public class Invoice extends BillingCommon<Invoice>{
     private final LegalMonetaryTotal legalMonetaryTotal;
     private final List<XmlElement> invoiceLines = new ArrayList<>();
 
+    /**
+     * @deprecated
+     */
     public Invoice(String id, String issueDate, String documentCurrencyCode, AccountingSupplierParty accountingSupplierParty, AccountingCustomerParty accountingCustomerParty, TaxTotal taxTotal, LegalMonetaryTotal legalMonetaryTotal) {
+        super(id, issueDate);
+
+        try {
+            CurrencyIdCode.valueOf(documentCurrencyCode);
+        } catch (IllegalArgumentException ex) {
+            throw new IllegalArgumentException(
+                    "Invalid CurrencyIdCode (UNCL5305): " + id, ex
+            );
+        }
+
+        this.accountingSupplierParty = accountingSupplierParty;
+        this.accountingCustomerParty = accountingCustomerParty;
+        this.legalMonetaryTotal = legalMonetaryTotal;
+        this.withInvoiceTypeCode(UNCL1001_Commercial_invoice);
+        this.documentCurrencyCode = CurrencyIdCode.valueOf(documentCurrencyCode);
+        this.taxTotals.add(taxTotal);
+    }
+
+    /**
+     * @deprecated
+     */
+    public Invoice(String id, String issueDate, String documentCurrencyCode, AccountingSupplierParty accountingSupplierParty, AccountingCustomerParty accountingCustomerParty, TaxTotal taxTotal, LegalMonetaryTotal legalMonetaryTotal, List<InvoiceLine> invoiceLines) {
+        this(id, issueDate, documentCurrencyCode, accountingSupplierParty, accountingCustomerParty, taxTotal, legalMonetaryTotal);
+        this.invoiceLines.addAll(invoiceLines);
+    }
+
+
+    public Invoice(String id, String issueDate, CurrencyIdCode documentCurrencyCode, AccountingSupplierParty accountingSupplierParty, AccountingCustomerParty accountingCustomerParty, TaxTotal taxTotal, LegalMonetaryTotal legalMonetaryTotal) {
         super(id, issueDate);
         this.accountingSupplierParty = accountingSupplierParty;
         this.accountingCustomerParty = accountingCustomerParty;
@@ -66,13 +100,16 @@ public class Invoice extends BillingCommon<Invoice>{
         this.documentCurrencyCode = documentCurrencyCode;
         this.taxTotals.add(taxTotal);
     }
-    public Invoice(String id, String issueDate, String documentCurrencyCode, AccountingSupplierParty accountingSupplierParty, AccountingCustomerParty accountingCustomerParty, TaxTotal taxTotal, LegalMonetaryTotal legalMonetaryTotal, List<InvoiceLine> invoiceLines) {
+
+    public Invoice(String id, String issueDate, CurrencyIdCode documentCurrencyCode, AccountingSupplierParty accountingSupplierParty, AccountingCustomerParty accountingCustomerParty, TaxTotal taxTotal, LegalMonetaryTotal legalMonetaryTotal, List<InvoiceLine> invoiceLines) {
         this(id, issueDate, documentCurrencyCode, accountingSupplierParty, accountingCustomerParty, taxTotal, legalMonetaryTotal);
         this.invoiceLines.addAll(invoiceLines);
     }
 
-    public Invoice withInvoiceTypeCode(int invoiceTypeCode) {
-        this.invoiceTypeCode = String.valueOf(invoiceTypeCode);
+
+
+    public Invoice withInvoiceTypeCode(InvoiceTypeCode invoiceTypeCode) {
+        this.invoiceTypeCode = invoiceTypeCode;
         return this;
     }
 
@@ -203,10 +240,10 @@ public class Invoice extends BillingCommon<Invoice>{
 
 
         optional(this.dueDate, "DueDate", elm, CBC_NS);
-        required(this.invoiceTypeCode, "InvoiceTypeCode", elm, CBC_NS);
+        required(this.invoiceTypeCode.getCode(), "InvoiceTypeCode", elm, CBC_NS);
         optional(this.note, "Note", elm, CBC_NS);
         optional(super.taxPointDate, "TaxPointDate", elm, CBC_NS);
-        required(this.documentCurrencyCode, "DocumentCurrencyCode", elm, CBC_NS);
+        required(this.documentCurrencyCode.name(), "DocumentCurrencyCode", elm, CBC_NS);
         optional(this.taxCurrencyCode, "TaxCurrencyCode", elm, CBC_NS);
         optional(this.accountingCost, "AccountingCost", elm, CBC_NS);
         optional(this.buyerReference, "BuyerReference", elm, CBC_NS);

@@ -15,8 +15,18 @@
  */
 package peppol.bis.invoice3.domain;
 
+import peppol.bis.invoice3.domain.codes.CurrencyIdCode;
+
 public class PrepaidAmount extends Amount{
+
+    /**
+     * @deprecated
+     */
     public PrepaidAmount(String amount, String currencyID) {
+        super(amount, currencyID);
+    }
+
+    public PrepaidAmount(String amount, CurrencyIdCode currencyID) {
         super(amount, currencyID);
     }
 }

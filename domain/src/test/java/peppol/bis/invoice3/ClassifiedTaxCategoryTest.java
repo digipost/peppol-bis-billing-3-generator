@@ -20,8 +20,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import peppol.bis.invoice3.domain.ClassifiedTaxCategory;
 import peppol.bis.invoice3.domain.TaxScheme;
+import peppol.bis.invoice3.domain.codes.TaxCategoryIdentifier;
 
 import static org.hamcrest.Matchers.equalTo;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static peppol.bis.invoice3.XmlAsserts.assertElementNameIs;
 import static peppol.bis.invoice3.XmlAsserts.assertRequiredElement;
 import static peppol.bis.invoice3.XmlAsserts.assertUnsetOptionalElement;
@@ -34,7 +36,7 @@ class ClassifiedTaxCategoryTest {
     @BeforeEach
     void setUp() {
         classifiedTaxCategory = new ClassifiedTaxCategory(
-            "S", new TaxScheme("VAT")
+            TaxCategoryIdentifier.S, new TaxScheme("VAT")
         );
     }
 
@@ -57,5 +59,20 @@ class ClassifiedTaxCategoryTest {
         final Element element = (Element) classifiedTaxCategory.node();
 
         assertRequiredElement(element, "Percent", equalTo("25"));
+    }
+
+    @Test
+    void to_xml_required_elements_code_as_string() {
+        final Element element = (Element) new ClassifiedTaxCategory(
+                "S", new TaxScheme("VAT")
+        ).node();
+        assertElementNameIs(element, "ClassifiedTaxCategory", CAC_NS);
+
+        assertRequiredElement(element, "ID", equalTo("S"));
+
+        assertThrows(IllegalArgumentException.class, ()-> new ClassifiedTaxCategory(
+                "DUMMY", new TaxScheme("VAT")
+        ));
+
     }
 }

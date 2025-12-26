@@ -61,6 +61,11 @@ import peppol.bis.invoice3.domain.TaxInclusiveAmount;
 import peppol.bis.invoice3.domain.TaxRepresentativeParty;
 import peppol.bis.invoice3.domain.TaxScheme;
 import peppol.bis.invoice3.domain.TaxTotal;
+import peppol.bis.invoice3.domain.codes.CurrencyIdCode;
+import peppol.bis.invoice3.domain.codes.InvoiceTypeCode;
+import peppol.bis.invoice3.domain.codes.UnitIdCode;
+
+import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
@@ -77,28 +82,28 @@ public class InvoiceTest  {
     void setUp() {
 
         final LegalMonetaryTotal legalMonetaryTotal = new LegalMonetaryTotal(
-            new LineExtensionAmount("1273", "EUR")
-            , new TaxExclusiveAmount("1273", "EUR")
-            , new TaxInclusiveAmount("1273", "EUR")
-            , new PayableAmount("1273", "EUR")
+            new LineExtensionAmount("1273", CurrencyIdCode.EUR)
+            , new TaxExclusiveAmount("1273", CurrencyIdCode.EUR)
+            , new TaxInclusiveAmount("1273", CurrencyIdCode.EUR)
+            , new PayableAmount("1273", CurrencyIdCode.EUR)
         );
 
         final TaxTotal taxTotal = new TaxTotal(
-            new TaxAmount("1233", "EUR")
+            new TaxAmount("1233", CurrencyIdCode.EUR)
         );
 
         final InvoiceLine invoiceLine = new InvoiceLine(
             "1"
-            , new InvoicedQuantity("1", "STK")
-            , new LineExtensionAmount("1272", "EUR")
+            , new InvoicedQuantity("1", UnitIdCode.X_STK)
+            , new LineExtensionAmount("1272", CurrencyIdCode.EUR)
             , new Item("Laptop computer", new ClassifiedTaxCategory("S", new TaxScheme("VAT")))
-            , new Price(new PriceAmount("1233", "EUR"))
+            , new Price(new PriceAmount("1233", CurrencyIdCode.EUR))
         );
 
         invoice = new Invoice(
             "33445566"
             , "2017-11-01"
-            , "EUR"
+            , CurrencyIdCode.EUR
             , new AccountingSupplierParty(new Party(
                 new EndpointID("")
                 , new PostalAddress(new Country("NO"))
@@ -184,7 +189,7 @@ public class InvoiceTest  {
     void invoice_to_xml_for_overwritten_defaults() {
         final Invoice invoice = this.invoice
             .withProcessNumber(13)
-            .withInvoiceTypeCode(780);
+            .withInvoiceTypeCode(InvoiceTypeCode.INV_780);
 
         final Element element = invoice.xmlRoot();
 
@@ -195,7 +200,7 @@ public class InvoiceTest  {
     @Test
     void invoice_to_xml_for_added_tax_total() {
         final Invoice invoice = this.invoice
-            .withTaxTotal(new TaxTotal(new TaxAmount("322", "EUR")));
+            .withTaxTotal(new TaxTotal(new TaxAmount("322", CurrencyIdCode.EUR)));
 
         final Element element = invoice.xmlRoot();
 
@@ -203,7 +208,7 @@ public class InvoiceTest  {
 
         //Max 2 elements
         assertThrows(IllegalArgumentException.class, () -> this.invoice
-            .withTaxTotal(new TaxTotal(new TaxAmount("322", "EUR"))));
+            .withTaxTotal(new TaxTotal(new TaxAmount("322", CurrencyIdCode.EUR))));
     }
 
     @Test
@@ -251,10 +256,10 @@ public class InvoiceTest  {
     void invoice_to_xml_for_added_invoice_lines() {
         final InvoiceLine invoiceLine = new InvoiceLine(
             "2"
-            , new InvoicedQuantity("1", "STK")
-            , new LineExtensionAmount("1272", "EUR")
+            , new InvoicedQuantity("1", UnitIdCode.X_STK)
+            , new LineExtensionAmount("1272", CurrencyIdCode.EUR)
             , new Item("Power cord", new ClassifiedTaxCategory("S", new TaxScheme("VAT")))
-            , new Price(new PriceAmount("1233", "EUR"))
+            , new Price(new PriceAmount("1233", CurrencyIdCode.EUR))
         );
         final Invoice invoice = this.invoice
             .withInvoiceLine(
@@ -270,9 +275,9 @@ public class InvoiceTest  {
     @Test
     void InvoiceLine_to_xml_allowance_charge() {
         invoice
-            .withAllowanceCharge(new InvoiceAllowanceCharge(true, new Amount("211", "EUR"), new TaxCategory("G", new TaxScheme("VAT"))))
-            .withAllowanceCharge(new InvoiceAllowanceCharge(true, new Amount("212", "EUR"), new TaxCategory("G", new TaxScheme("VAT"))))
-            .withAllowanceCharge(new InvoiceAllowanceCharge(true, new Amount("213", "EUR"), new TaxCategory("G", new TaxScheme("VAT"))))
+            .withAllowanceCharge(new InvoiceAllowanceCharge(true, new Amount("211", CurrencyIdCode.EUR), new TaxCategory("G", new TaxScheme("VAT"))))
+            .withAllowanceCharge(new InvoiceAllowanceCharge(true, new Amount("212", CurrencyIdCode.EUR), new TaxCategory("G", new TaxScheme("VAT"))))
+            .withAllowanceCharge(new InvoiceAllowanceCharge(true, new Amount("213", CurrencyIdCode.EUR), new TaxCategory("G", new TaxScheme("VAT"))))
         ;
 
         final Element element = (Element) invoice.node();
@@ -285,6 +290,113 @@ public class InvoiceTest  {
     void ProcessID_should_leftpad_0() {
         assertThat(invoice.getProfileID(), is(equalTo("urn:fdc:peppol.eu:2017:poacc:billing:01:1.0")));
         assertThat(invoice.withProcessNumber(11).getProfileID(), is(equalTo("urn:fdc:peppol.eu:2017:poacc:billing:11:1.0")));
+
+    }
+
+    @Test
+    void testInvoiceInstanceWithStringCurrencyId() {
+        final LegalMonetaryTotal legalMonetaryTotal = new LegalMonetaryTotal(
+                new LineExtensionAmount("1273", CurrencyIdCode.EUR)
+                , new TaxExclusiveAmount("1273", CurrencyIdCode.EUR)
+                , new TaxInclusiveAmount("1273", CurrencyIdCode.EUR)
+                , new PayableAmount("1273", CurrencyIdCode.EUR)
+        );
+
+        final TaxTotal taxTotal = new TaxTotal(
+                new TaxAmount("1233", CurrencyIdCode.EUR)
+        );
+        new Invoice(
+                "33445566"
+                , "2017-11-01"
+                , "EUR"
+                , new AccountingSupplierParty(new Party(
+                new EndpointID("")
+                , new PostalAddress(new Country("NO"))
+                , new PartyLegalEntity("")
+        ))
+                , new AccountingCustomerParty(new Party(
+                new EndpointID("")
+                , new PostalAddress(new Country("NO"))
+                , new PartyLegalEntity("")
+        ))
+                , taxTotal
+                , legalMonetaryTotal
+        );
+
+        // Nothing threw, must be good
+
+        assertThrows(IllegalArgumentException.class, () ->
+                new Invoice(
+                        "33445566"
+                        , "2017-11-01"
+                        , "DUMMY"
+                        , new AccountingSupplierParty(new Party(
+                        new EndpointID("")
+                        , new PostalAddress(new Country("NO"))
+                        , new PartyLegalEntity("")
+                ))
+                        , new AccountingCustomerParty(new Party(
+                        new EndpointID("")
+                        , new PostalAddress(new Country("NO"))
+                        , new PartyLegalEntity("")
+                ))
+                        , taxTotal
+                        , legalMonetaryTotal
+                )
+        );
+
+        // Test second contructor with invoiceLines
+
+        final InvoiceLine invoiceLine = new InvoiceLine(
+                "1"
+                , new InvoicedQuantity("1", UnitIdCode.X_STK)
+                , new LineExtensionAmount("1272", CurrencyIdCode.EUR)
+                , new Item("Laptop computer", new ClassifiedTaxCategory("S", new TaxScheme("VAT")))
+                , new Price(new PriceAmount("1233", CurrencyIdCode.EUR))
+        );
+
+        new Invoice(
+                "33445566"
+                , "2017-11-01"
+                , "EUR"
+                , new AccountingSupplierParty(new Party(
+                new EndpointID("")
+                , new PostalAddress(new Country("NO"))
+                , new PartyLegalEntity("")
+        ))
+                , new AccountingCustomerParty(new Party(
+                new EndpointID("")
+                , new PostalAddress(new Country("NO"))
+                , new PartyLegalEntity("")
+        ))
+                , taxTotal
+                , legalMonetaryTotal
+                , List.of(invoiceLine)
+        );
+
+        // Nothing threw, must be good
+
+        assertThrows(IllegalArgumentException.class, () ->
+                new Invoice(
+                        "33445566"
+                        , "2017-11-01"
+                        , "DUMMY"
+                        , new AccountingSupplierParty(new Party(
+                        new EndpointID("")
+                        , new PostalAddress(new Country("NO"))
+                        , new PartyLegalEntity("")
+                ))
+                        , new AccountingCustomerParty(new Party(
+                        new EndpointID("")
+                        , new PostalAddress(new Country("NO"))
+                        , new PartyLegalEntity("")
+                ))
+                        , taxTotal
+                        , legalMonetaryTotal
+                        , List.of(invoiceLine)
+                )
+        );
+
 
     }
 }

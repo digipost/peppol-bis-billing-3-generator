@@ -19,17 +19,27 @@ import org.eaxy.Element;
 import org.eaxy.Node;
 import org.eaxy.QualifiedName;
 import org.eaxy.Xml;
+import peppol.bis.invoice3.domain.codes.PeppolCodeResolver;
+import peppol.bis.invoice3.domain.codes.TaxCategoryIdentifier;
 
 import static peppol.bis.invoice3.domain.Namespaces.CAC_NS;
 import static peppol.bis.invoice3.domain.Namespaces.CBC_NS;
 
 public class ClassifiedTaxCategory implements XmlElement {
 
-    private final String id;
+    private final TaxCategoryIdentifier id;
     private String percent;
     private final TaxScheme taxScheme;
 
+    /**
+     * @deprecated
+     */
     public ClassifiedTaxCategory(String id, TaxScheme taxScheme) {
+        this.id = PeppolCodeResolver.fromCode(TaxCategoryIdentifier.class, id);
+        this.taxScheme = taxScheme;
+    }
+
+    public ClassifiedTaxCategory(TaxCategoryIdentifier id, TaxScheme taxScheme) {
         this.id = id;
         this.taxScheme = taxScheme;
     }
@@ -43,7 +53,7 @@ public class ClassifiedTaxCategory implements XmlElement {
     public Node node() {
         final Element elm = Xml.el(new QualifiedName(CAC_NS, name()));
 
-        required(this.id, "ID", elm, CBC_NS);
+        required(this.id.getCode(), "ID", elm, CBC_NS);
         optional(this.percent, "Percent", elm, CBC_NS);
         required(this.taxScheme, elm);
 

@@ -20,8 +20,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import peppol.bis.invoice3.domain.TaxCategory;
 import peppol.bis.invoice3.domain.TaxScheme;
+import peppol.bis.invoice3.domain.codes.TaxCategoryIdentifier;
+import peppol.bis.invoice3.domain.codes.TaxExemptionReasonCode;
 
 import static org.hamcrest.Matchers.equalTo;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static peppol.bis.invoice3.XmlAsserts.assertElementNameIs;
 import static peppol.bis.invoice3.XmlAsserts.assertRequiredElement;
 import static peppol.bis.invoice3.XmlAsserts.assertUnsetOptionalElement;
@@ -34,7 +37,7 @@ public class TaxCategoryTest  {
     @BeforeEach
     void setUp() {
         taxCategory = new TaxCategory(
-            "S", new TaxScheme("VAT")
+            TaxCategoryIdentifier.S, new TaxScheme("VAT")
         );
     }
 
@@ -58,7 +61,7 @@ public class TaxCategoryTest  {
         taxCategory
             .withPercent("25")
             .withTaxExemptionReason("Exempt New Means of Transport")
-            .withTaxExemptionReasonCode("VATEX-EU-G");
+            .withTaxExemptionReasonCode(TaxExemptionReasonCode.VATEX_EU_G);
 
         final Element element = (Element) taxCategory.node();
 
@@ -67,4 +70,19 @@ public class TaxCategoryTest  {
         assertRequiredElement(element, "TaxExemptionReasonCode", equalTo("VATEX-EU-G"));
     }
 
+    @Test
+    void withTaxExemptionReason_code_as_string() {
+        taxCategory
+            .withPercent("25")
+            .withTaxExemptionReason("Exempt New Means of Transport")
+            .withTaxExemptionReasonCode("VATEX-EU-G");
+
+        final Element element = (Element) taxCategory.node();
+
+        assertRequiredElement(element, "Percent", equalTo("25"));
+        assertRequiredElement(element, "TaxExemptionReason", equalTo("Exempt New Means of Transport"));
+        assertRequiredElement(element, "TaxExemptionReasonCode", equalTo("VATEX-EU-G"));
+
+        assertThrows(IllegalArgumentException.class, ()-> taxCategory.withTaxExemptionReasonCode("DUMMY_CODE"));
+    }
 }

@@ -58,7 +58,7 @@ class InvoicePeriodTest {
     }
 
     @Test
-    void to_xml_optional_elementsDateCodeAsString() {
+    void to_xml_optional_elementsDate_code_as_string() {
         invoicePeriod.withDescriptionCode("35");
         final Element element = (Element) invoicePeriod.node();
 

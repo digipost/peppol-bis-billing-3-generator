@@ -44,7 +44,7 @@ class EndpointIDTest {
     }
 
     @Test
-    void EndpointID_to_xml_with_nameAsString() {
+    void EndpointID_to_xml_with_name_as_string() {
         final Element element = (Element) new EndpointID("7300010000001").withSchemeID("0088").node();
         assertThat(element.getName().getName(), equalTo("EndpointID"));
         assertThat(element.text(), equalTo("7300010000001"));

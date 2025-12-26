@@ -19,6 +19,7 @@ import org.eaxy.Element;
 import org.eaxy.Node;
 import org.eaxy.QualifiedName;
 import org.eaxy.Xml;
+import peppol.bis.invoice3.domain.codes.PeppolCodeResolver;
 import peppol.bis.invoice3.domain.codes.UnitIdCode;
 
 import java.util.Optional;
@@ -37,7 +38,7 @@ public class BaseQuantity implements XmlElement {
      * @deprecated
      */
     public BaseQuantity withUnitCode(String unitCode) {
-        this.unitCode = UnitIdCode.fromCode(unitCode);
+        this.unitCode = PeppolCodeResolver.fromCode(UnitIdCode.class, unitCode);
         return this;
     }
 

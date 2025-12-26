@@ -44,7 +44,7 @@ class IDTest {
     }
 
     @Test
-    void ID_to_xml_with_nameAsString() {
+    void ID_to_xml_with_name_as_string() {
         final Element element = (Element) new ID("7300010000001").withSchemeID("0088").node();
         assertThat(element.getName().getName(), equalTo("ID"));
         assertThat(element.text(), equalTo("7300010000001"));

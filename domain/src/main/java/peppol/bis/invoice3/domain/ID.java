@@ -20,6 +20,7 @@ import org.eaxy.Node;
 import org.eaxy.QualifiedName;
 import org.eaxy.Xml;
 import peppol.bis.invoice3.domain.codes.ElectronicAddressScheme;
+import peppol.bis.invoice3.domain.codes.PeppolCodeResolver;
 
 import java.util.Optional;
 
@@ -38,7 +39,7 @@ public class ID implements XmlElement{
      * @deprecated
      */
     public ID withSchemeID(String schemeID) {
-        this.schemeID = ElectronicAddressScheme.fromCode(schemeID);
+        this.schemeID = PeppolCodeResolver.fromCode(ElectronicAddressScheme.class, schemeID);
         return this;
     }
 

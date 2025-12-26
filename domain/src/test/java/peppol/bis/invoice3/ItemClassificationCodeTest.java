@@ -52,7 +52,7 @@ public class ItemClassificationCodeTest {
     }
 
     @Test
-    void to_xml_basic_elementsWithCodeAsString() {
+    void to_xml_basic_elementsWith_code_as_string() {
         final Element element = (Element) new ItemClassificationCode(
                 "9873242", "STK"
         ).node();

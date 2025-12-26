@@ -19,6 +19,7 @@ import org.eaxy.Element;
 import org.eaxy.Node;
 import org.eaxy.QualifiedName;
 import org.eaxy.Xml;
+import peppol.bis.invoice3.domain.codes.PeppolCodeResolver;
 import peppol.bis.invoice3.domain.codes.VatDateCode;
 
 import static peppol.bis.invoice3.domain.Namespaces.CAC_NS;
@@ -39,7 +40,7 @@ public class InvoicePeriod implements XmlElement {
      * @deprecated
      */
     public InvoicePeriod withDescriptionCode(String descriptionCode) {
-        this.descriptionCode = VatDateCode.fromCode(descriptionCode);
+        this.descriptionCode = PeppolCodeResolver.fromCode(VatDateCode.class, descriptionCode);
         return this;
     }
 

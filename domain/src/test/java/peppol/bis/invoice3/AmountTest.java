@@ -47,7 +47,7 @@ class AmountTest {
     }
 
     @Test
-    void Amount_to_xmlAsString() {
+    void Amount_to_xml_as_string() {
         final Element element = (Element) new Amount("1273", "EUR").node();
         assertThat(element.getName().getName(), equalTo("Amount"));
         assertThat(element.text(), equalTo("1273"));
@@ -65,7 +65,7 @@ class AmountTest {
     }
 
     @Test
-    void LineExtensionAmount_to_xmlAsString() {
+    void LineExtensionAmount_to_xml_as_string() {
         final Element element = (Element) new LineExtensionAmount("1273", "EUR").node();
         assertThat(element.getName().getName(), equalTo("LineExtensionAmount"));
         assertThat(element.text(), equalTo("1273"));
@@ -81,7 +81,7 @@ class AmountTest {
     }
 
     @Test
-    void TaxExclusiveAmount_to_xmlAsString() {
+    void TaxExclusiveAmount_to_xml_as_string() {
         final Element element = (Element) new TaxExclusiveAmount("1273", "EUR").node();
         assertThat(element.getName().getName(), equalTo("TaxExclusiveAmount"));
         assertThat(element.text(), equalTo("1273"));
@@ -100,7 +100,7 @@ class AmountTest {
     }
 
     @Test
-    void TaxInclusiveAmount_to_xmlAsString() {
+    void TaxInclusiveAmount_to_xml_as_string() {
         final Element element = (Element) new TaxInclusiveAmount("1273", "EUR").node();
         assertThat(element.getName().getName(), equalTo("TaxInclusiveAmount"));
         assertThat(element.text(), equalTo("1273"));
@@ -119,7 +119,7 @@ class AmountTest {
     }
 
     @Test
-    void PayableAmount_to_xmlAsString() {
+    void PayableAmount_to_xml_as_string() {
         final Element element = (Element) new PayableAmount("1273", "EUR").node();
         assertThat(element.getName().getName(), equalTo("PayableAmount"));
         assertThat(element.text(), equalTo("1273"));
@@ -137,7 +137,7 @@ class AmountTest {
     }
 
     @Test
-    void AllowanceTotalAmount_to_xmlAsString() {
+    void AllowanceTotalAmount_to_xml_as_string() {
         final Element element = (Element) new AllowanceTotalAmount("1273", "EUR").node();
         assertThat(element.getName().getName(), equalTo("AllowanceTotalAmount"));
         assertThat(element.text(), equalTo("1273"));
@@ -156,7 +156,7 @@ class AmountTest {
     }
 
     @Test
-    void ChargeTotalAmount_to_xmlAsString() {
+    void ChargeTotalAmount_to_xml_as_string() {
         final Element element = (Element) new ChargeTotalAmount("1273", "EUR").node();
         assertThat(element.getName().getName(), equalTo("ChargeTotalAmount"));
         assertThat(element.text(), equalTo("1273"));
@@ -175,7 +175,7 @@ class AmountTest {
     }
 
     @Test
-    void PrepaidAmount_to_xmlAsString() {
+    void PrepaidAmount_to_xml_as_string() {
         final Element element = (Element) new PrepaidAmount("1273", "EUR").node();
         assertThat(element.getName().getName(), equalTo("PrepaidAmount"));
         assertThat(element.text(), equalTo("1273"));
@@ -194,7 +194,7 @@ class AmountTest {
     }
 
     @Test
-    void PayableRoundingAmount_to_xmlAsString() {
+    void PayableRoundingAmount_to_xml_as_string() {
         final Element element = (Element) new PayableRoundingAmount("1273", "EUR").node();
         assertThat(element.getName().getName(), equalTo("PayableRoundingAmount"));
         assertThat(element.text(), equalTo("1273"));
@@ -213,7 +213,7 @@ class AmountTest {
     }
 
     @Test
-    void PriceAmount_to_xmlAsString() {
+    void PriceAmount_to_xml_as_string() {
         final Element element = (Element) new PriceAmount("1273", "EUR").node();
         assertThat(element.getName().getName(), equalTo("PriceAmount"));
         assertThat(element.text(), equalTo("1273"));
@@ -232,7 +232,7 @@ class AmountTest {
     }
 
     @Test
-    void TaxableAmount_to_xmlAsString() {
+    void TaxableAmount_to_xml_as_string() {
         final Element element = (Element) new TaxableAmount("1273", "EUR").node();
         assertThat(element.getName().getName(), equalTo("TaxableAmount"));
         assertThat(element.text(), equalTo("1273"));
@@ -250,7 +250,7 @@ class AmountTest {
     }
 
     @Test
-    void BaseAmount_to_xmlAsString() {
+    void BaseAmount_to_xml_as_string() {
         final Element element = (Element) new BaseAmount("1273", "EUR").node();
         assertThat(element.getName().getName(), equalTo("BaseAmount"));
         assertThat(element.text(), equalTo("1273"));

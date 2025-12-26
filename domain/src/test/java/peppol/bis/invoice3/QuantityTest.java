@@ -38,7 +38,7 @@ class QuantityTest {
     }
 
     @Test
-    void BaseQuantity_to_xmlAsString() {
+    void BaseQuantity_to_xml_as_string() {
         final Element element = (Element) new BaseQuantity("1").withUnitCode("STK").node();
         assertThat(element.getName().getName(), equalTo("BaseQuantity"));
         assertThat(element.text(), equalTo("1"));
@@ -57,7 +57,7 @@ class QuantityTest {
     }
 
     @Test
-    void InvoicedQuantity_to_xmlAsString() {
+    void InvoicedQuantity_to_xml_as_string() {
         final Element element = (Element) new InvoicedQuantity("1", "STK").node();
         assertThat(element.getName().getName(), equalTo("InvoicedQuantity"));
         assertThat(element.text(), equalTo("1"));

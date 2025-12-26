@@ -20,6 +20,7 @@ import org.eaxy.Node;
 import org.eaxy.QualifiedName;
 import org.eaxy.Xml;
 import peppol.bis.invoice3.domain.codes.AllowanceReasonCode;
+import peppol.bis.invoice3.domain.codes.PeppolCodeResolver;
 
 import static peppol.bis.invoice3.domain.Namespaces.CAC_NS;
 import static peppol.bis.invoice3.domain.Namespaces.CBC_NS;
@@ -43,7 +44,7 @@ public class InvoiceAllowanceCharge implements XmlElement {
      * @deprecated
      */
     public InvoiceAllowanceCharge withAllowanceChargeReasonCode(String allowanceChargeReasonCode) {
-        this.allowanceChargeReasonCode = AllowanceReasonCode.fromCode(allowanceChargeReasonCode);
+        this.allowanceChargeReasonCode = PeppolCodeResolver.fromCode(AllowanceReasonCode.class, allowanceChargeReasonCode);
         return this;
     }
 

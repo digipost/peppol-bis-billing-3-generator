@@ -45,18 +45,12 @@ class CompanyIDTest {
     }
 
     @Test
-    void CompanyID_to_xml_with_nameAsStringValid() {
+    void CompanyID_to_xml_with_name_as_string() {
         final Element element = (Element) new CompanyID("987654321").withSchemeID("0002").node();
         assertThat(element.getName().getName(), equalTo("CompanyID"));
         assertThat(element.text(), equalTo("987654321"));
         assertThat(element.attrs().get("schemeID"), equalTo("0002"));
-    }
 
-    @Test
-    void CompanyID_to_xml_with_nameAsStringInvalid() {
         assertThrows(IllegalArgumentException.class, ()-> new CompanyID("987654321").withSchemeID("DUMMY"));
-
-
     }
-
 }

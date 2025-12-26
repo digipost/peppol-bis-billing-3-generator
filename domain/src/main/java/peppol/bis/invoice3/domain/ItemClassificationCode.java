@@ -20,6 +20,7 @@ import org.eaxy.Node;
 import org.eaxy.QualifiedName;
 import org.eaxy.Xml;
 import peppol.bis.invoice3.domain.codes.ItemTypeIdentificationCode;
+import peppol.bis.invoice3.domain.codes.PeppolCodeResolver;
 
 import java.util.Optional;
 
@@ -35,7 +36,7 @@ public class ItemClassificationCode implements XmlElement {
      */
     public ItemClassificationCode(String code, String listID) {
         this.code = code;
-        this.listID = ItemTypeIdentificationCode.valueOf(listID);
+        this.listID = PeppolCodeResolver.fromCode(ItemTypeIdentificationCode.class, listID);
     }
 
     public ItemClassificationCode(String code, ItemTypeIdentificationCode listID) {
@@ -53,7 +54,7 @@ public class ItemClassificationCode implements XmlElement {
         final Element el = Xml.el(
             new QualifiedName(CBC_NS, this.name())
             , Xml.text(this.code)
-            , Xml.attr("listID", this.listID.name())
+            , Xml.attr("listID", this.listID.getCode())
         );
 
         Optional.ofNullable(this.listVersionID).ifPresent(v -> el.attr("listVersionID", v));

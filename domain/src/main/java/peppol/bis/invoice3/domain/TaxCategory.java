@@ -19,6 +19,7 @@ import org.eaxy.Element;
 import org.eaxy.Node;
 import org.eaxy.QualifiedName;
 import org.eaxy.Xml;
+import peppol.bis.invoice3.domain.codes.PeppolCodeResolver;
 import peppol.bis.invoice3.domain.codes.TaxCategoryIdentifier;
 import peppol.bis.invoice3.domain.codes.TaxExemptionReasonCode;
 
@@ -36,13 +37,7 @@ public class TaxCategory implements XmlElement {
      * @deprecated
      */
     public TaxCategory(String id, TaxScheme taxScheme) {
-        try {
-            this.id = TaxCategoryIdentifier.valueOf(id);
-        } catch (IllegalArgumentException ex) {
-            throw new IllegalArgumentException(
-                    "Invalid TaxCategoryIdentifier (UNCL5305): " + id, ex
-            );
-        }
+        this.id = PeppolCodeResolver.fromCode(TaxCategoryIdentifier.class, id);
         this.taxScheme = taxScheme;
     }
 
@@ -60,13 +55,8 @@ public class TaxCategory implements XmlElement {
      * @deprecated
      */
     public TaxCategory withTaxExemptionReasonCode(String taxExemptionReasonCode) {
-        try {
-            this.taxExemptionReasonCode = TaxExemptionReasonCode.fromCode(taxExemptionReasonCode);
-        } catch (IllegalArgumentException ex) {
-            throw new IllegalArgumentException(
-                    "Invalid TaxExemptionReasonCode (UNECERec20): " + taxExemptionReasonCode, ex
-            );
-        }
+        this.taxExemptionReasonCode = PeppolCodeResolver.fromCode(TaxExemptionReasonCode.class, taxExemptionReasonCode);
+
         return this;
     }
 
@@ -84,7 +74,7 @@ public class TaxCategory implements XmlElement {
     public Node node() {
         final Element elm = Xml.el(new QualifiedName(CAC_NS, name()));
 
-        required(this.id.name(), "ID", elm, CBC_NS);
+        required(this.id.getCode(), "ID", elm, CBC_NS);
         optional(this.percent, "Percent", elm, CBC_NS);
         optional(this.taxExemptionReasonCode != null ? this.taxExemptionReasonCode.getCode() : null, "TaxExemptionReasonCode", elm, CBC_NS);
         optional(this.taxExemptionReason, "TaxExemptionReason", elm, CBC_NS);

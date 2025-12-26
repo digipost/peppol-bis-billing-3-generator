@@ -98,7 +98,7 @@ class AllowanceChargeTest {
     }
 
     @Test
-    void InvoiceAllowanceCharge_to_xml_optional_elementsWhargeCodeAsString() {
+    void InvoiceAllowanceCharge_to_xml_optional_elementsWharge_code_as_string() {
         invoiceAllowanceCharge
             .withBaseAmount(new BaseAmount("344", CurrencyIdCode.EUR))
             .withAllowanceChargeReasonCode("95")

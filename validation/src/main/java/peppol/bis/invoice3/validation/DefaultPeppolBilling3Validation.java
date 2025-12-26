@@ -114,7 +114,7 @@ public class DefaultPeppolBilling3Validation implements PeppolBilling3Validation
 
     private List<String> getTextFrom(ErrorList errorList) {
         return errorList.stream()
-            .map(s -> s.getAsString(Locale.getDefault()))
+            .map(s -> s.get_as_string(Locale.getDefault()))
             .collect(Collectors.toList());
     }
 }

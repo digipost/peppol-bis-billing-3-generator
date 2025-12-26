@@ -71,7 +71,7 @@ public class TaxCategoryTest  {
     }
 
     @Test
-    void withTaxExemptionReasonCodeAsStringValid() {
+    void withTaxExemptionReason_code_as_string() {
         taxCategory
             .withPercent("25")
             .withTaxExemptionReason("Exempt New Means of Transport")
@@ -82,11 +82,7 @@ public class TaxCategoryTest  {
         assertRequiredElement(element, "Percent", equalTo("25"));
         assertRequiredElement(element, "TaxExemptionReason", equalTo("Exempt New Means of Transport"));
         assertRequiredElement(element, "TaxExemptionReasonCode", equalTo("VATEX-EU-G"));
-    }
 
-    @Test
-    void withTaxExemptionReasonCodeAsStringInalid() {
         assertThrows(IllegalArgumentException.class, ()-> taxCategory.withTaxExemptionReasonCode("DUMMY_CODE"));
     }
-
 }

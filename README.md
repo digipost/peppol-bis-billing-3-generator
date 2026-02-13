@@ -19,7 +19,7 @@ This is Java 11.
 # Installation
 
 If you just want to create the xml, you only need the api:
-```
+```xml
 <dependency>
     <groupId>no.digipost</groupId>
     <artifactId>peppol-bis-billing-3-generator-api</artifactId>
@@ -44,7 +44,7 @@ web pages where you upload an xml file and you get the response. You can put thi
 into you Unit-testing of your code!
 
 You need the validation-artifact:
-```
+```xml
 <dependency>
     <groupId>no.digipost</groupId>
     <artifactId>peppol-bis-billing-3-generator-validation</artifactId>
@@ -57,7 +57,7 @@ the validation kicks in and returns a `ValidationResult` stating whether the xml
 and with failures and/or error-information.
 
 Eksample. error (From `InvoiceApiTest`): 
-```
+```java
 final Invoice invoice = ExampleUsage1.example1();
 final ValidationResult result = new Validate(invoice).result();
 
@@ -69,7 +69,7 @@ validation. You can utilize this to change the rules that apply for your specifi
 specifying the VESID that is in use. You can do this by setting a static field in `DefaultPeppolBilling3Validation`.
 We do this in a test called `PeppolBillingpiTest`:
 
-```
+```java
 // This is the latest as of this writing and is 3.0.9
 DefaultPeppolBilling3Validation.setVesid(PeppolValidation3_11_1.VID_OPENPEPPOL_INVOICE_V3);
 
@@ -82,14 +82,14 @@ update your unit-tests accordingly to meet the correct setup requirements.
 
 # Example of Invoice creation
 
-```
+```java
 // Create an Invoice with all your data. This is a low level non complete example.
 
 final AccountingSupplierParty accountingSupplierParty = new AccountingSupplierParty(
     new Party(
-        new EndpointID("916725280").withSchemeID("0192")
+        new EndpointID("916725280").withSchemeID(ElectronicAddressScheme.EAS_0192)
         , new PostalAddress(new Country("NO")).withStreetName("Oslogate 1").withCityName("Oslo").withPostalZone("0342")
-        , new PartyLegalEntity("Acme Cargo AS").withCompanyID(new CompanyID("916725280").withSchemeID("0192"))
+        , new PartyLegalEntity("Acme Cargo AS").withCompanyID(new CompanyID("916725280").withSchemeID(ElectronicAddressScheme.EAS_0192))
     ).withPartyIdentification(new PartyIdentification(new ID("916725280")))
         .withPartyName(new PartyName("PartyName"))
         .withPartyTaxScheme(new PartyTaxScheme("NO" + "916725280" +  "MVA", new TaxScheme("VAT")))
@@ -99,38 +99,38 @@ final AccountingSupplierParty accountingSupplierParty = new AccountingSupplierPa
 
 final AccountingCustomerParty accountingCustomerParty = new AccountingCustomerParty(
     new Party(
-        new EndpointID("916725280").withSchemeID("0192")
+        new EndpointID("916725280").withSchemeID(ElectronicAddressScheme.EAS_0192)
         , new PostalAddress(new Country("NO")).withStreetName("Sandnesgate 3").withCityName("Sandnes").withPostalZone("4313")
-        , new PartyLegalEntity("Acme As").withCompanyID(new CompanyID("916725280").withSchemeID("0192"))
+        , new PartyLegalEntity("Acme As").withCompanyID(new CompanyID("916725280").withSchemeID(ElectronicAddressScheme.EAS_0192))
     ).withPartyIdentification(new PartyIdentification(new ID("10030177835")))
         .withPartyName(new PartyName("Acme As"))
         .withPartyTaxScheme(new PartyTaxScheme("NO916725280MVA", new TaxScheme("VAT")))
 );
 
 final TaxTotal taxTotal = new TaxTotal(
-    new TaxAmount("0.00", "NOK")
+    new TaxAmount("0.00", CurrencyIdCode.NOK)
 ).withTaxSubtotal(new TaxSubtotal(
-    new TaxableAmount("2860.00", "NOK")
-    , new TaxAmount("0.00", "NOK")
-    , new TaxCategory("G", new TaxScheme("VAT"))
+    new TaxableAmount("2860.00", CurrencyIdCode.NOK)
+    , new TaxAmount("0.00", CurrencyIdCode.NOK)
+    , new TaxCategory(TaxCategoryIdentifier.G, new TaxScheme("VAT"))
     .withPercent("0.000")
     .withTaxExemptionReason("Utførsel av varer og tjenester, 0 %")
 ));
 
 final LegalMonetaryTotal legalMonetaryTotal = new LegalMonetaryTotal(
-    new LineExtensionAmount("2860.00", "NOK")
-    , new TaxExclusiveAmount("2860.00", "NOK")
-    , new TaxInclusiveAmount("2860.00", "NOK")
-    , new PayableAmount("2860.00", "NOK")
+    new LineExtensionAmount("2860.00", UnitIdCode.X_MTR)
+    , new TaxExclusiveAmount("2860.00", UnitIdCode.X_MTR)
+    , new TaxInclusiveAmount("2860.00", UnitIdCode.X_MTR)
+    , new PayableAmount("2860.00", UnitIdCode.X_MTR)
 );
 
 final InvoiceLine invoiceLine = new InvoiceLine(
-    "1", new InvoicedQuantity("1", "STK")
-    , new LineExtensionAmount("2860.00", "NOK")
+    "1", new InvoicedQuantity("1", UnitIdCode.X_STK)
+    , new LineExtensionAmount("2860.00", UnitIdCode.X_MTR)
     , new Item(
-    "Frakt", new ClassifiedTaxCategory("G", new TaxScheme("VAT")).withPercent("0.000")
+    "Frakt", new ClassifiedTaxCategory(TaxCategoryIdentifier.G, new TaxScheme("VAT")).withPercent("0.000")
 ).withSellersItemIdentification(new SellersItemIdentification("101366"))
-    , new Price(new PriceAmount("2860.00", "NOK"))
+    , new Price(new PriceAmount("2860.00", UnitIdCode.X_MTR))
 );
 
 final Delivery delivery = new Delivery().withDeliveryLocation(
@@ -143,7 +143,7 @@ final Delivery delivery = new Delivery().withDeliveryLocation(
 
 
 final PaymentMeans paymentMeans1 = new PaymentMeans(
-    new PaymentMeansCode("58").withName("SEPA credit transfer")
+    new PaymentMeansCode(PaymentMeansPeppolCode.PMC_58).withName("SEPA credit transfer")
 ).withPaymentID("123456789101")
     .withPayeeFinancialAccount(
         new PayeeFinancialAccount("NO6960650514745")
@@ -153,7 +153,7 @@ final PaymentMeans paymentMeans1 = new PaymentMeans(
 final Invoice invoice = new Invoice(
     "12345678910"
     , "2020-11-19"
-    , "NOK"
+    , UnitIdCode.X_MTR
     , accountingSupplierParty
     , accountingCustomerParty
     , taxTotal

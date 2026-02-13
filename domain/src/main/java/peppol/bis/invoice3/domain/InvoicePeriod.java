@@ -19,6 +19,8 @@ import org.eaxy.Element;
 import org.eaxy.Node;
 import org.eaxy.QualifiedName;
 import org.eaxy.Xml;
+import peppol.bis.invoice3.domain.codes.PeppolCodeResolver;
+import peppol.bis.invoice3.domain.codes.VatDateCode;
 
 import static peppol.bis.invoice3.domain.Namespaces.CAC_NS;
 import static peppol.bis.invoice3.domain.Namespaces.CBC_NS;
@@ -27,14 +29,22 @@ public class InvoicePeriod implements XmlElement {
 
     private String startDate;
     private String endDate;
-    private String descriptionCode;
+    private VatDateCode descriptionCode;
 
     public InvoicePeriod(String startDate, String endDate) {
         this.startDate = startDate;
         this.endDate = endDate;
     }
 
+    /**
+     * @deprecated
+     */
     public InvoicePeriod withDescriptionCode(String descriptionCode) {
+        this.descriptionCode = PeppolCodeResolver.fromCode(VatDateCode.class, descriptionCode);
+        return this;
+    }
+
+    public InvoicePeriod withDescriptionCode(VatDateCode descriptionCode) {
         this.descriptionCode = descriptionCode;
         return this;
     }
@@ -46,7 +56,7 @@ public class InvoicePeriod implements XmlElement {
         required(this.startDate, "StartDate", elm, CBC_NS);
         required(this.endDate, "EndDate", elm, CBC_NS);
 
-        optional(this.descriptionCode, "DescriptionCode", elm, CBC_NS);
+        optional(this.descriptionCode != null ? this.descriptionCode.getCode() : null, "DescriptionCode", elm, CBC_NS);
 
         return elm;
     }

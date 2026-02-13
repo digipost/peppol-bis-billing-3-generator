@@ -15,9 +15,19 @@
  */
 package peppol.bis.invoice3.domain;
 
+import peppol.bis.invoice3.domain.codes.UnitIdCode;
+
 public class InvoicedQuantity extends BaseQuantity {
 
+    /**
+     * @deprecated
+     */
     public InvoicedQuantity(String value, String unitCode) {
+        super(value);
+        super.withUnitCode(unitCode);
+    }
+
+    public InvoicedQuantity(String value, UnitIdCode unitCode) {
         super(value);
         super.withUnitCode(unitCode);
     }

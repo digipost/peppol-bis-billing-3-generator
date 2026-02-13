@@ -19,6 +19,8 @@ import org.eaxy.Element;
 import org.eaxy.Node;
 import org.eaxy.QualifiedName;
 import org.eaxy.Xml;
+import peppol.bis.invoice3.domain.codes.ElectronicAddressScheme;
+import peppol.bis.invoice3.domain.codes.PeppolCodeResolver;
 
 import java.util.Optional;
 
@@ -27,13 +29,21 @@ import static peppol.bis.invoice3.domain.Namespaces.CBC_NS;
 public class ID implements XmlElement{
 
     private final String id;
-    private String schemeID;
+    private ElectronicAddressScheme schemeID;
 
     public ID(String id) {
         this.id = id;
     }
 
+    /**
+     * @deprecated
+     */
     public ID withSchemeID(String schemeID) {
+        this.schemeID = PeppolCodeResolver.fromCode(ElectronicAddressScheme.class, schemeID);
+        return this;
+    }
+
+    public ID withSchemeID(ElectronicAddressScheme schemeID) {
         this.schemeID = schemeID;
         return this;
     }
@@ -45,7 +55,7 @@ public class ID implements XmlElement{
             , Xml.text(this.id)
         );
 
-        Optional.ofNullable(this.schemeID).ifPresent(v -> el.attr("schemeID", v));
+        Optional.ofNullable(this.schemeID).ifPresent(v -> el.attr("schemeID", v.getCode()));
 
         return el;
     }

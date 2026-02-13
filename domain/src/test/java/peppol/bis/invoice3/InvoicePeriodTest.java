@@ -18,9 +18,12 @@ package peppol.bis.invoice3;
 import org.eaxy.Element;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import peppol.bis.invoice3.domain.BaseQuantity;
 import peppol.bis.invoice3.domain.InvoicePeriod;
+import peppol.bis.invoice3.domain.codes.VatDateCode;
 
 import static org.hamcrest.Matchers.equalTo;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static peppol.bis.invoice3.XmlAsserts.assertElementNameIs;
 import static peppol.bis.invoice3.XmlAsserts.assertRequiredElement;
 import static peppol.bis.invoice3.XmlAsserts.assertUnsetOptionalElement;
@@ -48,10 +51,19 @@ class InvoicePeriodTest {
 
     @Test
     void to_xml_optional_elements() {
+        invoicePeriod.withDescriptionCode(VatDateCode.VDC_35);
+        final Element element = (Element) invoicePeriod.node();
+
+        assertRequiredElement(element, "DescriptionCode", equalTo("35"));
+    }
+
+    @Test
+    void to_xml_optional_elementsDate_code_as_string() {
         invoicePeriod.withDescriptionCode("35");
         final Element element = (Element) invoicePeriod.node();
 
         assertRequiredElement(element, "DescriptionCode", equalTo("35"));
+        assertThrows(IllegalArgumentException.class, () -> invoicePeriod.withDescriptionCode("DUMMY"));
     }
 
 }

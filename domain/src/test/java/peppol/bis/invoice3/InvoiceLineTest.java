@@ -32,6 +32,8 @@ import peppol.bis.invoice3.domain.OrderLineReference;
 import peppol.bis.invoice3.domain.Price;
 import peppol.bis.invoice3.domain.PriceAmount;
 import peppol.bis.invoice3.domain.TaxScheme;
+import peppol.bis.invoice3.domain.codes.CurrencyIdCode;
+import peppol.bis.invoice3.domain.codes.UnitIdCode;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
@@ -48,10 +50,10 @@ public class InvoiceLineTest {
     void setUp() {
         invoiceLine = new InvoiceLine(
             "2"
-            , new InvoicedQuantity("1", "STK")
-            , new LineExtensionAmount("1272", "EUR")
+            , new InvoicedQuantity("1", UnitIdCode.X_STK)
+            , new LineExtensionAmount("1272", CurrencyIdCode.EUR)
             , new Item("Power cord", new ClassifiedTaxCategory("S", new TaxScheme("VAT")))
-            , new Price(new PriceAmount("1233", "EUR"))
+            , new Price(new PriceAmount("1233", CurrencyIdCode.EUR))
         );
     }
 
@@ -95,9 +97,9 @@ public class InvoiceLineTest {
     @Test
     void InvoiceLine_to_xml_allowance_charge() {
         invoiceLine
-            .withAllowanceCharge(new InvoiceLineAllowanceCharge(true, new Amount("211", "EUR")))
-            .withAllowanceCharge(new InvoiceLineAllowanceCharge(true, new Amount("212", "EUR")))
-            .withAllowanceCharge(new InvoiceLineAllowanceCharge(true, new Amount("213", "EUR")))
+            .withAllowanceCharge(new InvoiceLineAllowanceCharge(true, new Amount("211", CurrencyIdCode.EUR)))
+            .withAllowanceCharge(new InvoiceLineAllowanceCharge(true, new Amount("212", CurrencyIdCode.EUR)))
+            .withAllowanceCharge(new InvoiceLineAllowanceCharge(true, new Amount("213", CurrencyIdCode.EUR)))
         ;
 
         final Element element = (Element) invoiceLine.node();

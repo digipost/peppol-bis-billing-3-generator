@@ -19,13 +19,15 @@ import org.eaxy.Element;
 import org.eaxy.Node;
 import org.eaxy.QualifiedName;
 import org.eaxy.Xml;
+import peppol.bis.invoice3.domain.codes.AllowanceReasonCode;
+import peppol.bis.invoice3.domain.codes.PeppolCodeResolver;
 
 import static peppol.bis.invoice3.domain.Namespaces.CAC_NS;
 import static peppol.bis.invoice3.domain.Namespaces.CBC_NS;
 
 public class InvoiceAllowanceCharge implements XmlElement {
     private final boolean chargeIndicator;
-    private String allowanceChargeReasonCode;
+    private AllowanceReasonCode allowanceChargeReasonCode;
     private String allowanceChargeReason;
     private String multiplierFactorNumeric;
     private final Amount amount;
@@ -38,7 +40,15 @@ public class InvoiceAllowanceCharge implements XmlElement {
         this.taxCategory = taxCategory;
     }
 
+    /**
+     * @deprecated
+     */
     public InvoiceAllowanceCharge withAllowanceChargeReasonCode(String allowanceChargeReasonCode) {
+        this.allowanceChargeReasonCode = PeppolCodeResolver.fromCode(AllowanceReasonCode.class, allowanceChargeReasonCode);
+        return this;
+    }
+
+    public InvoiceAllowanceCharge withAllowanceChargeReasonCode(AllowanceReasonCode allowanceChargeReasonCode) {
         this.allowanceChargeReasonCode = allowanceChargeReasonCode;
         return this;
     }
@@ -63,7 +73,7 @@ public class InvoiceAllowanceCharge implements XmlElement {
         final Element elm = Xml.el(new QualifiedName(CAC_NS, name()));
 
         required(String.valueOf(this.chargeIndicator), "ChargeIndicator", elm, CBC_NS);
-        optional(this.allowanceChargeReasonCode, "AllowanceChargeReasonCode", elm, CBC_NS);
+        optional(this.allowanceChargeReasonCode != null ? this.allowanceChargeReasonCode.getCode() : null, "AllowanceChargeReasonCode", elm, CBC_NS);
         optional(this.allowanceChargeReason, "AllowanceChargeReason", elm, CBC_NS);
         optional(this.multiplierFactorNumeric, "MultiplierFactorNumeric", elm, CBC_NS);
         required(this.amount, elm);

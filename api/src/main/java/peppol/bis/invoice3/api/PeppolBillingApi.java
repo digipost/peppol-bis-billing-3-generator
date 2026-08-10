@@ -17,6 +17,7 @@ package peppol.bis.invoice3.api;
 
 import org.eaxy.Document;
 import org.eaxy.Element;
+import org.eaxy.Xml;
 import peppol.bis.invoice3.domain.BillingCommon;
 import peppol.bis.invoice3.domain.CreditNote;
 import peppol.bis.invoice3.domain.Invoice;
@@ -40,6 +41,16 @@ public class PeppolBillingApi<T> {
 
     public static PeppolBillingApi<Document> create(Document document) {
         return new PeppolBillingApi<>(document);
+    }
+
+    /**
+     * Creates an API instance from the standard JDK DOM representation.
+     *
+     * <p>This boundary lets callers avoid coupling their own code to Eaxy while the
+     * generator internals are migrated incrementally.</p>
+     */
+    public static PeppolBillingApi<?> create(org.w3c.dom.Document document) {
+        return new PeppolBillingApi<>(Xml.fromDom(document));
     }
 
     private final T object;

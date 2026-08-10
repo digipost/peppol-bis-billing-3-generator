@@ -22,6 +22,9 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.io.InputStream;
 
+import javax.xml.XMLConstants;
+import javax.xml.parsers.DocumentBuilderFactory;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -33,6 +36,24 @@ class PeppolBillingApiTest {
             assertNotNull(inputStream);
             Document document = Xml.xml(new String(inputStream.readAllBytes()));
             PeppolBillingApi<Document> peppolBillingApi = new PeppolBillingApi<>(document);
+            assertEquals("NO", peppolBillingApi.getCustomerCountryIdentifier());
+            assertEquals("NO", peppolBillingApi.getSupplierCountryIdentifier());
+            assertEquals("0192:123456785", peppolBillingApi.getSupplierEndpointID());
+        }
+    }
+
+    @Test
+    void createsFromStandardDomDocument() throws Exception {
+        DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+        documentBuilderFactory.setNamespaceAware(true);
+        documentBuilderFactory.setAttribute(XMLConstants.ACCESS_EXTERNAL_DTD, "");
+        documentBuilderFactory.setAttribute(XMLConstants.ACCESS_EXTERNAL_SCHEMA, "");
+
+        try (InputStream inputStream = PeppolBillingApiTest.class.getResourceAsStream("/norwegian-example.xml")) {
+            assertNotNull(inputStream);
+            org.w3c.dom.Document document = documentBuilderFactory.newDocumentBuilder().parse(inputStream);
+            PeppolBillingApi<?> peppolBillingApi = PeppolBillingApi.create(document);
+
             assertEquals("NO", peppolBillingApi.getCustomerCountryIdentifier());
             assertEquals("NO", peppolBillingApi.getSupplierCountryIdentifier());
             assertEquals("0192:123456785", peppolBillingApi.getSupplierEndpointID());

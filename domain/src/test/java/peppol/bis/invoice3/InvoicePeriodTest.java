@@ -21,6 +21,7 @@ import org.junit.jupiter.api.Test;
 import peppol.bis.invoice3.domain.InvoicePeriod;
 
 import static org.hamcrest.Matchers.equalTo;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static peppol.bis.invoice3.XmlAsserts.assertElementNameIs;
 import static peppol.bis.invoice3.XmlAsserts.assertRequiredElement;
 import static peppol.bis.invoice3.XmlAsserts.assertUnsetOptionalElement;
@@ -52,6 +53,27 @@ class InvoicePeriodTest {
         final Element element = (Element) invoicePeriod.node();
 
         assertRequiredElement(element, "DescriptionCode", equalTo("35"));
+    }
+
+    @Test
+    void to_xml_with_start_date_only() {
+        final Element element = (Element) new InvoicePeriod("2020-11-11", null).node();
+
+        assertRequiredElement(element, "StartDate", equalTo("2020-11-11"));
+        assertUnsetOptionalElement(element, "EndDate");
+    }
+
+    @Test
+    void to_xml_with_end_date_only() {
+        final Element element = (Element) new InvoicePeriod(null, "2020-12-12").node();
+
+        assertUnsetOptionalElement(element, "StartDate");
+        assertRequiredElement(element, "EndDate", equalTo("2020-12-12"));
+    }
+
+    @Test
+    void requires_at_least_one_date() {
+        assertThrows(IllegalArgumentException.class, () -> new InvoicePeriod(null, null));
     }
 
 }

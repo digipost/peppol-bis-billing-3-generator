@@ -30,6 +30,9 @@ public class InvoicePeriod implements XmlElement {
     private String descriptionCode;
 
     public InvoicePeriod(String startDate, String endDate) {
+        if (startDate == null && endDate == null) {
+            throw new IllegalArgumentException("InvoicePeriod requires a start date and/or an end date");
+        }
         this.startDate = startDate;
         this.endDate = endDate;
     }
@@ -43,8 +46,8 @@ public class InvoicePeriod implements XmlElement {
     public Node node() {
         final Element elm = Xml.el(new QualifiedName(CAC_NS, name()));
 
-        required(this.startDate, "StartDate", elm, CBC_NS);
-        required(this.endDate, "EndDate", elm, CBC_NS);
+        optional(this.startDate, "StartDate", elm, CBC_NS);
+        optional(this.endDate, "EndDate", elm, CBC_NS);
 
         optional(this.descriptionCode, "DescriptionCode", elm, CBC_NS);
 

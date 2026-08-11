@@ -15,39 +15,37 @@
  */
 package peppol.bis.invoice3.domain;
 
-import org.eaxy.Element;
-import org.eaxy.Namespace;
-import org.eaxy.Node;
-import org.eaxy.QualifiedName;
-import org.eaxy.Xml;
+import org.w3c.dom.Element;
+import peppol.bis.invoice3.xml.Namespace;
+import peppol.bis.invoice3.xml.Xml;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface XmlElement {
-    Node node();
+    Element node();
 
     default String name() {
         return this.getClass().getSimpleName();
     }
 
     default void required(XmlElement node, Element elm) {
-        elm.add(node.node());
+        Xml.append(elm, node.node());
     }
 
     default void required(String value, String name, Element elm, Namespace ns) {
-        elm.add(Xml.el(new QualifiedName(ns, name), Xml.text(value)));
+        Xml.append(elm, Xml.el(ns.name(name), Xml.text(value)));
     }
     default void optional(XmlElement node, Element elm) {
-        Optional.ofNullable(node).filter(s -> !s.empty()).ifPresent(n -> elm.add(n.node()));
+        Optional.ofNullable(node).filter(s -> !s.empty()).ifPresent(n -> Xml.append(elm, n.node()));
     }
 
     default void optional(String value, String name, Element elm, Namespace ns) {
-        Optional.ofNullable(value).map((v) -> elm.add(Xml.el(new QualifiedName(ns, name), Xml.text(v))));
+        Optional.ofNullable(value).ifPresent(v -> Xml.append(elm, Xml.el(ns.name(name), Xml.text(v))));
     }
 
     default void list(List<XmlElement> list, Element elm){
-        list.stream().map(XmlElement::node).forEach(elm::add);
+        list.stream().map(XmlElement::node).forEach(node -> Xml.append(elm, node));
     }
 
     default boolean empty(){

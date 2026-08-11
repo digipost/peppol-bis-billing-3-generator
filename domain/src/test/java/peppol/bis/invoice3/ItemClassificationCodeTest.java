@@ -15,7 +15,7 @@
  */
 package peppol.bis.invoice3;
 
-import org.eaxy.Element;
+import org.w3c.dom.Element;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import peppol.bis.invoice3.domain.ItemClassificationCode;
@@ -43,9 +43,9 @@ public class ItemClassificationCodeTest {
         final Element element = (Element) itemClassificationCode.node();
         assertElementNameIs(element, "ItemClassificationCode", CBC_NS);
 
-        assertThat(element.text(), equalTo("9873242"));
-        assertThat(element.attrs().get("listID"), equalTo("STK"));
-        assertThat(element.attrs().size(), equalTo(1));
+        assertThat(element.getTextContent(), equalTo("9873242"));
+        assertThat(peppol.bis.invoice3.xml.Xml.attributeOrNull(element, "listID"), equalTo("STK"));
+        assertThat(element.getAttributes().getLength(), equalTo(1));
     }
 
     @Test
@@ -53,6 +53,6 @@ public class ItemClassificationCodeTest {
         itemClassificationCode.withlistVersionID("19.0501");
 
         final Element element = (Element) itemClassificationCode.node();
-        assertThat(element.attrs().get("listVersionID"), equalTo("19.0501"));
+        assertThat(peppol.bis.invoice3.xml.Xml.attributeOrNull(element, "listVersionID"), equalTo("19.0501"));
     }
 }

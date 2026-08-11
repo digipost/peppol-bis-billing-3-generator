@@ -15,9 +15,8 @@
  */
 package peppol.bis.invoice3.domain;
 
-import org.eaxy.Node;
-import org.eaxy.QualifiedName;
-import org.eaxy.Xml;
+import org.w3c.dom.Element;
+import peppol.bis.invoice3.xml.Xml;
 
 import static peppol.bis.invoice3.domain.Namespaces.CBC_NS;
 
@@ -33,9 +32,9 @@ public class EmbeddedDocumentBinaryObject implements XmlElement {
     }
 
     @Override
-    public Node node() {
+    public Element node() {
         return Xml.el(
-            new QualifiedName(CBC_NS, this.name())
+            CBC_NS.name(this.name())
             , Xml.text(this.value)
             , Xml.attr("mimeCode", this.mimeCode)
             , Xml.attr("filename", this.filename)

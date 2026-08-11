@@ -15,7 +15,7 @@
  */
 package peppol.bis.invoice3.validation;
 
-import org.eaxy.Document;
+import org.w3c.dom.Document;
 import peppol.bis.invoice3.domain.BillingCommon;
 
 public interface PeppolBilling3Validation {

@@ -15,15 +15,20 @@
  */
 package peppol.bis.invoice3.api;
 
-import org.eaxy.Document;
-import org.eaxy.Xml;
+import org.w3c.dom.Document;
+import peppol.bis.invoice3.xml.Xml;
 import org.junit.jupiter.api.Test;
+import peppol.bis.invoice3.domain.ExampleUsage1;
+import peppol.bis.invoice3.validation.ValidationResult;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class PeppolBillingApiTest {
 
@@ -31,12 +36,35 @@ class PeppolBillingApiTest {
     public void test() throws IOException {
         try (InputStream inputStream = PeppolBillingApiTest.class.getResourceAsStream("/norwegian-example.xml")) {
             assertNotNull(inputStream);
-            Document document = Xml.xml(new String(inputStream.readAllBytes()));
-            PeppolBillingApi<Document> peppolBillingApi = new PeppolBillingApi<>(document);
+            Document document = Xml.parse(new String(inputStream.readAllBytes(), StandardCharsets.UTF_8));
+            PeppolBillingApi<Document> peppolBillingApi = PeppolBillingApi.create(document);
             assertEquals("NO", peppolBillingApi.getCustomerCountryIdentifier());
             assertEquals("NO", peppolBillingApi.getSupplierCountryIdentifier());
             assertEquals("0192:123456785", peppolBillingApi.getSupplierEndpointID());
         }
     }
 
+    @Test
+    void generatedXmlRoundTripsThroughStandardDom() {
+        PeppolBillingApi<?> generatedApi = PeppolBillingApi.create(ExampleUsage1.norwegianExample());
+        String generated = generatedApi.prettyPrint();
+
+        Document document = Xml.parse(generated);
+        PeppolBillingApi<Document> parsed = PeppolBillingApi.create(document);
+        ValidationResult validation = generatedApi.validate();
+
+        assertTrue(parsed.isInvoice());
+        assertEquals("NO", parsed.getCustomerCountryIdentifier());
+        assertEquals("NO", parsed.getSupplierCountryIdentifier());
+        assertEquals("0192:123456785", parsed.getSupplierEndpointID());
+        assertTrue(validation.isValid(), () -> String.join("; ", validation.errors()));
+    }
+
+    @Test
+    void parserRejectsDoctypeDeclarations() {
+        String xml = "<!DOCTYPE Invoice [<!ENTITY xxe SYSTEM \"file:///etc/passwd\">]>"
+            + "<Invoice>&xxe;</Invoice>";
+
+        assertThrows(IllegalArgumentException.class, () -> Xml.parse(xml));
+    }
 }

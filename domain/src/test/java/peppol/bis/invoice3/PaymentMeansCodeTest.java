@@ -15,7 +15,7 @@
  */
 package peppol.bis.invoice3;
 
-import org.eaxy.Element;
+import org.w3c.dom.Element;
 import org.junit.jupiter.api.Test;
 import peppol.bis.invoice3.domain.BaseQuantity;
 import peppol.bis.invoice3.domain.InvoicedQuantity;
@@ -30,17 +30,17 @@ class PaymentMeansCodeTest {
     @Test
     void PaymentMeansCode_to_xml() {
         final Element element = (Element) new PaymentMeansCode("30").node();
-        assertThat(element.getName().getName(), equalTo("PaymentMeansCode"));
-        assertThat(element.text(), equalTo("30"));
-        assertThat(element.attrs().get("name"), equalTo(null));
+        assertThat(element.getLocalName(), equalTo("PaymentMeansCode"));
+        assertThat(element.getTextContent(), equalTo("30"));
+        assertThat(peppol.bis.invoice3.xml.Xml.attributeOrNull(element, "name"), equalTo(null));
     }
 
     @Test
     void PaymentMeansCode_to_xml_with_name() {
         final Element element = (Element) new PaymentMeansCode("30").withName("Credit transfer").node();
-        assertThat(element.getName().getName(), equalTo("PaymentMeansCode"));
-        assertThat(element.text(), equalTo("30"));
-        assertThat(element.attrs().get("name"), equalTo("Credit transfer"));
+        assertThat(element.getLocalName(), equalTo("PaymentMeansCode"));
+        assertThat(element.getTextContent(), equalTo("30"));
+        assertThat(peppol.bis.invoice3.xml.Xml.attributeOrNull(element, "name"), equalTo("Credit transfer"));
     }
 
 

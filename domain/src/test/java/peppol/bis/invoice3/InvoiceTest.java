@@ -15,7 +15,7 @@
  */
 package peppol.bis.invoice3;
 
-import org.eaxy.Element;
+import org.w3c.dom.Element;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import peppol.bis.invoice3.domain.AccountingCustomerParty;
@@ -129,8 +129,8 @@ public class InvoiceTest  {
         assertRequiredElement(element, "AccountingCustomerParty");
         assertRequiredElement(element, "AccountingSupplierParty");
 
-        assertThat(element.find("TaxTotal").check().size(), equalTo(1));
-        assertThat(element.find("InvoiceLine").check().size(), equalTo(1));
+        assertThat(peppol.bis.invoice3.xml.Xml.find(element, "TaxTotal").size(), equalTo(1));
+        assertThat(peppol.bis.invoice3.xml.Xml.find(element, "InvoiceLine").size(), equalTo(1));
 
         /*
           All these are 0..1 or 0..n cardinality, and we assert here for their non-precence
@@ -199,7 +199,7 @@ public class InvoiceTest  {
 
         final Element element = invoice.xmlRoot();
 
-        assertThat(element.find("TaxTotal").check().size(), equalTo(2));
+        assertThat(peppol.bis.invoice3.xml.Xml.find(element, "TaxTotal").size(), equalTo(2));
 
         //Max 2 elements
         assertThrows(IllegalArgumentException.class, () -> this.invoice
@@ -263,7 +263,7 @@ public class InvoiceTest  {
 
         final Element element = invoice.xmlRoot();
 
-        assertThat(element.find("InvoiceLine").check().size(), equalTo(2));
+        assertThat(peppol.bis.invoice3.xml.Xml.find(element, "InvoiceLine").size(), equalTo(2));
     }
 
 
@@ -277,7 +277,7 @@ public class InvoiceTest  {
 
         final Element element = (Element) invoice.node();
 
-        assertThat(element.find("AllowanceCharge").size(), equalTo(3));
+        assertThat(peppol.bis.invoice3.xml.Xml.find(element, "AllowanceCharge").size(), equalTo(3));
     }
 
 

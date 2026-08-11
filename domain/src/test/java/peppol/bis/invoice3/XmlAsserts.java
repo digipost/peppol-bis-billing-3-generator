@@ -15,31 +15,33 @@
  */
 package peppol.bis.invoice3;
 
-import org.eaxy.Element;
-import org.eaxy.Namespace;
-import org.eaxy.NonMatchingPathException;
+import org.w3c.dom.Element;
+import peppol.bis.invoice3.xml.Namespace;
 import org.hamcrest.Matcher;
+import peppol.bis.invoice3.xml.Xml;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class XmlAsserts {
 
     public static void assertElementNameIs(Element element, String name, Namespace cacNs) {
-        assertThat(element.getName().getName(), equalTo(name));
-        assertThat(element.getNamespace(cacNs.getPrefix()), equalTo(cacNs));
+        assertThat(element.getLocalName(), equalTo(name));
+        assertThat(element.getNamespaceURI(), equalTo(cacNs.getUri()));
+        assertThat(element.getPrefix(), equalTo(cacNs.getPrefix()));
     }
 
     public static void assertRequiredElement(Element element, String name) {
-        element.find(name).check();
+        assertFalse(Xml.find(element, name).isEmpty());
     }
 
     public static void assertRequiredElement(Element element, String name, Matcher<String> matcher) {
-        assertThat(element.find(name).first().text(), matcher);
+        assertThat(Xml.find(element, name).get(0).getTextContent(), matcher);
     }
 
     public static void assertUnsetOptionalElement(Element element, String name){
-        assertThrows(NonMatchingPathException.class, () -> element.find(name).check());
+        assertTrue(Xml.find(element, name).isEmpty());
     }
 }

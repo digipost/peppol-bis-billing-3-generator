@@ -15,7 +15,7 @@
  */
 package peppol.bis.invoice3;
 
-import org.eaxy.Element;
+import org.w3c.dom.Element;
 import org.junit.jupiter.api.Test;
 import peppol.bis.invoice3.domain.BaseQuantity;
 import peppol.bis.invoice3.domain.InvoicedQuantity;
@@ -29,17 +29,17 @@ class QuantityTest {
     @Test
     void BaseQuantity_to_xml() {
         final Element element = (Element) new BaseQuantity("1").withUnitCode("STK").node();
-        assertThat(element.getName().getName(), equalTo("BaseQuantity"));
-        assertThat(element.text(), equalTo("1"));
-        assertThat(element.attrs().get("unitCode"), equalTo("STK"));
+        assertThat(element.getLocalName(), equalTo("BaseQuantity"));
+        assertThat(element.getTextContent(), equalTo("1"));
+        assertThat(peppol.bis.invoice3.xml.Xml.attributeOrNull(element, "unitCode"), equalTo("STK"));
     }
 
     @Test
     void InvoicedQuantity_to_xml() {
         final Element element = (Element) new InvoicedQuantity("1", "STK").node();
-        assertThat(element.getName().getName(), equalTo("InvoicedQuantity"));
-        assertThat(element.text(), equalTo("1"));
-        assertThat(element.attrs().get("unitCode"), equalTo("STK"));
+        assertThat(element.getLocalName(), equalTo("InvoicedQuantity"));
+        assertThat(element.getTextContent(), equalTo("1"));
+        assertThat(peppol.bis.invoice3.xml.Xml.attributeOrNull(element, "unitCode"), equalTo("STK"));
     }
 
 }

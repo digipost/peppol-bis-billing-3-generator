@@ -15,10 +15,8 @@
  */
 package peppol.bis.invoice3.domain;
 
-import org.eaxy.Element;
-import org.eaxy.Node;
-import org.eaxy.QualifiedName;
-import org.eaxy.Xml;
+import org.w3c.dom.Element;
+import peppol.bis.invoice3.xml.Xml;
 
 import java.util.Optional;
 
@@ -40,14 +38,14 @@ public class ItemClassificationCode implements XmlElement {
     }
 
     @Override
-    public Node node() {
+    public Element node() {
         final Element el = Xml.el(
-            new QualifiedName(CBC_NS, this.name())
+            CBC_NS.name(this.name())
             , Xml.text(this.code)
             , Xml.attr("listID", this.listID)
         );
 
-        Optional.ofNullable(this.listVersionID).ifPresent(v -> el.attr("listVersionID", v));
+        Optional.ofNullable(this.listVersionID).ifPresent(v -> Xml.attr(el, "listVersionID", v));
 
         return el;
     }

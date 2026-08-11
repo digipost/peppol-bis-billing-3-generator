@@ -15,10 +15,8 @@
  */
 package peppol.bis.invoice3.domain;
 
-import org.eaxy.Element;
-import org.eaxy.Node;
-import org.eaxy.QualifiedName;
-import org.eaxy.Xml;
+import org.w3c.dom.Element;
+import peppol.bis.invoice3.xml.Xml;
 
 import java.util.Optional;
 
@@ -38,13 +36,13 @@ public class BaseQuantity implements XmlElement {
     }
 
     @Override
-    public Node node() {
+    public Element node() {
         final Element el = Xml.el(
-            new QualifiedName(CBC_NS, this.name())
+            CBC_NS.name(this.name())
             , Xml.text(this.value)
         );
 
-        Optional.ofNullable(this.unitCode).ifPresent(v -> el.attr("unitCode", v));
+        Optional.ofNullable(this.unitCode).ifPresent(v -> Xml.attr(el, "unitCode", v));
 
         return el;
     }

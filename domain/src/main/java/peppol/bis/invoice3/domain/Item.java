@@ -15,10 +15,8 @@
  */
 package peppol.bis.invoice3.domain;
 
-import org.eaxy.Element;
-import org.eaxy.Node;
-import org.eaxy.QualifiedName;
-import org.eaxy.Xml;
+import org.w3c.dom.Element;
+import peppol.bis.invoice3.xml.Xml;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -78,8 +76,8 @@ public class Item implements XmlElement {
     }
 
     @Override
-    public Node node() {
-        final Element elm = Xml.el(new QualifiedName(CAC_NS, name()));
+    public Element node() {
+        final Element elm = Xml.el(CAC_NS.name(name()));
 
         optional(this.description, "Description", elm, CBC_NS);
         required(this.name, "Name", elm, CBC_NS);

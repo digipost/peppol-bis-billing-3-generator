@@ -27,10 +27,11 @@ import com.helger.phive.peppol.PeppolValidation;
 import com.helger.phive.peppol.PeppolValidation2024_05;
 import com.helger.phive.xml.source.IValidationSourceXML;
 import com.helger.phive.xml.source.ValidationSourceXML;
-import org.eaxy.Document;
+import org.w3c.dom.Document;
 import peppol.bis.invoice3.domain.BillingCommon;
 import peppol.bis.invoice3.domain.CreditNote;
 import peppol.bis.invoice3.domain.Invoice;
+import peppol.bis.invoice3.xml.Xml;
 
 import java.nio.charset.StandardCharsets;
 import java.util.List;
@@ -63,7 +64,7 @@ public class DefaultPeppolBilling3Validation implements PeppolBilling3Validation
         }
 
         if (aVES != null) {
-            return doValidation(aVES, billing.xmlRoot().toXML());
+            return doValidation(aVES, Xml.toXml(billing.xmlRoot()));
         }
         throw new IllegalStateException("Expected validation source is not available on classpath");
     }
@@ -71,15 +72,15 @@ public class DefaultPeppolBilling3Validation implements PeppolBilling3Validation
     @Override
     public ValidationResult isValid(Document billingDocument) {
         IValidationExecutorSet<IValidationSourceXML> aVES = null;
-        if (billingDocument.getRootElement().getNamespace(null).getUri().endsWith("Invoice-2")) {
+        if (billingDocument.getDocumentElement().getNamespaceURI().endsWith("Invoice-2")) {
             aVES = validationExecutorSetRegistry.getOfID(vesid_invoice);
         }
-        if (billingDocument.getRootElement().getNamespace(null).getUri().endsWith("CreditNote-2")) {
+        if (billingDocument.getDocumentElement().getNamespaceURI().endsWith("CreditNote-2")) {
             aVES = validationExecutorSetRegistry.getOfID(vesid_creditNote);
         }
 
         if (aVES != null) {
-            return doValidation(aVES, billingDocument.toXML());
+            return doValidation(aVES, Xml.toXml(billingDocument));
         }
         throw new IllegalStateException("Expected validation source is not available on classpath");
     }

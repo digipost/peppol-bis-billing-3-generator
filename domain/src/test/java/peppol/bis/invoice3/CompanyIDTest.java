@@ -15,7 +15,7 @@
  */
 package peppol.bis.invoice3;
 
-import org.eaxy.Element;
+import org.w3c.dom.Element;
 import org.junit.jupiter.api.Test;
 import peppol.bis.invoice3.domain.CompanyID;
 import peppol.bis.invoice3.domain.PaymentMeansCode;
@@ -29,17 +29,17 @@ class CompanyIDTest {
     @Test
     void CompanyID_to_xml() {
         final Element element = (Element) new CompanyID("987654321").node();
-        assertThat(element.getName().getName(), equalTo("CompanyID"));
-        assertThat(element.text(), equalTo("987654321"));
-        assertThat(element.attrs().get("schemeID"), equalTo(null));
+        assertThat(element.getLocalName(), equalTo("CompanyID"));
+        assertThat(element.getTextContent(), equalTo("987654321"));
+        assertThat(peppol.bis.invoice3.xml.Xml.attributeOrNull(element, "schemeID"), equalTo(null));
     }
 
     @Test
     void CompanyID_to_xml_with_name() {
         final Element element = (Element) new CompanyID("987654321").withSchemeID("0002").node();
-        assertThat(element.getName().getName(), equalTo("CompanyID"));
-        assertThat(element.text(), equalTo("987654321"));
-        assertThat(element.attrs().get("schemeID"), equalTo("0002"));
+        assertThat(element.getLocalName(), equalTo("CompanyID"));
+        assertThat(element.getTextContent(), equalTo("987654321"));
+        assertThat(peppol.bis.invoice3.xml.Xml.attributeOrNull(element, "schemeID"), equalTo("0002"));
     }
 
 }

@@ -15,7 +15,7 @@
  */
 package peppol.bis.invoice3;
 
-import org.eaxy.Element;
+import org.w3c.dom.Element;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import peppol.bis.invoice3.domain.ID;
@@ -102,7 +102,7 @@ public class InvoiceLineTest {
 
         final Element element = (Element) invoiceLine.node();
 
-        assertThat(element.find("AllowanceCharge").size(), equalTo(3));
+        assertThat(peppol.bis.invoice3.xml.Xml.find(element, "AllowanceCharge").size(), equalTo(3));
     }
 
 }

@@ -15,7 +15,7 @@
  */
 package peppol.bis.invoice3;
 
-import org.eaxy.Element;
+import org.w3c.dom.Element;
 import org.junit.jupiter.api.Test;
 import peppol.bis.invoice3.domain.EndpointID;
 
@@ -28,17 +28,17 @@ class EndpointIDTest {
     @Test
     void EndpointID_to_xml() {
         final Element element = (Element) new EndpointID("7300010000001").node();
-        assertThat(element.getName().getName(), equalTo("EndpointID"));
-        assertThat(element.text(), equalTo("7300010000001"));
-        assertThat(element.attrs().get("schemeID"), equalTo(null));
+        assertThat(element.getLocalName(), equalTo("EndpointID"));
+        assertThat(element.getTextContent(), equalTo("7300010000001"));
+        assertThat(peppol.bis.invoice3.xml.Xml.attributeOrNull(element, "schemeID"), equalTo(null));
     }
 
     @Test
     void EndpointID_to_xml_with_name() {
         final Element element = (Element) new EndpointID("7300010000001").withSchemeID("0088").node();
-        assertThat(element.getName().getName(), equalTo("EndpointID"));
-        assertThat(element.text(), equalTo("7300010000001"));
-        assertThat(element.attrs().get("schemeID"), equalTo("0088"));
+        assertThat(element.getLocalName(), equalTo("EndpointID"));
+        assertThat(element.getTextContent(), equalTo("7300010000001"));
+        assertThat(peppol.bis.invoice3.xml.Xml.attributeOrNull(element, "schemeID"), equalTo("0088"));
     }
 
 }

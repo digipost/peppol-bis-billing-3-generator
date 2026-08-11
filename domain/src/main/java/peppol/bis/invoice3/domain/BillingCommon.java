@@ -15,11 +15,9 @@
  */
 package peppol.bis.invoice3.domain;
 
-import org.eaxy.Element;
-import org.eaxy.Namespace;
-import org.eaxy.Xml;
-
-import java.util.Arrays;
+import org.w3c.dom.Element;
+import peppol.bis.invoice3.xml.Namespace;
+import peppol.bis.invoice3.xml.Xml;
 
 import static java.lang.String.format;
 import static peppol.bis.invoice3.domain.Namespaces.CAC_NS;
@@ -59,8 +57,8 @@ public abstract class BillingCommon<SUBCLASS> implements XmlRootElement, XmlElem
 
     @Override
     public Element node() {
-        final Element elm = Xml.el(name());
-        elm.extendNamespaces(Arrays.asList(ROOT_NS(), CAC_NS, CBC_NS));
+        final Element elm = Xml.el(ROOT_NS().name(name()));
+        Xml.declareNamespaces(elm, ROOT_NS(), CAC_NS, CBC_NS);
 
         required(this.customizationID, "CustomizationID", elm, CBC_NS);
 

@@ -15,7 +15,7 @@
  */
 package peppol.bis.invoice3.domain;
 
-import org.eaxy.Element;
+import org.w3c.dom.Element;
 
 public interface XmlRootElement {
 

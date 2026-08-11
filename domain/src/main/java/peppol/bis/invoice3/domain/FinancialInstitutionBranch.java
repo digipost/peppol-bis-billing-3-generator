@@ -15,10 +15,8 @@
  */
 package peppol.bis.invoice3.domain;
 
-import org.eaxy.Element;
-import org.eaxy.Node;
-import org.eaxy.QualifiedName;
-import org.eaxy.Xml;
+import org.w3c.dom.Element;
+import peppol.bis.invoice3.xml.Xml;
 
 import static peppol.bis.invoice3.domain.Namespaces.CAC_NS;
 import static peppol.bis.invoice3.domain.Namespaces.CBC_NS;
@@ -31,8 +29,8 @@ public class FinancialInstitutionBranch implements XmlElement {
     }
 
     @Override
-    public Node node() {
-        final Element elm = Xml.el(new QualifiedName(CAC_NS, name()));
+    public Element node() {
+        final Element elm = Xml.el(CAC_NS.name(name()));
 
         required(this.id, "ID", elm, CBC_NS);
 

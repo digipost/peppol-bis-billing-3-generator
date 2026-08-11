@@ -15,7 +15,7 @@
  */
 package peppol.bis.invoice3;
 
-import org.eaxy.Element;
+import org.w3c.dom.Element;
 import org.junit.jupiter.api.Test;
 import peppol.bis.invoice3.domain.AllowanceTotalAmount;
 import peppol.bis.invoice3.domain.Amount;
@@ -39,96 +39,96 @@ class AmountTest {
     @Test
     void Amount_to_xml() {
         final Element element = (Element) new Amount("1273", "EUR").node();
-        assertThat(element.getName().getName(), equalTo("Amount"));
-        assertThat(element.text(), equalTo("1273"));
-        assertThat(element.attrs().get("currencyID"), equalTo("EUR"));
+        assertThat(element.getLocalName(), equalTo("Amount"));
+        assertThat(element.getTextContent(), equalTo("1273"));
+        assertThat(peppol.bis.invoice3.xml.Xml.attributeOrNull(element, "currencyID"), equalTo("EUR"));
     }
 
     @Test
     void LineExtensionAmount_to_xml() {
         final Element element = (Element) new LineExtensionAmount("1273", "EUR").node();
-        assertThat(element.getName().getName(), equalTo("LineExtensionAmount"));
-        assertThat(element.text(), equalTo("1273"));
-        assertThat(element.attrs().get("currencyID"), equalTo("EUR"));
+        assertThat(element.getLocalName(), equalTo("LineExtensionAmount"));
+        assertThat(element.getTextContent(), equalTo("1273"));
+        assertThat(peppol.bis.invoice3.xml.Xml.attributeOrNull(element, "currencyID"), equalTo("EUR"));
     }
 
     @Test
     void TaxExclusiveAmount_to_xml() {
         final Element element = (Element) new TaxExclusiveAmount("1273", "EUR").node();
-        assertThat(element.getName().getName(), equalTo("TaxExclusiveAmount"));
-        assertThat(element.text(), equalTo("1273"));
-        assertThat(element.attrs().get("currencyID"), equalTo("EUR"));
+        assertThat(element.getLocalName(), equalTo("TaxExclusiveAmount"));
+        assertThat(element.getTextContent(), equalTo("1273"));
+        assertThat(peppol.bis.invoice3.xml.Xml.attributeOrNull(element, "currencyID"), equalTo("EUR"));
     }
 
     @Test
     void TaxInclusiveAmount_to_xml() {
         final Element element = (Element) new TaxInclusiveAmount("1273", "EUR").node();
-        assertThat(element.getName().getName(), equalTo("TaxInclusiveAmount"));
-        assertThat(element.text(), equalTo("1273"));
-        assertThat(element.attrs().get("currencyID"), equalTo("EUR"));
+        assertThat(element.getLocalName(), equalTo("TaxInclusiveAmount"));
+        assertThat(element.getTextContent(), equalTo("1273"));
+        assertThat(peppol.bis.invoice3.xml.Xml.attributeOrNull(element, "currencyID"), equalTo("EUR"));
     }
 
     @Test
     void PayableAmount_to_xml() {
         final Element element = (Element) new PayableAmount("1273", "EUR").node();
-        assertThat(element.getName().getName(), equalTo("PayableAmount"));
-        assertThat(element.text(), equalTo("1273"));
-        assertThat(element.attrs().get("currencyID"), equalTo("EUR"));
+        assertThat(element.getLocalName(), equalTo("PayableAmount"));
+        assertThat(element.getTextContent(), equalTo("1273"));
+        assertThat(peppol.bis.invoice3.xml.Xml.attributeOrNull(element, "currencyID"), equalTo("EUR"));
     }
 
     @Test
     void AllowanceTotalAmount_to_xml() {
         final Element element = (Element) new AllowanceTotalAmount("1273", "EUR").node();
-        assertThat(element.getName().getName(), equalTo("AllowanceTotalAmount"));
-        assertThat(element.text(), equalTo("1273"));
-        assertThat(element.attrs().get("currencyID"), equalTo("EUR"));
+        assertThat(element.getLocalName(), equalTo("AllowanceTotalAmount"));
+        assertThat(element.getTextContent(), equalTo("1273"));
+        assertThat(peppol.bis.invoice3.xml.Xml.attributeOrNull(element, "currencyID"), equalTo("EUR"));
     }
 
     @Test
     void ChargeTotalAmount_to_xml() {
         final Element element = (Element) new ChargeTotalAmount("1273", "EUR").node();
-        assertThat(element.getName().getName(), equalTo("ChargeTotalAmount"));
-        assertThat(element.text(), equalTo("1273"));
-        assertThat(element.attrs().get("currencyID"), equalTo("EUR"));
+        assertThat(element.getLocalName(), equalTo("ChargeTotalAmount"));
+        assertThat(element.getTextContent(), equalTo("1273"));
+        assertThat(peppol.bis.invoice3.xml.Xml.attributeOrNull(element, "currencyID"), equalTo("EUR"));
     }
 
     @Test
     void PrepaidAmount_to_xml() {
         final Element element = (Element) new PrepaidAmount("1273", "EUR").node();
-        assertThat(element.getName().getName(), equalTo("PrepaidAmount"));
-        assertThat(element.text(), equalTo("1273"));
-        assertThat(element.attrs().get("currencyID"), equalTo("EUR"));
+        assertThat(element.getLocalName(), equalTo("PrepaidAmount"));
+        assertThat(element.getTextContent(), equalTo("1273"));
+        assertThat(peppol.bis.invoice3.xml.Xml.attributeOrNull(element, "currencyID"), equalTo("EUR"));
     }
 
     @Test
     void PayableRoundingAmount_to_xml() {
         final Element element = (Element) new PayableRoundingAmount("1273", "EUR").node();
-        assertThat(element.getName().getName(), equalTo("PayableRoundingAmount"));
-        assertThat(element.text(), equalTo("1273"));
-        assertThat(element.attrs().get("currencyID"), equalTo("EUR"));
+        assertThat(element.getLocalName(), equalTo("PayableRoundingAmount"));
+        assertThat(element.getTextContent(), equalTo("1273"));
+        assertThat(peppol.bis.invoice3.xml.Xml.attributeOrNull(element, "currencyID"), equalTo("EUR"));
     }
 
     @Test
     void PriceAmount_to_xml() {
         final Element element = (Element) new PriceAmount("1273", "EUR").node();
-        assertThat(element.getName().getName(), equalTo("PriceAmount"));
-        assertThat(element.text(), equalTo("1273"));
-        assertThat(element.attrs().get("currencyID"), equalTo("EUR"));
+        assertThat(element.getLocalName(), equalTo("PriceAmount"));
+        assertThat(element.getTextContent(), equalTo("1273"));
+        assertThat(peppol.bis.invoice3.xml.Xml.attributeOrNull(element, "currencyID"), equalTo("EUR"));
     }
 
     @Test
     void TaxableAmount_to_xml() {
         final Element element = (Element) new TaxableAmount("1273", "EUR").node();
-        assertThat(element.getName().getName(), equalTo("TaxableAmount"));
-        assertThat(element.text(), equalTo("1273"));
-        assertThat(element.attrs().get("currencyID"), equalTo("EUR"));
+        assertThat(element.getLocalName(), equalTo("TaxableAmount"));
+        assertThat(element.getTextContent(), equalTo("1273"));
+        assertThat(peppol.bis.invoice3.xml.Xml.attributeOrNull(element, "currencyID"), equalTo("EUR"));
     }
 
     @Test
     void BaseAmount_to_xml() {
         final Element element = (Element) new BaseAmount("1273", "EUR").node();
-        assertThat(element.getName().getName(), equalTo("BaseAmount"));
-        assertThat(element.text(), equalTo("1273"));
-        assertThat(element.attrs().get("currencyID"), equalTo("EUR"));
+        assertThat(element.getLocalName(), equalTo("BaseAmount"));
+        assertThat(element.getTextContent(), equalTo("1273"));
+        assertThat(peppol.bis.invoice3.xml.Xml.attributeOrNull(element, "currencyID"), equalTo("EUR"));
     }
 }

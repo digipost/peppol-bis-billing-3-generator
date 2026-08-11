@@ -12,11 +12,9 @@ This software includes third party software subject to the following licenses:
   Apache HttpClient under Apache License, Version 2.0
   Apache HttpComponents Core HTTP/1.1 under Apache License, Version 2.0
   Apache HttpComponents Core HTTP/2 under Apache License, Version 2.0
-  Eaxy Easy XML library under The Apache Licence, version 2.0
   FindBugs-jsr305 under The Apache Software License, Version 2.0
   Jakarta Activation API under EDL 1.0
   Jakarta XML Binding API under Eclipse Distribution License - v 1.0
-  jsr305 under GNU Lesser Public License
   peppol-bis-billing-3-generator-domain under Apache License, Version 2.0
   peppol-bis-billing-3-generator-validation under Apache License, Version 2.0
   ph-cii-d16b under Apache 2

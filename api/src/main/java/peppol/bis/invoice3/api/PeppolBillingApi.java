@@ -15,12 +15,13 @@
  */
 package peppol.bis.invoice3.api;
 
-import org.eaxy.Document;
-import org.eaxy.Element;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 import peppol.bis.invoice3.domain.BillingCommon;
 import peppol.bis.invoice3.domain.CreditNote;
 import peppol.bis.invoice3.domain.Invoice;
 import peppol.bis.invoice3.validation.ValidationResult;
+import peppol.bis.invoice3.xml.Xml;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
@@ -57,7 +58,7 @@ public class PeppolBillingApi<T> {
             return true;
         }
         if (this.object instanceof Document) {
-            return ((Document) this.object).getRootElement().getNamespace(null).getUri().endsWith("CreditNote-2");
+            return ((Document) this.object).getDocumentElement().getNamespaceURI().endsWith("CreditNote-2");
         }
         return false;
     }
@@ -67,35 +68,38 @@ public class PeppolBillingApi<T> {
             return true;
         }
         if (this.object instanceof Document) {
-            return ((Document) this.object).getRootElement().getNamespace(null).getUri().endsWith("Invoice-2");
+            return ((Document) this.object).getDocumentElement().getNamespaceURI().endsWith("Invoice-2");
         }
         return false;
     }
 
     public String getSupplierCountryIdentifier() {
         if (this.object instanceof Document) {
-            return ((Document) this.object).find("AccountingSupplierParty", "Party", "PostalAddress", "Country", "IdentificationCode").single().text().trim();
+            return Xml.single(Xml.find((Document) this.object, "AccountingSupplierParty", "Party", "PostalAddress", "Country", "IdentificationCode")).getTextContent().trim();
         }
         throw new RuntimeException("Mandatory property missing in document: AccountingSupplierParty -> Party -> PostalAddress -> Country -> IdentificationCode");
     }
 
     public String getCustomerCountryIdentifier() {
         if (this.object instanceof Document) {
-            return ((Document) this.object).find("AccountingCustomerParty", "Party", "PostalAddress", "Country", "IdentificationCode").single().text().trim();
+            return Xml.single(Xml.find((Document) this.object, "AccountingCustomerParty", "Party", "PostalAddress", "Country", "IdentificationCode")).getTextContent().trim();
         }
         throw new RuntimeException("Mandatory property missing in document: AccountingCustomerParty -> Party -> PostalAddress -> Country -> IdentificationCode");
     }
 
     public String getSupplierEndpointID() {
         if (this.object instanceof Document) {
-            Element element = ((Document) this.object).find("AccountingSupplierParty", "Party", "EndpointID").single();
-            return element.attr("schemeID").trim() + ":" + element.text().trim();
+            Element element = Xml.single(Xml.find((Document) this.object, "AccountingSupplierParty", "Party", "EndpointID"));
+            return element.getAttribute("schemeID").trim() + ":" + element.getTextContent().trim();
         }
         throw new RuntimeException("Mandatory property missing in document: AccountingSupplierParty -> Party -> EndpointID");
     }
 
     public String prettyPrint() {
-        return XML_FIRST_LINE + (this.object instanceof BillingCommon ? ((BillingCommon) this.object).xmlRoot() : ((Document) this.object).getRootElement()).toIndentedXML();
+        Element root = this.object instanceof BillingCommon
+            ? ((BillingCommon) this.object).xmlRoot()
+            : ((Document) this.object).getDocumentElement();
+        return XML_FIRST_LINE + Xml.toIndentedXml(root);
     }
 
 

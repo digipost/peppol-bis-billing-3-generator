@@ -15,10 +15,8 @@
  */
 package peppol.bis.invoice3.domain;
 
-import org.eaxy.Element;
-import org.eaxy.Node;
-import org.eaxy.QualifiedName;
-import org.eaxy.Xml;
+import org.w3c.dom.Element;
+import peppol.bis.invoice3.xml.Xml;
 
 import java.util.Optional;
 
@@ -39,13 +37,13 @@ public class ID implements XmlElement{
     }
 
     @Override
-    public Node node() {
+    public Element node() {
         final Element el = Xml.el(
-            new QualifiedName(CBC_NS, this.name())
+            CBC_NS.name(this.name())
             , Xml.text(this.id)
         );
 
-        Optional.ofNullable(this.schemeID).ifPresent(v -> el.attr("schemeID", v));
+        Optional.ofNullable(this.schemeID).ifPresent(v -> Xml.attr(el, "schemeID", v));
 
         return el;
     }

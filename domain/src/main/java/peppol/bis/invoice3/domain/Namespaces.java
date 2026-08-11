@@ -15,7 +15,7 @@
  */
 package peppol.bis.invoice3.domain;
 
-import org.eaxy.Namespace;
+import peppol.bis.invoice3.xml.Namespace;
 
 public class Namespaces {
 

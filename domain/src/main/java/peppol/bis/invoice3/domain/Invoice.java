@@ -15,8 +15,8 @@
  */
 package peppol.bis.invoice3.domain;
 
-import org.eaxy.Element;
-import org.eaxy.Namespace;
+import org.w3c.dom.Element;
+import peppol.bis.invoice3.xml.Namespace;
 
 import java.util.ArrayList;
 import java.util.List;

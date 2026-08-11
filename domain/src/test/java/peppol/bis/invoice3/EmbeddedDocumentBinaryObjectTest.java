@@ -15,7 +15,7 @@
  */
 package peppol.bis.invoice3;
 
-import org.eaxy.Element;
+import org.w3c.dom.Element;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import peppol.bis.invoice3.domain.EmbeddedDocumentBinaryObject;
@@ -43,9 +43,9 @@ public class EmbeddedDocumentBinaryObjectTest {
         final Element element = (Element) embeddedDocumentBinaryObject.node();
         assertElementNameIs(element, "EmbeddedDocumentBinaryObject", CBC_NS);
 
-        assertThat(element.text(), equalTo("aHR0cHM6Ly90ZXN0LXZlZmEuZGlmaS5uby9wZXBwb2xiaXMvcG9hY2MvYmlsbGluZy8zLjAvYmlzLw=="));
-        assertThat(element.attrs().get("mimeCode"), equalTo("text/csv"));
-        assertThat(element.attrs().get("filename"), equalTo("Hours-spent.csv"));
+        assertThat(element.getTextContent(), equalTo("aHR0cHM6Ly90ZXN0LXZlZmEuZGlmaS5uby9wZXBwb2xiaXMvcG9hY2MvYmlsbGluZy8zLjAvYmlzLw=="));
+        assertThat(peppol.bis.invoice3.xml.Xml.attributeOrNull(element, "mimeCode"), equalTo("text/csv"));
+        assertThat(peppol.bis.invoice3.xml.Xml.attributeOrNull(element, "filename"), equalTo("Hours-spent.csv"));
     }
 
 }

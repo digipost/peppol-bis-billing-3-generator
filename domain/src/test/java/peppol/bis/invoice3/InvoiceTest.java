@@ -233,6 +233,7 @@ public class InvoiceTest  {
 
         assertRequiredElement(element, "PaymentTerms");
         assertRequiredElement(element, "ProjectReference");
+        assertThat(element.find("ProjectReference").check().size(), equalTo(1));
         assertRequiredElement(element, "OriginatorDocumentReference");
         assertRequiredElement(element, "ReceiptDocumentReference");
         assertRequiredElement(element, "ContractDocumentReference");

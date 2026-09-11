@@ -48,6 +48,7 @@ public class PaymentMeansTest {
 
         assertRequiredElement(element, "PaymentMeansCode", equalTo("30"));
 
+        assertUnsetOptionalElement(element, "PaymentDueDate");
         assertUnsetOptionalElement(element, "PaymentID");
         assertUnsetOptionalElement(element, "CardAccount");
         assertUnsetOptionalElement(element, "PayeeFinancialAccount");
@@ -57,6 +58,7 @@ public class PaymentMeansTest {
     @Test
     void to_xml_optional_elements() {
         taxCategory
+            .withPaymentDueDate("2013-07-20")
             .withPaymentID("432948234234234")
             .withCardAccount(new CardAccount("", ""))
             .withPayeeFinancialAccount(new PayeeFinancialAccount(""))
@@ -65,6 +67,7 @@ public class PaymentMeansTest {
 
         final Element element = (Element) taxCategory.node();
 
+        assertRequiredElement(element, "PaymentDueDate", equalTo("2013-07-20"));
         assertRequiredElement(element, "PaymentID", equalTo("432948234234234"));
         assertRequiredElement(element, "CardAccount");
         assertRequiredElement(element, "PayeeFinancialAccount");

@@ -25,6 +25,7 @@ import static peppol.bis.invoice3.domain.Namespaces.CBC_NS;
 
 public class PaymentMeans implements XmlElement {
     private PaymentMeansCode paymentMeansCode;
+    private String paymentDueDate;
     private String paymentID;
     private CardAccount cardAccount;
     private PayeeFinancialAccount payeeFinancialAccount;
@@ -32,6 +33,11 @@ public class PaymentMeans implements XmlElement {
 
     public PaymentMeans(PaymentMeansCode paymentMeansCode) {
         this.paymentMeansCode = paymentMeansCode;
+    }
+
+    public PaymentMeans withPaymentDueDate(String paymentDueDate) {
+        this.paymentDueDate = paymentDueDate;
+        return this;
     }
 
     public PaymentMeans withPaymentID(String paymentID) {
@@ -59,6 +65,7 @@ public class PaymentMeans implements XmlElement {
         final Element elm = Xml.el(new QualifiedName(CAC_NS, name()));
 
         required(this.paymentMeansCode, elm);
+        optional(this.paymentDueDate, "PaymentDueDate", elm, CBC_NS);
         optional(this.paymentID, "PaymentID", elm, CBC_NS);
         optional(this.cardAccount, elm);
         optional(this.payeeFinancialAccount, elm);

@@ -19,9 +19,11 @@ import org.eaxy.Element;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import peppol.bis.invoice3.domain.EmbeddedDocumentBinaryObject;
+import peppol.bis.invoice3.domain.codes.MimeCode;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static peppol.bis.invoice3.XmlAsserts.assertElementNameIs;
 import static peppol.bis.invoice3.XmlAsserts.assertRequiredElement;
 import static peppol.bis.invoice3.domain.Namespaces.CAC_NS;
@@ -34,7 +36,7 @@ public class EmbeddedDocumentBinaryObjectTest {
     @BeforeEach
     void setUp() {
         embeddedDocumentBinaryObject = new EmbeddedDocumentBinaryObject(
-            "text/csv", "Hours-spent.csv", "aHR0cHM6Ly90ZXN0LXZlZmEuZGlmaS5uby9wZXBwb2xiaXMvcG9hY2MvYmlsbGluZy8zLjAvYmlzLw=="
+            MimeCode.CSV, "Hours-spent.csv", "aHR0cHM6Ly90ZXN0LXZlZmEuZGlmaS5uby9wZXBwb2xiaXMvcG9hY2MvYmlsbGluZy8zLjAvYmlzLw=="
         );
     }
 
@@ -46,6 +48,22 @@ public class EmbeddedDocumentBinaryObjectTest {
         assertThat(element.text(), equalTo("aHR0cHM6Ly90ZXN0LXZlZmEuZGlmaS5uby9wZXBwb2xiaXMvcG9hY2MvYmlsbGluZy8zLjAvYmlzLw=="));
         assertThat(element.attrs().get("mimeCode"), equalTo("text/csv"));
         assertThat(element.attrs().get("filename"), equalTo("Hours-spent.csv"));
+    }
+
+    @Test
+    void to_xml_required_elements_mime_as_string() {
+        final Element element = (Element) new EmbeddedDocumentBinaryObject(
+                "text/csv", "Hours-spent.csv", "aHR0cHM6Ly90ZXN0LXZlZmEuZGlmaS5uby9wZXBwb2xiaXMvcG9hY2MvYmlsbGluZy8zLjAvYmlzLw=="
+        ).node();
+        assertElementNameIs(element, "EmbeddedDocumentBinaryObject", CBC_NS);
+
+        assertThat(element.text(), equalTo("aHR0cHM6Ly90ZXN0LXZlZmEuZGlmaS5uby9wZXBwb2xiaXMvcG9hY2MvYmlsbGluZy8zLjAvYmlzLw=="));
+        assertThat(element.attrs().get("mimeCode"), equalTo("text/csv"));
+        assertThat(element.attrs().get("filename"), equalTo("Hours-spent.csv"));
+
+        assertThrows(IllegalArgumentException.class, ()-> new EmbeddedDocumentBinaryObject(
+                "DUMMY", "Hours-spent.csv", "aHR0cHM6Ly90ZXN0LXZlZmEuZGlmaS5uby9wZXBwb2xiaXMvcG9hY2MvYmlsbGluZy8zLjAvYmlzLw=="
+        ));
     }
 
 }

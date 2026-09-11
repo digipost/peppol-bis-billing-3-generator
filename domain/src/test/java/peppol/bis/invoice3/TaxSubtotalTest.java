@@ -23,6 +23,7 @@ import peppol.bis.invoice3.domain.TaxCategory;
 import peppol.bis.invoice3.domain.TaxScheme;
 import peppol.bis.invoice3.domain.TaxSubtotal;
 import peppol.bis.invoice3.domain.TaxableAmount;
+import peppol.bis.invoice3.domain.codes.CurrencyIdCode;
 
 import static peppol.bis.invoice3.XmlAsserts.assertElementNameIs;
 import static peppol.bis.invoice3.XmlAsserts.assertRequiredElement;
@@ -36,8 +37,8 @@ public class TaxSubtotalTest  {
     void setUp() {
 
         taxSubtotal = new TaxSubtotal(
-            new TaxableAmount("1233", "EUR"),
-            new TaxAmount("1233", "EUR"),
+            new TaxableAmount("1233", CurrencyIdCode.EUR),
+            new TaxAmount("1233", CurrencyIdCode.EUR),
             new TaxCategory("S", new TaxScheme("VAT"))
         );
 

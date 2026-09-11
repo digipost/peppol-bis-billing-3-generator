@@ -15,8 +15,18 @@
  */
 package peppol.bis.invoice3.domain;
 
+import peppol.bis.invoice3.domain.codes.UnitIdCode;
+
 public class CreditedQuantity extends InvoicedQuantity {
+
+    /**
+     * @deprecated
+     */
     public CreditedQuantity(String value, String unitCode) {
+        super(value, unitCode);
+    }
+
+    public CreditedQuantity(String value, UnitIdCode unitCode) {
         super(value, unitCode);
     }
 }

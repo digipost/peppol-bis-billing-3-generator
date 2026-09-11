@@ -19,6 +19,8 @@ import org.eaxy.Element;
 import org.eaxy.Node;
 import org.eaxy.QualifiedName;
 import org.eaxy.Xml;
+import peppol.bis.invoice3.domain.codes.PaymentMeansPeppolCode;
+import peppol.bis.invoice3.domain.codes.PeppolCodeResolver;
 
 import java.util.Optional;
 
@@ -26,10 +28,17 @@ import static peppol.bis.invoice3.domain.Namespaces.CBC_NS;
 
 public class PaymentMeansCode implements XmlElement {
 
-    private final String code;
+    private final PaymentMeansPeppolCode code;
     private String name;
 
+    /**
+     * @deprecated
+     */
     public PaymentMeansCode(String code) {
+        this.code = PeppolCodeResolver.fromCode(PaymentMeansPeppolCode.class, code);
+    }
+
+    public PaymentMeansCode(PaymentMeansPeppolCode code) {
         this.code = code;
     }
 
@@ -42,7 +51,7 @@ public class PaymentMeansCode implements XmlElement {
     public Node node() {
         final Element el = Xml.el(
             new QualifiedName(CBC_NS, this.name())
-            , Xml.text(this.code)
+            , Xml.text(this.code.getCode())
         );
 
         Optional.ofNullable(this.name).ifPresent(v -> el.attr("name", v));

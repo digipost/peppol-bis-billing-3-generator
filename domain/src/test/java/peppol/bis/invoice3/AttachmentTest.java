@@ -24,6 +24,7 @@ import peppol.bis.invoice3.domain.DeliveryParty;
 import peppol.bis.invoice3.domain.EmbeddedDocumentBinaryObject;
 import peppol.bis.invoice3.domain.ExternalReference;
 import peppol.bis.invoice3.domain.PartyName;
+import peppol.bis.invoice3.domain.codes.MimeCode;
 
 import static org.hamcrest.Matchers.equalTo;
 import static peppol.bis.invoice3.XmlAsserts.assertElementNameIs;
@@ -53,7 +54,7 @@ public class AttachmentTest {
     void to_xml_optional_elements() {
         attachment
             .withExternalReference(new ExternalReference("uri"))
-            .withEmbeddedDocumentBinaryObject(new EmbeddedDocumentBinaryObject("", "", ""));
+            .withEmbeddedDocumentBinaryObject(new EmbeddedDocumentBinaryObject(MimeCode.CSV, "", ""));
 
 
         final Element element = (Element) attachment.node();

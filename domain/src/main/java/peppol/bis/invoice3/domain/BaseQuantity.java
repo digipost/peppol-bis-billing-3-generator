@@ -19,20 +19,30 @@ import org.eaxy.Element;
 import org.eaxy.Node;
 import org.eaxy.QualifiedName;
 import org.eaxy.Xml;
+import peppol.bis.invoice3.domain.codes.PeppolCodeResolver;
+import peppol.bis.invoice3.domain.codes.UnitIdCode;
 
 import java.util.Optional;
 
 import static peppol.bis.invoice3.domain.Namespaces.CBC_NS;
 
 public class BaseQuantity implements XmlElement {
-    private String unitCode;
+    private UnitIdCode unitCode;
     private final String value;
 
     public BaseQuantity(String value) {
         this.value = value;
     }
 
+    /**
+     * @deprecated
+     */
     public BaseQuantity withUnitCode(String unitCode) {
+        this.unitCode = PeppolCodeResolver.fromCode(UnitIdCode.class, unitCode);
+        return this;
+    }
+
+    public BaseQuantity withUnitCode(UnitIdCode unitCode) {
         this.unitCode = unitCode;
         return this;
     }
@@ -44,7 +54,7 @@ public class BaseQuantity implements XmlElement {
             , Xml.text(this.value)
         );
 
-        Optional.ofNullable(this.unitCode).ifPresent(v -> el.attr("unitCode", v));
+        Optional.ofNullable(this.unitCode).ifPresent(v -> el.attr("unitCode", v.getCode()));
 
         return el;
     }

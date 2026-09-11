@@ -15,8 +15,18 @@
  */
 package peppol.bis.invoice3.domain;
 
+import peppol.bis.invoice3.domain.codes.CurrencyIdCode;
+
 public class LineExtensionAmount extends Amount {
+
+    /**
+     * @deprecated
+     */
     public LineExtensionAmount(String amount, String currencyID) {
+        super(amount, currencyID);
+    }
+
+    public LineExtensionAmount(String amount, CurrencyIdCode currencyID) {
         super(amount, currencyID);
     }
 }

@@ -219,7 +219,6 @@ public class Invoice extends BillingCommon<Invoice>{
         optional(this.contractDocumentReference, elm);
         list(this.additionalDocumentReferences, elm);
         optional(this.projectReference, elm);
-        optional(this.projectReference, elm);
         required(this.accountingSupplierParty, elm);
         required(this.accountingCustomerParty, elm);
         optional(this.payeeParty, elm);

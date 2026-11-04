@@ -64,6 +64,7 @@ import peppol.bis.invoice3.domain.TaxTotal;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static peppol.bis.invoice3.XmlAsserts.assertRequiredElement;
@@ -245,6 +246,8 @@ public class InvoiceTest  {
         assertRequiredElement(element, "AdditionalDocumentReference");
         assertRequiredElement(element, "PaymentMeans");
         assertRequiredElement(element, "PayeeParty");
+        
+        assertThat(invoice.xmlRoot().find("ProjectReference").check().size(), equalTo(1));
     }
 
     @Test

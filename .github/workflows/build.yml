@@ -7,38 +7,39 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        java: [ '11' ]
+        java: [ '17' ]
 
     name: build java ${{ matrix.java }}
     steps:
-      - name: Checkout reposistory
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: Set up java
-        uses: actions/setup-java@c5195efecf7bdfc987ee8bae7a71cb8b11521c00 # v4.7.1
+        uses: actions/setup-java@de7274f081f381c8f8158605e0321c36c376e2e6 # v6.0.1
         with:
           java-version: ${{ matrix.java }}
           distribution: temurin
-          server-id: github
-          cache: 'maven'
+          cache: "maven"
+          mvn-repositories: |
+            central-portal-snapshots:https://central.sonatype.com/repository/maven-snapshots/:true
       - name: Build with Maven
-        run: mvn -B package --no-transfer-progress --file pom.xml
+        run: mvn -B verify -U --no-transfer-progress
 
   publish:
     needs: build
     name: Publish ${{ github.ref_name }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: Set up Java
-        uses: actions/setup-java@c5195efecf7bdfc987ee8bae7a71cb8b11521c00 # v4.7.1
+        uses: actions/setup-java@2a69be27b0baa8a7ec1c0ba665dc022b180664c5  # not yet released https://github.com/actions/setup-java/commit/2a69be27b
         with:
           distribution: temurin
-          java-version: '21'
+          java-version: '25'
           cache: "maven"
           gpg-private-key: ${{ secrets.MAVEN_CENTRAL_SIGNING_KEY_PRIVATE }}
-          server-id: central
-          server-username: MAVEN_CENTRAL_TOKEN_USERNAME
-          server-password: MAVEN_CENTRAL_TOKEN_PASSWORD
+          mvn-server-credentials: |
+            sonatype-central:MAVEN_CENTRAL_TOKEN_USERNAME:MAVEN_CENTRAL_TOKEN_PASSWORD
+          mvn-server-repository-origins: |
+            sonatype-central:https://central.sonatype.com
           gpg-passphrase: MAVEN_GPG_PASSPHRASE
       - name: Activate Artifact Signing and Version Suffix
         run: |
@@ -47,7 +48,7 @@ jobs:
             profiles="$profiles,sign-artifacts"
             version_suffix=""
           else
-            version_suffix="-SNAPSHOT"
+            version_suffix="-SNAPSHOT"         
           fi
           echo "MAVEN_PROFILES=$profiles" >> $GITHUB_ENV
           version="${GITHUB_REF_NAME}${version_suffix}"

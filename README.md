@@ -1,6 +1,6 @@
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/no.digipost/peppol-bis-billing-3-generator/badge.svg)](https://maven-badges.herokuapp.com/maven-central/no.digipost/peppol-bis-billing-3-generator)
 ![](https://github.com/digipost/peppol-bis-billing-3-generator/workflows/Build%20and%20deploy/badge.svg)
-[![License](https://img.shields.io/badge/license-Apache%202-blue)](https://github.com/digipost/peppol-bis-billing-3-generator/blob/master/LICENCE)
+[![License](https://img.shields.io/badge/license-Apache%202-blue)](https://github.com/digipost/peppol-bis-billing-3-generator/blob/master/LICENSE)
 
 # Peppol bis billing 3 generator
 
@@ -14,7 +14,7 @@ it ease of use and no dependency nature.
 
 We use `phive-api` for optional validation.
 
-This is Java 11.
+This is Java 17.
 
 # Installation
 

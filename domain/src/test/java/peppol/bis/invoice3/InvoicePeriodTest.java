@@ -48,10 +48,14 @@ class InvoicePeriodTest {
 
     @Test
     void to_xml_optional_elements() {
+        final InvoicePeriod invoicePeriod = new InvoicePeriod().withStartDate("2020-11-11");
+
         invoicePeriod.withDescriptionCode("35");
         final Element element = (Element) invoicePeriod.node();
 
         assertRequiredElement(element, "DescriptionCode", equalTo("35"));
+        assertRequiredElement(element, "StartDate", equalTo("2020-11-11"));
+        assertUnsetOptionalElement(element, "EndDate");
     }
 
 }

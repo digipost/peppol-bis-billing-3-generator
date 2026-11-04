@@ -29,9 +29,21 @@ public class InvoicePeriod implements XmlElement {
     private String endDate;
     private String descriptionCode;
 
+    public InvoicePeriod() {
+    }
     public InvoicePeriod(String startDate, String endDate) {
         this.startDate = startDate;
         this.endDate = endDate;
+    }
+    
+    public InvoicePeriod withStartDate(String startDate){
+        this.startDate = startDate;
+        return this;
+    }
+    
+    public InvoicePeriod withEndDate(String endDate) {
+        this.endDate = endDate;
+        return this;
     }
 
     public InvoicePeriod withDescriptionCode(String descriptionCode) {
@@ -43,8 +55,8 @@ public class InvoicePeriod implements XmlElement {
     public Node node() {
         final Element elm = Xml.el(new QualifiedName(CAC_NS, name()));
 
-        required(this.startDate, "StartDate", elm, CBC_NS);
-        required(this.endDate, "EndDate", elm, CBC_NS);
+        optional(this.startDate, "StartDate", elm, CBC_NS);
+        optional(this.endDate, "EndDate", elm, CBC_NS);
 
         optional(this.descriptionCode, "DescriptionCode", elm, CBC_NS);
 

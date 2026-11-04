@@ -15,14 +15,15 @@
  */
 package peppol.bis.invoice3.validation;
 
-import com.helger.commons.error.list.ErrorList;
-import com.helger.commons.io.resource.inmemory.ReadableResourceString;
+import com.helger.diagnostics.error.list.ErrorList;
+import com.helger.io.resource.inmemory.ReadableResourceString;
 import com.helger.diver.api.coord.DVRCoordinate;
 import com.helger.phive.api.execute.ValidationExecutionManager;
 import com.helger.phive.api.executorset.IValidationExecutorSet;
 import com.helger.phive.api.executorset.IValidationExecutorSetRegistry;
 import com.helger.phive.api.executorset.ValidationExecutorSetRegistry;
 import com.helger.phive.api.result.ValidationResultList;
+import com.helger.phive.api.validity.IValidityDeterminator;
 import com.helger.phive.en16931.EN16931Validation;
 import com.helger.phive.peppol.PeppolValidation;
 import com.helger.phive.peppol.PeppolValidation2024_05;
@@ -89,7 +90,7 @@ public class DefaultPeppolBilling3Validation implements PeppolBilling3Validation
         // Shortcut introduced in v6
         final IValidationSourceXML validationSourceXML = ValidationSourceXML.create(new ReadableResourceString(s, StandardCharsets.UTF_8));
 
-        final ValidationResultList vResult = ValidationExecutionManager.executeValidation(aVES, validationSourceXML);
+        final ValidationResultList vResult = ValidationExecutionManager.executeValidation(IValidityDeterminator.createDefault(), aVES, validationSourceXML);
         if (vResult.containsAtLeastOneError()) {
 
             return new DefaultValidationResult(Validity.INVALID, getTextFrom(vResult.getAllErrors()), getTextFrom(vResult.getAllFailures()));

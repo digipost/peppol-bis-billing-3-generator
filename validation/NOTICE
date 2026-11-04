@@ -8,26 +8,36 @@ Licensed under Apache 2 - http://www.apache.org/licenses/LICENSE-2.0.html
 
 This software includes third party software subject to the following licenses:
 
-  Apache Commons Codec under Apache License, Version 2.0
-  Apache HttpClient under Apache License, Version 2.0
-  Apache HttpComponents Core HTTP/1.1 under Apache License, Version 2.0
-  Apache HttpComponents Core HTTP/2 under Apache License, Version 2.0
   Eaxy Easy XML library under The Apache Licence, version 2.0
-  FindBugs-jsr305 under The Apache Software License, Version 2.0
   Jakarta Activation API under EDL 1.0
   Jakarta XML Binding API under Eclipse Distribution License - v 1.0
+  JSpecify annotations under The Apache License, Version 2.0
   jsr305 under GNU Lesser Public License
   peppol-bis-billing-3-generator-domain under Apache License, Version 2.0
   peppol-bis-billing-3-generator-validation under Apache License, Version 2.0
-  ph-cii-d16b under Apache 2
-  ph-commons under Apache 2
+  ph-annotations under Apache 2
+  ph-base under Apache 2
+  ph-cache under Apache 2
+  ph-collection under Apache 2
+  ph-datetime under Apache 2
+  ph-diagnostics under Apache 2
   ph-diver-api under Apache 2
+  ph-io under Apache 2
   ph-jaxb under Apache 2
   ph-jaxb-adapter under Apache 2
+  ph-mime under Apache 2
   ph-schematron-api under Apache 2
-  ph-schematron-pure under Apache 2
+  ph-schematron-isosch under Apache 2
+  ph-schematron-model under Apache 2
+  ph-schematron-pure-xpath under Apache 2
+  ph-schematron-saxon under Apache 2
   ph-schematron-schxslt under Apache 2
+  ph-schematron-schxslt2 under Apache 2
   ph-schematron-xslt under Apache 2
+  ph-statistics under Apache 2
+  ph-telemetry under Apache 2
+  ph-text under Apache 2
+  ph-typeconvert under Apache 2
   ph-ubl21 under Apache 2
   ph-ubl23 under Apache 2
   ph-xml under Apache 2
@@ -38,9 +48,12 @@ This software includes third party software subject to the following licenses:
   ph-xsds-xmldsig under Apache 2
   phive-api under Apache 2
   phive-rules-peppol under Apache 2
+  phive-rules-shared under Apache 2
   phive-xml under Apache 2
+  phive-xml-source under Apache 2
   Saxon-HE under Mozilla Public License Version 2.0
   SchXslt Core under MIT License
-  SLF4J API Module under MIT License
+  SchXslt2 under MIT License
+  SLF4J API Module under MIT
   XML Resolver under Apache License version 2.0
 

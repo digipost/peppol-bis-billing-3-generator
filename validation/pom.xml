@@ -39,29 +39,34 @@
         </dependency>
         <dependency>
             <groupId>com.helger.commons</groupId>
-            <artifactId>ph-commons</artifactId>
-            <version>11.1.6</version>
+            <artifactId>ph-io</artifactId>
+            <version>12.5.3</version>
+        </dependency>
+        <dependency>
+            <groupId>com.helger.commons</groupId>
+            <artifactId>ph-diagnostics</artifactId>
+            <version>12.5.0</version>
         </dependency>
         <dependency>
             <groupId>com.helger.phive.rules</groupId>
             <artifactId>phive-rules-peppol</artifactId>
-            <version>3.2.15</version>
+            <version>4.0.3</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>com.helger.diver</groupId>
             <artifactId>ph-diver-api</artifactId>
-            <version>3.0.1</version>
+            <version>4.2.2</version>
         </dependency>
         <dependency>
             <groupId>com.helger.phive</groupId>
-            <artifactId>phive-xml</artifactId>
-            <version>10.1.1</version>
+            <artifactId>phive-xml-source</artifactId>
+            <version>12.2.0</version>
         </dependency>
         <dependency>
             <groupId>com.helger.phive</groupId>
             <artifactId>phive-api</artifactId>
-            <version>10.1.1</version>
+            <version>12.2.0</version>
         </dependency>
         <dependency>
             <groupId>org.eaxy</groupId>

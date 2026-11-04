@@ -24,9 +24,8 @@ import com.helger.phive.api.executorset.IValidationExecutorSetRegistry;
 import com.helger.phive.api.executorset.ValidationExecutorSetRegistry;
 import com.helger.phive.api.result.ValidationResultList;
 import com.helger.phive.api.validity.IValidityDeterminator;
-import com.helger.phive.en16931.EN16931Validation;
 import com.helger.phive.peppol.PeppolValidation;
-import com.helger.phive.peppol.PeppolValidation2024_05;
+import com.helger.phive.peppol.PeppolValidation2026_05;
 import com.helger.phive.xml.source.IValidationSourceXML;
 import com.helger.phive.xml.source.ValidationSourceXML;
 import org.eaxy.Document;
@@ -49,9 +48,9 @@ public class DefaultPeppolBilling3Validation implements PeppolBilling3Validation
 
     {
         if (vesid_invoice == null)
-            DefaultPeppolBilling3Validation.setVesid_invoice(PeppolValidation2024_05.VID_OPENPEPPOL_INVOICE_UBL_V3);
+            DefaultPeppolBilling3Validation.setVesid_invoice(PeppolValidation2026_05.VID_OPENPEPPOL_INVOICE_UBL_V3);
         if (vesid_creditNote == null)
-            DefaultPeppolBilling3Validation.setVesid_creditNote(PeppolValidation2024_05.VID_OPENPEPPOL_CREDIT_NOTE_UBL_V3);
+            DefaultPeppolBilling3Validation.setVesid_creditNote(PeppolValidation2026_05.VID_OPENPEPPOL_CREDIT_NOTE_UBL_V3);
     }
 
     @Override
@@ -105,14 +104,12 @@ public class DefaultPeppolBilling3Validation implements PeppolBilling3Validation
     public static void setVesid_invoice(DVRCoordinate vesid_invoice) {
         DefaultPeppolBilling3Validation.validationExecutorSetRegistry = new ValidationExecutorSetRegistry<>();
         DefaultPeppolBilling3Validation.vesid_invoice                 = vesid_invoice;
-        EN16931Validation.initEN16931(validationExecutorSetRegistry);
         PeppolValidation.initStandard(validationExecutorSetRegistry);
     }
 
     public static void setVesid_creditNote(DVRCoordinate vesid_creditNote) {
         DefaultPeppolBilling3Validation.validationExecutorSetRegistry = new ValidationExecutorSetRegistry<>();
         DefaultPeppolBilling3Validation.vesid_creditNote              = vesid_creditNote;
-        EN16931Validation.initEN16931(validationExecutorSetRegistry);
         PeppolValidation.initStandard(validationExecutorSetRegistry);
     }
 

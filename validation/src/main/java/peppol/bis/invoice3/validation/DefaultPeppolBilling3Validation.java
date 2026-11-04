@@ -17,12 +17,13 @@ package peppol.bis.invoice3.validation;
 
 import com.helger.commons.error.list.ErrorList;
 import com.helger.commons.io.resource.inmemory.ReadableResourceString;
-import com.helger.diver.api.version.VESID;
+import com.helger.diver.api.coord.DVRCoordinate;
 import com.helger.phive.api.execute.ValidationExecutionManager;
 import com.helger.phive.api.executorset.IValidationExecutorSet;
 import com.helger.phive.api.executorset.IValidationExecutorSetRegistry;
 import com.helger.phive.api.executorset.ValidationExecutorSetRegistry;
 import com.helger.phive.api.result.ValidationResultList;
+import com.helger.phive.en16931.EN16931Validation;
 import com.helger.phive.peppol.PeppolValidation;
 import com.helger.phive.peppol.PeppolValidation2024_05;
 import com.helger.phive.xml.source.IValidationSourceXML;
@@ -42,8 +43,8 @@ import static java.util.Collections.emptyList;
 public class DefaultPeppolBilling3Validation implements PeppolBilling3Validation {
 
     private static IValidationExecutorSetRegistry<IValidationSourceXML> validationExecutorSetRegistry;
-    private static VESID vesid_invoice;
-    private static VESID vesid_creditNote;
+    private static DVRCoordinate vesid_invoice;
+    private static DVRCoordinate vesid_creditNote;
 
     {
         if (vesid_invoice == null)
@@ -100,15 +101,17 @@ public class DefaultPeppolBilling3Validation implements PeppolBilling3Validation
         return new DefaultValidationResult(Validity.VALID, emptyList(), emptyList());
     }
 
-    public static void setVesid_invoice(VESID vesid_invoice) {
+    public static void setVesid_invoice(DVRCoordinate vesid_invoice) {
         DefaultPeppolBilling3Validation.validationExecutorSetRegistry = new ValidationExecutorSetRegistry<>();
         DefaultPeppolBilling3Validation.vesid_invoice                 = vesid_invoice;
+        EN16931Validation.initEN16931(validationExecutorSetRegistry);
         PeppolValidation.initStandard(validationExecutorSetRegistry);
     }
 
-    public static void setVesid_creditNote(VESID vesid_creditNote) {
+    public static void setVesid_creditNote(DVRCoordinate vesid_creditNote) {
         DefaultPeppolBilling3Validation.validationExecutorSetRegistry = new ValidationExecutorSetRegistry<>();
         DefaultPeppolBilling3Validation.vesid_creditNote              = vesid_creditNote;
+        EN16931Validation.initEN16931(validationExecutorSetRegistry);
         PeppolValidation.initStandard(validationExecutorSetRegistry);
     }
 

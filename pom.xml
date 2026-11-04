@@ -70,6 +70,12 @@
                 <groupId>org.eaxy</groupId>
                 <artifactId>eaxy</artifactId>
                 <version>0.2.2</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>net.sourceforge.findbugs</groupId>
+                        <artifactId>jsr305</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
             <dependency>
                 <groupId>org.slf4j</groupId>

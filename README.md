@@ -14,7 +14,7 @@ it ease of use and no dependency nature.
 
 We use `phive-api` for optional validation.
 
-This is Java 11.
+This is Java 17.
 
 # Installation
 
